@@ -43,7 +43,7 @@ MASAS_functions.getDiscoverNumberFromCurrentTime = () => {
 		return 4
 	else if(hours >= 18 && hours < 22)
 		return 5
-	else if(hours >= 22 && hours < 4)
+	else if(hours >= 22 || hours < 4)
 		return 6
 }
 
