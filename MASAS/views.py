@@ -1,9 +1,10 @@
 import datetime
 import soundcloud
+import random
 import requests
 
 from django.conf import settings
-from django.db.models import Count, Prefetch
+from django.db.models import Count, Prefetch, Q
 from django.shortcuts import render
 from django.views import generic
 
@@ -151,18 +152,25 @@ class PlayView(APIView):
                 status__status=1,  # like
             ).annotate(
                 likes_count=Count('status')
-            ).order_by('-likes_count', '-pk')
+            ).order_by('-likes_count')
 
-        key = 'radio_%s' % radio
-        previous = request.session.get(key, None)
+        key = 'radio_history_%s' % radio
+        history = request.session.get(key, [])
+
         song = None
-        if previous > 0:
-            song = songs.filter(pk__lt=previous).first()
+        if history:
+            song = songs.exclude(
+                Q(pk__in=history) |
+                Q(trackArtist__songs__pk__in=history[-10:])
+            ).order_by('-dateUploaded').first()
 
-        if not song or song.pk == previous:
+        if not song or song.pk in history:
+            # Loop !
             song = songs.first()
+            request.session[key] = [] if not song else [song.pk]
 
-        request.session[key] = song.pk
+        if song.pk not in request.session[key]:
+            request.session[key] += [song.pk]
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
 
         try:
