@@ -1,5 +1,6 @@
 import datetime
 import soundcloud
+import random
 import requests
 
 from django.conf import settings
@@ -157,7 +158,13 @@ class PlayView(APIView):
         previous = request.session.get(key, None)
         song = None
         if previous > 0:
-            song = songs.filter(pk__lt=previous).first()
+            next_songs = songs.filter(
+                pk__lt=previous,
+            ).exclude(
+                trackArtist=User.objects.filter(songs__pk=previous)
+            )[:10]
+            if next_songs.count():
+                song = next_songs[random.randint(0, next_songs.count() - 1)]
 
         if not song or song.pk == previous:
             song = songs.first()
