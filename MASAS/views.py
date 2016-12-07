@@ -161,7 +161,7 @@ class PlayView(APIView):
         if history:
             song = songs.exclude(
                 Q(pk__in=history) |
-                Q(trackArtist__songs__pk__in=history[-10:])
+                Q(trackArtist__songs__pk__in=history[-30:])
             ).order_by('-dateUploaded').first()
 
         if not song or song.pk in history:
