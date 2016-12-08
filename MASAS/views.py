@@ -47,6 +47,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from serializers import (
+    GenreSerializer,
     StatusSerializer,
     StatusListSerializer,
     PlaySerializer,
@@ -58,7 +59,7 @@ from serializers import (
     TimeIntervalSerializer,
 )
 
-from models import Status, Play, Song, User, UserStep, TimeInterval, Link
+from models import Genre, Status, Play, Song, User, UserStep, TimeInterval, Link
 
 
 class BaseModelViewSetMixin(object):
@@ -109,6 +110,11 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
         return UserEditSerializer
 
 
+class GenreViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
 class UserStepViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = UserStep.objects.all()
     serializer_class = UserStepSerializer
@@ -149,6 +155,12 @@ class PlayView(APIView):
             songs = songs.order_by('-dateUploaded')
         elif radio == 'popular':
             songs = songs.order_by('-like_count')
+
+        exclude_genres = request.GET.get('exclude_genres', None)
+        if exclude_genres:
+            songs = songs.exclude(
+                genre__pk__in=[int(i) for i in exclude_genres.split(',')]
+            )
 
         song_key = 'radio_song_history_%s' % radio
         song_history = request.session.get(song_key, [])
