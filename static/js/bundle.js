@@ -76990,8 +76990,9 @@ function playRandomSong() {
 		var state = getState();
 		var MASASuser = state.appReducer.MASASuser;
 
-		var URL = "/api/play/";
-		if (timeInterval) URL = URL + "?time_interval_id=" + timeInterval;
+		var URL = document.playUrl === undefined ? "/api/play/" : document.playUrl;
+        if (URL.indexOf('?') < 0) URL = URL + '?';
+		if (timeInterval) URL = URL + "&time_interval_id=" + timeInterval;
 
 		var headers = {};
 		var method = "GET";
