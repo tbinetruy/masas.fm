@@ -148,29 +148,40 @@ class PlayView(APIView):
         if radio == 'discover':
             songs = songs.order_by('-dateUploaded')
         elif radio == 'popular':
-            songs = songs.filter(
-                status__status=1,  # like
-            ).annotate(
-                likes_count=Count('status')
-            ).order_by('-likes_count')
+            songs = songs.order_by('-like_count')
 
-        key = 'radio_history_%s' % radio
-        history = request.session.get(key, [])
+        song_key = 'radio_song_history_%s' % radio
+        song_history = request.session.get(song_key, [])
 
-        song = None
-        if history:
-            song = songs.exclude(
-                Q(pk__in=history) |
-                Q(trackArtist__songs__pk__in=history[-30:])
-            ).order_by('-dateUploaded').first()
+        if not song_history or len(song_history) >= songs.count():
+            song_history = request.session[song_key] = []
 
-        if not song or song.pk in history:
-            # Loop !
-            song = songs.first()
-            request.session[key] = [] if not song else [song.pk]
+        artist_key = 'radio_artist_history_%s' % radio
+        artist_history = request.session.get(artist_key, [])
+        new_artist_songs = songs.exclude(
+            trackArtist__pk__in=artist_history
+        )
+        if not artist_history:
+            request.session[artist_key] = []
 
-        if song.pk not in request.session[key]:
-            request.session[key] += [song.pk]
+        count = len(set(
+            new_artist_songs.values_list('trackArtist_id', flat=True)
+        ))
+        if len(artist_history) >= count:
+            request.session[artist_key] = artist_history = artist_history[3:]
+            songs = songs.exclude(
+                trackArtist__pk__in=artist_history
+            )
+        else:
+            songs = new_artist_songs
+
+        song = songs.first()
+
+        if song.pk not in request.session[song_key]:
+            request.session[song_key] += [song.pk]
+        if song.trackArtist_id not in request.session[artist_key]:
+            request.session[artist_key] += [song.trackArtist_id]
+
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
 
         try:
