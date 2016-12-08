@@ -83,11 +83,10 @@ def song_genre(sender, instance, **kwargs):
 
     s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
 
-    while instance.metadata is None:
-        try:
-            instance.metadata = s.get('/tracks/%s' % instance.SC_ID).obj
-        except requests.HTTPError as e:
-            time.sleep(0.1)
+    try:
+        instance.metadata = s.get('/tracks/%s' % instance.SC_ID).obj
+    except requests.HTTPError as e:
+        return
 
     if instance.metadata.get('genre', None):
         genre, c = kwargs.get('Genre', Genre).objects.get_or_create(
