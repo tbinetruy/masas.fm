@@ -91,7 +91,7 @@ def song_genre(sender, instance, **kwargs):
 
     if instance.metadata.get('genre', None):
         genre, c = kwargs.get('Genre', Genre).objects.get_or_create(
-            name=instance.metadata['genre']
+            name=instance.metadata['genre'].strip()
         )
         instance.genre = genre
 models.signals.pre_save.connect(song_genre, sender=Song)
