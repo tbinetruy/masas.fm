@@ -176,18 +176,10 @@ class PlayView(APIView):
         if not artist_history:
             request.session[artist_key] = []
 
-        count = len(set(
-            new_artist_songs.values_list('trackArtist_id', flat=True)
-        ))
-        if len(artist_history) >= count:
-            request.session[artist_key] = artist_history = artist_history[3:]
-            songs = songs.exclude(
-                trackArtist__pk__in=artist_history
-            )
-        else:
-            songs = new_artist_songs
-
-        song = songs.first()
+        song = new_artist_songs.first()
+        if not song:
+            request.session[artist_key] = artist_history = []
+            song = songs.first()
 
         if song.pk not in request.session[song_key]:
             request.session[song_key] += [song.pk]
