@@ -17,8 +17,6 @@ var pixelRatio = () => {
 var TimePicker = React.createClass({
 	cancelablePromise: makePromiseCancelable(new Promise( () => {} )),
 
-	paper: new paper.PaperScope(),
-
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
 		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
@@ -52,6 +50,7 @@ var TimePicker = React.createClass({
 			showHashtag: true,
 			sliderValue: -1,
 			renderForUITip: false,
+			canvasId: "timePicker--wrapper",
 			onSliderChange: () => {}
 		}
 	},
@@ -61,7 +60,6 @@ var TimePicker = React.createClass({
 		$(window).bind('resize', this.updateCanvasDim)
 
 		// get canvas dim on initial render
-		this.setupPaperJS()
 		this.updateCanvasDim()
 
 		// render sun arc path once states from this.updateCanvasDim have udpated
@@ -73,16 +71,9 @@ var TimePicker = React.createClass({
 		this.cancelablePromise.cancel()		
 	},
 
-	setupPaperJS: function() {
-		var canvas = this.refs.canvas
-
-		// SETUP PAPER JS
-		this.paper.setup(canvas)
-	},
-
 	updateCanvasDim: function() {
 		// GET CANVAS DIMENSIONS AND RESIZE IF NECESSARY
-		var canvasWrapper = this.refs.canvasWrapper
+		var canvasWrapper = this.refs.svgWrapper
 
 
 			// get canvas dimensions from styles
@@ -91,9 +82,6 @@ var TimePicker = React.createClass({
 		canvasHeight = parseInt(canvasHeight.split("p")[0])
 		canvasWidth = parseInt(canvasWidth.split("p")[0])
 		
-			// update canvas size
-		this.paper.view.viewSize = new this.paper.Size(canvasWidth, canvasHeight)
-
 			// define sun arc path center and radius (magic numbers used for ajusting curves)
 		var arcRadius = canvasWidth / 1.9
 		var arcCenterCoords = { x: canvasWidth / 2, y: arcRadius + 15 }
@@ -103,24 +91,30 @@ var TimePicker = React.createClass({
 	},
 
 	renderSunArcPath: function() {
-		this.paper.project.clear()
-		this.setupPaperJS()
-		//DRAW AND STYLE ARC CIRCLE
-			// draw arc from circle radius and center
-		var center = new this.paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y)
-		var path = new this.paper.Path.Circle(center, this.state.arcRadius)
-		
-			// style path
-		path.strokeColor = 'white'
-		path.opacity = 0.5
-		path.dashArray = [5, 6]
-		path.strokeWidth = 2
+		const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
+			var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
 
-		// DRAW PATH ON CANVAS
-		this.paper.activate()
+			return {
+				x: centerX + (radius * Math.cos(angleInRadians)),
+				y: centerY + (radius * Math.sin(angleInRadians))
+			}
+		}
 
-		this.paper.view.draw()
+		const describeArc = (x, y, radius, startAngle, endAngle) => {
+			var start = polarToCartesian(x, y, radius, endAngle)
+			var end = polarToCartesian(x, y, radius, startAngle)
 
+			var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1"
+
+			var d = [
+				"M", start.x, start.y, 
+				"A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+			].join(" ")
+
+			return d
+		}
+
+		document.getElementById(this.props.canvasId).setAttribute("d", describeArc(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y, this.state.arcRadius, -70, 70));
 	},
 
 	handleTimePickerChange: function(rangeValue, currentDiscover) {
@@ -144,16 +138,6 @@ var TimePicker = React.createClass({
 			return 0
 		}
 	},
-
-	// handleSliderChange: function(e) {
-	// 	// check if need to update redux state
-	// 	const newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover)
-	// 	if(newDiscover !== 0)
-	// 		this.props.onSliderChange(newDiscover)
-
-	// 	// update local state
-	// 	// this.setState({ rangePercent: parseFloat(e), sunCoords })
-	// },
 
 	getSunCoords: function(sliderValue) {
 		var { sqrt, pow } = Math
@@ -198,8 +182,8 @@ var TimePicker = React.createClass({
 	},
 
 	componentDidUpdate: function() {
-		var canvas = this.refs.canvas
-		if(canvas)
+		var svg = this.refs.svg
+		if(svg)
 			this.renderSunArcPath()
 	},
 
@@ -245,8 +229,10 @@ var TimePicker = React.createClass({
 		}
 
 		return (
-			<div className={ "MASAS-time-picker " + this.props.wrapperClassName} ref="canvasWrapper">
-				<canvas id={this.props.canvasId} ref="canvas"></canvas>
+			<div className={ "MASAS-time-picker " + this.props.wrapperClassName} ref="svgWrapper">
+				<svg ref="svg" style={{ width: '100%', height: '100%' }}>
+					<path id={this.props.canvasId} fill="none" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="7" strokeOpacity="0.8" />
+				</svg>
 				<div className="timePicker-slider--wrapper">
 					<div style={{
 						position: "relative",
