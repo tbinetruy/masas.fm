@@ -6,7 +6,7 @@
 var React = require("react")
 
 var $ = require("jquery")
-var paper = require("paper")
+//var paper = require("paper")
 
 var { makePromiseCancelable, discoverHashtagNames } = require("../../MASAS_functions.jsx")
 

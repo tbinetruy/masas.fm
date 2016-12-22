@@ -23,7 +23,7 @@
 
 
 var React = require("react")
-var paper = require("paper")
+//var paper = require("paper")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
 var { getSongCount } = require("./ajaxCalls.jsx")
