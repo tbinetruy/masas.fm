@@ -9,6 +9,10 @@ from django.db.models import Count
 from django.contrib.auth.models import User
 from django.conf import settings
 
+import requests
+import soundcloud
+import time
+
 
 class TimeIntervalManager(models.Manager):
     pass
@@ -46,6 +50,10 @@ class SongManager(models.Manager):
         return qs
 
 
+class Genre(models.Model):
+    name = models.CharField(unique=True, max_length=100)
+
+
 class Song(models.Model):
     dateUploaded = models.DateTimeField(auto_now_add=True)
     trackTitle = models.CharField(max_length=100, blank=True, default='')
@@ -58,6 +66,7 @@ class Song(models.Model):
     SC_ID = models.IntegerField(unique=True)
     timeInterval = models.ForeignKey('TimeInterval')
     deleted = models.DateTimeField(null=True, blank=True, default=None)
+    genre = models.ForeignKey('Genre', null=True)
     play_count = models.IntegerField(db_index=True, default=0)
 
     # Cached here by get_song during soundcloud remote check
@@ -67,6 +76,24 @@ class Song(models.Model):
 
     def __unicode__(self):
         return self.trackTitle
+
+def song_genre(sender, instance, **kwargs):
+    if instance.genre:
+        return
+
+    s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
+
+    try:
+        instance.metadata = s.get('/tracks/%s' % instance.SC_ID).obj
+    except requests.HTTPError as e:
+        return
+
+    if instance.metadata.get('genre', None):
+        genre, c = kwargs.get('Genre', Genre).objects.get_or_create(
+            name=instance.metadata['genre'].strip()
+        )
+        instance.genre = genre
+models.signals.pre_save.connect(song_genre, sender=Song)
 
 
 class UserManager(UserManager):

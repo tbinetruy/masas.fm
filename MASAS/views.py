@@ -4,7 +4,7 @@ import random
 import requests
 
 from django.conf import settings
-from django.db.models import Count, Prefetch
+from django.db.models import Count, Prefetch, Q
 from django.shortcuts import render
 from django.views import generic
 
@@ -47,6 +47,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from serializers import (
+    GenreSerializer,
     StatusSerializer,
     StatusListSerializer,
     PlaySerializer,
@@ -58,7 +59,7 @@ from serializers import (
     TimeIntervalSerializer,
 )
 
-from models import Status, Play, Song, User, UserStep, TimeInterval, Link
+from models import Genre, Status, Play, Song, User, UserStep, TimeInterval, Link
 
 
 class BaseModelViewSetMixin(object):
@@ -109,6 +110,11 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
         return UserEditSerializer
 
 
+class GenreViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
 class UserStepViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = UserStep.objects.all()
     serializer_class = UserStepSerializer
@@ -148,28 +154,39 @@ class PlayView(APIView):
         if radio == 'discover':
             songs = songs.order_by('-dateUploaded')
         elif radio == 'popular':
-            songs = songs.filter(
-                status__status=1,  # like
-            ).annotate(
-                likes_count=Count('status')
-            ).order_by('-likes_count', '-pk')
+            songs = songs.order_by('-like_count')
 
-        key = 'radio_%s' % radio
-        previous = request.session.get(key, None)
-        song = None
-        if previous > 0:
-            next_songs = songs.filter(
-                pk__lt=previous,
-            ).exclude(
-                trackArtist=User.objects.filter(songs__pk=previous)
-            )[:10]
-            if next_songs.count():
-                song = next_songs[random.randint(0, next_songs.count() - 1)]
+        exclude_genres = request.GET.get('exclude_genres', None)
+        if exclude_genres:
+            songs = songs.exclude(
+                genre__pk__in=[int(i) for i in exclude_genres.split(',')]
+            )
 
-        if not song or song.pk == previous:
+        song_key = 'radio_song_history_%s' % radio
+        song_history = request.session.get(song_key, [])
+
+        if not song_history or len(song_history) >= songs.count():
+            song_history = request.session[song_key] = []
+
+        songs = songs.exclude(pk__in=song_history)
+
+        artist_key = 'radio_artist_history_%s' % radio
+        artist_history = request.session.get(artist_key, [])
+        if not artist_history:
+            request.session[artist_key] = []
+
+        song = songs.exclude(
+            trackArtist_id__in=artist_history
+        ).first()
+        if not song:
+            request.session[artist_key] = artist_history = []
             song = songs.first()
 
-        request.session[key] = song.pk
+        if song.pk not in request.session[song_key]:
+            request.session[song_key] += [song.pk]
+        if song.trackArtist_id not in request.session[artist_key]:
+            request.session[artist_key] += [song.trackArtist_id]
+
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
 
         try:

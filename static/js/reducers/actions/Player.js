@@ -483,9 +483,10 @@ export function playRandomSong(timeInterval = 0) {
 		const state = getState()
 		const { MASASuser } = state.appReducer
 
-		var URL = "/api/play/"
+		var URL = document.playUrl === undefined ? "/api/play/" : document.playUrl;
+        if (URL.indexOf('?') < 0) URL = URL + '?';
 		if(timeInterval)
-			URL = URL + "?time_interval_id=" + timeInterval
+			URL = URL + "&time_interval_id=" + timeInterval
 
 
 		var headers = {}

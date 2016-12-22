@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from cities_light.models import City
 from cities_light.contrib.restframework3 import CitySerializer
 
-from models import Status, Play, Song, User, UserStep, Link, TimeInterval
+from models import Genre, Status, Play, Song, User, UserStep, Link, TimeInterval
 
 
 class CreateOnlyForMyUserMixin(object):
@@ -72,6 +72,12 @@ class PlaySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Play
         fields = ('pk', 'url', 'user', 'song')
+
+
+class GenreSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ('pk', 'name')
 
 
 class StatusSerializer(CreateOnlyForMyUserMixin,
