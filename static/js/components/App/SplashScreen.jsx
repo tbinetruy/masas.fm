@@ -1,5 +1,5 @@
 var React = require("react")
-var Swiper = require("swiper")
+var Swiper = require("swiper/dist/js/swiper.min.js")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/SplashScreen.jsx")
 
