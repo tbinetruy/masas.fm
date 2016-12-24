@@ -35,7 +35,17 @@ var Button = React.createClass({
 	render: function() {
 		return (
 			<div 
-				className={"MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") +  (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : "") + (this.props.soundcloud ? " soundcloud-login-button" : "") + (this.props.facebook ? " facebook-login-button" : "")} 
+				className={
+					"MASAS-button" 
+					+ (this.props.isSecondaryAction ? " secondary-button " : "")
+					+ (" " + this.props.className + " ")
+					+ (this.props.isBigButton ? "MASAS-big-button " : "")
+					+ (this.props.noBorders ? " no-borders " : "")
+					+ (this.props.isDisabled ? " disabled " : "")
+					+ (this.props.soundcloud ? " soundcloud-login-button" : "")
+					+ (this.props.facebook ? " facebook-login-button" : "")
+					+ (this.props.twitter ? " twitter-login-button" : "")
+				}
 				onClick={ !this.props.isDisabled ? this.props.onClick : ( () => {} ) }
 				style={ this.props.wrapperStyle }>
 				<div className={"wrapper"}>
@@ -53,7 +63,7 @@ var Button = React.createClass({
 					}
 					{ 
 						this.props.twitter ? 
-							<img src="/static/img/facebook.svg" alt="facebook login" />
+							<img src="/static/img/facebook.svg" alt="twitter login" />
 						: 
 							""
 					}

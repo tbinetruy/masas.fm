@@ -47,6 +47,7 @@ if SECRET_KEY == 'notsecret' and not DEBUG:
 
 ALLOWED_HOSTS = [
     gethostname(),
+    "localhost"
 ]
 
 DNS = os.environ.get('OPENSHIFT_APP_DNS', None),
@@ -239,6 +240,13 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get(
     'FACEBOOK_SECRET',
     '09333f2e3964f73fdc0c6a9488122bb8'
 )
+
+TWITTER = {
+    'KEY': os.environ.get(
+        'TWITTER_KEY',
+        'cW27zRFzW46Wr6uXmWJp8iMRJ',
+    ),
+}
 
 SOUNDCLOUD = {
     'CLIENT_ID': os.environ.get(

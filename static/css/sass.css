@@ -235,26 +235,31 @@
 .MASAS-button.no-borders {
   border: 0px solid black !important; }
 
-.MASAS-button.soundcloud-login-button, .MASAS-button.facebook-login-button {
+.MASAS-button.soundcloud-login-button, .MASAS-button.facebook-login-button, .MASAS-button.twitter-login-button {
   display: flex;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 5px;
-  color: white; }
-  .MASAS-button.soundcloud-login-button img, .MASAS-button.facebook-login-button img {
+  color: white;
+  margin-bottom: 1rem; }
+  .MASAS-button.soundcloud-login-button img, .MASAS-button.facebook-login-button img, .MASAS-button.twitter-login-button img {
     height: 1rem;
     padding-right: 1rem;
     border-right: 1px solid white;
     margin-right: 1rem; }
 
-.MASAS-button.MASAS-big-button.soundcloud-login-button, .MASAS-button.MASAS-big-button.facebook-login-button {
-  width: auto; }
+.MASAS-button.MASAS-big-button.soundcloud-login-button, .MASAS-button.MASAS-big-button.facebook-login-button, .MASAS-button.MASAS-big-button.twitter-login-button {
+  width: 100%; }
 
 .MASAS-button.soundcloud-login-button {
-  background-color: orange; }
+  background-color: orange;
+  margin-bottom: 0; }
 
 .MASAS-button.facebook-login-button {
   background-color: #3b5997; }
+
+.MASAS-button.twitter-login-button {
+  background-color: #4099ff; }
 
 .MASAS-button.disabled {
   cursor: default;
