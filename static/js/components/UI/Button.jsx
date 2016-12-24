@@ -11,6 +11,8 @@ var Button = React.createClass({
 		wrapperStyle: React.PropTypes.object,		// styles associated with button wrapper
 		soundcloud: React.PropTypes.bool,			// is button style for SC login
 		facebook: React.PropTypes.bool, 			// is button style for FB login
+		twitter: React.PropTypes.bool, 			// is button style for Twitterlogin
+		children: React.PropTypes.node,
 	},
 
 	componentWillMount: function() {
@@ -26,6 +28,7 @@ var Button = React.createClass({
 			wrapperStyle: {},
 			soundcloud: false,
 			facebook: false,
+			twitter: false,
 		}
 	},
 
@@ -36,17 +39,25 @@ var Button = React.createClass({
 				onClick={ !this.props.isDisabled ? this.props.onClick : ( () => {} ) }
 				style={ this.props.wrapperStyle }>
 				<div className={"wrapper"}>
-					{ this.props.soundcloud ? 
-						<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud login" />
+					{
+						this.props.soundcloud ? 
+							<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud login" />
 						: 
-						""
+							""
 					}
-					{ this.props.facebook ? 
-						<img src="/static/img/facebook.svg" alt="facebook login" />
+					{ 
+						this.props.facebook ? 
+							<img src="/static/img/facebook.svg" alt="facebook login" />
 						: 
-						""
+							""
 					}
-					{this.props.children}
+					{ 
+						this.props.twitter ? 
+							<img src="/static/img/facebook.svg" alt="facebook login" />
+						: 
+							""
+					}
+					{ this.props.children }
 				</div>
 			</div>
 		)

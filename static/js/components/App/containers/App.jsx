@@ -11,9 +11,7 @@ import {
 	changeUnsplashArtist,
 } from "../../../reducers/actions/Home.js"
 
-var {
-	logInWithToken
-} = require("../../../MASAS_functions.jsx")
+import { login } from "../../../reducers/actions/login.js"
 
 var App = {}
 
@@ -36,7 +34,7 @@ App.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
-		logInWithToken: (authToken) => logInWithToken(dispatch, authToken),
+		logInWithToken: (authToken) => login(authToken),
 		forceRender: () => dispatch(doneProcessingAuthCookie()),
 		showAppFetchingBar: () => dispatch(setAppFetchingStateTrue()),
 		hideAppFetchingBar: () => dispatch(setAppFetchingStateFalse()),

@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LoginForm.jsx")
@@ -11,6 +10,10 @@ var LoginForm = React.createClass({
 		fullForm: React.PropTypes.bool, 			// show the full login form be shown
 		buttonTitle: React.PropTypes.string,			// log in button content
 		subtitle: React.PropTypes.string,			// text under button
+		route: React.PropTypes.object,			// route object from react-router
+
+		login: React.PropTypes.func,				// login function
+		updateTitle: React.PropTypes.func,			// update title function
 	},
 
 	getDefaultProps: function() {
@@ -18,6 +21,7 @@ var LoginForm = React.createClass({
 			fullForm: false,
 			buttonTitle: "Log-in via Facebook",
 			subtitle: "",
+			login: () => {},
 		}
 	},
 
@@ -41,7 +45,7 @@ var LoginForm = React.createClass({
 						</div>
 						<div className="login-form--wrapper2">
 							<div className="fb-login">
-								<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB} facebook={ true }>{ this.props.buttonTitle }</Button>
+								<Button isBigButton={true} isSecondaryAction={false} onClick={ () => this.props.login('facebook') } facebook={ true }>{ this.props.buttonTitle }</Button>
 							</div>
 							<div style={{ display: 'none' }}>
 								<div className="divider">
@@ -61,7 +65,7 @@ var LoginForm = React.createClass({
 								<Button 
 									isBigButton={false} 
 									isSecondaryAction={false} 
-									onClick={ () => { return } }>Log In</Button>
+									onClick={ () => { } }>Log In</Button>
 							</div>
 						</div>
 					</div>
@@ -73,8 +77,13 @@ var LoginForm = React.createClass({
 					<Button 
 						isBigButton={ true } 
 						isSecondaryAction={ false } 
-						onClick={ this.props.logInFB }
-						facebook={ true }>{ this.props.buttonTitle }</Button>
+						onClick={ () => this.props.login('facebook') }
+						facebook={ true }>Log-in via Facebook</Button>
+					<Button 
+						isBigButton={ true } 
+						isSecondaryAction={ false } 
+						onClick={ () => this.props.login('twitter') }
+						twitter={ true }>Log-in via Twitter</Button>
 					<div className="subtitle">
 						{ this.props.subtitle }
 					</div>

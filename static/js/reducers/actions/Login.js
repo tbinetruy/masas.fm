@@ -1,10 +1,75 @@
 import 'whatwg-fetch'
 var Cookie = require("js-cookie")
 
-var { browserHistory } = require("react-router")
+import { updateNotificationBar } from "./Header.js"
 
-export const updateAuthCookie = (userToken) => {
+
+export const logout = () => {
+	return dispatch => {
+		Cookie.remove("MASAS_authToken")
+
+		dispatch({type: "LOGOUT"})
+
+		FB.logout(function(response) {
+			updateNotificationBar("Logged out !")
+		})
+	}
+}
+
+export const updateUserEmail = ({ userPk, userToken, userData }) => {
+	const header = "Bearer " + userToken
+
+	if(typeof(FB) !== "undefined") {
+		FB.api("/me", { locale: "en_US", fields: "name, email" },
+			function({ email }) {
+
+				// update email if user email not defined yet
+				if(email && !userData.email)
+					$.ajax({
+						type: "PATCH",
+						url: "/api/users/" + userPk + "/",
+						headers: {
+							"Authorization": header,
+							"Content-Type:": "application/json"
+						},
+						data: JSON.stringify({
+							email,
+						}),
+						success: () => {
+						},
+						error: () => {
+						}
+					})
+			}
+		)
+	}
+}
+
+export const updateAuthCookie = userToken => {
 	Cookie.set("MASAS_authToken", userToken)
+}
+
+export const getUserPk = (userToken, callbackFunc = null) => {
+	return dispatch => {
+		var header = "Bearer " + userToken
+		$.ajax({
+			type: "GET",
+			url: "/api/check-user/",	
+			headers: {
+				"Authorization": header,
+			},
+			success: r => {
+				var pk = r.userPk
+
+				dispatch({type: "UPDATE_USER_PK", pk: pk})
+
+				if(callbackFunc)
+					callbackFunc({ userToken, userPk: r.userPk})
+			},
+			error: () => {
+			},
+		})
+	}
 }
 
 // (obj) userDict => userDict.userToken and userDict.userPk 
@@ -33,34 +98,21 @@ export const updateUserInfo = (userPk, userToken) => {
 			type: "GET",
 			url: "/api/users/" + userPk + "/",
 			success: userData => {
-				// check that terms and conditions were accepted (commented for now, might not need it)
-				const hasAcceptedTerms = 1 // userData.usersteps.filter( (userStep) => userStep.step === 1).length
+				updateProfilePicture({ userToken, userPk, userData })
 
-				if(hasAcceptedTerms) {
-					updateProfilePicture({ userToken, userPk, userData })
-
-					// log in user
-					dispatch({ type: "UPDATE_USER_PK", pk: userPk })
-					dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
-					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
-					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
-
-					// if(window.location.pathname !== "/")
-					// 	browserHistory.push('/')
-				} else {
-					// show terms and conditions form
-					var TermsAndCond = require("./components/Login/TermsAndCond.jsx")
-					dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <TermsAndCond userPk={ parseInt(userPk) } userToken={ userToken } userData={ userData } /> })
-					dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
-				}
+				// log in user
+				dispatch({ type: "UPDATE_USER_PK", pk: userPk })
+				dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
+				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
+				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
 			},
-			error: e => {
+			error: () => {
 			}
 		})
 	}
 }
 
-export const logInWithToken = (removeVariable, userToken) => {
+export const logInWithToken = userToken => {
 	return dispatch => {
 		var header = "Bearer " + userToken
 		$.ajax({
@@ -69,9 +121,9 @@ export const logInWithToken = (removeVariable, userToken) => {
 			headers: {
 				"Authorization": header,
 			},
-			success: (data) => {
-				if(data.userPk !== "None") {
-					if(data.auth === "None") {
+			success: r => {
+				if(r.userPk !== "None") {
+					if(r.auth === "None") {
 						// remove cookie
 						const delete_cookie = function( name ) {
 							document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
@@ -79,7 +131,7 @@ export const logInWithToken = (removeVariable, userToken) => {
 
 						delete_cookie("MASAS_authToken")
 					} else {
-						var pk = data.userPk
+						var pk = r.userPk
 
 						updateUserInfo(pk, userToken)
 					}
@@ -88,49 +140,17 @@ export const logInWithToken = (removeVariable, userToken) => {
 				// render app
 				dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
 			},
-			error: (err) => {
+			error: e => {
 				// render app
 				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText})
+				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: e.responseText})
 				dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
-
 			},
 		})
 	}
 }
 
-export const acceptTerms = (userToken, userData, userPk) => {
-	return dispatch => {
-		var header = "Bearer " + userToken
-
-		$.ajax({
-			type: "POST",
-			url: "/api/usersteps/",
-			headers: {
-				"Authorization": header,
-			},
-			data: {
-				user: userData.url,
-				step: 1,
-			},
-			success: () => {
-				dispatch({ type: "UPDATE_USER_PK", pk: userPk })
-				dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
-				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
-				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
-				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
-				
-				browserHistory.push("/profile")
-			},
-			error: () => {
-				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
-				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
-			}
-		})
-	}
-}
-
-export const convertToken = () => {
+export const convertToken = (token, backend) => {
 	return dispatch => {
 		$.ajax({
 			type: "POST",
@@ -139,44 +159,22 @@ export const convertToken = () => {
 				grant_type: "convert_token",
 				client_id: "biHRTlM74WJ2l8NddjR6pa8uNYpWC4vFzTjyjOUO",
 				client_secret: "aNXFRxyW20wBDLmTlf4ntmFKYSQ7qvig3PSRLlSxBYfxpmFPnh9JJz876eLMIeZJaoYyM2F6Q7q36QveAWacmiOT14y1z0EwpqO7lQVhXBx037FNGr6mDwYNq1fGfNVl",
-				backend: "facebook",
-				token: FB.getAccessToken(),
+				backend,
+				token,
 			},
-			success: (data) => { 
-				logInWithToken(dispatch, data.access_token)
-				getUserPk(data.access_token, updateProfilePicture)	
-				updateAuthCookie(data.access_token)
+			success: r => { 
+				logInWithToken(r.access_token)
+				getUserPk(r.access_token)	
+				updateAuthCookie(r.access_token)
 			},
 			error: () => { 
-				dispatch({type:"LOGOUT"})
+				dispatch({ type:"LOGOUT" })
 			}
 		})
 	}
 }
 
-export const getUserPk = (userToken, callbackFunc = null) => {
-	return dispatch => {
-		var header = "Bearer " + userToken
-		$.ajax({
-			type: "GET",
-			url: "/api/check-user/",	
-			headers: {
-				"Authorization": header,
-			},
-			success: (data) => {
-				var pk = data.userPk
-
-				dispatch({type: "UPDATE_USER_PK", pk: pk})
-
-				if(callbackFunc)
-					callbackFunc({ userToken, userPk: data.userPk})
-			},
-			error: () => {
-			},
-		})
-	}
-}
-
+// get token from FB and convert it to MASAS token
 export const loginFB = () => {
 	// if FB SDK not loaded
 	if (typeof(FB) === "undefined")
@@ -184,14 +182,13 @@ export const loginFB = () => {
 
 	// CHECK IF FB ACCESS TOKEN ALREADY EXISTS
 	const FB_token  = FB.getAccessToken()
-	if(FB_token) {
-		convertToken(FB_token)
-	}
+	if(FB_token)
+		convertToken(FB_token, 'facebook')
 	else
 		FB.login( (response) => {
 			if (response.status === 'connected') {
 				// Logged into your app and Facebook.
-				convertToken(FB.getAccessToken())
+				convertToken(FB.getAccessToken(), 'facebook')
 			} else if (response.status === 'not_authorized') {
 				// The person is logged into Facebook, but not your app.
 			} else {
@@ -199,4 +196,17 @@ export const loginFB = () => {
 				// they are logged into this app or not.
 			}
 		})
+}
+
+// get token from oauth apis
+// service: service to oauth against
+// 'twiiter', 'facebook'
+export const login = service => {
+	switch(service) {
+		case 'facebook':
+			loginFB()
+			break
+		case 'twitter':
+			break
+	}
 }

@@ -176,42 +176,42 @@ MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 	takes dispatch (from mapDispatchToProps(dispatch) in containers) and user token
 	result: returns nothing. but updates appReducer"s auth token and user pk
 */
-MASAS_functions.logInWithToken = (removeVariable, userToken) => {
-	var header = "Bearer " + userToken
-	$.ajax({
-		type: "GET",
-		url: "/api/check-user/",	
-		headers: {
-			"Authorization": header,
-		},
-		success: (data) => {
-			if(data.userPk !== "None") {
-				if(data.auth === "None") {
-					// remove cookie
-					const delete_cookie = function( name ) {
-						document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
-					}
+// MASAS_functions.logInWithToken = (removeVariable, userToken) => {
+// 	var header = "Bearer " + userToken
+// 	$.ajax({
+// 		type: "GET",
+// 		url: "/api/check-user/",	
+// 		headers: {
+// 			"Authorization": header,
+// 		},
+// 		success: (data) => {
+// 			if(data.userPk !== "None") {
+// 				if(data.auth === "None") {
+// 					// remove cookie
+// 					const delete_cookie = function( name ) {
+// 						document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+// 					}
 
-					delete_cookie("MASAS_authToken")
-				} else {
-					var pk = data.userPk
+// 					delete_cookie("MASAS_authToken")
+// 				} else {
+// 					var pk = data.userPk
 
-					MASAS_functions.updateUserInfo(pk, userToken)
-				}
-			}
+// 					MASAS_functions.updateUserInfo(pk, userToken)
+// 				}
+// 			}
 
-			// render app
-			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
-		},
-		error: (err) => {
-			// render app
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText})
-			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
+// 			// render app
+// 			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
+// 		},
+// 		error: (err) => {
+// 			// render app
+// 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+// 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText})
+// 			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
 
-		},
-	})
-}
+// 		},
+// 	})
+// }
 
 MASAS_functions.logout = () => {
 	Cookie.remove("MASAS_authToken")
@@ -224,95 +224,95 @@ MASAS_functions.logout = () => {
 
 }
 
-MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
-	const header = "Bearer " + userToken
+// MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
+// 	const header = "Bearer " + userToken
 
-	if(typeof(FB) !== "undefined") {
-		FB.api("/me", { locale: "en_US", fields: "name, email" },
-			function({ email }) {
+// 	if(typeof(FB) !== "undefined") {
+// 		FB.api("/me", { locale: "en_US", fields: "name, email" },
+// 			function({ email }) {
 
-				// update email if user email not defined yet
-				if(email && !userData.email)
-					$.ajax({
-						type: "PATCH",
-						url: "/api/users/" + userPk + "/",
-						headers: {
-							"Authorization": header,
-							"Content-Type:": "application/json"
-						},
-						data: JSON.stringify({
-							email,
-						}),
-						success: (resp) => {
-						},
-						error: (err) => {
-						}
-					})
-			}
-		)
-	}
-}
+// 				// update email if user email not defined yet
+// 				if(email && !userData.email)
+// 					$.ajax({
+// 						type: "PATCH",
+// 						url: "/api/users/" + userPk + "/",
+// 						headers: {
+// 							"Authorization": header,
+// 							"Content-Type:": "application/json"
+// 						},
+// 						data: JSON.stringify({
+// 							email,
+// 						}),
+// 						success: (resp) => {
+// 						},
+// 						error: (err) => {
+// 						}
+// 					})
+// 			}
+// 		)
+// 	}
+// }
 
 // (obj) userDict => userDict.userToken, userDict.userPk, and userDict.userData
-MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
+// MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
 
-	if(typeof(FB) !== "undefined") {
-		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
+// 	if(typeof(FB) !== "undefined") {
+// 		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
 
-		// update avatar url if user has none
-		if(avatar_url && !userData.avatar_url)
-			$.ajax({
-				type: "PATCH",
-				url: "/api/users/" + userPk + "/",
-				headers: {
-					"Authorization": "Bearer " + userToken,
-					"Content-Type:": "application/json"
-				},
-				data: JSON.stringify({
-					avatar_url,
-				}),
-				success: (resp) => {
-				},
-				error: (err) => {
-				}
-			})
-	}
-}
+// 		// update avatar url if user has none
+// 		if(avatar_url && !userData.avatar_url)
+// 			$.ajax({
+// 				type: "PATCH",
+// 				url: "/api/users/" + userPk + "/",
+// 				headers: {
+// 					"Authorization": "Bearer " + userToken,
+// 					"Content-Type:": "application/json"
+// 				},
+// 				data: JSON.stringify({
+// 					avatar_url,
+// 				}),
+// 				success: (resp) => {
+// 				},
+// 				error: (err) => {
+// 				}
+// 			})
+// 	}
+// }
 
-MASAS_functions.updateUserInfo = (userPk, userToken) => {
-	$.ajax({
-		type: "GET",
-		url: "/api/users/" + userPk + "/",
-		success: (userData) => {
-			// check that terms and conditions were accepted (commented for now, might not need it)
-			const hasAcceptedTerms = 1 // userData.usersteps.filter( (userStep) => userStep.step === 1).length
-			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
+// MASAS_functions.updateUserInfo = (userPk, userToken) => {
+// 	$.ajax({
+// 		type: "GET",
+// 		url: "/api/users/" + userPk + "/",
+// 		success: (userData) => {
+// 			// check that terms and conditions were accepted (commented for now, might not need it)
+// 			const hasAcceptedTerms = 1 // userData.usersteps.filter( (userStep) => userStep.step === 1).length
+// 			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
 
-			if(hasAcceptedTerms) {
-					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
+// 			if(hasAcceptedTerms) {
+// 					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
 
-					// log in user
-					dispatch({ type: "UPDATE_USER_PK", pk: userPk })
-					dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
-					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
-					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
+// 					// log in user
+// 					dispatch({ type: "UPDATE_USER_PK", pk: userPk })
+// 					dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
+// 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
+// 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
 
-					// if(window.location.pathname !== "/")
-					// 	browserHistory.push('/')
-			} else {
-				// show terms and conditions form
-				var TermsAndCond = require("./components/Login/TermsAndCond.jsx")
-				dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <TermsAndCond userPk={ parseInt(userPk) } userToken={ userToken } userData={ userData } /> })
-				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
-			}
-		},
-		error: (e) => {
-		}
-	})
-}
+// 					// if(window.location.pathname !== "/")
+// 					// 	browserHistory.push('/')
+// 			} else {
+// 				// show terms and conditions form
+// 				var TermsAndCond = require("./components/Login/TermsAndCond.jsx")
+// 				dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <TermsAndCond userPk={ parseInt(userPk) } userToken={ userToken } userData={ userData } /> })
+// 				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
+// 			}
+// 		},
+// 		error: (e) => {
+// 		}
+// 	})
+// }
 
-const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
-MASAS_functions.updateProfileInfo = updateProfileInfo
+// const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
+// MASAS_functions.updateProfileInfo = updateProfileInfo
 
 /////
 /////
