@@ -1,5 +1,3 @@
-var { convertToken } = require("../ajaxCalls.jsx")
-
 var LoginForm = {}
 
 import { login } from "../../../reducers/actions/login.js"
@@ -11,35 +9,11 @@ LoginForm.mapStateToProps = function(state) {
 	}
 }
 
-var loginFB = () => {
-	// if FB SDK not loaded
-	if (typeof(FB) === "undefined")
-		return 0
-
-	// CHECK IF FB ACCESS TOKEN ALREADY EXISTS
-	const FB_token  = FB.getAccessToken()
-	if(FB_token) {
-		convertToken(FB_token)
-	}
-	else
-		FB.login( (response) => {
-			if (response.status === 'connected') {
-				// Logged into your app and Facebook.
-				convertToken(FB.getAccessToken())
-			} else if (response.status === 'not_authorized') {
-				// The person is logged into Facebook, but not your app.
-			} else {
-				// The person is not logged into Facebook, so we're not sure if
-				// they are logged into this app or not.
-			}
-		})
-}
-
 // Which action creators does it want to receive by props?
 LoginForm.mapDispatchToProps = function(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		login,
+		login: backend => dispatch(login(backend)),
 	}
 }
 

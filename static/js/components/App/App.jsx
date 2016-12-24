@@ -23,7 +23,7 @@ var App = React.createClass({
 		location: React.PropTypes.object,
 
 		toogleModal: React.PropTypes.func,
-		logInWithToken: React.PropTypes.func,
+		loginWithToken: React.PropTypes.func,
 		forceRender: React.PropTypes.func,
 		showAppFetchingBar: React.PropTypes.func,
 		hideAppFetchingBar: React.PropTypes.func,
@@ -53,9 +53,9 @@ var App = React.createClass({
 		var userToken = this.getUserTokenFromCookie()
 
 		if(userToken)
-			this.props.logInWithToken(userToken, this.props.finishProcessingAuthCookie)
-		else
-			this.props.forceRender()	// auth cookie is done processing
+			this.props.loginWithToken(userToken)
+		
+		this.props.forceRender()	// auth cookie is done processing
 
 
 		// INIT BACKGROUND WITH UNSPLASH MASAS LIKES

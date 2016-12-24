@@ -11,7 +11,9 @@ import {
 	changeUnsplashArtist,
 } from "../../../reducers/actions/Home.js"
 
-import { login } from "../../../reducers/actions/login.js"
+import {
+	loginWithToken,
+} from "../../../reducers/actions/login.js"
 
 var App = {}
 
@@ -34,7 +36,7 @@ App.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
-		logInWithToken: (authToken) => login(authToken),
+		loginWithToken: authToken => dispatch(loginWithToken(authToken)),
 		forceRender: () => dispatch(doneProcessingAuthCookie()),
 		showAppFetchingBar: () => dispatch(setAppFetchingStateTrue()),
 		hideAppFetchingBar: () => dispatch(setAppFetchingStateFalse()),
