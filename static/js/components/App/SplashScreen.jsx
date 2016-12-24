@@ -52,47 +52,6 @@ var SplashScreen = React.createClass({
 	},
 
 	componentDidMount: function() {
-		// no need for this swipper for now (maybe in A/B testing)
-		// this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
-		// 	pagination: '.swiper-pagination',
-		// 	paginationClickable: true,
-		// 	autoplay: 6000,
-		// 	autoplayDisableOnInteraction: false,
-		// 	onSlideChangeStart: (instance) => {
-		// 		const urls = {
-		// 			0: ["/static/img/splashscreen/0.jpg"],
-		// 			1: ["/static/img/splashscreen/1.jpg"],
-		// 			2: ["/static/img/splashscreen/2.jpg"],
-		// 			3: ["/static/img/splashscreen/3.jpg"],
-		// 			4: ["/static/img/splashscreen/4.jpg"],
-		// 			5: ["/static/img/splashscreen/5.jpg"],
-		// 		}
-
-		// 		const { changeBackground } = this
-
-		// 		switch(instance.activeIndex) {
-		// 			case 0:
-		// 				changeBackground(0)
-		// 				break
-		// 			case 1:
-		// 				changeBackground(1)						
-		// 				break
-		// 			case 2:
-		// 				changeBackground(2)
-		// 				break
-		// 			case 3:
-		// 				changeBackground(3)
-		// 				break
-		// 			case 4:
-		// 				changeBackground(4)
-		// 				break
-		// 			case 5:
-		// 				changeBackground(5)
-		// 				break
-		// 		}
-		// 	}
-		// })
-
 		const { changeBackground } = this
 		this.backgroundNumber = 0
 		this.changeBackground = window.setInterval( () => {
@@ -130,12 +89,6 @@ var SplashScreen = React.createClass({
 			allowSwipeToNext: false,
 			onSlideChangeStart: (instance) => {
 				this.props.updateSplashScreenPage(instance.activeIndex)
-
-				// code linked ot hastag swipper momentarily commented out
-				// if(instance.activeIndex !== 0)
-				// 	this.hashtagSwiper.stopAutoplay()
-				// else
-				// 	this.hashtagSwiper.startAutoplay()
 			}
 		})
 
