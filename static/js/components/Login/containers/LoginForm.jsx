@@ -1,8 +1,4 @@
-var Cookie = require('js-cookie')
-var { browserHistory } = require('react-router')
-
-var { updateAuthCookie, logInWithToken } = require("../../../MASAS_functions.jsx")
-var { convertToken, getUserPk } = require("../ajaxCalls.jsx")
+var { convertToken } = require("../ajaxCalls.jsx")
 
 var LoginForm = {}
 
