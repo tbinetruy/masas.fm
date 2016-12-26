@@ -45,6 +45,23 @@ var AppDumb = React.createClass({
 	},
 
 	render: function() {
+		const authCookieFrontgroundStyle = {
+			position: 'fixed',
+			top: 0,
+			bottom: 0,
+			left: 0,
+			right: 0,
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			backgroundColor: 'black',
+			color: 'white',
+			zIndex: this.props.hideLoadingModalZIndex,
+			opacity: this.props.hideLoadingModalZIndex ? 0 : 1,
+			animation: this.props.loadingModalAnim,
+			pointerEvents: this.props.hideLoadingModalZIndex > 0 ? 'default' : 'none'
+		}
+
 		return (
 			<NavSidebar>
 				<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
@@ -81,20 +98,7 @@ var AppDumb = React.createClass({
 							}
 						</div>
 						<div
-							style={{
-								position: 'fixed',
-								top: 0,
-								bottom: 0,
-								left: 0,
-								right: 0,
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								backgroundColor: 'black',
-								zIndex: this.props.hideLoadingModalZIndex,
-								animation: this.props.loadingModalAnim,
-								color: 'white'
-							}}>
+							style={ authCookieFrontgroundStyle }>
 							<img
 								style={{
 									height: '7rem',

@@ -98,10 +98,10 @@ var App = React.createClass({
 	},
 
 	render: function() {
-		var hideLoadingModalZIndex = 100
-		var loadingModalAnim = "none"
+		let hideLoadingModalZIndex = false 
+		let loadingModalAnim = "none"
 		if(!this.props.processingAuthCookie) {
-			hideLoadingModalZIndex = -100
+			hideLoadingModalZIndex = true 
 			loadingModalAnim = "fadeout-loading-modal 1s linear"
 		}
 
