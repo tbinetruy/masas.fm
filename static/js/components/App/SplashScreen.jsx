@@ -53,7 +53,8 @@ var SplashScreen = React.createClass({
 
 	componentDidMount: function() {
 		const { changeBackground } = this
-		this.backgroundNumber = 0
+
+		this.backgroundNumber = 1
 		this.changeBackground = window.setInterval( () => {
 			if(this.props.splashScreenPage === 0)
 				switch(this.backgroundNumber) {
@@ -191,7 +192,7 @@ var SplashScreen = React.createClass({
 							</div>
 						</div>
 					</div>
-					<div className="test1">
+					<div className="test1 background-0">
 					</div>
 					<div className="test2">
 					</div>

@@ -21,10 +21,7 @@
 	height: 100%
 	justify-content: space-between
 	align-items: center
-	background-image: url(/static/img/splashscreen/default_mobile.jpg)
-	background-size: cover
 	position: relative
-	background-position: center
 
 	&::before
 		position: absolute
@@ -54,6 +51,9 @@
 		left: 0
 		opacity: 0
 		transition: opacity 1s linear
+
+	.test1
+		opacity: 1
 
 	.test2
 		background-image: url(/static/img/splashscreen/1_mobile.jpg)
@@ -238,7 +238,6 @@
 		height: calc(100% - 2 * #{$padding-top})
 		padding: $padding-top 4rem
 		background-position: inherit
-		background-image: url(/static/img/splashscreen/default_desktop.jpg)
 
 		$padding-top: 4rem
 		&::before
@@ -291,72 +290,3 @@
 				.back-to-legals-summary
 					display: none
 
-		// 		.main-content
-		// 			flex: 0.7
-
-		// 			h1
-		// 				font-size: 2rem
-
-		// 			.hashtag-swiper-container
-		// 				width: 500px
-		// 				height: 300px
-		// 				margin: 20px auto
-
-		// 				.swiper-slide
-		// 					align-items: center
-		// 					padding-top: 0rem
-
-		// 			.login-buttons--wrapper
-		// 				height: auto
-
-		// 				.MASAS-button
-		// 					font-size: inherit
-
-		// 	.second-slide
-		// 		max-height: initial
-		// 		margin: initial
-
-		// 		.masas-logo
-		// 			margin-bottom: 0
-
-		// 		.login-content
-		// 			.login-buttons
-		// 				margin-bottom: 0
-
-		// 				.login-container
-		// 					height: 3.5rem
-
-		// 			.MASAS-button.no-borders
-
-		// 		.terms-paragraph	
-		// 			max-width: initial
-
-		// 	.third-slide
-
-		// 		.legals-content--wrapper
-		// 			margin-bottom: 0rem
-
-		// 		.MASAS-button
-		// 			margin-bottom: 0rem
-		// 			display: flex
-
-		// 		.back-to-legals-summary
-		// 			display: none
-		// 			align-self: auto
-
-		// 		.text--wrapper
-
-		// 			.legals-index-back-button
-		// 				display: none
-
-		// 			.logo
-
-		// 			.legal-links--wrapper
-		// 				padding-left: 1.5rem
-
-		// 				.legal-links
-		// 					padding-bottom: 1rem
-
-		// 			p
-		// 				margin: inherit
-		// 				text-align: inherit
