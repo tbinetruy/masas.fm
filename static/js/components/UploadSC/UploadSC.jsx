@@ -3,11 +3,11 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
 
-var { Button, Body, TimePicker } = require("../UI/UI.jsx")
+var { Body } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
-var SplashScreen = require("../App/SplashScreen.jsx")
 var UploadSCHome = require("./UploadSCHome.jsx")
+var UploadSCSongTable = require("./UploadSCSongTable.jsx")
 
 
 var UploadSC = React.createClass({
@@ -119,55 +119,35 @@ var UploadSC = React.createClass({
 		this.updateBackgroundFilter()
 	},
 
+	getUserTracks: function() {
+		var success =  (data) => {
+			this.props.updateMasasUserTracks(data.songs)
+			this.getUserSCTracks()
+		}
+
+		var error = () => {
+		}
+
+		this.props.getUserTracks(this.props.userPk, success, error)
+	},
+
 	render: function() {
 		if(this.props.choosingTime) {
 			return (
-				<div style={{
-					visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible',
-					display: 'flex',
-					flex: '1',
-				}}>
-					<Body>
-						<PickTimeUpload
-							visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
-					</Body>
-				</div>
+				<Body>
+					<PickTimeUpload
+						visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
+				</Body>
 			)
 		}
 
 		if(this.props.isConnectedSoundcloud && this.props.userPk) {
 			return (
-				<Body>
-				<div className="upload-sc--wrapper">
-					<div className="table-head">
-						<div className="title">
-							Title
-						</div>
-						<div className="duration">
-							Duration
-						</div>
-						<div className="sync">
-							Sync
-						</div>
-					</div>
-					<div className="upload-sc-items--wrapper">
-						{ this.tracksTable() }
-					</div>
-					<div className="logout--wrapper">
-						{
-							this.props.SCusername ?
-							<span className="logout-text" onClick={this.logoutSC}>
-								Log out from <span className="logout-text--username">{this.props.SCusername}</span>
-							</span>
-							:
-							""
-						}
-					</div>
-				</div>
-				</Body>
+				<UploadSCSongTable />
 			)
 		} else {
-			return <UploadSCHome />
+			return <UploadSCHome 
+				getUserTracks={ this.getUserTracks }/>
 		}
 	}
 })

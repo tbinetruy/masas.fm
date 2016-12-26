@@ -34,13 +34,6 @@ var UploadSCHome = React.createClass({
 	componentWillMount: function() {
 	},
 
-	getUserSCTracks: function() {
-		SC.get(document.MASAS.SC.tracks_uri, {limit: 100}).then( (response) => {  // async call to SC servers
-		// SC.get("me/tracks", {limit: 100}).then( (response) => {  // for dev tests
-			this.props.updateSoundcloudUserTracks(response)
-		})
-	},
-
 	connectToSC: function() {
 		SC.connect().then( () => {
 			this.props.updateIsConnectedSC(true)
@@ -49,25 +42,15 @@ var UploadSCHome = React.createClass({
 				this.props.updateSCusername(r.username)
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
-				this.getUserTracks()
+				this.props.getUserTracks()
 			}).catch( () => {
 				this.props.updateSCusername(null)
 			})
-			this.getUserTracks()
+			this.props.getUserTracks()
 		}).catch( (error) => alert('Error: ' + error.message) )
 	},
 
-	getUserTracks: function() {
-		var success =  (data) => {
-			this.props.updateMasasUserTracks(data.songs)
-			this.getUserSCTracks()
-		}
 
-		var error = () => {
-		}
-
-		this.props.getUserTracks(this.props.userPk, success, error)
-	},
 
 	render: function() {
 		return (
