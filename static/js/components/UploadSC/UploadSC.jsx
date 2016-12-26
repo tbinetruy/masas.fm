@@ -7,6 +7,7 @@ var { Button, Body, TimePicker } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
 var SplashScreen = require("../App/SplashScreen.jsx")
+var UploadSCHome = require("./UploadSCHome.jsx")
 
 
 var UploadSC = React.createClass({
@@ -63,17 +64,6 @@ var UploadSC = React.createClass({
 			this.props.blurBg(true)
 	},
 
-	getUserTracks: function() {
-		var success =  (data) => {
-			this.props.updateMasasUserTracks(data.songs)
-			this.getUserSCTracks()
-		}
-
-		var error = () => {
-		}
-
-		this.props.getUserTracks(this.props.userPk, success, error)
-	},
 
 	getUserSCTracks: function() {
 		SC.get(document.MASAS.SC.tracks_uri, {limit: 100}).then( (response) => {  // async call to SC servers
@@ -164,7 +154,8 @@ var UploadSC = React.createClass({
 						{ this.tracksTable() }
 					</div>
 					<div className="logout--wrapper">
-						{this.props.SCusername ?
+						{
+							this.props.SCusername ?
 							<span className="logout-text" onClick={this.logoutSC}>
 								Log out from <span className="logout-text--username">{this.props.SCusername}</span>
 							</span>
@@ -176,41 +167,7 @@ var UploadSC = React.createClass({
 				</Body>
 			)
 		} else {
-			return (
-				<Body noBackground={ true }>
-					<div className="connect-sc--wrapper">
-						<div className="connect-sc--text">
-							All the music shared on MASAS starts out in one of the Discover moods
-						</div>
-						<div className="demo-time-picker--wrapper">
-							<TimePicker
-								initialDiscover={ 1 }
-								currentDiscover={ 1 }
-								/>
-						</div>
-						<div className="connect-sc--text">
-							if the community really <strong>Likes</strong> your songs, it will get featured on <strong>Popular</strong>!
-						</div>
-
-						{
-							this.props.MASASuser !== "" ?
-								<div className="connect-button">
-									<Button
-										onClick={ this.connectToSC }
-										isBigButton={ true }
-										soundcloud={ true }>Connect to SoundCloud</Button>
-								</div>
-							:
-								<div className="connect-button">
-									<Button
-										onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }
-										isBigButton={ true }>Log-in to Upload</Button>
-									<div className="button-subtitle">It's free!</div>
-								</div>
-						}
-					</div>
-				</Body>
-				)
+			return <UploadSCHome />
 		}
 	}
 })
