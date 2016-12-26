@@ -2403,17 +2403,23 @@ input[type=range].MASAS-slider {
     font-size: 1.05rem;
     text-align: center;
     line-height: 1.5rem;
-    letter-spacing: .06rem;
+    letter-spacing: 0.06rem;
     font-family: Lato-Regular;
-    opacity: .8; }
+    opacity: 0.8; }
   .connect-sc--wrapper .connect-button .button-subtitle {
     display: flex;
     justify-content: center;
-    margin-top: .5rem;
-    opacity: .8;
-    letter-spacing: .04rem;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    letter-spacing: 0.04rem;
     font-family: Lato-Light; }
 
+@media screen and (min-width: 992px) {
+  .connect-sc--wrapper {
+    max-width: 30rem; }
+    .connect-sc--wrapper p {
+      font-size: 1rem;
+      font-family: Lato-Light; } }
 .upload-sc--wrapper {
   display: flex;
   flex-direction: column;
@@ -2422,84 +2428,65 @@ input[type=range].MASAS-slider {
   justify-content: flex-end;
   max-height: 50rem;
   padding-top: 2rem; }
-
-.upload-sc--wrapper .table-head {
-  display: none; }
-.upload-sc--wrapper .upload-sc-items--wrapper {
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  flex: 1;
-  animation: fadein-menu 1s linear; }
-.upload-sc--wrapper .logout--wrapper {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  margin: 1.7rem 0;
-  cursor: pointer; }
-.upload-sc--wrapper .logout--wrapper .logout-text {
-  font-size: 0.7rem; }
-.upload-sc--wrapper .logout--wrapper .logout-text--username {
-  font-weight: bold; }
-.upload-sc--wrapper .back-button {
-  display: none; }
+  .upload-sc--wrapper .table-head {
+    display: none; }
+  .upload-sc--wrapper .upload-sc-items--wrapper {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    animation: fadein-menu 1s linear; }
+  .upload-sc--wrapper .logout--wrapper {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 1.7rem 0;
+    cursor: pointer; }
+  .upload-sc--wrapper .logout--wrapper .logout-text {
+    font-size: .7rem; }
+  .upload-sc--wrapper .logout--wrapper .logout-text--username {
+    font-weight: bold; }
+  .upload-sc--wrapper .back-button {
+    display: none; }
 
 @media screen and (min-width: 992px) {
   .upload-sc--wrapper {
     padding: 2.5rem;
     flex: 1;
     max-height: 40rem; }
-
-  .upload-sc--wrapper .table-head {
-    min-height: 2rem;
-    justify-content: space-between;
-    padding-bottom: 0.5rem; }
-  .upload-sc--wrapper .title {
-    width: 70%;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-  .upload-sc--wrapper .duration {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-  .upload-sc--wrapper .sync {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-
-  .upload-sc--wrapper .table-head {
-    display: flex;
-    font-family: Lato-Semibold;
-    font-size: 0.85rem; }
-  .upload-sc--wrapper .logout--wrapper {
-    display: none; }
-  .upload-sc--wrapper .back-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-self: center;
-    width: 15rem;
-    padding: 2rem 0 0 0;
-    min-height: 3rem;
-    max-height: 3rem; }
-
-  .connect-sc--wrapper {
-    max-width: 30rem; }
-
-  .connect-sc--wrapper p {
-    font-size: 1rem;
-    font-family: Lato-Light; }
-  .connect-sc--wrapper .connect-sc--header {
-    width: 17rem; }
-  .connect-sc--wrapper .connect-sc--header .MASAS-logo {
-    height: 4rem; }
-  .connect-sc--wrapper .connect-sc--header .SC-logo {
-    height: 2.6rem; }
-  .connect-sc--wrapper .connect-sc--header .sync-icon {
-    width: 4rem;
-    margin: 0 1.5rem; } }
+    .upload-sc--wrapper .table-head {
+      min-height: 2rem;
+      justify-content: space-between;
+      padding-bottom: .5rem; }
+    .upload-sc--wrapper .title {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .upload-sc--wrapper .duration {
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .upload-sc--wrapper .sync {
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .upload-sc--wrapper .table-head {
+      display: flex;
+      font-family: Lato-Semibold;
+      font-size: .85rem; }
+    .upload-sc--wrapper .logout--wrapper {
+      display: none; }
+    .upload-sc--wrapper .back-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-self: center;
+      width: 15rem;
+      padding: 2rem 0 0 0;
+      min-height: 3rem;
+      max-height: 3rem; } }
 .navSidebar--wrapper {
   width: 15rem;
   display: flex;
