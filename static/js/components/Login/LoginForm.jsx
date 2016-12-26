@@ -79,11 +79,6 @@ var LoginForm = React.createClass({
 						isSecondaryAction={ false } 
 						onClick={ () => this.props.login('facebook') }
 						facebook={ true }>Log-in via Facebook</Button>
-					<Button 
-						isBigButton={ true } 
-						isSecondaryAction={ false } 
-						onClick={ () => this.props.login('twitter') }
-						twitter={ true }>Log-in via Twitter</Button>
 					<div className="subtitle">
 						{ this.props.subtitle }
 					</div>
