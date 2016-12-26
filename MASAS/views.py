@@ -261,6 +261,7 @@ class SPAView(generic.TemplateView):
             'ALLOWED_HOSTS': settings.ALLOWED_HOSTS,
             'RAVEN_JS_DSN': getattr(settings, 'RAVEN_JS_DSN', None),
             'SOUNDCLOUD': settings.SOUNDCLOUD,
+            'TWITTER': settings.TWITTER,
             'FB': {
                 'KEY': settings.SOCIAL_AUTH_FACEBOOK_KEY,
             },
