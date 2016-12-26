@@ -2389,90 +2389,6 @@ input[type=range].MASAS-slider {
         .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
           margin-bottom: 0.5rem;
           font-size: 0.9rem; } }
-.teach-modal--wrapper {
-  padding: 0 2rem; }
-  .teach-modal--wrapper .title {
-    min-height: 2rem;
-    font-family: Lato-Semibold;
-    margin-bottom: 0.5rem; }
-  .teach-modal--wrapper .paragraph {
-    font-family: Lato-Light;
-    font-size: 1rem; }
-    .teach-modal--wrapper .paragraph strong {
-      font-family: Lato-Semibold; }
-  .teach-modal--wrapper .paragraph.last-paragraph {
-    margin-bottom: 0; }
-  .teach-modal--wrapper .paragraph:first-letter {
-    text-transform: capitalize; }
-  .teach-modal--wrapper .teach-modal-pickTime--wrapper {
-    display: flex;
-    width: 220px !important;
-    height: 85px !important;
-    padding-bottom: 1rem; }
-    .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
-      width: 220px !important;
-      height: 85px !important; }
-
-@media screen and (min-width: 992px) {
-  .teach-modal--wrapper {
-    padding: 0; }
-    .teach-modal--wrapper .teach-modal-pickTime--wrapper {
-      width: 300px !important;
-      height: 100px !important; }
-      .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
-        width: 300px !important;
-        height: 100px !important; } }
-.SC-sync-instruction-modal--wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-  font-family: Lato-Light-Italic;
-  font-size: 1.3rem;
-  margin: 0 2rem; }
-  .SC-sync-instruction-modal--wrapper .intro-text {
-    text-align: center;
-    align-items: flex-end;
-    flex: .2;
-    display: flex; }
-  .SC-sync-instruction-modal--wrapper .bullets {
-    display: flex;
-    flex: .8;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center; }
-    .SC-sync-instruction-modal--wrapper .bullets > div {
-      display: flex;
-      flex-direction: column;
-      align-items: center; }
-      .SC-sync-instruction-modal--wrapper .bullets > div .number {
-        margin: .5rem 0; }
-      .SC-sync-instruction-modal--wrapper .bullets > div .subtitle {
-        font-size: 1.1rem;
-        font-family: Lato-Light;
-        margin: 0 1.5rem; }
-  .SC-sync-instruction-modal--wrapper .button--wrapper {
-    justify-content: center;
-    display: flex;
-    flex: .2; }
-    .SC-sync-instruction-modal--wrapper .button--wrapper > .MASAS-button {
-      height: 1.3rem; }
-
-@media screen and (min-width: 992px) {
-  .SC-sync-instruction-modal--wrapper {
-    font-size: 2rem; }
-    .SC-sync-instruction-modal--wrapper .intro-text {
-      justify-content: center; }
-    .SC-sync-instruction-modal--wrapper .bullets {
-      flex-direction: row; }
-      .SC-sync-instruction-modal--wrapper .bullets > div {
-        max-width: 25rem; }
-        .SC-sync-instruction-modal--wrapper .bullets > div .number {
-          margin: 2rem 0; }
-        .SC-sync-instruction-modal--wrapper .bullets > div .subtitle {
-          min-height: 5rem;
-          font-size: 1.2rem; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;
@@ -2483,30 +2399,20 @@ input[type=range].MASAS-slider {
   height: 24rem;
   max-height: 28rem;
   max-width: 20rem; }
-
-.connect-sc--wrapper .connect-sc--texttt {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  height: -webkit-max-content;
-  align-items: center; }
-.connect-sc--wrapper .demo-time-picker--wrapper {
-  height: 7rem;
-  width: 15rem; }
-.connect-sc--wrapper .connect-sc--text {
-  font-size: 1.05rem;
-  text-align: center;
-  line-height: 1.5rem;
-  letter-spacing: 0.06rem;
-  font-family: Lato-Regular;
-  opacity: 0.8; }
-.connect-sc--wrapper .connect-button .button-subtitle {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-  opacity: 0.8;
-  letter-spacing: 0.04rem;
-  font-family: Lato-Light; }
+  .connect-sc--wrapper .connect-sc--text {
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.5rem;
+    letter-spacing: .06rem;
+    font-family: Lato-Regular;
+    opacity: .8; }
+  .connect-sc--wrapper .connect-button .button-subtitle {
+    display: flex;
+    justify-content: center;
+    margin-top: .5rem;
+    opacity: .8;
+    letter-spacing: .04rem;
+    font-family: Lato-Light; }
 
 .upload-sc--wrapper {
   display: flex;
