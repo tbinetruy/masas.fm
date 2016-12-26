@@ -71,15 +71,6 @@ var LikesArtworks = React.createClass({
 		}
 	},
 
-	// filter number of likes shown
-	// filterLikes: function(songList) {
-	// 	const totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine
-	// 	if(songList.length > totalNumArtworkShown)
-	// 		songList = songList.slice(0, totalNumArtworkShown)
-
-	// 	return songList
-	// },
-
 	/**
 		** Purpose **
 		returns width of artwork and likes wrapper before component render

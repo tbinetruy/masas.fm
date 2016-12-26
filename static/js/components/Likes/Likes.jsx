@@ -70,7 +70,14 @@ var Likes = React.createClass({
 
 				// match filter string entered by user with a string of info relevant to each song.
 				// should refactor this into a "searchStringFilter" function
-				var songSearchString = radioTimeString(song.MASAS_songInfo.song.timeInterval) + " " + song.SC_songInfo.title + " " + song.SC_songInfo.tag_list
+				var songSearchString = radioTimeString(
+					song.MASAS_songInfo.song.timeInterval)
+					+ " "
+					+ song.SC_songInfo.title
+					+ " "
+					+ song.SC_songInfo.tag_list
+					+ " "
+					+ song.SC_songInfo.user.username
 
 				return isSubsequence(this.props.searchInput, songSearchString)
 			})
