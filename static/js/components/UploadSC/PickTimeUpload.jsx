@@ -4,7 +4,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUpload.jsx")
 
 var { Button, Link, TimePicker } = require("../UI/UI.jsx")
-var { getCookie, updateProfileInfo } = require("../../MASAS_functions.jsx")
+var { getCookie } = require("../../MASAS_functions.jsx")
 
 var ModalContent = require("./ModalContent.jsx")
 
@@ -26,6 +26,7 @@ var PickTimeUpload = React.createClass({
 		closeWindow: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		handleTimePickerChange: React.PropTypes.func,
+		updateProfileInfo: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
@@ -61,7 +62,7 @@ var PickTimeUpload = React.createClass({
 				this.props.emitNotification('song synced ;)')
 
 				// UPDATE USER INFO
-				updateProfileInfo()
+				this.props.updateProfileInfo()
 
 				// CLOSE MODAL 
 				this.props.toogleModal()

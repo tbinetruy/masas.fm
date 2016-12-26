@@ -1,3 +1,7 @@
+import {
+	updateProfileInfo,
+} from "../../../reducers/actions/Profile.js"
+
 var PickTimeUpload = {}
 
 
@@ -29,6 +33,7 @@ PickTimeUpload.mapDispatchToProps = function(dispatch) {
 			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
 			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: text})
 		},
+		updateProfileInfo: () => dispatch(updateProfileInfo()),
 	}
 }
 
