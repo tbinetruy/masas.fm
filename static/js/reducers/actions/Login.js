@@ -48,7 +48,7 @@ export const updateUserEmail = ({ userPk, userToken, userData }) => {
 }
 
 export const updateAuthCookie = userToken => {
-	Cookie.set("MASAS_authToken", userToken)
+	Cookie.set("MASAS_authToken", userToken, { expires: 30 })
 }
 
 export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
