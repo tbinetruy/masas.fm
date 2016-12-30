@@ -108,9 +108,6 @@ var PickTimeUpload = React.createClass({
 
 					<h2 className="song-title">{this.props.track.title}</h2>
 				</div>
-				<h3 className="question-text">
-					when would you most likely listen to your sound?
-				</h3>
 				<div className="pickTime--wrapper">
 					<div className="canvas">
 						<TimePicker 

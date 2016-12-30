@@ -140,7 +140,7 @@ var UploadSC = React.createClass({
 			content = (
 					<PickTimeUpload />
 			)
-			title = "Upload"
+			title = "Now pick the right time for your sound"
 			pageNumber = 3
 		} else {
 			if(this.props.isConnectedSoundcloud && this.props.userPk) {
