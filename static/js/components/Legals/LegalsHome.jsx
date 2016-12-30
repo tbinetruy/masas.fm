@@ -32,8 +32,9 @@ var LegalsHome = React.createClass({
 		}
 	},
 
-	componentWillMount: function() {
-		this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
+	componentDidMount: function() {
+		if(window.location.pathname === "/legals")
+			this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
 	componentWillUpdate: function() {

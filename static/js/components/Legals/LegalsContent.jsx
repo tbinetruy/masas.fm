@@ -17,7 +17,7 @@ var LegalsContent = React.createClass({
 	},
 
 	componentWillMount: function() {
-		if(!this.props.splashScreenLegals)
+		if(!this.props.splashScreenLegals && window.location.pathname === "/legals")
 			this.props.updateTitle('Legals', this.props.goToHome )
 
 		// this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
