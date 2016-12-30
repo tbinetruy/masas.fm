@@ -145,12 +145,12 @@ var UploadSC = React.createClass({
 		} else {
 			if(this.props.isConnectedSoundcloud && this.props.userPk) {
 				content = <UploadSCSongTable />
-				title = "table"
+				title = "Today let’s feature..."
 				pageNumber = 2
 			} else {
 				content = <UploadSCHome 
 					getUserTracks={ this.getUserTracks }/>
-				title = "home"
+				title = "Get Featured on our Crowd-Radio"
 				pageNumber = 1
 			}
 		}
