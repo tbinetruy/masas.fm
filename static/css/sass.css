@@ -3097,6 +3097,8 @@ input[type=range].MASAS-slider {
   @media screen and (min-width: 992px) {
     .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .upload-button p {
       max-width: 20rem; }
+    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .upload-button p.bold {
+      text-align: center; }
     .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper {
       padding: 1rem;
       overflow: none;
@@ -3484,6 +3486,8 @@ input[type=range].MASAS-slider {
   @media screen and (min-width: 992px) {
     .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p {
       max-width: 20rem; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p.bold {
+      text-align: center; }
     .profile--wrapper .song-list--wrapper .track-table--wrapper {
       padding: 1rem;
       overflow: none;
@@ -3757,6 +3761,8 @@ input[type=range].MASAS-slider {
   @media screen and (min-width: 992px) and (min-width: 992px) {
     .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p {
       max-width: 20rem; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p.bold {
+      text-align: center; }
     .profile--wrapper .song-list--wrapper .track-table--wrapper {
       padding: 1rem;
       overflow: none;

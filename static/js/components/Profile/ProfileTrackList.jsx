@@ -42,10 +42,10 @@ var ProfileTrackList = React.createClass({
 								Congratulation { this.props.userData.name ? this.props.userData.name : this.props.userData.username }, you're now part of the familly
 							</p>
 							<p>
-								This is your new profile, all your uploaded sound will be shown here.
+								This is your profile, all your uploaded sound will be shown here.
 							</p>
 							<p>
-								What would you prefer to do now?
+								What would you like to do now?
 							</p>
 							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Share My First Sound</Button>
 							<Button onClick={goToURL.bind(null, "/discover")}>Discover music</Button>
