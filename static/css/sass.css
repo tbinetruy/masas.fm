@@ -3128,38 +3128,42 @@ input[type=range].MASAS-slider {
 .profile-edit--wrapper {
   width: 100%; }
   .profile-edit--wrapper .personal-info .MASAS-text-input {
-    margin-top: .2rem;
-    margin-bottom: .5rem; }
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem; }
+  .profile-edit--wrapper .links-info {
+    display: none; }
 
 @media screen and (min-width: 992px) {
-  .profile-edit--wrapper .personal-info {
-    width: 50%; }
-    .profile-edit--wrapper .personal-info #stage-name {
-      height: 2rem;
-      font-size: 2rem; }
-    .profile-edit--wrapper .personal-info .MASAS-textbox .MASAS-text-input {
-      margin-top: .2rem;
-      height: .8rem; }
-  .profile-edit--wrapper .links-info {
-    display: flex;
-    flex: 1;
-    margin-left: 2rem; }
-    .profile-edit--wrapper .links-info .links-edit--wrapper {
+  .profile-edit--wrapper {
+    display: flex; }
+    .profile-edit--wrapper .personal-info {
+      width: 50%; }
+      .profile-edit--wrapper .personal-info #stage-name {
+        height: 2rem;
+        font-size: 2rem; }
+      .profile-edit--wrapper .personal-info .MASAS-textbox .MASAS-text-input {
+        margin-top: 0.2rem;
+        height: 0.8rem; }
+    .profile-edit--wrapper .links-info {
       display: flex;
-      flex-direction: column;
-      padding-bottom: 1rem; }
-      .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
+      flex: 1;
+      margin-left: 2rem; }
+      .profile-edit--wrapper .links-info .links-edit--wrapper {
         display: flex;
-        margin-top: 1rem; }
-        .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
-          height: 1.3rem;
-          width: 1.3rem;
-          padding-right: 1rem; }
-        .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit .MASAS-textbox .MASAS-text-input {
-          margin: 0; } }
-  @media screen and (min-width: 992px) and (min-width: 992px) {
-    .profile-edit--wrapper .links-info .links-edit--wrapper {
-      flex: 1; } }
+        flex-direction: column;
+        padding-bottom: 1rem; }
+        .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
+          display: flex;
+          margin-top: 1rem; }
+          .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
+            height: 1.3rem;
+            width: 1.3rem;
+            padding-right: 1rem; }
+          .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit .MASAS-textbox .MASAS-text-input {
+            margin: 0; } }
+    @media screen and (min-width: 992px) and (min-width: 992px) {
+      .profile-edit--wrapper .links-info .links-edit--wrapper {
+        flex: 1; } }
 
 #app-body--profile {
   overflow-y: scroll;
@@ -3258,6 +3262,8 @@ input[type=range].MASAS-slider {
           display: flex;
           align-items: center;
           justify-content: center; }
+          .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a {
+            margin-right: .5rem; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
           width: 1rem;
           max-height: 1rem;
