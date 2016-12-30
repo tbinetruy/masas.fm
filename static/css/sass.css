@@ -2395,8 +2395,7 @@ input[type=range].MASAS-slider {
   flex-grow: 1;
   width: 90%;
   justify-content: flex-end;
-  max-height: 50rem;
-  padding-top: 2rem; }
+  max-height: 50rem; }
   .upload-sc--wrapper .table-head {
     display: none; }
   .upload-sc--wrapper .upload-sc-items--wrapper {
@@ -2419,7 +2418,6 @@ input[type=range].MASAS-slider {
 
 @media screen and (min-width: 992px) {
   .upload-sc--wrapper {
-    padding: 2.5rem;
     flex: 1;
     max-height: 40rem; }
     .upload-sc--wrapper .table-head {
@@ -2534,7 +2532,7 @@ input[type=range].MASAS-slider {
       font-size: 1rem;
       font-family: Lato-Light; }
     .outer-upload-sc--wrapper .header {
-      margin: 2rem 0; }
+      margin-top: 2rem; }
       .outer-upload-sc--wrapper .header h2 {
         font-size: 1.7rem;
         margin: 0; }
