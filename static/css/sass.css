@@ -2467,7 +2467,8 @@ input[type=range].MASAS-slider {
     width: 70%;
     font-size: 1.1rem;
     letter-spacing: 0.05rem;
-    line-height: 1.8rem; }
+    line-height: 1.8rem;
+    font-family: Lato-Light; }
   .no-sc-songs--wrapper .buttons {
     display: flex;
     flex-direction: column;
@@ -2478,8 +2479,13 @@ input[type=range].MASAS-slider {
       width: 13rem;
       font-size: 1.1rem;
       line-height: 1.3rem;
-      opacity: 0.7; }
+      opacity: 0.7;
+      font-family: Lato-Light;
+      cursor: pointer; }
 
+@media screen and (min-width: 992px) {
+  .no-sc-songs--wrapper .buttons .cancel {
+    font-size: 0.9rem; } }
 .outer-upload-sc--wrapper {
   flex: 1;
   align-items: center;

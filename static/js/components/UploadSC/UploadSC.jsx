@@ -147,7 +147,7 @@ var UploadSC = React.createClass({
 		} else {
 			if(this.props.isConnectedSoundcloud && this.props.userPk) {
 				if(this.props.soundcloudUserTracks) {
-					if(this.props.soundcloudUserTracks.length !== 0) {
+					if(this.props.soundcloudUserTracks.length === 0) {
 						return (
 							<Body>
 								<NoSCSongs
