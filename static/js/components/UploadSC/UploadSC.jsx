@@ -138,22 +138,21 @@ var UploadSC = React.createClass({
 
 		if(this.props.choosingTime) {
 			content = (
-					<PickTimeUpload
-						visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
+					<PickTimeUpload />
 			)
 			title = "Upload"
 			pageNumber = 3
-		}
-
-		if(this.props.isConnectedSoundcloud && this.props.userPk) {
-			content = <UploadSCSongTable />
-			title = "table"
-			pageNumber = 2
 		} else {
-			content = <UploadSCHome 
-				getUserTracks={ this.getUserTracks }/>
-			title = "home"
-			pageNumber = 1
+			if(this.props.isConnectedSoundcloud && this.props.userPk) {
+				content = <UploadSCSongTable />
+				title = "table"
+				pageNumber = 2
+			} else {
+				content = <UploadSCHome 
+					getUserTracks={ this.getUserTracks }/>
+				title = "home"
+				pageNumber = 1
+			}
 		}
 
 		return (
