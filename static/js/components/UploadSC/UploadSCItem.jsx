@@ -66,10 +66,16 @@ var UploadSCItem = React.createClass({
 						<div className="song-stats">
 							<span className="number-listens">
 								<img src="/static/img/MASAS_logo_tunes.svg" alt="music-not-icon" />
-								1796
+								{ this.props.track.playback_count }
 							</span>
 							<span>{ millisToMinutesAndSeconds(this.props.track.duration) }</span>
 						</div>
+						<a
+							href={ this.props.track.permalink_url }
+							className="sc-link"
+							target="_blank">
+							<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
+						</a>
 					</div>
 				</div>
 				<div 

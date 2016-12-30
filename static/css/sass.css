@@ -2222,6 +2222,8 @@ input[type=range].MASAS-slider {
         .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-stats .number-listens img {
           height: 1rem;
           padding-right: 0.3rem; }
+    .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .sc-link {
+      display: none; }
 .upload-sc-item--wrapper .sync--wrapper {
   display: flex;
   align-items: center;
@@ -2239,7 +2241,11 @@ input[type=range].MASAS-slider {
   .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-name {
     margin-right: 1rem; }
   .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-stats .number-listens {
-    display: none; } }
+    display: none; }
+  .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .sc-link {
+    display: block;
+    width: 3rem;
+    margin: 0 2rem; } }
 .pick-time-sc-sync {
   display: flex;
   flex-direction: column;
