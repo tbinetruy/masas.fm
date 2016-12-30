@@ -2828,6 +2828,9 @@ input[type=range].MASAS-slider {
     width: 90%; }
   .country-autocomplete--wrapper .wrapper-style {
     display: flex; }
+  .country-autocomplete--wrapper #city {
+    padding-left: 0;
+    width: 98%; }
 
 .footer--wrapper .main-mini-profile--wrapper {
   position: absolute;
@@ -3122,15 +3125,51 @@ input[type=range].MASAS-slider {
       align-items: center;
       justify-content: flex-start; }
 
+.profile-edit--wrapper {
+  width: 100%; }
+  .profile-edit--wrapper .personal-info .MASAS-text-input {
+    margin-top: .2rem;
+    margin-bottom: .5rem; }
+
+@media screen and (min-width: 992px) {
+  .profile-edit--wrapper .personal-info {
+    width: 50%; }
+    .profile-edit--wrapper .personal-info #stage-name {
+      height: 2rem;
+      font-size: 2rem; }
+    .profile-edit--wrapper .personal-info .MASAS-textbox .MASAS-text-input {
+      margin-top: .2rem;
+      height: .8rem; }
+  .profile-edit--wrapper .links-info {
+    display: flex;
+    flex: 1;
+    margin-left: 2rem; }
+    .profile-edit--wrapper .links-info .links-edit--wrapper {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 1rem; }
+      .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
+        display: flex;
+        margin-top: 1rem; }
+        .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
+          height: 1.3rem;
+          width: 1.3rem;
+          padding-right: 1rem; }
+        .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit .MASAS-textbox .MASAS-text-input {
+          margin: 0; } }
+  @media screen and (min-width: 992px) and (min-width: 992px) {
+    .profile-edit--wrapper .links-info .links-edit--wrapper {
+      flex: 1; } }
+
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
 
 .profile--wrapper .main--wrapper {
   flex-direction: row;
-  height: 8rem;
+  height: 7rem;
   width: 80%;
-  margin: 2rem 10%;
+  margin: 4rem 10%;
   margin-bottom: 4rem; }
   .profile--wrapper .main--wrapper .profile-info--wrapper.no-songs {
     height: 100%; }
@@ -3146,8 +3185,8 @@ input[type=range].MASAS-slider {
       margin: 1rem 1rem 0rem 0rem; }
     .profile--wrapper .main--wrapper .profile-info--wrapper .profile-picture {
       margin-right: 1rem;
-      width: 8rem;
-      height: 8rem;
+      width: 7rem;
+      height: 7rem;
       border: 2px solid white;
       background-color: rgba(0, 0, 0, 0.7); }
     .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper.is-editing-profile {
@@ -3160,7 +3199,8 @@ input[type=range].MASAS-slider {
       flex: 1; }
       .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper {
         position: inherit;
-        background-color: transparent; }
+        background-color: transparent;
+        width: 100%; }
       .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop.hidden {
         display: none; }
       .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .tab--wrapper {
@@ -3208,8 +3248,10 @@ input[type=range].MASAS-slider {
         right: 0;
         top: 0;
         max-width: inherit;
-        height: calc(2rem + 4rem + 8rem);
+        height: calc(4rem + 4rem + 7rem);
         pointer-events: none; }
+        .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper.hidden .social-links {
+          display: none; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper {
           display: none; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
@@ -3444,8 +3486,13 @@ input[type=range].MASAS-slider {
   .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper {
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
-    min-height: 10rem; }
+    min-height: 10rem;
+    margin-top: calc(-4rem + 1rem);
+    margin-bottom: 1rem;
+    width: 80%;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto; }
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper {
       display: flex;
       flex-direction: column;

@@ -2,6 +2,7 @@
 @import "./Modals"
 @import "./CountryAutocomplete"
 @import "./MiniProfileWrapper"
+@import "./ProfileEdit"
 
 
 #app-body--profile
@@ -9,15 +10,16 @@
 	-webkit-overflow-scrolling: touch
 
 .profile--wrapper
-	$info-wrapper-height: 8rem
+	$info-wrapper-height: 7rem
+	$margin-top: 4rem
+	$margin-bottom: 4rem
+	$main-width: 80%
 
 	.main--wrapper
-		$margin-top: 2rem
-		$margin-bottom: 4rem
 		flex-direction: row
 		height: $info-wrapper-height
-		width: 80%
-		margin: 2rem 10%
+		width: $main-width
+		margin: $margin-top 10%
 		margin-bottom: $margin-bottom
 
 		.profile-info--wrapper.no-songs
@@ -56,6 +58,7 @@
 				.edit-profile--wrapper
 					position: inherit
 					background-color: rgba(0,0,0,0)
+					width: 100%
 
 				.user-info-desktop.hidden
 					display: none
@@ -118,6 +121,10 @@
 					height: calc(#{$margin-top} + #{$margin-bottom} + #{$info-wrapper-height})
 					pointer-events: none
 
+					&.hidden
+						.social-links
+							display: none
+
 					.occupation--wrapper
 						display: none
 
@@ -165,8 +172,13 @@
 		.edit-social-mobile--wrapper
 			display: flex
 			flex-direction: column	
-			padding: 0 2rem	
 			min-height: 10rem
+			margin-top: calc(-#{$margin-bottom} + 1rem)
+			margin-bottom: 1rem
+			width: $main-width
+			padding: 0
+			margin-right: auto
+			margin-left: auto
 
 			@import './ProfileEditLinks'	
 

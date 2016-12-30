@@ -53,9 +53,9 @@ var ProfileEdit = React.createClass({
 						<CountryAutocomplete onChange={ this.updateCity }/>
 						<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
 					</div>
-					<div className="links-info">
+					{ /* <div className="links-info">
 						<ProfileEditLinks show={ this.props.show } />
-					</div>
+					</div> */ }
 				</div>
 			)
 		else
