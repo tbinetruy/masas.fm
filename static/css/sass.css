@@ -2297,25 +2297,22 @@ input[type=range].MASAS-slider {
 
 @media screen and (min-width: 992px) {
   .pick-time-sc-sync {
-    padding: 2rem 0;
-    padding-top: 1.5rem; }
-
-  .pick-time-sc-sync {
-    max-height: inherit; }
+    max-height: inherit;
+    padding: 0; }
     .pick-time-sc-sync .song-name--wrapper {
       flex-direction: row;
       width: 60%; }
       .pick-time-sc-sync .song-name--wrapper .artwork {
-        width: 6rem;
-        height: 6rem;
+        width: 4rem;
+        height: 4rem;
         margin-bottom: 0;
         margin-right: 1rem; }
       .pick-time-sc-sync .song-name--wrapper .song-title {
         font-size: 0.9rem;
         justify-content: flex-start; }
     .pick-time-sc-sync .pickTime--wrapper #timePicker--pick-time-upload--wrapper, .pick-time-sc-sync .pickTime--wrapper .timePicker--pick-time-upload--wrapper {
-      height: 155px;
-      width: 400px; }
+      height: 125px;
+      width: 300px; }
     .pick-time-sc-sync .pickTime--wrapper .timePicker-slider--wrapper {
       bottom: 0rem; }
     .pick-time-sc-sync .button--wrapper {

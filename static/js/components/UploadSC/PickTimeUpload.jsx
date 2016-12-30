@@ -124,9 +124,7 @@ var PickTimeUpload = React.createClass({
 						to="/upload" 
 						className="cancel-button" 
 						onClick={this.props.closeWindow}>
-						<span style={{
-							visibility: this.props.visible ? 'visible' : 'hidden'
-						}}>cancel</span>
+						<span>cancel</span>
 					</Link>
 				</div>
 			</div>
