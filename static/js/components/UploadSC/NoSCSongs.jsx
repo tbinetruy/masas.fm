@@ -34,10 +34,14 @@ var NoSCSongs = React.createClass({
 			<div className="no-sc-songs--wrapper">
 				<h2>Nothing uploaded on your Soundcloud?</h2>
 				<p>We all have Artists’ friends, give them their chance!</p>
-				<Button
-					onClick={ this.inviteFriend }>Invite a friend</Button>
-				<Button
-					onClick={ this.props.logoutSC }>or sign in with another Soundcloud account</Button>
+				
+				<div className="buttons">
+					<Button
+						onClick={ this.inviteFriend }>Invite a friend</Button>
+					<div
+						className="cancel"
+						onClick={ this.props.logoutSC }>or sign in with another Soundcloud account</div>
+				</div>
 			</div>
 		)
 	}
