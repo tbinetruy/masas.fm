@@ -54,7 +54,7 @@ var UploadSCHome = React.createClass({
 
 	render: function() {
 		return (
-			<Body noBackground={ true }>
+			<Body noBackground={ false }>
 				<div className="connect-sc--wrapper">
 					<div className="header">
 						<h2>Get Featured on our Crowd-Radio</h2>

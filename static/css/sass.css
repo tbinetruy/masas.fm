@@ -2455,10 +2455,20 @@ input[type=range].MASAS-slider {
 
 @media screen and (min-width: 992px) {
   .connect-sc--wrapper {
-    max-width: 30rem; }
+    max-width: 40rem; }
     .connect-sc--wrapper p {
       font-size: 1rem;
-      font-family: Lato-Light; } }
+      font-family: Lato-Light; }
+    .connect-sc--wrapper .header {
+      margin: 2rem 0; }
+      .connect-sc--wrapper .header h2 {
+        font-size: 1.7rem;
+        margin: 0; }
+    .connect-sc--wrapper .content {
+      margin-bottom: 2rem; }
+      .connect-sc--wrapper .content .connect-button {
+        width: 20rem;
+        align-self: center; } }
 .upload-sc--wrapper {
   display: flex;
   flex-direction: column;
