@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/NoSCSongs.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { copyTextToClipboard } = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 var { Button } = require("../UI/UI.jsx")
 // var { browserHistory } = require('react-router')
@@ -25,6 +25,7 @@ var NoSCSongs = React.createClass({
 	},
 
 	inviteFriend: function() {
+		copyTextToClipboard("http://masas.fm")
 		this.props.updateNotificationBar("http://masas.fm copied to your clipboard!")
 	},
 
