@@ -33,7 +33,7 @@ var NoSCSongs = React.createClass({
 		return (
 			<div className="no-sc-songs--wrapper">
 				<h2>Nothing uploaded on your Soundcloud?</h2>
-				<p>We all have Artists’ friends, give them their chance!</p>
+				<p>We all have Artist friends, give them their chance!</p>
 				
 				<div className="buttons">
 					<Button
