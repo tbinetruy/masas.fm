@@ -33,7 +33,7 @@ var ProfileTrackList = React.createClass({
 	render: function() {
 		var { songs } = this.props
 
-		if (songs.length) 
+		if (!songs.length) 
 			return (
 				!this.props.isPublicProfile ?
 					<div className="no-songs--wrapper">
