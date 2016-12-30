@@ -56,29 +56,41 @@ var UploadSCHome = React.createClass({
 		return (
 			<Body noBackground={ true }>
 				<div className="connect-sc--wrapper">
-					<div className="connect-sc--text">
-						All the music shared on MASAS starts out in one of the Discover moods
+					<div className="header">
+						<h2>Get Featured on our Crowd-Radio</h2>
+						<div className="nav-dots">
+							<div className="dot fill"></div>
+							<div className="dot"></div>
+							<div className="dot"></div>
+						</div>
 					</div>
-					<div className="connect-sc--text">
-						if the community really <strong>Likes</strong> your songs, it will get featured on <strong>Popular</strong>!
+					<div className="content">
+						<div className="description">
+							<ol>
+								<li>Music you share get featured at the time of your choice on Discover</li>
+								<li>Your recent upload get listened and liked by music lovers</li>
+								<li>The most liked ones are selected daily to play on the Crowd-Radio</li>
+							</ol>
+							<img src="/static/img/upload/upload-loop.png" className="upload-loop" />
+					
+							{
+								this.props.MASASuser !== "" ?
+									<div className="connect-button">
+										<Button
+											onClick={ this.connectToSC }
+											isBigButton={ true }
+											soundcloud={ true }>Connect to SoundCloud</Button>
+									</div>
+								:
+									<div className="connect-button">
+										<Button
+											onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }
+											isBigButton={ true }>Log-in to Upload</Button>
+										<div className="button-subtitle">It's free!</div>
+									</div>
+							}
+						</div>
 					</div>
-
-					{
-						this.props.MASASuser !== "" ?
-							<div className="connect-button">
-								<Button
-									onClick={ this.connectToSC }
-									isBigButton={ true }
-									soundcloud={ true }>Connect to SoundCloud</Button>
-							</div>
-						:
-							<div className="connect-button">
-								<Button
-									onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }
-									isBigButton={ true }>Log-in to Upload</Button>
-								<div className="button-subtitle">It's free!</div>
-							</div>
-					}
 				</div>
 			</Body>
 		)
