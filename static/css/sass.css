@@ -1644,7 +1644,6 @@ input[type=range].MASAS-slider {
   margin: 0;
   min-height: -webkit-min-content;
   min-height: min-content;
-  z-index: 4;
   position: relative; }
   .header .ajax-loader--wrapper {
     position: absolute;
@@ -1670,7 +1669,8 @@ input[type=range].MASAS-slider {
     display: flex;
     flex: 1;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    z-index: 1; }
     .header .notification--wrapper1 .notification--wrapper2 {
       height: 2rem;
       width: 100%;
@@ -1694,10 +1694,10 @@ input[type=range].MASAS-slider {
     margin: 0;
     position: relative; }
   .header .phone-header .header-login-button--wrapper .MASAS-button {
-    height: 0.7rem;
+    height: .7rem;
     width: 13rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.13rem;
+    font-size: .9rem;
+    letter-spacing: .13rem;
     position: absolute;
     top: calc( ( 3rem / 2 - 0.7rem ) / 2 );
     right: 1rem; }
@@ -1738,7 +1738,7 @@ input[type=range].MASAS-slider {
   @media screen and (min-width: 992px) {
     .header .notification--wrapper1 {
       top: calc(100% + 0.5rem);
-      right: 0.5rem;
+      right: .5rem;
       justify-content: flex-end; }
       .header .notification--wrapper1 .notification--wrapper2 {
         flex: 0;
@@ -1763,7 +1763,7 @@ input[type=range].MASAS-slider {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 0.75rem; }
+      font-size: .75rem; }
     .header .desktop-header .search-icon {
       height: 1rem; }
     .header .desktop-header .username {

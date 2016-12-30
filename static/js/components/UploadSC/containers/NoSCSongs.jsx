@@ -1,6 +1,6 @@
 import {
-	updatePageTitle,
-} from "../../../reducers/actions/App.js"
+	updateNotificationBar,
+} from "../../../reducers/actions/Header.js"
 
 var NoSCSongs = {}
 
@@ -11,7 +11,7 @@ NoSCSongs.mapStateToProps = function(state) {
 
 NoSCSongs.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		updateNotificationBar: notificationText => dispatch(updateNotificationBar(notificationText))
 	}
 }
 

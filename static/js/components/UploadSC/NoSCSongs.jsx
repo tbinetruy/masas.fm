@@ -11,6 +11,7 @@ var { Button } = require("../UI/UI.jsx")
 
 var NoSCSongs = React.createClass({
 	propTypes: {
+		updateNotificationBar: React.PropTypes.func,
 		logoutSC: React.PropTypes.func,				// called on logout
 	},
 
@@ -23,13 +24,17 @@ var NoSCSongs = React.createClass({
 	componentWillMount: function() {
 	},
 
+	inviteFriend: function() {
+		this.props.updateNotificationBar("http://masas.fm copied to your clipboard!")
+	},
+
 	render: function() {
 		return (
 			<div className="no-sc-songs--wrapper">
 				<h2>Nothing uploaded on your Soundcloud?</h2>
 				<p>We all have Artists’ friends, give them their chance!</p>
 				<Button
-					onClick={ () => {} }>Invite a friend</Button>
+					onClick={ this.inviteFriend }>Invite a friend</Button>
 				<Button
 					onClick={ this.props.logoutSC }>or sign in with another Soundcloud account</Button>
 			</div>

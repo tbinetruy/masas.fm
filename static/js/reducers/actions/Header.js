@@ -9,10 +9,7 @@ export function updateNotificationText(text) {
 
 export function updateNotificationBar(notificationText) {
 	return dispatch => {
-		const currentText = document.getElementById("notification-text")
-		if(currentText != notificationText) {
-			dispatch(updateNotificationText(""))
-			dispatch(updateNotificationText(notificationText))
-		}
+		dispatch(updateNotificationText(""))
+		window.setTimeout( () => dispatch(updateNotificationText(notificationText)), 0)
 	}
 }
