@@ -5,8 +5,6 @@
 	width: 90%
 	flex-direction: column
 	justify-content: space-around
-	height: 24rem
-	max-height: 28rem
 	max-width: 20rem
 
 	.header
@@ -40,6 +38,7 @@
 		.description
 			display: flex
 			flex-direction: column
+			justify-content: center
 
 			ol
 				list-style-type: decimal
@@ -49,10 +48,18 @@
 				li
 					margin-bottom: 0.5rem
 
-			.upload-loop
-				display: block
-				margin: auto
-				height: 8rem		
+			.img-container
+				margin: 1rem 0
+				display: flex
+				flex: 1
+				background-image: url(/static/img/upload/upload-loop.png)
+				background-size: contain
+				background-repeat: no-repeat
+				background-position: center
+				max-width: 70vw
+				align-self: center
+				width: 100%
+				max-height: 60vw
 
 		.connect-button
 			margin-bottom: 0.5rem

@@ -71,7 +71,8 @@ var UploadSCHome = React.createClass({
 								<li>Your recent upload get listened and liked by music lovers</li>
 								<li>The most liked ones are selected daily to play on the Crowd-Radio</li>
 							</ol>
-							<img src="/static/img/upload/upload-loop.png" className="upload-loop" />
+							<div className="img-container">
+							</div>
 					
 							{
 								this.props.MASASuser !== "" ?

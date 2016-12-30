@@ -2396,14 +2396,12 @@ input[type=range].MASAS-slider {
   width: 90%;
   flex-direction: column;
   justify-content: space-around;
-  height: 24rem;
-  max-height: 28rem;
   max-width: 20rem; }
   .connect-sc--wrapper .header {
     display: flex;
     flex-direction: column; }
     .connect-sc--wrapper .header h2 {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       font-size: 1.5rem;
       text-align: center; }
     .connect-sc--wrapper .header .nav-dots {
@@ -2423,27 +2421,36 @@ input[type=range].MASAS-slider {
     flex: 1; }
     .connect-sc--wrapper .content .description {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      justify-content: center; }
       .connect-sc--wrapper .content .description ol {
         list-style-type: decimal;
         font-family: Lato-Light;
         margin-left: 1rem; }
         .connect-sc--wrapper .content .description ol li {
-          margin-bottom: .5rem; }
-      .connect-sc--wrapper .content .description .upload-loop {
-        display: block;
-        margin: auto;
-        height: 8rem; }
+          margin-bottom: 0.5rem; }
+      .connect-sc--wrapper .content .description .img-container {
+        margin: 1rem 0;
+        display: flex;
+        flex: 1;
+        background-image: url(/static/img/upload/upload-loop.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        max-width: 70vw;
+        align-self: center;
+        width: 100%;
+        max-height: 60vw; }
     .connect-sc--wrapper .content .connect-button {
-      margin-bottom: .5rem; }
+      margin-bottom: 0.5rem; }
       .connect-sc--wrapper .content .connect-button .MASAS-button {
         width: auto; }
       .connect-sc--wrapper .content .connect-button .button-subtitle {
         display: flex;
         justify-content: center;
-        margin-top: .5rem;
-        opacity: .8;
-        letter-spacing: .04rem;
+        margin-top: 0.5rem;
+        opacity: 0.8;
+        letter-spacing: 0.04rem;
         font-family: Lato-Light; }
 
 @media screen and (min-width: 992px) {
