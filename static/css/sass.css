@@ -2238,14 +2238,14 @@ input[type=range].MASAS-slider {
   .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper {
     flex-direction: row;
     align-items: center; }
-  .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-name {
-    margin-right: 1rem; }
-  .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-stats .number-listens {
-    display: none; }
-  .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .sc-link {
-    display: block;
-    width: 3rem;
-    margin: 0 2rem; } }
+    .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-name {
+      margin-right: 1rem; }
+    .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-stats .number-listens {
+      display: none; }
+    .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .sc-link {
+      display: block;
+      width: 3rem;
+      margin: 0 2rem; } }
 .pick-time-sc-sync {
   display: flex;
   flex-direction: column;
@@ -2413,7 +2413,7 @@ input[type=range].MASAS-slider {
     margin: 1.7rem 0;
     cursor: pointer; }
   .upload-sc--wrapper .logout--wrapper .logout-text {
-    font-size: .7rem; }
+    font-size: 0.7rem; }
   .upload-sc--wrapper .logout--wrapper .logout-text--username {
     font-weight: bold; }
   .upload-sc--wrapper .back-button {
@@ -2426,16 +2426,17 @@ input[type=range].MASAS-slider {
     .upload-sc--wrapper .table-head {
       min-height: 2rem;
       justify-content: space-between;
-      padding-bottom: .5rem; }
+      padding-bottom: 0.5rem; }
     .upload-sc--wrapper .title {
-      width: 70%;
+      width: 50%;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-left: 3rem;
       align-items: center; }
     .upload-sc--wrapper .duration {
       width: 20%;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center; }
     .upload-sc--wrapper .sync {
       width: 10%;
@@ -2445,7 +2446,7 @@ input[type=range].MASAS-slider {
     .upload-sc--wrapper .table-head {
       display: flex;
       font-family: Lato-Semibold;
-      font-size: .85rem; }
+      font-size: 0.85rem; }
     .upload-sc--wrapper .logout--wrapper {
       display: none; }
     .upload-sc--wrapper .back-button {
