@@ -74,14 +74,14 @@
 					height: 5rem
 					width: 10rem
 
+					.MASAS_marquee--wrapper2
+						display: flex
+
 					.username
 						font-family: Lato-Semibold
 						padding-bottom: 0.5rem
 						width: 100%
 
-						.MASAS_marquee--wrapper2
-							display: flex
-							justify-content: center
 
 					.occupation--wrapper
 						display: flex
@@ -95,18 +95,10 @@
 							padding-bottom: 0.2rem
 							width: 100%
 
-							.MASAS_marquee--wrapper2
-								display: flex
-								justify-content: center
 
 						.occupation
 							color: rgba(255,255,255,0.8)
 							width: 100%
-
-							.MASAS_marquee--wrapper2
-								display: flex
-								justify-content: center
-
 
 				.social--wrapper
 					background-color: rgba(0,0,0,0)
@@ -145,20 +137,6 @@
 						max-height: 1rem
 						padding-right: 0.15rem
 
-	.social-stats--wrapper
-		background-color: rgba(0,0,0,0)
-		padding-bottom: 0.5rem
-		height: 100%
-		align-items: flex-end
-
-	.social-stats--wrapper
-		.total-plays
-
-		.section
-			.section-title
-				display: flex
-				flex-direction: column
-
 	.song-list--wrapper
 		display: flex
 		flex-direction: column
@@ -190,6 +168,98 @@
 		overflow-y: scroll
 		-webkit-overflow-scrolling: touch
 		background-color: rgba(0,0,0,0)
+
+	.profile--wrapper
+		$info-wrapper-height: 7rem
+		$margin-top: 1rem
+		$margin-bottom: 2rem
+		$main-width: 90%
+
+		.main--wrapper
+			height: $info-wrapper-height
+			width: $main-width
+			margin: $margin-top 10%
+			margin-bottom: $margin-bottom
+			margin-left: 0rem
+
+			.profile-info--wrapper.no-songs
+
+			.profile-info--wrapper
+				.edit-profile-icon--wrapper
+					margin-top: -3rem
+
+				.profile-picture
+
+				.text--wrapper.is-editing-profile
+
+				.text--wrapper
+
+					.edit-profile--wrapper
+
+					.user-info-desktop.hidden
+
+					.tab--wrapper
+
+					.user-info-desktop
+
+						.username
+
+							.MASAS_marquee--wrapper2
+
+						.occupation--wrapper
+
+							.location
+
+								.MASAS_marquee--wrapper2
+
+							.occupation
+
+								.MASAS_marquee--wrapper2
+
+
+					.social--wrapper
+						position: inherit
+						height: auto
+						align-items: center
+
+						&.hidden
+							.social-links
+
+						.occupation--wrapper
+
+						.social-links
+							position: inherit
+							transform: inherit
+							justify-content: flex-start
+
+						img
+
+
+		.song-list--wrapper
+			display: flex
+			flex-direction: column
+			flex: 1
+			width: 100%
+			position: relative
+			overflow: none
+
+			@import "./ProfileTrackList"
+
+			.edit-social-mobile--wrapper
+				display: flex
+				flex-direction: column	
+				min-height: 10rem
+				margin-top: calc(-#{$margin-bottom} + 1rem)
+				margin-bottom: 1rem
+				width: $main-width
+				padding: 0
+				margin-right: auto
+				margin-left: auto
+
+				@import './ProfileEditLinks'	
+
+			.edit-social-mobile--wrapper.hidden
+				display: none
 
 		.song-list--wrapper
 			background-color: rgba(0,0,0,0.7)
