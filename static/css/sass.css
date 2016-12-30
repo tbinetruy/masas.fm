@@ -2389,86 +2389,6 @@ input[type=range].MASAS-slider {
         .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
           margin-bottom: 0.5rem;
           font-size: 0.9rem; } }
-.connect-sc--wrapper {
-  flex: 1;
-  align-items: center;
-  display: flex;
-  width: 90%;
-  flex-direction: column;
-  justify-content: space-around;
-  max-width: 20rem; }
-  .connect-sc--wrapper .header {
-    display: flex;
-    flex-direction: column; }
-    .connect-sc--wrapper .header h2 {
-      margin-top: 0.5rem;
-      font-size: 1.5rem;
-      text-align: center; }
-    .connect-sc--wrapper .header .nav-dots {
-      display: flex;
-      justify-content: center;
-      margin: 1rem 0; }
-      .connect-sc--wrapper .header .nav-dots .dot {
-        height: 4px;
-        width: 4px;
-        border: 1px solid white;
-        border-radius: 4px;
-        margin: 0 3px; }
-        .connect-sc--wrapper .header .nav-dots .dot.fill {
-          background-color: white; }
-  .connect-sc--wrapper .content {
-    display: flex;
-    flex: 1; }
-    .connect-sc--wrapper .content .description {
-      display: flex;
-      flex-direction: column;
-      justify-content: center; }
-      .connect-sc--wrapper .content .description ol {
-        list-style-type: decimal;
-        font-family: Lato-Light;
-        margin-left: 1rem; }
-        .connect-sc--wrapper .content .description ol li {
-          margin-bottom: 0.5rem; }
-      .connect-sc--wrapper .content .description .img-container {
-        margin: 1rem 0;
-        display: flex;
-        flex: 1;
-        background-image: url(/static/img/upload/upload-loop.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        max-width: 70vw;
-        align-self: center;
-        width: 100%;
-        max-height: 60vw; }
-    .connect-sc--wrapper .content .connect-button {
-      margin-bottom: 0.5rem; }
-      .connect-sc--wrapper .content .connect-button .MASAS-button {
-        width: auto; }
-      .connect-sc--wrapper .content .connect-button .button-subtitle {
-        display: flex;
-        justify-content: center;
-        margin-top: 0.5rem;
-        opacity: 0.8;
-        letter-spacing: 0.04rem;
-        font-family: Lato-Light; }
-
-@media screen and (min-width: 992px) {
-  .connect-sc--wrapper {
-    max-width: 40rem; }
-    .connect-sc--wrapper p {
-      font-size: 1rem;
-      font-family: Lato-Light; }
-    .connect-sc--wrapper .header {
-      margin: 2rem 0; }
-      .connect-sc--wrapper .header h2 {
-        font-size: 1.7rem;
-        margin: 0; }
-    .connect-sc--wrapper .content {
-      margin-bottom: 2rem; }
-      .connect-sc--wrapper .content .connect-button {
-        width: 20rem;
-        align-self: center; } }
 .upload-sc--wrapper {
   display: flex;
   flex-direction: column;
@@ -2536,6 +2456,87 @@ input[type=range].MASAS-slider {
       padding: 2rem 0 0 0;
       min-height: 3rem;
       max-height: 3rem; } }
+.outer-upload-sc--wrapper {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 20rem; }
+  .outer-upload-sc--wrapper .header {
+    display: flex;
+    flex-direction: column; }
+    .outer-upload-sc--wrapper .header h2 {
+      margin-top: .5rem;
+      font-size: 1.5rem;
+      text-align: center; }
+    .outer-upload-sc--wrapper .header .nav-dots {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0; }
+      .outer-upload-sc--wrapper .header .nav-dots .dot {
+        height: 4px;
+        width: 4px;
+        border: 1px solid white;
+        border-radius: 4px;
+        margin: 0 3px; }
+        .outer-upload-sc--wrapper .header .nav-dots .dot.fill {
+          background-color: white; }
+  .outer-upload-sc--wrapper .content {
+    display: flex;
+    flex: 1; }
+    .outer-upload-sc--wrapper .content .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+      .outer-upload-sc--wrapper .content .description ol {
+        list-style-type: decimal;
+        font-family: Lato-Light;
+        margin-left: 1rem; }
+        .outer-upload-sc--wrapper .content .description ol li {
+          margin-bottom: 0.5rem; }
+      .outer-upload-sc--wrapper .content .description .img-container {
+        margin: 1rem 0;
+        display: flex;
+        flex: 1;
+        background-image: url(/static/img/upload/upload-loop.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        max-width: 70vw;
+        align-self: center;
+        width: 100%;
+        max-height: 60vw; }
+      .outer-upload-sc--wrapper .content .description .connect-button {
+        margin-bottom: 0.5rem; }
+        .outer-upload-sc--wrapper .content .description .connect-button .MASAS-button {
+          width: auto; }
+        .outer-upload-sc--wrapper .content .description .connect-button .button-subtitle {
+          display: flex;
+          justify-content: center;
+          margin-top: 0.5rem;
+          opacity: 0.8;
+          letter-spacing: 0.04rem;
+          font-family: Lato-Light; }
+    @media screen and (min-width: 992px) {
+      .outer-upload-sc--wrapper .content .connect-button {
+        width: 20rem;
+        align-self: center; } }
+
+@media screen and (min-width: 992px) {
+  .outer-upload-sc--wrapper {
+    max-width: 40rem; }
+    .outer-upload-sc--wrapper p {
+      font-size: 1rem;
+      font-family: Lato-Light; }
+    .outer-upload-sc--wrapper .header {
+      margin: 2rem 0; }
+      .outer-upload-sc--wrapper .header h2 {
+        font-size: 1.7rem;
+        margin: 0; }
+    .outer-upload-sc--wrapper .content {
+      margin-bottom: 2rem; } }
 .navSidebar--wrapper {
   width: 15rem;
   display: flex;

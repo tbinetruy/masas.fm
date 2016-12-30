@@ -4,10 +4,70 @@
 @import "./confirmOwnership"
 // @import "./TeachUploadModals"
 // @import "./SCSyncInstructionModal"
-@import "./UploadSCHome"
 @import "./UploadSCSongTable"
 
 
 
 
+.outer-upload-sc--wrapper
+	flex: 1
+	align-items: center
+	display: flex
+	width: 90%
+	flex-direction: column
+	justify-content: space-around
+	max-width: 20rem
+
+	.header
+		display: flex
+		flex-direction: column
+
+		h2
+			margin-top: 0.5rem
+			font-size: 1.5rem
+			text-align: center
+
+		.nav-dots	
+			display: flex
+			justify-content: center
+			margin: 1rem 0
+
+			.dot
+				height: 4px
+				width: 4px
+				border: 1px solid white
+				border-radius: 4px
+				margin: 0 3px
+
+				&.fill
+					background-color: white
+
+	.content
+		display: flex
+		flex: 1
+
+		@import "./UploadSCHome"
+
+
+@media screen and (min-width: $desktop-min-width)
+	.outer-upload-sc--wrapper
+		max-width: 40rem
+
+		p
+			font-size: 1rem
+			font-family: Lato-Light
+
+		.header
+			margin: 2rem 0
+
+			h2
+				font-size: 1.7rem
+				margin: 0
+
+			.nav-dots	
+				.dot
+					&.fill
+
+		.content
+			margin-bottom: 2rem
 

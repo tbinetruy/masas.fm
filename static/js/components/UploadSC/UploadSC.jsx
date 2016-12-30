@@ -132,23 +132,47 @@ var UploadSC = React.createClass({
 	},
 
 	render: function() {
+		let content = <div></div>
+		let title = ""
+		let pageNumber = 1
+
 		if(this.props.choosingTime) {
-			return (
-				<Body>
+			content = (
 					<PickTimeUpload
 						visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
-				</Body>
 			)
+			title = "Upload"
+			pageNumber = 3
 		}
 
 		if(this.props.isConnectedSoundcloud && this.props.userPk) {
-			return (
-				<UploadSCSongTable />
-			)
+			content = <UploadSCSongTable />
+			title = "table"
+			pageNumber = 2
 		} else {
-			return <UploadSCHome 
+			content = <UploadSCHome 
 				getUserTracks={ this.getUserTracks }/>
+			title = "home"
+			pageNumber = 1
 		}
+
+		return (
+			<Body>
+				<div className="outer-upload-sc--wrapper">
+					<div className="header">
+						<h2>{ title }</h2>
+						<div className="nav-dots">
+							<div className="dot fill"></div>
+							<div className="dot"></div>
+							<div className="dot"></div>
+						</div>
+					</div>
+					<div className="content">
+						{ content }
+					</div>
+				</div>
+			</Body>
+		)
 	}
 })
 
