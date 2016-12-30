@@ -40,34 +40,32 @@ var UploadSCSongTable = React.createClass({
 
 	render: function() {
 		return (
-			<Body>
-				<div className="upload-sc--wrapper">
-					<div className="table-head">
-						<div className="title">
-							Title
-						</div>
-						<div className="duration">
-							Duration
-						</div>
-						<div className="sync">
-							Sync
-						</div>
+			<div className="upload-sc--wrapper">
+				<div className="table-head">
+					<div className="title">
+						Title
 					</div>
-					<div className="upload-sc-items--wrapper">
-						{ this.tracksTable() }
+					<div className="duration">
+						Duration
 					</div>
-					<div className="logout--wrapper">
-						{
-							this.props.SCusername ?
-								<span className="logout-text" onClick={this.logoutSC}>
-									Log out from <span className="logout-text--username">{this.props.SCusername}</span>
-								</span>
-							:
-								""
-						}
+					<div className="sync">
+						Sync
 					</div>
 				</div>
-			</Body>
+				<div className="upload-sc-items--wrapper">
+					{ this.tracksTable() }
+				</div>
+				<div className="logout--wrapper">
+					{
+						this.props.SCusername ?
+							<span className="logout-text" onClick={this.logoutSC}>
+								Log out from <span className="logout-text--username">{this.props.SCusername}</span>
+							</span>
+						:
+							""
+					}
+				</div>
+			</div>
 		)
 	}
 })

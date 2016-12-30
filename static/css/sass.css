@@ -2485,11 +2485,14 @@ input[type=range].MASAS-slider {
           background-color: white; }
   .outer-upload-sc--wrapper .content {
     display: flex;
-    flex: 1; }
+    flex: 1;
+    width: 100%; }
     .outer-upload-sc--wrapper .content .description {
       display: flex;
       flex-direction: column;
-      justify-content: center; }
+      justify-content: center;
+      width: auto;
+      margin: 0 auto; }
       .outer-upload-sc--wrapper .content .description ol {
         list-style-type: decimal;
         font-family: Lato-Light;
