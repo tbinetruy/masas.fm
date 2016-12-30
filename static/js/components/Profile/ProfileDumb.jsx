@@ -86,14 +86,6 @@ var ProfileDumb = React.createClass({
 								:
 								<div className="profile-picture" ></div>
 							}
-							<div className="tab--wrapper">
-								<div className="tab" style={{ borderBottom: '4px solid white'}}>
-									info
-								</div>
-								<div className="tab">
-									post
-								</div>
-							</div>
 							<div className={ "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") }>
 								<div className="text--wrapper2" style={{ display: "flex", flexDirection: "column" }}>
 									<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
@@ -125,7 +117,7 @@ var ProfileDumb = React.createClass({
 										</div>
 									</div>
 									<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") } style={ isProfileEmpty ? { display: "none" } : {} }>
-										<div className="social-links right">
+										<div className="social-links">
 											{
 												this.checkLink("soundcloud.com") !== "" ?
 													<a href={ this.checkLink("soundcloud.com") } className="site-logo" target="_blank">
@@ -138,29 +130,6 @@ var ProfileDumb = React.createClass({
 														<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
 													</a> : ""
 											}
-										</div>
-										<div className="occupation--wrapper">
-											<div className="occupation">
-												{ 
-													occupation ?
-														<Marquee>{ occupation }</Marquee>
-													:
-														""
-												}
-											</div>
-											<div className="location">
-												<span className="city">
-													{ 
-														city ?
-															<Marquee>{ city.display_name.substring(0, city.display_name.indexOf(',')) + " - " + city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length) }</Marquee>
-														:
-															""
-													}
-												</span>
-										
-											</div>
-										</div>
-										<div className="social-links left">
 											{
 												this.checkLink("twitter.com") !== "" ?
 													<a href={ this.checkLink("twitter.com") } className="site-logo" target="_blank">
@@ -183,29 +152,6 @@ var ProfileDumb = React.createClass({
 										""
 									}
 								</div>
-							</div>
-						</div>
-						<div className="social-stats--wrapper">
-							<div className="section" style={{borderRight: '1px solid white'}}>
-								<div className="section-title">
-									<img src="/static/img/MASAS_followers.svg" alt="soundcloud" />
-									Followers
-								</div>
-								<span className="number">1240</span>
-							</div>
-							<div className="section total-plays" style={{borderRight: '1px solid white'}}>
-								<div className="section-title">
-									<img src="/static/img/MASAS_logo_tunes.svg" alt="total plays" />
-									Total plays
-								</div>
-								<span className="number">1240</span>
-							</div>
-							<div className="section">
-								<div className="section-title">
-									<img src="/static/img/MASAS_logo_tunes.svg" alt="soundcloud" />
-									Following
-								</div>
-								<span className="number">1240</span>
 							</div>
 						</div>
 					</div>
