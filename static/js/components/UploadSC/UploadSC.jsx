@@ -161,9 +161,9 @@ var UploadSC = React.createClass({
 					<div className="header">
 						<h2>{ title }</h2>
 						<div className="nav-dots">
-							<div className="dot fill"></div>
-							<div className="dot"></div>
-							<div className="dot"></div>
+							<div className={ "dot" + (pageNumber === 1 ? " fill" : "") }></div>
+							<div className={ "dot" + (pageNumber === 2 ? " fill" : "") }></div>
+							<div className={ "dot" + (pageNumber === 3 ? " fill" : "") }></div>
 						</div>
 					</div>
 					<div className="content">
