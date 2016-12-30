@@ -2486,6 +2486,57 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .no-sc-songs--wrapper .buttons .cancel {
     font-size: 0.9rem; } }
+.SC-sync-instruction-modal--wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  font-family: Lato-Light-Italic;
+  font-size: 1.3rem;
+  margin: 0 2rem; }
+  .SC-sync-instruction-modal--wrapper .intro-text {
+    text-align: center;
+    align-items: flex-end;
+    flex: .2;
+    display: flex; }
+  .SC-sync-instruction-modal--wrapper .bullets {
+    display: flex;
+    flex: .8;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center; }
+    .SC-sync-instruction-modal--wrapper .bullets > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .SC-sync-instruction-modal--wrapper .bullets > div .number {
+        margin: .5rem 0; }
+      .SC-sync-instruction-modal--wrapper .bullets > div .subtitle {
+        font-size: 1.1rem;
+        font-family: Lato-Light;
+        margin: 0 1.5rem; }
+  .SC-sync-instruction-modal--wrapper .button--wrapper {
+    justify-content: center;
+    display: flex;
+    flex: .2; }
+    .SC-sync-instruction-modal--wrapper .button--wrapper > .MASAS-button {
+      height: 1.3rem; }
+
+@media screen and (min-width: 992px) {
+  .SC-sync-instruction-modal--wrapper {
+    font-size: 2rem; }
+    .SC-sync-instruction-modal--wrapper .intro-text {
+      justify-content: center; }
+    .SC-sync-instruction-modal--wrapper .bullets {
+      flex-direction: row; }
+      .SC-sync-instruction-modal--wrapper .bullets > div {
+        max-width: 25rem; }
+        .SC-sync-instruction-modal--wrapper .bullets > div .number {
+          margin: 2rem 0; }
+        .SC-sync-instruction-modal--wrapper .bullets > div .subtitle {
+          min-height: 5rem;
+          font-size: 1.2rem; } }
 .outer-upload-sc--wrapper {
   flex: 1;
   align-items: center;
@@ -2498,7 +2549,7 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column; }
     .outer-upload-sc--wrapper .header h2 {
-      margin-top: 0.5rem;
+      margin-top: .5rem;
       font-size: 1.5rem;
       text-align: center; }
     .outer-upload-sc--wrapper .header .nav-dots {
