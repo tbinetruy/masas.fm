@@ -224,7 +224,7 @@
 .MASAS-button {
   font-size: 1.1rem;
   width: 10rem;
-  padding: 0.7rem 0;
+  padding: .7rem 0;
   font-family: Lato-Light;
   display: flex;
   text-align: center;
@@ -252,7 +252,7 @@
   width: 100%; }
 
 .MASAS-button.soundcloud-login-button {
-  background-color: orange;
+  background-color: #fc720f;
   margin-bottom: 0; }
 
 .MASAS-button.facebook-login-button {
@@ -263,7 +263,7 @@
 
 .MASAS-button.disabled {
   cursor: default;
-  opacity: 0.3; }
+  opacity: .3; }
 
 .MASAS-button:active.disabled {
   cursor: default;
@@ -2399,20 +2399,52 @@ input[type=range].MASAS-slider {
   height: 24rem;
   max-height: 28rem;
   max-width: 20rem; }
-  .connect-sc--wrapper .connect-sc--text {
-    font-size: 1.05rem;
-    text-align: center;
-    line-height: 1.5rem;
-    letter-spacing: 0.06rem;
-    font-family: Lato-Regular;
-    opacity: 0.8; }
-  .connect-sc--wrapper .connect-button .button-subtitle {
+  .connect-sc--wrapper .header {
     display: flex;
-    justify-content: center;
-    margin-top: 0.5rem;
-    opacity: 0.8;
-    letter-spacing: 0.04rem;
-    font-family: Lato-Light; }
+    flex-direction: column; }
+    .connect-sc--wrapper .header h2 {
+      margin-top: .5rem;
+      font-size: 1.5rem;
+      text-align: center; }
+    .connect-sc--wrapper .header .nav-dots {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0; }
+      .connect-sc--wrapper .header .nav-dots .dot {
+        height: 4px;
+        width: 4px;
+        border: 1px solid white;
+        border-radius: 4px;
+        margin: 0 3px; }
+        .connect-sc--wrapper .header .nav-dots .dot.fill {
+          background-color: white; }
+  .connect-sc--wrapper .content {
+    display: flex;
+    flex: 1; }
+    .connect-sc--wrapper .content .description {
+      display: flex;
+      flex-direction: column; }
+      .connect-sc--wrapper .content .description ol {
+        list-style-type: decimal;
+        font-family: Lato-Light;
+        margin-left: 1rem; }
+        .connect-sc--wrapper .content .description ol li {
+          margin-bottom: .5rem; }
+      .connect-sc--wrapper .content .description .upload-loop {
+        display: block;
+        margin: auto;
+        height: 8rem; }
+    .connect-sc--wrapper .content .connect-button {
+      margin-bottom: .5rem; }
+      .connect-sc--wrapper .content .connect-button .MASAS-button {
+        width: auto; }
+      .connect-sc--wrapper .content .connect-button .button-subtitle {
+        display: flex;
+        justify-content: center;
+        margin-top: .5rem;
+        opacity: .8;
+        letter-spacing: .04rem;
+        font-family: Lato-Light; }
 
 @media screen and (min-width: 992px) {
   .connect-sc--wrapper {

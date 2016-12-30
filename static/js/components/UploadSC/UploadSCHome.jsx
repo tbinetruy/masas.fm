@@ -79,7 +79,7 @@ var UploadSCHome = React.createClass({
 										<Button
 											onClick={ this.connectToSC }
 											isBigButton={ true }
-											soundcloud={ true }>Connect to SoundCloud</Button>
+											soundcloud={ true }>Login via SoundCloud</Button>
 									</div>
 								:
 									<div className="connect-button">

@@ -9,22 +9,64 @@
 	max-height: 28rem
 	max-width: 20rem
 
-	.connect-sc--text
-		font-size: 1.05rem
-		text-align: center
-		line-height: 1.5rem
-		letter-spacing: 0.06rem
-		font-family: Lato-Regular
-		opacity: 0.8
+	.header
+		display: flex
+		flex-direction: column
 
-	.connect-button
-		.button-subtitle
+		h2
+			margin-top: 0.5rem
+			font-size: 1.5rem
+			text-align: center
+
+		.nav-dots	
 			display: flex
 			justify-content: center
-			margin-top: 0.5rem
-			opacity: 0.8
-			letter-spacing: 0.04rem
-			font-family: Lato-Light
+			margin: 1rem 0
+
+			.dot
+				height: 4px
+				width: 4px
+				border: 1px solid white
+				border-radius: 4px
+				margin: 0 3px
+
+				&.fill
+					background-color: white
+
+	.content
+		display: flex
+		flex: 1
+
+		.description
+			display: flex
+			flex-direction: column
+
+			ol
+				list-style-type: decimal
+				font-family: Lato-Light
+				margin-left: 1rem
+
+				li
+					margin-bottom: 0.5rem
+
+			.upload-loop
+				display: block
+				margin: auto
+				height: 8rem		
+
+		.connect-button
+			margin-bottom: 0.5rem
+
+			.MASAS-button
+				width: auto
+
+			.button-subtitle
+				display: flex
+				justify-content: center
+				margin-top: 0.5rem
+				opacity: 0.8
+				letter-spacing: 0.04rem
+				font-family: Lato-Light
 
 @media screen and (min-width: $desktop-min-width)
 	.connect-sc--wrapper
