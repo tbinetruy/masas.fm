@@ -2906,29 +2906,33 @@ input[type=range].MASAS-slider {
     min-height: 20rem;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
-    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper img {
+    align-items: center;
+    width: 80%;
+    margin: 0 10%; }
+    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper img {
       width: 3rem; }
-    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button {
+    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .upload-button {
       display: flex;
       flex: 1;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding-top: .5rem;
-      padding: 0 1rem; }
-      .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p {
+      align-items: center; }
+      .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .upload-button p {
         text-align: center;
         font-family: Lato-Light;
         margin-bottom: 1.5rem;
-        line-height: 1.2; }
-      .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p.bold {
+        line-height: 1.2;
+        width: 85%;
+        font-size: 0.95rem; }
+      .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .upload-button p.bold {
         font-family: Lato-Semibold;
         font-size: 1.2rem;
-        line-height: 1.3; }
-      .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button .MASAS-button {
+        line-height: 1.3;
+        width: 100%;
+        text-align: left; }
+      .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .upload-button .MASAS-button {
         margin-bottom: 1rem; }
-    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper .image--wrapper {
+    .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .image--wrapper {
       display: flex;
       justify-content: space-between; }
   .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper {
@@ -3289,29 +3293,33 @@ input[type=range].MASAS-slider {
     min-height: 20rem;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
-    .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper img {
+    align-items: center;
+    width: 80%;
+    margin: 0 10%; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper img {
       width: 3rem; }
-    .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button {
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
       display: flex;
       flex: 1;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding-top: .5rem;
-      padding: 0 1rem; }
-      .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p {
+      align-items: center; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p {
         text-align: center;
         font-family: Lato-Light;
         margin-bottom: 1.5rem;
-        line-height: 1.2; }
-      .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p.bold {
+        line-height: 1.2;
+        width: 85%;
+        font-size: 0.95rem; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p.bold {
         font-family: Lato-Semibold;
         font-size: 1.2rem;
-        line-height: 1.3; }
-      .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button .MASAS-button {
+        line-height: 1.3;
+        width: 100%;
+        text-align: left; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button .MASAS-button {
         margin-bottom: 1rem; }
-    .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .image--wrapper {
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
       display: flex;
       justify-content: space-between; }
   .profile--wrapper .song-list--wrapper .track-table--wrapper {
@@ -3557,29 +3565,33 @@ input[type=range].MASAS-slider {
       min-height: 20rem;
       flex-direction: column;
       justify-content: center;
-      align-items: center; }
-      .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper img {
+      align-items: center;
+      width: 80%;
+      margin: 0 10%; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper img {
         width: 3rem; }
-      .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button {
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
         display: flex;
         flex: 1;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding-top: .5rem;
-        padding: 0 1rem; }
-        .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p {
+        align-items: center; }
+        .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p {
           text-align: center;
           font-family: Lato-Light;
           margin-bottom: 1.5rem;
-          line-height: 1.2; }
-        .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p.bold {
+          line-height: 1.2;
+          width: 85%;
+          font-size: 0.95rem; }
+        .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p.bold {
           font-family: Lato-Semibold;
           font-size: 1.2rem;
-          line-height: 1.3; }
-        .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button .MASAS-button {
+          line-height: 1.3;
+          width: 100%;
+          text-align: left; }
+        .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button .MASAS-button {
           margin-bottom: 1rem; }
-      .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .image--wrapper {
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
         display: flex;
         justify-content: space-between; }
     .profile--wrapper .song-list--wrapper .track-table--wrapper {

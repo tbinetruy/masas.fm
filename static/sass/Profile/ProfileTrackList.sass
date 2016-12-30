@@ -5,38 +5,41 @@
 	flex-direction: column
 	justify-content: center
 	align-items: center
+	width: 80%
+	margin: 0 10%
 
-	.no-songs--wrapper
-		img
-			width: 3rem
+	img
+		width: 3rem
 
-		.upload-button
-			display: flex
-			flex: 1
-			flex-direction: column
-			justify-content: center
-			align-items: center
-			padding-top: 0.5rem
-			padding: 0 1rem
+	.upload-button
+		display: flex
+		flex: 1
+		flex-direction: column
+		justify-content: center
+		align-items: center
 
-			p
-				text-align: center
-				font-family: Lato-Light
-				margin-bottom: 1.5rem
-				line-height: 1.2
+		p
+			text-align: center
+			font-family: Lato-Light
+			margin-bottom: 1.5rem
+			line-height: 1.2
+			width: 85%
+			font-size: 0.95rem
 
-			p.bold
-				font-family: Lato-Semibold
-				font-size: 1.2rem
-				line-height: 1.3
+		p.bold
+			font-family: Lato-Semibold
+			font-size: 1.2rem
+			line-height: 1.3
+			width: 100%
+			text-align: left
 
-			.MASAS-button
-				margin-bottom: 1rem
+		.MASAS-button
+			margin-bottom: 1rem
 
 
-		.image--wrapper
-			display: flex
-			justify-content: space-between
+	.image--wrapper
+		display: flex
+		justify-content: space-between
 
 .track-table--wrapper
 	@import "./TrackItem"
@@ -54,7 +57,6 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.no-songs--wrapper
-
 		.upload-button
 			p
 				max-width: 20rem

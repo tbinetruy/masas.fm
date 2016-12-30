@@ -33,7 +33,7 @@ var ProfileTrackList = React.createClass({
 	render: function() {
 		var { songs } = this.props
 
-		if (!songs.length) 
+		if (songs.length) 
 			return (
 				!this.props.isPublicProfile ?
 					<div className="no-songs--wrapper">
@@ -42,7 +42,10 @@ var ProfileTrackList = React.createClass({
 								Congratulation { this.props.userData.name ? this.props.userData.name : this.props.userData.username }, you're now part of the familly
 							</p>
 							<p>
-								This is your new profile, all your uploaded sounds will be shown here.
+								This is your new profile, all your uploaded sound will be shown here.
+							</p>
+							<p>
+								What would you prefer to do now?
 							</p>
 							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Share My First Sound</Button>
 							<Button onClick={goToURL.bind(null, "/discover")}>Discover music</Button>
