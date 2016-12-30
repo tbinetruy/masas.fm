@@ -2825,7 +2825,8 @@ input[type=range].MASAS-slider {
     max-height: 200px;
     top: 100%;
     left: 0;
-    width: 90%; }
+    width: 90%;
+    z-index: 1; }
   .country-autocomplete--wrapper .wrapper-style {
     display: flex; }
   .country-autocomplete--wrapper #city {
@@ -3174,7 +3175,7 @@ input[type=range].MASAS-slider {
   height: 7rem;
   width: 80%;
   margin: 4rem 10%;
-  margin-bottom: 4rem; }
+  margin-bottom: 6rem; }
   .profile--wrapper .main--wrapper .profile-info--wrapper.no-songs {
     height: 100%; }
   .profile--wrapper .main--wrapper .profile-info--wrapper {
@@ -3186,7 +3187,8 @@ input[type=range].MASAS-slider {
       right: 0;
       position: absolute;
       top: 0;
-      margin: 1rem 1rem 0rem 0rem; }
+      margin: 1rem 1rem 0rem 0rem;
+      cursor: pointer; }
     .profile--wrapper .main--wrapper .profile-info--wrapper .profile-picture {
       margin-right: 1rem;
       width: 7rem;
@@ -3245,7 +3247,7 @@ input[type=range].MASAS-slider {
         right: 0;
         top: 0;
         max-width: inherit;
-        height: calc(4rem + 4rem + 7rem);
+        height: calc(4rem + 6rem + 7rem);
         pointer-events: none; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper.hidden .social-links {
           display: none; }
@@ -3254,7 +3256,7 @@ input[type=range].MASAS-slider {
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
           margin: 0;
           pointer-events: visible;
-          height: 4rem;
+          height: 6rem;
           width: 10rem;
           left: 50%;
           position: absolute;
@@ -3264,6 +3266,12 @@ input[type=range].MASAS-slider {
           justify-content: center; }
           .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a {
             margin-right: .5rem; }
+            .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a img {
+              width: 2rem;
+              height: 2rem;
+              margin-left: 1.5rem; }
+          .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a:first-child > img {
+            margin-left: 0; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
           width: 1rem;
           max-height: 1rem;
@@ -3478,7 +3486,7 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column;
     min-height: 10rem;
-    margin-top: calc(-4rem + 1rem);
+    margin-top: calc(-6rem + 1rem);
     margin-bottom: 1rem;
     width: 80%;
     padding: 0;
@@ -3517,6 +3525,8 @@ input[type=range].MASAS-slider {
     margin-left: 0rem; }
     .profile--wrapper .main--wrapper .profile-info--wrapper .edit-profile-icon--wrapper {
       margin-top: -3rem; }
+    .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop {
+      height: 10rem; }
     .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
       position: inherit;
       height: auto;
@@ -3524,7 +3534,16 @@ input[type=range].MASAS-slider {
       .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
         position: inherit;
         transform: inherit;
-        justify-content: flex-start; }
+        justify-content: flex-start;
+        margin-top: .5rem; }
+        .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a {
+          margin-right: .5rem; }
+          .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a img {
+            width: 1rem;
+            height: 1rem;
+            margin-left: .5rem; }
+        .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a:first-child > img {
+          margin-left: 0; }
   .profile--wrapper .song-list--wrapper {
     display: flex;
     flex-direction: column;

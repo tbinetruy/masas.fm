@@ -86,7 +86,7 @@ var CountryAutocomplete = React.createClass({
 						this.props.onChange(item.url)
 					}}
 					onChange={ this.onChange }
-					renderItem={ (item, isHighlighted ) => (
+					renderItem={ (item, isHighlighted) => (
 						<div
 							className={isHighlighted ? "highlighted-item" : 'item'}
 							key={item.geoname_id}
