@@ -2463,7 +2463,7 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column; }
     .outer-upload-sc--wrapper .header h2 {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       font-size: 1.5rem;
       text-align: center; }
     .outer-upload-sc--wrapper .header .nav-dots {

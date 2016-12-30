@@ -8,6 +8,7 @@ var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
 var UploadSCHome = require("./UploadSCHome.jsx")
 var UploadSCSongTable = require("./UploadSCSongTable.jsx")
+var NoSCSongs = require("./NoSCSongs.jsx")
 
 
 var UploadSC = React.createClass({
@@ -138,15 +139,27 @@ var UploadSC = React.createClass({
 
 		if(this.props.choosingTime) {
 			content = (
-					<PickTimeUpload />
+					<PickTimeUpload 
+						logoutSC={ this.logoutSC }/>
 			)
 			title = "Now pick the right time for your sound"
 			pageNumber = 3
 		} else {
 			if(this.props.isConnectedSoundcloud && this.props.userPk) {
-				content = <UploadSCSongTable />
-				title = "Today let’s feature..."
-				pageNumber = 2
+				if(this.props.soundcloudUserTracks) {
+					if(this.props.soundcloudUserTracks.length === 0) {
+						return (
+							<Body>
+								<NoSCSongs
+									logoutSC={ this.logoutSC } />
+							</Body>
+						)
+					} else {
+						content = <UploadSCSongTable />
+						title = "Today let’s feature..."
+						pageNumber = 2
+					}
+				}
 			} else {
 				content = <UploadSCHome 
 					getUserTracks={ this.getUserTracks }/>
