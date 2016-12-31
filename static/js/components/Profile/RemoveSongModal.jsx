@@ -45,32 +45,28 @@ var RemoveSongModal = React.createClass({
 	render: function() {
 		return (
 			<div className="profile-modal--wrapper">
-				<div className="song-info--wrapper">
-					<div className="artwork">
-						{
-							this.props.SC_info.artwork_url ?
-								<img src={ this.props.SC_info.artwork_url } alt="artwork" />
-							:
-								""
-						}
-					</div>
-					<div className="song-title">
-						{ this.props.SC_info.title }
-					</div>
-				</div>
+				<img src="/static/img/MASAS_icon_trash.svg" alt="icon" />
 				<div className="profile-modal-content">
-					<h2>
-						do you really want to remove this sound?
+					<h2  className="no-margin-bottom">
+						Do you really want to remove <strong className="no-margin-bottom">{ this.props.SC_info.title }</strong>
 					</h2>
-					<Button
-						isSecondaryAction={ false }
-						isBigButton={ false }
-						isDisabled={ false }
-						onClick={ this.removeSong }>
-						yes
-					</Button>
+					<div className="buttons">
+						<Button 
+							isBigButton={ false }
+							isSecondaryAction={ false }
+							className="cancel-button"
+							onClick={ this.props.toggleModal }>
+							Cancel
+						</Button>
+						<Button
+							isSecondaryAction={ true }
+							isBigButton={ false }
+							isDisabled={ false }
+							onClick={ this.removeSong }>
+							yes
+						</Button>
+					</div>
 				</div>
-				<div className="cancel-button" onClick={ this.props.toggleModal }>Cancel</div>
 			</div>
 		)
 	}

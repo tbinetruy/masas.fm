@@ -771,7 +771,7 @@ input[type=range].MASAS-slider {
   .MASAS-modal .modal-content--wrapper {
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #181818;
     color: white;
     position: relative;
     display: flex;
@@ -798,7 +798,7 @@ input[type=range].MASAS-slider {
   .MASAS-modal .modal-content--wrapper {
     width: 50%;
     height: 50%;
-    background-color: #1d1c1c;
+    background-color: #0a0a0a;
     color: white;
     position: relative;
     height: 62%;
@@ -1893,12 +1893,12 @@ input[type=range].MASAS-slider {
     align-items: center;
     justify-content: center; }
     .footer-modal--wrapper .footer-modal-content h2 {
-      font-size: 0.9rem;
+      font-size: .9rem;
       line-height: 1.3rem;
       text-align: center;
       max-width: 18rem;
       text-transform: none;
-      letter-spacing: 0.11rem;
+      letter-spacing: .11rem;
       max-width: 20rem;
       margin: 2rem 0; }
       .footer-modal--wrapper .footer-modal-content h2.no-padding-bottom {
@@ -1933,7 +1933,7 @@ input[type=range].MASAS-slider {
       width: 100%;
       max-width: 100%;
       flex-direction: row;
-      flex: 0.3;
+      flex: .3;
       height: 4rem; }
       .footer-modal--wrapper .song-info--wrapper .artwork {
         border: 3px solid white;
@@ -1943,7 +1943,7 @@ input[type=range].MASAS-slider {
         margin-right: 1.5rem; }
       .footer-modal--wrapper .song-info--wrapper .song-title {
         text-align: left;
-        font-size: 0.825rem; }
+        font-size: .825rem; }
     .footer-modal--wrapper .footer-modal-content {
       width: 100%;
       justify-content: space-around; }
@@ -2730,49 +2730,46 @@ input[type=range].MASAS-slider {
   align-items: center;
   justify-content: center;
   height: 100%; }
-  .profile-modal--wrapper .song-info--wrapper {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 18rem; }
-    .profile-modal--wrapper .song-info--wrapper .artwork {
-      border: 1px solid white;
-      width: 10rem;
-      height: 10rem;
-      margin-bottom: 1.5rem; }
-      .profile-modal--wrapper .song-info--wrapper .artwork img {
-        height: 100%; }
-    .profile-modal--wrapper .song-info--wrapper .song-title {
-      font-family: Lato-Semibold, sans-serif;
-      text-align: center; }
+  .profile-modal--wrapper img {
+    height: 3rem; }
   .profile-modal--wrapper .profile-modal-content {
     display: flex;
     flex: 1;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; }
+    justify-content: center; }
     .profile-modal--wrapper .profile-modal-content h2 {
-      letter-spacing: 0.22rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
+      font-size: 0.9rem;
       line-height: 1.3rem;
       text-align: center;
-      max-width: 18rem; }
+      max-width: 18rem;
+      text-transform: none;
+      letter-spacing: 0.11rem;
+      max-width: 20rem;
+      margin: 2rem 0;
+      margin-bottom: 1rem; }
+      .profile-modal--wrapper .profile-modal-content h2 strong {
+        display: block;
+        margin: 1.5rem;
+        font-size: 1.2rem;
+        font-family: Lato-Semibold; }
     .profile-modal--wrapper .profile-modal-content > img {
       width: 5rem; }
     .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper {
       display: flex;
       width: 250px;
-      height: 120px; }
+      height: 120px;
+      margin-bottom: 1rem; }
       .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper #suggest-time-modal-timePicker-canvas-id {
         width: 250px;
         height: 120px; }
       .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
         bottom: 1rem; }
-  .profile-modal--wrapper .cancel-button {
-    display: none; }
+  .profile-modal--wrapper .buttons {
+    display: flex; }
+    .profile-modal--wrapper .buttons .cancel-button {
+      display: none;
+      margin-right: 1rem; }
 
 @media screen and (min-width: 992px) {
   .profile-modal--wrapper {
@@ -2797,6 +2794,8 @@ input[type=range].MASAS-slider {
       justify-content: space-around; }
       .profile-modal--wrapper .profile-modal-content h2 {
         max-width: 100%; }
+        .profile-modal--wrapper .profile-modal-content h2 strong {
+          margin-bottom: 0; }
       .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper {
         display: flex;
         width: 300px;
@@ -2806,11 +2805,9 @@ input[type=range].MASAS-slider {
           height: 100px; }
         .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
           bottom: 0rem; }
-    .profile-modal--wrapper .cancel-button {
-      display: block;
-      font-size: 0.7rem;
-      cursor: pointer; }
-    .profile-modal--wrapper .cancel-button:active {
+    .profile-modal--wrapper .buttons .cancel-button {
+      display: block; }
+    .profile-modal--wrapper .buttons .cancel-button:active {
       font-family: Lato-Semibold, sans-serif; } }
 .country-autocomplete--wrapper {
   display: flex;
