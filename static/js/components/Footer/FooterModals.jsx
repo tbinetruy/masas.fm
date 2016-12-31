@@ -103,8 +103,8 @@ var FooterModal = React.createClass({
 			// var { initialDiscover, currentDiscover } = this.props.
 			return (
 				<div className="footer-modal-content">
-					<h2>
-						When would you most likely listen to <strong>{ this.state.SC_songInfo.title }</strong>?
+					<h2 className="no-padding-bottom">
+						When would you most likely listen to <strong className="no-padding-bottom">{ this.state.SC_songInfo.title }</strong>
 					</h2>
 					<div className="suggest-time-modal--wrapper">
 						<TimePicker
@@ -117,10 +117,10 @@ var FooterModal = React.createClass({
 					<div className="buttons">
 						{ cancelButton }
 						<Button
-							isSecondaryAction={ this.props.initialDiscover === this.props.currentDiscover ? false : false }
+							isSecondaryAction={ true }
 							isBigButton={ false }
 							onClick={ () => {} }
-							isDisabled={ this.props.initialDiscover === this.props.currentDiscover ? true : false }>
+							isDisabled={ initialTime === this.props.suggestNewTimeValue ? true : false }>
 							Submit
 						</Button>
 					</div>
