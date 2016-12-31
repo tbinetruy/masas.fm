@@ -41,28 +41,13 @@ var FooterModal = React.createClass({
 				Cancel
 			</Button>
 		)
-		const songInfo = (
-			<div className="song-info--wrapper">
-				<div className="artwork">
-					{
-						this.state.SC_songInfo.artwork_url ?
-							<img src={ this.state.SC_songInfo.artwork_url } alt="artwork" />
-						:
-							""
-					}
-				</div>
-				<div className="song-title">
-					{ this.state.SC_songInfo.title }
-				</div>
-			</div>
-		)
 
 		if(isSpamModal)
 			return (
 				<div className="footer-modal-content">
 					<img src="/static/img/MASAS_icon_spam.svg" alt="icon" />
 					<h2>
-						Do you really want to report <strong>{ this.state.SC_songInfo.title }</strong> as spam?
+						Do you really want to report <strong>{ this.props.SC_songInfo.title }</strong> as spam?
 					</h2>
 					<div className="buttons">
 						{ cancelButton }
@@ -82,7 +67,7 @@ var FooterModal = React.createClass({
 				<div className="footer-modal-content">
 					<img src="/static/img/MASAS_icon_copyright.svg" alt="icon" />
 					<h2>
-						Do you really want to report <strong>{ this.state.SC_songInfo.title }</strong> as copyright infringement?
+						Do you really want to report <strong>{ this.props.SC_songInfo.title }</strong> as copyright infringement?
 					</h2>
 					<div className="buttons">
 						{ cancelButton }
