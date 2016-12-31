@@ -73,23 +73,32 @@ export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
 }
 
 // (obj) userDict => userDict.userToken and userDict.userPk 
-export const updateProfilePicture = ({ userToken, userPk }) => {
-	var header = "Bearer " + userToken
+export const updateProfilePicture = ({ userToken, userPk }) => (dispatch, getState) =>{
+	const header = "Bearer " + userToken
 
 	if(typeof(FB) !== "undefined")
-		$.ajax({
-			type: "PATCH",
-			url: "/api/users/" + userPk + "/",
-			headers: {
-				"Authorization": header,
-				"Content-Type": "application/json"
-			},
-			data: JSON.stringify({
-				avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture",
-			}),
-			success: () => { },
-			error: () => { }
-		})
+		if(FB.getUserID()) {
+			const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
+
+			$.ajax({
+				type: "PATCH",
+				url: "/api/users/" + userPk + "/",
+				headers: {
+					"Authorization": header,
+					"Content-Type": "application/json"
+				},
+				data: JSON.stringify({
+					avatar_url,
+				}),
+				success: () => {
+					const { userData } = getState().appReducer
+
+					if(userData.avatar_url !== avatar_url)
+						dispatch(updateUserInfo(userPk, userToken))
+				},
+				error: () => { }
+			})
+		}
 }
 
 export const updateUserInfo = (userPk, userToken) => dispatch => {
@@ -97,7 +106,7 @@ export const updateUserInfo = (userPk, userToken) => dispatch => {
 		type: "GET",
 		url: "/api/users/" + userPk + "/",
 		success: userData => {
-			updateProfilePicture({ userToken, userPk, userData })
+			dispatch(updateProfilePicture({ userToken, userPk, userData }))
 
 			// log in user
 			dispatch({ type: "UPDATE_USER_PK", pk: userPk })
