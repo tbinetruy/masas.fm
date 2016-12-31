@@ -125,9 +125,14 @@ var TrackItem = React.createClass({
 							<div className="time">
 								{ timeIntervalURLToString(this.props.MASAS_songInfo.timeInterval) }
 							</div>
-							<div className="plays">
-								{ this.props.MASAS_songInfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
-							</div>
+							{ 
+								this.props.allowOpen ?
+									<div className="plays">
+										{ this.props.MASAS_songInfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
+									</div>
+								:
+									""
+							}
 						</div>
 					</div>
 				</div>
