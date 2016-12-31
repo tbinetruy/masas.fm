@@ -87,9 +87,6 @@ var LikesItem = React.createClass({
 						<div className="time">
 							{ timeIntervalURLToString(this.props.MASASinfo.timeInterval) }
 						</div>
-						<div className="plays">
-							{ this.props.MASASinfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
-						</div>
 					</div>
 				</div>
 			</div>
