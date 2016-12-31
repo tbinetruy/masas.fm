@@ -16,6 +16,7 @@ var FooterModal = React.createClass({
 		isSpamModal: React.PropTypes.bool,				// is spam modal content
 		isCopyrightModal: React.PropTypes.bool,			// is report copyright modal content
 		isSuggestTimeModal: React.PropTypes.bool, 			// is suggest another time modal content
+		toogleIsModalOpened: React.PropTypes.func,
 	},
 
 	// keeping props in state so that song info doesn't change when player changes song
@@ -31,38 +32,68 @@ var FooterModal = React.createClass({
 
 	getModalContent: function() {
 		const { isSpamModal, isCopyrightModal, isSuggestTimeModal } = this.props
+		const cancelButton = (
+			<Button 
+				isBigButton={ false }
+				isSecondaryAction={ false }
+				className="cancel-button"
+				onClick={ this.props.toogleIsModalOpened }>
+				Cancel
+			</Button>
+		)
+		const songInfo = (
+			<div className="song-info--wrapper">
+				<div className="artwork">
+					{
+						this.state.SC_songInfo.artwork_url ?
+							<img src={ this.state.SC_songInfo.artwork_url } alt="artwork" />
+						:
+							""
+					}
+				</div>
+				<div className="song-title">
+					{ this.state.SC_songInfo.title }
+				</div>
+			</div>
+		)
 
 		if(isSpamModal)
 			return (
 				<div className="footer-modal-content">
-					<h2>
-						do you really want to report this sound as spam?
-					</h2>
 					<img src="/static/img/MASAS_icon_spam.svg" alt="icon" />
-					<Button
-						isSecondaryAction={ false }
-						isBigButton={ false }
-						onClick={ this.props.reportSpam }
-						isDisabled={ false }>
-						yes
-					</Button>
+					<h2>
+						Do you really want to report <strong>{ this.state.SC_songInfo.title }</strong> as spam?
+					</h2>
+					<div className="buttons">
+						{ cancelButton }
+						<Button
+							isSecondaryAction={ true }
+							isBigButton={ false }
+							onClick={ this.props.reportSpam }
+							isDisabled={ false }>
+							yes
+						</Button>
+					</div>
 				</div>
 				)
 
 		if(isCopyrightModal)
 			return (
 				<div className="footer-modal-content">
-					<h2>
-						do you really want to report this sound as copyright infringement?
-					</h2>
 					<img src="/static/img/MASAS_icon_copyright.svg" alt="icon" />
-					<Button
-						isSecondaryAction={ false }
-						isBigButton={ false }
-						onClick={ this.props.reportCopyright }
-						isDisabled={ false }>
-						yes
-					</Button>
+					<h2>
+						Do you really want to report <strong>{ this.state.SC_songInfo.title }</strong> as copyright infringement?
+					</h2>
+					<div className="buttons">
+						{ cancelButton }
+						<Button
+							isSecondaryAction={ true }
+							isBigButton={ false }
+							onClick={ this.props.reportCopyright }
+							isDisabled={ false }>
+							yes
+						</Button>
+					</div>
 				</div>
 				)
 
@@ -73,7 +104,7 @@ var FooterModal = React.createClass({
 			return (
 				<div className="footer-modal-content">
 					<h2>
-						when would you most likely listen to this sound?
+						When would you most likely listen to <strong>{ this.state.SC_songInfo.title }</strong>?
 					</h2>
 					<div className="suggest-time-modal--wrapper">
 						<TimePicker
@@ -83,13 +114,16 @@ var FooterModal = React.createClass({
 							currentDiscover={ this.props.suggestNewTimeValue }
 							onSliderChange={ this.props.updateTimeSuggestion } />
 					</div>
-					<Button
-						isSecondaryAction={ this.props.initialDiscover === this.props.currentDiscover ? false : false }
-						isBigButton={ false }
-						onClick={ () => {} }
-						isDisabled={ this.props.initialDiscover === this.props.currentDiscover ? true : false }>
-						Submit
-					</Button>
+					<div className="buttons">
+						{ cancelButton }
+						<Button
+							isSecondaryAction={ this.props.initialDiscover === this.props.currentDiscover ? false : false }
+							isBigButton={ false }
+							onClick={ () => {} }
+							isDisabled={ this.props.initialDiscover === this.props.currentDiscover ? true : false }>
+							Submit
+						</Button>
+					</div>
 				</div>
 				)
 		}
@@ -100,21 +134,7 @@ var FooterModal = React.createClass({
 	render: function() {
 		return (
 			<div className="footer-modal--wrapper">
-				<div className="song-info--wrapper">
-					<div className="artwork">
-						{
-							this.state.SC_songInfo.artwork_url ?
-								<img src={ this.state.SC_songInfo.artwork_url } alt="artwork" />
-							:
-								""
-						}
-					</div>
-					<div className="song-title">
-						{ this.state.SC_songInfo.title }
-					</div>
-				</div>
 				{ this.getModalContent() }
-				<div className="cancel-button" onClick={ this.props.toogleIsModalOpened }>Cancel</div>
 			</div>
 		)
 	}

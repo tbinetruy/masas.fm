@@ -700,9 +700,9 @@ input[type=range].MASAS-slider {
     align-items: center;
     text-transform: uppercase;
     font-family: Lato-Semibold;
-    opacity: 0.5;
-    font-size: 0.7rem;
-    letter-spacing: 0.12rem; }
+    opacity: .5;
+    font-size: .7rem;
+    letter-spacing: .12rem; }
     .MASAS-modal.type2 .close-icon img {
       margin-right: 1rem; }
   .MASAS-modal.type2 .tip-title {
@@ -714,7 +714,7 @@ input[type=range].MASAS-slider {
       height: 3rem; }
     .MASAS-modal.type2 .tip-title span {
       font-size: 1.7rem;
-      letter-spacing: 0.35rem;
+      letter-spacing: .35rem;
       padding-left: 1.5rem; }
   .MASAS-modal.type2 .modal-type-4--wrapper {
     display: flex;
@@ -747,7 +747,7 @@ input[type=range].MASAS-slider {
   flex: 1;
   justify-content: center;
   align-items: center;
-  animation: fadein-modal 0.5s linear; }
+  animation: fadein-modal .5s linear; }
   .MASAS-modal .close-icon {
     z-index: 3;
     position: absolute;
@@ -756,9 +756,9 @@ input[type=range].MASAS-slider {
     padding: 2rem;
     cursor: pointer;
     height: 1.4rem;
-    opacity: 0.6; }
+    opacity: .6; }
   .MASAS-modal .close-icon:hover {
-    opacity: 0.8; }
+    opacity: .8; }
   .MASAS-modal .close-icon:active {
     opacity: 1; }
   .MASAS-modal .modal-overlay {
@@ -787,7 +787,7 @@ input[type=range].MASAS-slider {
 
 .MASAS-modal.closed {
   z-index: -10;
-  animation: fadeout-modal 0.5s linear; }
+  animation: fadeout-modal .5s linear; }
 
 @media screen and (min-width: 992px) {
   .MASAS-modal.type2 {
@@ -798,12 +798,12 @@ input[type=range].MASAS-slider {
   .MASAS-modal .modal-content--wrapper {
     width: 50%;
     height: 50%;
-    background-color: black;
+    background-color: #1d1c1c;
     color: white;
     position: relative;
     height: 62%;
     margin-top: 5rem;
-    border: 1px solid rgba(255, 255, 255, 0.4); } }
+    box-shadow: 0px 0px 20px 7px rgba(0, 0, 0, 0.3); } }
 .RankingInfoIcon--wrapper {
   width: 100%;
   position: relative; }
@@ -1893,12 +1893,13 @@ input[type=range].MASAS-slider {
     align-items: center;
     justify-content: space-between; }
     .footer-modal--wrapper .footer-modal-content h2 {
-      letter-spacing: 0.22rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
+      font-size: .8rem;
       line-height: 1.3rem;
       text-align: center;
-      max-width: 18rem; }
+      max-width: 18rem;
+      text-transform: none;
+      letter-spacing: .11rem;
+      max-width: 20rem; }
     .footer-modal--wrapper .footer-modal-content > img {
       width: 5rem; }
     .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper {
@@ -1910,8 +1911,11 @@ input[type=range].MASAS-slider {
         height: 120px; }
       .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
         bottom: 1rem; }
-  .footer-modal--wrapper .cancel-button {
-    display: none; }
+  .footer-modal--wrapper .buttons {
+    display: flex; }
+    .footer-modal--wrapper .buttons .cancel-button {
+      display: none;
+      margin-right: 1rem; }
 
 @media screen and (min-width: 992px) {
   .footer-modal--wrapper {
@@ -1920,7 +1924,7 @@ input[type=range].MASAS-slider {
       width: 100%;
       max-width: 100%;
       flex-direction: row;
-      flex: 0.3;
+      flex: .3;
       height: 4rem; }
       .footer-modal--wrapper .song-info--wrapper .artwork {
         border: 3px solid white;
@@ -1930,7 +1934,7 @@ input[type=range].MASAS-slider {
         margin-right: 1.5rem; }
       .footer-modal--wrapper .song-info--wrapper .song-title {
         text-align: left;
-        font-size: 0.825rem; }
+        font-size: .825rem; }
     .footer-modal--wrapper .footer-modal-content {
       width: 100%;
       justify-content: space-around; }
@@ -1945,11 +1949,9 @@ input[type=range].MASAS-slider {
           height: 100px; }
         .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
           bottom: 0rem; }
-    .footer-modal--wrapper .cancel-button {
-      display: block;
-      font-size: 0.7rem;
-      cursor: pointer; }
-    .footer-modal--wrapper .cancel-button:active {
+    .footer-modal--wrapper .buttons .cancel-button {
+      display: block; }
+    .footer-modal--wrapper .buttons .cancel-button:active {
       font-family: Lato-Semibold, sans-serif; } }
 .footer--wrapper {
   position: relative;
