@@ -5,3 +5,8 @@ node_modules
 static/.sass-cache
 mysite/settings.dev.py
 env
+.sass-cache
+log
+logs
+.idea
+.ropeproject
