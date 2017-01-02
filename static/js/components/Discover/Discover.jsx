@@ -172,7 +172,7 @@ var Discover = React.createClass({
 						
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
-							discoverNumber={-1} />
+							discoverNumber={1} />
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
 					

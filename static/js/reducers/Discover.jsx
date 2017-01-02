@@ -101,7 +101,8 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			}
 		case CHANGE_DISCOVER_NUMBER:
 			var discoverNumber = action.discoverNumber
-			if( !(discoverNumber <= 6 && discoverNumber >= 1) || discoverNumber !== POPULAR)
+
+			if( (discoverNumber > 6 || discoverNumber < 1) && discoverNumber !== POPULAR)
 				discoverNumber = 1
 
 			return {
