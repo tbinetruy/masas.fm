@@ -5,6 +5,8 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerAudioTag.jsx")
 
+import { SILENT_SOUND_SRC } from "./PlayerBar.jsx"
+
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
@@ -19,8 +21,8 @@ var PlayerAudioTag = React.createClass({
 
 	componentDidMount: function() {
 		$("#jquery_jplayer_1").jPlayer({
-			ready: function(	) {
-				var streamURL = "http://www.xamuel.com/blank-mp3-files/point1sec.mp3"
+			ready: function() {
+				var streamURL = SILENT_SOUND_SRC
 				$(this).jPlayer("setMedia", {
 					mp3: streamURL,
 					oga: ""

@@ -6,6 +6,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.js
 var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 
+export const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"
+
 var Player = React.createClass({
 	propTypes: {
 		songPlayingArtistInfo: React.PropTypes.object,
@@ -82,18 +84,15 @@ var Player = React.createClass({
 
 		// test buffering
 		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, () => {
-			if($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3")
-				this.props.setIsPlayerBuffering(true) //this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
+			if($("#jquery_jplayer_1").data("jPlayer").status.src !== SILENT_SOUND_SRC)
+				this.props.setIsPlayerBuffering(true) 
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, () => {
-
-			if($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3")
-				this.props.setIsPlayerBuffering(true) //this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
+			if($("#jquery_jplayer_1").data("jPlayer").status.src !== SILENT_SOUND_SRC)
+				this.props.setIsPlayerBuffering(true)
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, () => {
-			
-			this.props.setIsPlayerBuffering(false) //this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
-			
+			this.props.setIsPlayerBuffering(false)
 		})
 
 		// update player UI on start play
