@@ -12,3 +12,4 @@ logs
 .ropeproject
 db.sqlite3
 activate
+data
