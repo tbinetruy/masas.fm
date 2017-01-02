@@ -11,3 +11,4 @@ logs
 .idea
 .ropeproject
 db.sqlite3
+activate
