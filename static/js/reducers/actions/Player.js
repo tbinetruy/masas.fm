@@ -19,6 +19,12 @@ var {
 	getTimeIntervalNumberFromUrl
 } = require("./MASAS_functions.js")
 
+import {
+	getDiscoverNumberFromCurrentTime,
+} from "../../MASAS_functions.jsx"
+
+export const POPULAR = -1
+
 ///// TO DELETE
 const getCookie = (name) => {
 	var cookieValue = null
@@ -106,12 +112,12 @@ export function toggleSongLike(songId) {
 		}
 
 		fetch(
-            "/api/users/" + MASASuserPk + "/",
-            {
-                credentials: "include",
-                headers
-            }
-        )
+			"/api/users/" + MASASuserPk + "/",
+			{
+				credentials: "include",
+				headers
+			}
+		)
 		.then( r => r.json() )
 		.then( user => {
 			// var likes = user.likes
@@ -164,7 +170,7 @@ export function toggleSongLike(songId) {
 
 			}
 		})
-		.catch( err => {
+		.catch( () => {
 			dispatch(updateNotificationText(""))
 			dispatch(updateNotificationText("Login to like songs!"))
 
@@ -223,7 +229,7 @@ export function updateLikeButton(MASAS_songInfo) {
 					dispatch(likeSong(false))
 				else
 					dispatch(likeSong(true))
-			}).catch( e => { } )
+			}).catch( () => { } )
 
 	}
 }
@@ -483,11 +489,17 @@ export function playRandomSong(timeInterval = 0) {
 		const state = getState()
 		const { MASASuser } = state.appReducer
 
-		var URL = document.playUrl === undefined ? "/api/play/" : document.playUrl;
-        if (URL.indexOf('?') < 0) URL = URL + '?';
-		if(timeInterval)
-			URL = URL + "&time_interval_id=" + timeInterval
+		var URL = document.playUrl === undefined ? "/api/play/" : document.playUrl
+		if (URL.indexOf('?') < 0)
+			URL = URL + '?'
 
+		console.log(timeInterval)
+		if(timeInterval && timeInterval !== POPULAR)
+			URL = URL + "&time_interval_id=" + timeInterval
+		else if(timeInterval && timeInterval === POPULAR) {
+			const timeInterval = getDiscoverNumberFromCurrentTime()
+			URL = URL + "&time_interval_id=" + timeInterval + "&radio=popular"
+		}
 
 		var headers = {}
 		var method = "GET"
@@ -495,12 +507,9 @@ export function playRandomSong(timeInterval = 0) {
 		// make post request if unauth
 		if(MASASuser !== "") {
 			const header = "Bearer " + MASASuser
-			const csrftoken = getCookie("csrftoken")
-			// method = "POST"
 
 			headers = {
 				"Authorization": header,
-				// "X-CSRFToken": csrftoken
 			}
 		}
 
@@ -508,7 +517,7 @@ export function playRandomSong(timeInterval = 0) {
 		fetch(URL, {
 			headers,
 			method,
-            credentials: 'include'
+			credentials: 'include'
 		}).then( r => r.json() )
 		.then( data => {
 			// dispatch all necessary info and start playing

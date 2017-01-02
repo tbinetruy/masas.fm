@@ -5,6 +5,10 @@ import {
 	REMOVE_SONG_FROM_HISTORY,
 } from "./actions/Discover.js"
 
+import {
+	POPULAR,
+}	from "./actions/Player.js"
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -97,7 +101,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			}
 		case CHANGE_DISCOVER_NUMBER:
 			var discoverNumber = action.discoverNumber
-			if( !(discoverNumber <= 6 && discoverNumber >= 1) )
+			if( !(discoverNumber <= 6 && discoverNumber >= 1) || discoverNumber !== POPULAR)
 				discoverNumber = 1
 
 			return {

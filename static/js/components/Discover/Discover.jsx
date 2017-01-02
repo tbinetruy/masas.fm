@@ -14,8 +14,6 @@ var {
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
 var { TeachDiscoverModal2 } = require("./../TipModals/TeachDiscoverModals.jsx")
-var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx")
-// var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
 
 var Discover = React.createClass({
 	showArtwork: false,
@@ -174,7 +172,7 @@ var Discover = React.createClass({
 						
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
-							discoverNumber={1} />
+							discoverNumber={-1} />
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
 					

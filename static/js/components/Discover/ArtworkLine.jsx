@@ -5,34 +5,37 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLine.
 
 var ArtworkLineItem = require("./ArtworkLineItem.jsx")
 
+import { POPULAR } from "../../reducers/actions/Player.js"
+
 var ArtworkLine = React.createClass({
 	propTypes: {
 		discoverNumber: React.PropTypes.number.isRequired,			// artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
-		toggleIsFooterOpened: React.PropTypes.func,
 		renderForUITip: React.PropTypes.bool,	
 		isModalOpened: React.PropTypes.bool,
 		modalType: React.PropTypes.number,
 		history: React.PropTypes.object,
-		playRandomSong: React.PropTypes.func,
 		MASASuser: React.PropTypes.string,
 		songPlaying: React.PropTypes.string,
-		pause: React.PropTypes.func,
-		play: React.PropTypes.func,
 		isPlayerPaused: React.PropTypes.bool,
-		toggleSongLike: React.PropTypes.func,
-		playAndSaveHistory: React.PropTypes.func,
 		isSongPlayingLiked: React.PropTypes.bool,
 		userToken: React.PropTypes.string,
 		songPlayingArtistInfo: React.PropTypes.object,
 
 		playPreviousSongInDiscover: React.PropTypes.func,
 		lastSongInDiscoverHistory: React.PropTypes.func,
+		playRandomSong: React.PropTypes.func,
+		toggleIsFooterOpened: React.PropTypes.func,
+		pause: React.PropTypes.func,
+		play: React.PropTypes.func,
+		toggleSongLike: React.PropTypes.func,
+		playAndSaveHistory: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
 		return {
 			renderForUITip: false,
+			discoverNumber: POPULAR, 		// plays from popular 
 		}
 	},
 
