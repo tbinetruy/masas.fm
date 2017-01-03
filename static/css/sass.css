@@ -4272,15 +4272,15 @@ input[type=range].MASAS-slider {
     left: 234px; }
     .teach-modal--wrapper.like-UI-info .MASAS-button {
       margin-bottom: inherit; } }
-.discover--wrapper {
+.artwork-line--wrapper {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: center; }
-  .discover--wrapper .artwork--wrapper {
+  align-self: flex-start;
+  width: 100%;
+  position: relative; }
+  .artwork-line--wrapper .artwork--wrapper {
     background-color: black;
     position: relative; }
-    .discover--wrapper .artwork--wrapper .mini-profile {
+    .artwork-line--wrapper .artwork--wrapper .mini-profile {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -4290,22 +4290,22 @@ input[type=range].MASAS-slider {
       background-color: black;
       opacity: 0;
       animation: fadeout-modal .25s linear; }
-    .discover--wrapper .artwork--wrapper .mini-profile.show {
+    .artwork-line--wrapper .artwork--wrapper .mini-profile.show {
       z-index: 1;
       opacity: 1;
       animation: fadein-profile .25s linear; }
-    .discover--wrapper .artwork--wrapper .artwork--wrapper2 {
+    .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 {
       position: relative;
       cursor: pointer;
       display: flex; }
-    .discover--wrapper .artwork--wrapper .artwork {
+    .artwork-line--wrapper .artwork--wrapper .artwork {
       height: 35vh;
       width: 35vh;
       background-color: black; }
-    .discover--wrapper .artwork--wrapper .song-info--wrapper {
+    .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
       display: none;
       align-items: center; }
-    .discover--wrapper .artwork--wrapper .player-button {
+    .artwork-line--wrapper .artwork--wrapper .player-button {
       position: absolute;
       display: none;
       justify-content: center;
@@ -4315,16 +4315,16 @@ input[type=range].MASAS-slider {
       right: 0;
       bottom: 0;
       background-color: rgba(0, 0, 0, 0.5); }
-      .discover--wrapper .artwork--wrapper .player-button img {
+      .artwork-line--wrapper .artwork--wrapper .player-button img {
         width: 4rem;
         height: 4rem; }
-  .discover--wrapper .artwork--wrapper2:hover .player-button {
+  .artwork-line--wrapper .artwork--wrapper2:hover .player-button {
     display: flex; }
   @media screen and (min-width: 992px) {
-    .discover--wrapper .artwork--wrapper.artwork-playing .artwork {
+    .artwork-line--wrapper .artwork--wrapper.artwork-playing .artwork {
       height: 35vh;
       width: 35vh; }
-    .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper {
+    .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper {
       font-size: 0.7rem;
       height: 3rem;
       display: flex;
@@ -4334,16 +4334,16 @@ input[type=range].MASAS-slider {
       padding: 0 1rem;
       background-color: black;
       flex-direction: row; }
-      .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info {
+      .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info {
         flex: 1; }
-        .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .title, .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
+        .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
           position: relative;
           height: 0.7rem;
           width: calc($artworkWidth - 2 * 1rem); }
-    .discover--wrapper .artwork--wrapper .artwork {
+    .artwork-line--wrapper .artwork--wrapper .artwork {
       height: 24.5vh;
       width: 24.5vh; }
-    .discover--wrapper .artwork--wrapper .song-info--wrapper {
+    .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
       font-size: 0.49rem;
       height: 2.1rem;
       display: flex;
@@ -4352,155 +4352,156 @@ input[type=range].MASAS-slider {
       align-items: center;
       padding: 0 1rem;
       background-color: black; }
-      .discover--wrapper .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .artwork--wrapper .song-info--wrapper .artist {
+      .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .artist {
         position: relative;
         height: 0.49rem;
         width: calc(24.5vh - 2 * 1rem); } }
-  .discover--wrapper .artwork-line--wrapper {
-    display: flex;
-    align-self: flex-start;
-    width: 100%;
-    position: relative; }
-    .discover--wrapper .artwork-line--wrapper .button {
+  .artwork-line--wrapper .button {
+    display: none; }
+  .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
+    visibility: hidden; }
+  .artwork-line--wrapper .artwork-playing--wrapper.hide-content {
+    visibility: hidden; }
+  .artwork-line--wrapper .artwork-playing--wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.89), 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    z-index: 4; }
+    .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
+      position: absolute;
+      height: 2rem;
+      top: 50%;
+      right: -20%;
+      transform: translate(50%, -50%); }
+    .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
+      position: absolute;
+      height: 2rem;
+      top: 50%;
+      left: -20%;
+      transform: translate(-50%, -50%) rotate(180deg); }
+      .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button.hidden {
+        display: none; }
+    .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 35vh;
+      width: 35vh;
+      position: relative;
+      cursor: pointer; }
+      .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5); }
+        .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img {
+          height: 5rem;
+          width: 5rem; }
+      .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button {
+        display: flex; }
+      .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
+        height: 35vh;
+        width: 35vh; }
+    .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
       display: none; }
-    .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
-      visibility: hidden; }
-    .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper.hide-content {
-      visibility: hidden; }
-    .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper {
+  .artwork-line--wrapper .left-side, .artwork-line--wrapper .right-side {
+    display: flex; }
+  .artwork-line--wrapper .left-side {
+    margin-right: 3rem;
+    width: 50%; }
+    .artwork-line--wrapper .left-side .artwork-line {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      display: flex; }
+      .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
+        position: absolute;
+        display: none;
+        width: min-content;
+        min-width: 100%;
+        justify-content: flex-end;
+        z-index: 3; }
+      .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
+        height: 12rem;
+        width: 0; }
+
+@media screen and (min-width: 992px) {
+  .artwork-line--wrapper {
+    height: calc(24.5vh + 2.1rem); }
+    .artwork-line--wrapper .button {
+      z-index: 2;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.89), 0 12px 40px 0 rgba(0, 0, 0, 0.4);
-      z-index: 4; }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
-        position: absolute;
+      padding-left: 70vh;
+      cursor: pointer; }
+      .artwork-line--wrapper .button img {
+        width: 2rem;
         height: 2rem;
-        top: 50%;
-        right: -20%;
-        transform: translate(50%, -50%); }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
-        position: absolute;
-        height: 2rem;
-        top: 50%;
-        left: -20%;
-        transform: translate(-50%, -50%) rotate(180deg); }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button.hidden {
-          display: none; }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
-        background-color: rgba(0, 0, 0, 0.5);
-        height: 35vh;
-        width: 35vh;
-        position: relative;
-        cursor: pointer; }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          justify-content: center;
-          align-items: center;
-          background-color: rgba(0, 0, 0, 0.5); }
-          .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img {
-            height: 5rem;
-            width: 5rem; }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button {
-          display: flex; }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
-          height: 35vh;
-          width: 35vh; }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
+        padding: 0 1rem; }
+      .artwork-line--wrapper .button img.small {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem; }
+    .artwork-line--wrapper .button.show {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center; }
+    .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
+      visibility: visible; }
+    .artwork-line--wrapper .artwork-playing--wrapper {
+      max-width: 35vh;
+      height: calc(35vh + 3rem); }
+      .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
         display: none; }
-    .discover--wrapper .artwork-line--wrapper .left-side, .discover--wrapper .artwork-line--wrapper .right-side {
-      display: flex; }
-    .discover--wrapper .artwork-line--wrapper .left-side {
-      margin-right: 3rem;
-      width: 50%; }
-      .discover--wrapper .artwork-line--wrapper .left-side .artwork-line {
-        position: relative;
-        width: 100%;
-        flex: 1;
-        overflow-x: auto;
-        overflow-y: hidden;
-        display: flex; }
-        .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
-          position: absolute;
-          display: none;
-          width: min-content;
-          min-width: 100%;
-          justify-content: flex-end;
-          z-index: 3; }
-        .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
-          height: 12rem;
-          width: 0; }
-  @media screen and (min-width: 992px) {
-    .discover--wrapper .artwork-line--wrapper {
-      height: calc(24.5vh + 2.1rem); }
-      .discover--wrapper .artwork-line--wrapper .button {
-        z-index: 2;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding-left: 70vh;
-        cursor: pointer; }
-        .discover--wrapper .artwork-line--wrapper .button img {
-          width: 2rem;
-          height: 2rem;
-          padding: 0 1rem; }
-        .discover--wrapper .artwork-line--wrapper .button img.small {
-          width: 1.5rem;
-          height: 1.5rem;
-          margin-right: .5rem; }
-      .discover--wrapper .artwork-line--wrapper .button.show {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center; }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
-        visibility: visible; }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper {
-        max-width: 35vh;
-        height: calc(35vh + 3rem); }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
-          display: none; }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
-          display: none; }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
-          background-color: rgba(0, 0, 0, 0.4);
+      .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
+        display: none; }
+      .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
+        background-color: rgba(0, 0, 0, 0.4);
+        height: 35vh;
+        width: 35vh; }
+        .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
           height: 35vh;
           width: 35vh; }
-          .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
-            height: 35vh;
-            width: 35vh; }
-        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
-          height: 3rem;
+      .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        background-color: black; }
+        .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon {
+          width: 1.5rem;
+          cursor: pointer; }
+          .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon img {
+            width: 1.5rem; }
+        .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info {
+          text-overflow: wrap;
+          padding-left: 1rem;
           display: flex;
-          align-items: center;
-          padding: 0 1rem;
-          background-color: black; }
-          .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon {
-            width: 1.5rem;
-            cursor: pointer; }
-            .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon img {
-              width: 1.5rem; }
-          .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info {
-            text-overflow: wrap;
-            padding-left: 1rem;
-            display: flex;
-            flex-direction: column;
-            font-size: 0.7rem; }
-            .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
-              position: relative;
-              height: 0.7rem;
-              width: calc(35vh - 3 * (1rem + 1.5rem)); }
-      .discover--wrapper .artwork-line--wrapper .left-side {
-        width: calc(50% - 24.5vh / 2.2); }
-        .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
-          display: flex; }
-        .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
-          width: 0; } }
+          flex-direction: column;
+          font-size: 0.7rem; }
+          .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
+            position: relative;
+            height: 0.7rem;
+            width: calc(35vh - 3 * (1rem + 1.5rem)); }
+    .artwork-line--wrapper .left-side {
+      width: calc(50% - 24.5vh / 2.2); }
+      .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
+        display: flex; }
+      .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
+        width: 0; } }
+.discover--wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center; }
   .discover--wrapper h1 {
     font-size: 1.5rem;
     letter-spacing: 0.35rem;
