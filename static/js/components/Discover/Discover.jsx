@@ -38,6 +38,11 @@ var Discover = React.createClass({
 		incrementLoggedOutUserStep: React.PropTypes.func,
 	},
 
+	getDefaultProps: function() {
+		return {
+		}
+	},
+
 	getInitialState: function() {
 		return {
 			sliderValue: -1,

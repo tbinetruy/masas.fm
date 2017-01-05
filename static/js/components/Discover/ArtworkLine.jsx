@@ -9,7 +9,8 @@ import { POPULAR } from "../../reducers/actions/Player.js"
 
 var ArtworkLine = React.createClass({
 	propTypes: {
-		discoverNumber: React.PropTypes.number.isRequired,			// artwork shown from discover
+		playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
+		discoverNumber: React.PropTypes.number.isRequired,				// artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
 		renderForUITip: React.PropTypes.bool,	
 		isModalOpened: React.PropTypes.bool,
@@ -35,7 +36,7 @@ var ArtworkLine = React.createClass({
 	getDefaultProps: function() {
 		return {
 			renderForUITip: false,
-			discoverNumber: POPULAR, 		// plays from popular 
+			playFromPopular: false,
 		}
 	},
 
@@ -80,7 +81,7 @@ var ArtworkLine = React.createClass({
 						}}>	
 						<div className="artwork-playing">
 							<div
-								onClick={ () => this.props.playRandomSong(this.props.discoverNumber) }
+								onClick={ () => this.props.playRandomSong(this.props.playFromPopular ? POPULAR : this.props.discoverNumber) }
 								className="player-button"
 								style={{ display: 'flex' }}>
 								<img src="/static/img/MASAS_player_play.svg" alt="play"/>
@@ -193,7 +194,7 @@ var ArtworkLine = React.createClass({
 							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 						}}>
 						<img
-							onClick={ () => this.props.playRandomSong(this.props.discoverNumber)} 
+							onClick={ () => this.props.playFromPopular ? POPULAR : this.props.playRandomSong(this.props.discoverNumber)} 
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />

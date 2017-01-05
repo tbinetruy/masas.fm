@@ -493,7 +493,6 @@ export function playRandomSong(timeInterval = 0) {
 		if (URL.indexOf('?') < 0)
 			URL = URL + '?'
 
-		console.log(timeInterval)
 		if(timeInterval && timeInterval !== POPULAR)
 			URL = URL + "&time_interval_id=" + timeInterval
 		else if(timeInterval && timeInterval === POPULAR) {

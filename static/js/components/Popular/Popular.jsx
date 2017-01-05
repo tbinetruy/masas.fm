@@ -8,6 +8,8 @@ var {goToURL} = require("../../MASAS_functions.jsx")
 var { BlurBackground } = require("../MASAS_mixins.jsx")
 var { Button, Body, MasasSpinner } = require("../UI/UI.jsx")
 
+var ArtworkLine = require("../Discover/ArtworkLine.jsx")
+
 
 var Popular = React.createClass({
 	mixins: [ BlurBackground ],
@@ -45,32 +47,8 @@ var Popular = React.createClass({
 	render: function() {
 		return (
 			<Body noBackground={ true }>
-				<div className="popular--wrapper">
-					<div className="text">
-						<h1>the best of discover</h1>
-						<h2>Coming soon!</h2>
-					</div>
-					<div className="loader--wrapper">
-						<MasasSpinner
-							progress={ this.state.spinnerProgress }
-							size={ 150 }
-							triggerStart={ 1 }
-							showMASASLogo={ true }
-							/>
-					</div>
-					<div className="button--wrapper">
-						<Button
-							isSecondaryAction={ true }
-							isBigButton={ true }
-							onClick={ () => goToURL('/upload') }
-							>
-							Share Your Sounds
-						</Button>
-						<span className="button-subtitle">
-							It's free !
-						</span>
-					</div>
-				</div>
+				<ArtworkLine 
+					playFromPopular={ true }/>
 			</Body>
 		)
 	}
