@@ -20,6 +20,7 @@ ArtworkLine.mapStateToProps = function(state) {
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		discoverNumber: state.discoverReducer.discoverNumber,
 		history: state.discoverReducer.history,
+		popularHistory: state.popularReducer.history,
 		songPlaying: state.playerReducer.songPlaying,
 		isPlayerPaused: state.playerReducer.isPaused,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,

@@ -1,10 +1,14 @@
 import "whatwg-fetch"
 
 import {
-	addSongToHistory,
+	addSongToHistory as addSongToDiscoverHistory,
 	popSongFromHistory,
 	removeSongFromHistory
 } from "./Discover.js"
+
+import {
+	addSongToHistory as addSongToPopularHistory,
+} from "./Popular.js"
 
 import {
 	updateNotificationBar,
@@ -408,7 +412,7 @@ export function playNewSong() {
 
 					// add song to discover history if not playing from playlist
 					if(!isPlaylistPlaying)
-						dispatch(addSongToHistory(MASAS_songInfo, SC_songInfo))
+						dispatch(addSongToDiscoverHistory(MASAS_songInfo, SC_songInfo))
 
 					// update song liked button based on server response (vs optimistic UI)
 					dispatch(updateLikeButton(MASAS_songInfo))
@@ -521,7 +525,12 @@ export function playRandomSong(timeInterval = 0) {
 		.then( data => {
 			// dispatch all necessary info and start playing
 			dispatch(updateMASAS_songInfo(data))
-			dispatch(addSongToHistory(data, data.metadata))
+
+			if(timeInterval === POPULAR)
+				dispatch(addSongToPopularHistory(data, data.metadata))
+			else
+				dispatch(addSongToDiscoverHistory(data, data.metadata))
+
 			updateJPlayerState(data.metadata)
 			dispatch(updateSC_songInfo(data.metadata))
 			dispatch(playSong(data.url))

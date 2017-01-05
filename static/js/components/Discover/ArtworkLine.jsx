@@ -1,21 +1,31 @@
 var React = require("react")
 
 var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLine.jsx")
-
+var {
+	mapStateToProps,
+	mapDispatchToProps 
+} = require("./containers/ArtworkLine.jsx")
 var ArtworkLineItem = require("./ArtworkLineItem.jsx")
 
-import { POPULAR } from "../../reducers/actions/Player.js"
+import { 
+	POPULAR
+} from "../../reducers/actions/Player.js"
+
+import {
+	getDiscoverNumberFromCurrentTime,
+	getTimeIntervalNumberFromUrl,
+} from "../../MASAS_functions.jsx"
 
 var ArtworkLine = React.createClass({
 	propTypes: {
 		playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
-		discoverNumber: React.PropTypes.number.isRequired,				// artwork shown from discover
+		discoverNumber: React.PropTypes.number,							// artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
 		renderForUITip: React.PropTypes.bool,	
 		isModalOpened: React.PropTypes.bool,
 		modalType: React.PropTypes.number,
 		history: React.PropTypes.object,
+		popularHistory: React.PropTypes.array,
 		MASASuser: React.PropTypes.string,
 		songPlaying: React.PropTypes.string,
 		isPlayerPaused: React.PropTypes.bool,
@@ -37,6 +47,7 @@ var ArtworkLine = React.createClass({
 		return {
 			renderForUITip: false,
 			playFromPopular: false,
+			discoverNumber: 1,
 		}
 	},
 
@@ -52,13 +63,22 @@ var ArtworkLine = React.createClass({
 		// this.refs.artworkLine.animate({ scrollLeft: this.refs.artworkLine.scrollWidth }, 1000);
 		this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
 	},
+
+	playRandomSong: function() {
+		this.props.playRandomSong(this.props.playFromPopular ? POPULAR : this.props.discoverNumber)
+	},
  
 	render: function() {
 		let { renderForUITip, isModalOpened, modalType } = this.props
 
-		let history = this.props.history.all.filter( ({MASAS_songInfo}) => {
-			return parseInt(MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1)) === this.props.discoverNumber
-		})
+		let history = this.props.history.all.filter( ({ MASAS_songInfo }) =>
+			parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === this.props.discoverNumber
+		)
+
+		if(this.props.playFromPopular)
+			history = this.props.popularHistory.filter( ({ MASAS_songInfo }) => 
+				parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === getDiscoverNumberFromCurrentTime()
+			)
 
 		// if nothing is playing
 		if(history.length === 0)
@@ -81,7 +101,7 @@ var ArtworkLine = React.createClass({
 						}}>	
 						<div className="artwork-playing">
 							<div
-								onClick={ () => this.props.playRandomSong(this.props.playFromPopular ? POPULAR : this.props.discoverNumber) }
+								onClick={ () => this.playRandomSong() }
 								className="player-button"
 								style={{ display: 'flex' }}>
 								<img src="/static/img/MASAS_player_play.svg" alt="play"/>
@@ -183,7 +203,7 @@ var ArtworkLine = React.createClass({
 							artistInfo={ this.props.songPlayingArtistInfo }
 							/>
 						<img
-							onClick={ () => this.props.playRandomSong(this.props.discoverNumber)} 
+							onClick={ () => this.playRandomSong() } 
 							className="next-song-button"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
@@ -194,7 +214,7 @@ var ArtworkLine = React.createClass({
 							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 						}}>
 						<img
-							onClick={ () => this.props.playFromPopular ? POPULAR : this.props.playRandomSong(this.props.discoverNumber)} 
+							onClick={ () => this.playRandomSong() } 
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
