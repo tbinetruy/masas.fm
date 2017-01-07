@@ -18,13 +18,6 @@ export const Artwork = props => {
 	if(props.isItemPlaying)
 		PausePlayButton = PauseButton
 
-	let { onArtworkClick } = props
-
-	if(!props.allowPlayPause) {
-		PausePlayButton = () => <div></div>
-		onArtworkClick = () => {}
-	}
-
 	return (
 		<div className="artwork--wrapper">
 			{
@@ -33,11 +26,16 @@ export const Artwork = props => {
 				:
 					<div className="artwork"></div>
 			}
-			<div
-				className={ "player-button" }
-				onClick={ onArtworkClick }>
-				<PausePlayButton />
-			</div>
+			{
+				props.allowPlayPause ?
+					<div
+						className={ "player-button" }
+						onClick={ props.onArtworkClick }>
+						<PausePlayButton />
+					</div>
+				:
+					<div style={{ display: 'none' }}></div>
+			}
 		</div>
 	)
 }
