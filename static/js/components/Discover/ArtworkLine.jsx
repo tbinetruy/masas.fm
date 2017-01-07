@@ -16,6 +16,10 @@ import {
 	getTimeIntervalNumberFromUrl,
 } from "../../MASAS_functions.jsx"
 
+import {
+	EmptyArtwork
+} from "./EmptyArtwork.jsx"
+
 var ArtworkLine = React.createClass({
 	propTypes: {
 		playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
@@ -81,38 +85,7 @@ var ArtworkLine = React.createClass({
 
 		// if nothing is playing
 		if(history.length === 0)
-			return (
-				<div className="artwork-line--wrapper">
-					<div
-						className="left-side">
-						<div className="artwork-line" ref="artworkLine">
-							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
-						</div>
-					</div>
-					<div
-						className="artwork-playing--wrapper">
-						<div className="artwork-playing">
-							<div
-								onClick={ () => this.playRandomSong() }
-								className="player-button"
-								style={{ display: 'flex' }}>
-								<img src="/static/img/MASAS_player_play.svg" alt="play"/>
-							</div>
-						</div>
-						<div className="song-info--wrapper">
-							<div className="like-icon">
-								<img src="/static/img/MASAS_like_shadow.svg" style={{ pointer: 'default' }} alt="like" />
-							</div>
-							<div className="song-info">
-								<div className="title"></div>
-								<div className="artist"></div>
-							</div>
-						</div>
-					</div>
-					<div className="right-side">
-					</div>
-				</div>
-				)
+			return <EmptyArtwork playRandomSong={ this.playRandomSong } />
 		else {
 			// artwork line (song history)
 			let key_ID = 0
