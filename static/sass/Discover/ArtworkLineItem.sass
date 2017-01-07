@@ -21,9 +21,13 @@ $sidePaddingDesktop: 1rem
 			$sidePadding: $sidePaddingDesktop * 1
 
 			// overrides ./Artworks.sass for big artworkLineItem
-			.artwork
+			.artwork--wrapper
 				height: $artworkWidth
 				width: $artworkWidth
+
+				.artwork
+					height: $artworkWidth
+					width: $artworkWidth
 
 
 			// overrides ./SongInfo.sass for big artworkLineItem

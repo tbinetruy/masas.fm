@@ -29,10 +29,13 @@
 			height: 4rem
 
 @media screen and (min-width: $desktop-min-width)
+	$ratio: 0.7
+	$artworkWidth: $artworkWidthDesktop * $ratio
+
 	.artwork--wrapper
-		height: $artworkWidthDesktop
-		width: $artworkWidthDesktop
+		height: $artworkWidth
+		width: $artworkWidth
 
 		.artwork
-			height: $artworkWidthDesktop
-			width: $artworkWidthDesktop
+			height: $artworkWidth
+			width: $artworkWidth

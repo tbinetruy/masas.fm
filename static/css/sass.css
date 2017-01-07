@@ -4305,11 +4305,11 @@ input[type=range].MASAS-slider {
           height: 4rem; }
     @media screen and (min-width: 992px) {
       .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper {
-        height: 35vh;
-        width: 35vh; }
+        height: 24.5vh;
+        width: 24.5vh; }
         .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .artwork {
-          height: 35vh;
-          width: 35vh; } }
+          height: 24.5vh;
+          width: 24.5vh; } }
     .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
       display: none;
       align-items: center; }
@@ -4328,9 +4328,12 @@ input[type=range].MASAS-slider {
           height: 0.49rem;
           width: calc(24.5vh - 2 * 1rem); } }
   @media screen and (min-width: 992px) {
-    .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork {
+    .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork--wrapper {
       height: 35vh;
       width: 35vh; }
+      .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork--wrapper .artwork {
+        height: 35vh;
+        width: 35vh; }
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper {
       font-size: 0.7rem;
       height: 3rem;
