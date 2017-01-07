@@ -3,11 +3,11 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var {
 	mapStateToProps,
-	mapDispatchToProps 
+	mapDispatchToProps
 } = require("./containers/ArtworkLine.jsx")
 var ArtworkLineItem = require("./ArtworkLineItem.jsx")
 
-import { 
+import {
 	POPULAR
 } from "../../reducers/actions/Player.js"
 
@@ -21,7 +21,7 @@ var ArtworkLine = React.createClass({
 		playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
 		discoverNumber: React.PropTypes.number,							// artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
-		renderForUITip: React.PropTypes.bool,	
+		renderForUITip: React.PropTypes.bool,
 		isModalOpened: React.PropTypes.bool,
 		modalType: React.PropTypes.number,
 		history: React.PropTypes.object,
@@ -67,7 +67,7 @@ var ArtworkLine = React.createClass({
 	playRandomSong: function() {
 		this.props.playRandomSong(this.props.playFromPopular ? POPULAR : this.props.discoverNumber)
 	},
- 
+
 	render: function() {
 		let { renderForUITip, isModalOpened, modalType } = this.props
 
@@ -76,16 +76,16 @@ var ArtworkLine = React.createClass({
 		)
 
 		if(this.props.playFromPopular)
-			history = this.props.popularHistory.filter( ({ MASAS_songInfo }) => 
+			history = this.props.popularHistory.filter( ({ MASAS_songInfo }) =>
 				parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === getDiscoverNumberFromCurrentTime()
 			)
 
 		// if nothing is playing
 		if(history.length === 0)
 			return (
-				
+
 				<div className="artwork-line--wrapper">
-					<div 
+					<div
 						className="left-side"
 						style={{
 							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
@@ -94,11 +94,11 @@ var ArtworkLine = React.createClass({
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
-					<div 
+					<div
 						className="artwork-playing--wrapper"
 						style={{
 							visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-						}}>	
+						}}>
 						<div className="artwork-playing">
 							<div
 								onClick={ () => this.playRandomSong() }
@@ -139,8 +139,8 @@ var ArtworkLine = React.createClass({
 				let isItemPlaying = this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false
 
 				return (
-					<ArtworkLineItem 
-						playFromPopular={ this.props.playFromPopular }
+					<ArtworkLineItem
+						allowPlayPause={ !this.props.playFromPopular }
 						isModalOpened={ isModalOpened }
 						modalType={ modalType }
 						key_ID={ key_ID }
@@ -164,7 +164,7 @@ var ArtworkLine = React.createClass({
 			artworkPlaying = artworkPlaying.SC_songInfo 		// retro compa, needs refactor
 			// get bigger artwork
 			let artworkPlayingURL = ""
-			if(typeof(artworkPlaying) !== "undefined") 
+			if(typeof(artworkPlaying) !== "undefined")
 				if(artworkPlaying.artwork_url)
 					artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 
@@ -178,15 +178,15 @@ var ArtworkLine = React.createClass({
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
-					<div 
+					<div
 						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
 
 						<img
-							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber)} 
+							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber)}
 							className={ "pervious-song-button" + (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? " hidden" : "") }
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
-						<ArtworkLineItem 
+						<ArtworkLineItem
 							isModalOpened={ isModalOpened }
 							modalType={ modalType }
 							key_ID={ 0 }
@@ -204,22 +204,22 @@ var ArtworkLine = React.createClass({
 							artistInfo={ this.props.songPlayingArtistInfo }
 							/>
 						<img
-							onClick={ () => this.playRandomSong() } 
+							onClick={ () => this.playRandomSong() }
 							className="next-song-button"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
 					</div>
-					<div 
+					<div
 						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }
 						style={{
 							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 						}}>
 						<img
-							onClick={ () => this.playRandomSong() } 
+							onClick={ () => this.playRandomSong() }
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
-						{ 
+						{
 							this.props.isFooterOpened === false ?
 								<img
 									onClick={ this.props.toggleIsFooterOpened }
