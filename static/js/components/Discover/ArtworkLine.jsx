@@ -140,6 +140,7 @@ var ArtworkLine = React.createClass({
 
 				return (
 					<ArtworkLineItem 
+						playFromPopular={ this.props.playFromPopular }
 						isModalOpened={ isModalOpened }
 						modalType={ modalType }
 						key_ID={ key_ID }

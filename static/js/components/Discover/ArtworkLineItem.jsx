@@ -3,7 +3,9 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLineItem.jsx")
 
-var { Marquee } = require("../UI/UI.jsx")
+
+import { Artwork } from "./dumb/Artwork.jsx"
+import { SongInfo } from "./dumb/SongInfo.jsx"
 
 
 var ArtworkLineItem = React.createClass({
@@ -16,23 +18,24 @@ var ArtworkLineItem = React.createClass({
 		SC_songInfo: React.PropTypes.object,
 		MASAS_songInfo: React.PropTypes.object,
 		isItemPlaying: React.PropTypes.bool,
+		isArtworkLarge: React.PropTypes.bool,					// larger ArtworkLineItem
+		songPlaying: React.PropTypes.string,
+		isSongPlayingLiked: React.PropTypes.bool,
+		userToken: React.PropTypes.string,
+		artistInfo: React.PropTypes.object,						// artist info 
+		allowPlayPause: React.PropTypes.bool,					// can use click on artwork to play pause
+
+		updateMiniProfileContent: React.PropTypes.func,
 		pause: React.PropTypes.func,
 		playAndSaveHistory: React.PropTypes.func,
 		resumePlayer: React.PropTypes.func,
-
-		songPlaying: React.PropTypes.string,
 		toggleSongLike: React.PropTypes.func,
-		isSongPlayingLiked: React.PropTypes.bool,
-		userToken: React.PropTypes.string,
-		artistInfo: React.PropTypes.object,				// artist info 
-
-		isArtworkLarge: React.PropTypes.bool,			// larger ArtworkLineItem
-		updateMiniProfileContent: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
 		return {
 			isArtworkLarge: false,
+			allowPlayPauseOnClick: true,
 		}
 	},
 
@@ -64,11 +67,14 @@ var ArtworkLineItem = React.createClass({
 			modalType, 
 			key_ID, 
 			artworkURL, 
-			MASAS_songInfo,
 			isItemPlaying,
+			isArtworkLarge,
+			allowPlayPause,
+			MASAS_songInfo,
 			SC_songInfo,
-			isArtworkLarge
+			isSongPlayingLiked,
 		} = this.props
+
 
 		return (
 			<div 
@@ -77,59 +83,19 @@ var ArtworkLineItem = React.createClass({
 				style={{
 					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 				}}>
-				<div className="artwork--wrapper2">
-					{ artworkURL ?
-							<img src={ artworkURL } alt="artwork" className="artwork"/>
-						:
-							<div className="artwork"></div>
-					}
-					<div 
-						className={ "player-button" }
-						onClick={ this.onArtworkClick }>
-						{
-							isItemPlaying ?
-								<img 
-									src="/static/img/MASAS_player_pause.svg" 
-									alt="pause" />
-							:
-								<img 
-									src="/static/img/MASAS_player_play.svg" 
-									
-									alt="play" />
-						}
-					</div>
-				</div>
-
-				{
-					!isArtworkLarge ?
-						<div 
-							onClick={ this.toggleShowProfile }
-							className="song-info--wrapper">
-							<Marquee className="title">{ SC_songInfo.title }</Marquee>
-							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
-						</div>
-					:
-						<div 
-							className="song-info--wrapper"
-							onClick={ this.toggleShowProfile }>
-							<div
-								className="like-icon" 
-								style={{ display: (this.props.songPlaying === MASAS_songInfo.url ? 'flex' : 'none') }}
-								onClick={ this.props.toggleSongLike.bind(this, this.props.userToken, this.props.songPlaying) }>
-								{
-									this.props.isSongPlayingLiked ?
-										<img src="/static/img/MASAS_liked.svg" alt="like" />
-									:
-										<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
-								}
-							</div>
-							<div 
-								className="song-info">
-								<div className="title"><Marquee>{ SC_songInfo.title }</Marquee></div>
-								<div className="artist"><Marquee>{ SC_songInfo.user.username }</Marquee></div>
-							</div>
-						</div>
-				}
+				<Artwork
+					artworkURL={ artworkURL }
+					onArtworkClick={ this.onArtworkClick }
+					isItemPlaying={ isItemPlaying }
+					allowPlayPause={ allowPlayPause }
+					/>
+				<SongInfo 
+					small={ !isArtworkLarge }
+					toggleShowProfile={ this.toggleShowProfile }
+					SC_songInfo={ SC_songInfo }
+					MASAS_songInfo={ MASAS_songInfo }
+					isSongPlayingLiked={ isSongPlayingLiked }
+					/>
 			</div>
 		)
 	}
