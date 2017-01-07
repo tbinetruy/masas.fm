@@ -1,116 +1,47 @@
+// common vars to both @imports and the @media in this file
+$artworkWidthDesktop: 35vh
+$song-info-height-desktop: 3rem
+$font-size-desktop: 0.7rem
+$sidePaddingDesktop: 1rem
+
 .artwork--wrapper
 	background-color: black
 	position: relative
 
-	.mini-profile
-		position: absolute
-		top: 0
-		bottom: 0
-		left: 0
-		right: 0
-		z-index: -1
-		background-color: black
-		opacity: 0
-		animation: fadeout-modal 0.25s linear 
-
-	.mini-profile.show
-		z-index: 1
-		opacity: 1
-		animation: fadein-profile 0.25s linear 
-
-	.artwork--wrapper2
-		position: relative
-		cursor: pointer
-		display: flex
-
-	$artworkWidth: 12rem
-	.artwork
-		height: 35vh
-		width: 35vh
-		background-color: black
-
-	.song-info--wrapper
-		display: none
-		align-items: center
-
-	.player-button
-		position: absolute
-		display: none
-		justify-content: center
-		align-items: center
-		top: 0
-		left: 0
-		right: 0
-		bottom: 0
-		background-color: rgba(0,0,0,0.5)
-
-		img
-			width: 4rem
-			height: 4rem
-
-.artwork--wrapper2:hover	
-	.player-button
-		display: flex
+	@import "./Artwork.sass"
+	@import "./SongInfo.sass"
 
 @media screen and (min-width: $desktop-min-width)
-	$artworkWidth: 35vh
-	$song-info-height: 3rem 
-	$font-size: 0.7rem
-	$sidePadding: 1rem
-
-	.artwork--wrapper.artwork-playing
-		$ratio: 1
-		$artworkWidth: $artworkWidth * $ratio
-		$song-info-height: $song-info-height * $ratio
-		$font-size: $font-size * $ratio
-		$sidePadding: $sidePadding * 1
-
-		.artwork
-			height: $artworkWidth
-			width: $artworkWidth
-
-		.song-info--wrapper
-			font-size: $font-size
-			height: $song-info-height
-			display: flex
-			flex-direction: column
-			justify-content: center
-			align-items: center
-			padding: 0 $sidePadding
-			background-color: black
-			flex-direction: row
-
-			.song-info
-				flex: 1
-
-				.title, .artist
-					position: relative
-					height: $font-size
-					width: calc($artworkWidth - 2 * #{$sidePadding})
-
-
 	.artwork--wrapper
-		$ratio: 0.7
-		$artworkWidth: $artworkWidth * $ratio
-		$song-info-height: $song-info-height * $ratio
-		$font-size: $font-size * $ratio
-		$sidePadding: $sidePadding * 1
+		&.artwork-playing
+			$ratio: 1
+			$artworkWidth: $artworkWidthDesktop * $ratio
+			$song-info-height: $song-info-height-desktop * $ratio
+			$font-size: $font-size-desktop * $ratio
+			$sidePadding: $sidePaddingDesktop * 1
 
-		.artwork
-			height: $artworkWidth
-			width: $artworkWidth
+			// overrides ./Artworks.sass for big artworkLineItem
+			.artwork
+				height: $artworkWidth
+				width: $artworkWidth
 
-		.song-info--wrapper
-			font-size: $font-size
-			height: $song-info-height
-			display: flex
-			flex-direction: column
-			justify-content: center
-			align-items: center
-			padding: 0 $sidePadding
-			background-color: black
 
-			.title, .artist
-				position: relative
-				height: $font-size
-				width: calc(#{$artworkWidth} - 2 * #{$sidePadding})
+			// overrides ./SongInfo.sass for big artworkLineItem
+			.song-info--wrapper
+				font-size: $font-size
+				height: $song-info-height
+				display: flex
+				flex-direction: column
+				justify-content: center
+				align-items: center
+				padding: 0 $sidePadding
+				background-color: black
+				flex-direction: row
+
+				.song-info
+					flex: 1
+
+					.title, .artist
+						position: relative
+						height: $font-size
+						width: calc($artworkWidth - 2 * #{$sidePadding})

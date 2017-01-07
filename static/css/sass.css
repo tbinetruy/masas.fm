@@ -4280,46 +4280,53 @@ input[type=range].MASAS-slider {
   .artwork-line--wrapper .artwork--wrapper {
     background-color: black;
     position: relative; }
-    .artwork-line--wrapper .artwork--wrapper .mini-profile {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: -1;
-      background-color: black;
-      opacity: 0;
-      animation: fadeout-modal .25s linear; }
-    .artwork-line--wrapper .artwork--wrapper .mini-profile.show {
-      z-index: 1;
-      opacity: 1;
-      animation: fadein-profile .25s linear; }
     .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 {
       position: relative;
       cursor: pointer;
       display: flex; }
-    .artwork-line--wrapper .artwork--wrapper .artwork {
-      height: 35vh;
-      width: 35vh;
-      background-color: black; }
+      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2:hover .player-button {
+        display: flex; }
+      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .artwork {
+        height: 35vh;
+        width: 35vh;
+        background-color: black; }
+      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .player-button {
+        position: absolute;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); }
+        .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .player-button img {
+          width: 4rem;
+          height: 4rem; }
+    @media screen and (min-width: 992px) {
+      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 {
+        height: 35vh;
+        width: 35vh; }
+        .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .artwork {
+          height: 35vh;
+          width: 35vh; } }
     .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
       display: none;
       align-items: center; }
-    .artwork-line--wrapper .artwork--wrapper .player-button {
-      position: absolute;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5); }
-      .artwork-line--wrapper .artwork--wrapper .player-button img {
-        width: 4rem;
-        height: 4rem; }
-  .artwork-line--wrapper .artwork--wrapper2:hover .player-button {
-    display: flex; }
+    @media screen and (min-width: 992px) {
+      .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
+        font-size: 0.49rem;
+        height: 2.1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1rem;
+        background-color: black; }
+        .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .artist {
+          position: relative;
+          height: 0.49rem;
+          width: calc(24.5vh - 2 * 1rem); } }
   @media screen and (min-width: 992px) {
     .artwork-line--wrapper .artwork--wrapper.artwork-playing .artwork {
       height: 35vh;
@@ -4339,23 +4346,7 @@ input[type=range].MASAS-slider {
         .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
           position: relative;
           height: 0.7rem;
-          width: calc($artworkWidth - 2 * 1rem); }
-    .artwork-line--wrapper .artwork--wrapper .artwork {
-      height: 24.5vh;
-      width: 24.5vh; }
-    .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
-      font-size: 0.49rem;
-      height: 2.1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 0 1rem;
-      background-color: black; }
-      .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .artist {
-        position: relative;
-        height: 0.49rem;
-        width: calc(24.5vh - 2 * 1rem); } }
+          width: calc($artworkWidth - 2 * 1rem); } }
   .artwork-line--wrapper .button {
     display: none; }
   .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
@@ -4504,7 +4495,7 @@ input[type=range].MASAS-slider {
   align-items: center; }
   .discover--wrapper h1 {
     font-size: 1.5rem;
-    letter-spacing: 0.35rem;
+    letter-spacing: .35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -4512,7 +4503,7 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: 0.2;
+    flex: .2;
     align-items: center; }
   .discover--wrapper .multi-page--wrapper {
     display: flex;
@@ -4520,7 +4511,7 @@ input[type=range].MASAS-slider {
     width: 100%;
     position: relative; }
     .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
-      transition: opacity 0.3s ease-in;
+      transition: opacity .3s ease-in;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -4544,7 +4535,7 @@ input[type=range].MASAS-slider {
       z-index: 0; }
   .discover--wrapper .time-picker--wrapper {
     display: flex;
-    flex-grow: 0.25;
+    flex-grow: .25;
     align-items: center;
     height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {

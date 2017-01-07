@@ -1,0 +1,26 @@
+.song-info--wrapper
+	display: none
+	align-items: center
+
+@media screen and (min-width: $desktop-min-width)
+	$ratio: 0.7
+	$artworkWidth: $artworkWidthDesktop * $ratio
+	$song-info-height: $song-info-height-desktop * $ratio
+	$font-size: $font-size-desktop * $ratio
+	$sidePadding: $sidePaddingDesktop * 1
+
+
+	.song-info--wrapper
+		font-size: $font-size
+		height: $song-info-height
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+		padding: 0 $sidePadding
+		background-color: black
+
+		.title, .artist
+			position: relative
+			height: $font-size
+			width: calc(#{$artworkWidth} - 2 * #{$sidePadding})
