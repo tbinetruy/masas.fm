@@ -26,7 +26,7 @@ export const Artwork = props => {
 	}
 
 	return (
-		<div className="artwork--wrapper2">
+		<div className="artwork--wrapper">
 			{
 				props.artworkURL ?
 					<img src={ props.artworkURL } alt="artwork" className="artwork"/>

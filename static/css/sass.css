@@ -4277,20 +4277,20 @@ input[type=range].MASAS-slider {
   align-self: flex-start;
   width: 100%;
   position: relative; }
-  .artwork-line--wrapper .artwork--wrapper {
+  .artwork-line--wrapper .artwork-line-item--wrapper {
     background-color: black;
     position: relative; }
-    .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 {
+    .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper {
       position: relative;
       cursor: pointer;
       display: flex; }
-      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2:hover .player-button {
+      .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper:hover .player-button {
         display: flex; }
-      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .artwork {
+      .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .artwork {
         height: 35vh;
         width: 35vh;
         background-color: black; }
-      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .player-button {
+      .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .player-button {
         position: absolute;
         display: none;
         justify-content: center;
@@ -4300,21 +4300,21 @@ input[type=range].MASAS-slider {
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.5); }
-        .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .player-button img {
+        .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .player-button img {
           width: 4rem;
           height: 4rem; }
     @media screen and (min-width: 992px) {
-      .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 {
+      .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper {
         height: 35vh;
         width: 35vh; }
-        .artwork-line--wrapper .artwork--wrapper .artwork--wrapper2 .artwork {
+        .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .artwork {
           height: 35vh;
           width: 35vh; } }
-    .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
+    .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
       display: none;
       align-items: center; }
     @media screen and (min-width: 992px) {
-      .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
+      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
         font-size: 0.49rem;
         height: 2.1rem;
         display: flex;
@@ -4323,15 +4323,15 @@ input[type=range].MASAS-slider {
         align-items: center;
         padding: 0 1rem;
         background-color: black; }
-        .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .artist {
+        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .artist {
           position: relative;
           height: 0.49rem;
           width: calc(24.5vh - 2 * 1rem); } }
   @media screen and (min-width: 992px) {
-    .artwork-line--wrapper .artwork--wrapper.artwork-playing .artwork {
+    .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork {
       height: 35vh;
       width: 35vh; }
-    .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper {
+    .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper {
       font-size: 0.7rem;
       height: 3rem;
       display: flex;
@@ -4341,9 +4341,9 @@ input[type=range].MASAS-slider {
       padding: 0 1rem;
       background-color: black;
       flex-direction: row; }
-      .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info {
+      .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info {
         flex: 1; }
-        .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
+        .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
           position: relative;
           height: 0.7rem;
           width: calc($artworkWidth - 2 * 1rem); } }

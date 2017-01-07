@@ -4,7 +4,7 @@ $song-info-height-desktop: 3rem
 $font-size-desktop: 0.7rem
 $sidePaddingDesktop: 1rem
 
-.artwork--wrapper
+.artwork-line-item--wrapper
 	background-color: black
 	position: relative
 
@@ -12,7 +12,7 @@ $sidePaddingDesktop: 1rem
 	@import "./SongInfo.sass"
 
 @media screen and (min-width: $desktop-min-width)
-	.artwork--wrapper
+	.artwork-line-item--wrapper
 		&.artwork-playing
 			$ratio: 1
 			$artworkWidth: $artworkWidthDesktop * $ratio

@@ -80,7 +80,7 @@ var ArtworkLineItem = React.createClass({
 
 		return (
 			<div
-				className={ "artwork--wrapper " + (isArtworkLarge ? "artwork-playing" : "") }
+				className={ "artwork-line-item--wrapper " + (isArtworkLarge ? "artwork-playing" : "") }
 				key={ key_ID }
 				style={{
 					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
