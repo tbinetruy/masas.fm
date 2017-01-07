@@ -19,7 +19,7 @@ export const SongInfo = props => {
 					<div
 						className="like-icon" 
 						style={ {
-							display: (this.props.songPlaying === MASAS_songInfo.url ? 'flex' : 'none')
+							display: (props.songPlaying === props.MASAS_songInfo.url ? 'flex' : 'none')
 						} }
 						onClick={ () => props.toggleSongLike(props.userToken, props.songPlaying) }>
 						{
@@ -38,9 +38,12 @@ export const SongInfo = props => {
 			)
 }
 
-SongInfo.PropTypes = {
+SongInfo.propTypes = {
 	small: React.PropTypes.bool,                               // should show small version of component
+	userToken: React.PropTypes.string,                         // user login token
+	songPlaying: React.PropTypes.string,                       // MASAS api url of currently playing song
 	toggleShowProfile: React.PropTypes.func.isRequired,        // callback called when clicking on component
+	toggleSongLike: React.PropTypes.func,                      // callback called when song is liked from component
 	SC_songInfo: React.PropTypes.object.isRequired,            // dict containing song info from SC api
 	isSongPlayingLiked: React.PropTypes.bool.isRequired,       // is song liked
 	MASAS_songInfo: React.PropTypes.object.isRequired,          // dict containing song info from MASAS api

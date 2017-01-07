@@ -26,7 +26,7 @@ export const Artwork = props => (
     </div>
 )
 
-Artwork.PropTypes = {
+Artwork.propTypes = {
 	artworkURL: React.PropTypes.string.isRequired,				// artwork url as a string
 	onArtworkClick: React.PropTypes.func.isRequired,			// callback called when clicking on artwork
 	isItemPlaying: React.PropTypes.bool.isRequired,				// is song on artwork currently playing
