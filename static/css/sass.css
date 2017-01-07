@@ -4680,43 +4680,32 @@ input[type=range].MASAS-slider {
 .popular--wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
   flex: 1;
-  max-height: 40rem; }
-  .popular--wrapper .text {
+  align-items: center;
+  position: relative; }
+  .popular--wrapper h1 {
+    font-size: 1.5rem;
+    letter-spacing: .35rem;
+    width: min-content;
+    font-family: Lato-Light, sans-serif;
+    margin-bottom: 1rem;
+    padding: 0;
+    border: none;
+    z-index: 1;
     display: flex;
-    flex-direction: column; }
-    .popular--wrapper .text h1 {
-      font-size: 1.5rem;
-      text-transform: capitalize;
-      font-family: Lato-Regular;
-      letter-spacing: 0.07rem; }
-    .popular--wrapper .text h2 {
-      font-size: 1rem;
-      text-align: center;
-      font-family: Lato-Regular;
-      opacity: 0.8;
-      margin-top: 0.3rem;
-      letter-spacing: 0.06rem; }
-  .popular--wrapper .loader--wrapper {
-    height: 150px;
-    width: 150px; }
-    .popular--wrapper .loader--wrapper .Masas-loader-container {
-      position: relative; }
-      .popular--wrapper .loader--wrapper .Masas-loader-container .Masas-loader-infinity, .popular--wrapper .loader--wrapper .Masas-loader-container .Masas-loader-gif {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0; }
-  .popular--wrapper .button--wrapper .button-subtitle {
+    flex: .2;
+    align-items: center; }
+  .popular--wrapper .popular-content--wrapper {
+    transition: opacity .3s ease-in;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
-    margin-top: 0.5rem;
-    opacity: 0.8;
-    letter-spacing: 0.04rem;
-    font-family: Lato-Light; }
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; }
 
 html {
   font-size: 14px;

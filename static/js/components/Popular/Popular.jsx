@@ -4,22 +4,21 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Popular.jsx")
 
 
-var { BlurBackground } = require("../MASAS_mixins.jsx")
-var { Body } = require("../UI/UI.jsx")
+var { MobileBlurBackground } = require("../MASAS_mixins.jsx")
 
 var ArtworkLine = require("../Discover/ArtworkLine.jsx")
 
 
 var Popular = React.createClass({
-	mixins: [ BlurBackground ],
-	
+	mixins: [ MobileBlurBackground ],
+
 	propTypes: {
 		updateTitle: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
 		return {
-			spinnerProgress: 0, 
+			spinnerProgress: 0,
 		};
 	},
 
@@ -29,16 +28,19 @@ var Popular = React.createClass({
 
 	componentDidMount: function() {
 	},
-	
+
 	componentWillUnmount: function() {
 	},
 
 	render: function() {
 		return (
-			<Body noBackground={ true }>
-				<ArtworkLine 
-					playFromPopular={ true }/>
-			</Body>
+			<div className="popular--wrapper">
+				<h1>Crowdradio</h1>
+				<div className="popular-content--wrapper">
+					<ArtworkLine
+						playFromPopular={ true }/>
+				</div>
+			</div>
 		)
 	}
 })

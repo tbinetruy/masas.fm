@@ -182,10 +182,11 @@ var ArtworkLine = React.createClass({
 						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
 
 						<img
-							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber)}
+							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber) }
 							className={ "pervious-song-button" + (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? " hidden" : "") }
 							src="/static/img/MASAS_next.svg"
-							alt="next" />
+							alt="next"
+							style={{ display: this.props.playFromPopular ? 'none' : 'inherit' }} />
 						<ArtworkLineItem
 							isModalOpened={ isModalOpened }
 							modalType={ modalType }

@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var { 
+var {
 	getTimeIntervalFromURL,
 	updateProfileInfo,
 	isObjectNotEmpty,
@@ -101,7 +101,7 @@ var Discover = React.createClass({
 				this.props.updateModalContent(<TeachDiscoverModal2 />, 2, () => this.updateUserStep(6))
 				this.props.toogleModal()
 			}
-		} 
+		}
 	},
 
 	componentWillReceiveProps: function() {
@@ -144,67 +144,61 @@ var Discover = React.createClass({
 
 		return (
 			<div className="discover--wrapper">
-				<h1 
-					style={{ 
+				<h1
+					style={{
 						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
 					}}>
 					{ discoverHashtagNames()[this.props.discoverNumber - 1] }
 				</h1>
 
-				<div 
-					className="multi-page--wrapper" 
-					style={{ 
+				<div
+					className="multi-page--wrapper"
+					style={{
 						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
 					}}>
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
-						
-						<ArtworkLine 
+						<ArtworkLine
 							renderForUITip={ showArtwork }
-							discoverNumber={-1} />
+							discoverNumber={ 1 } />
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
-					
-						<ArtworkLine 
+						<ArtworkLine
 							renderForUITip={ showArtwork }
-							discoverNumber={2} />
+							discoverNumber={ 2 } />
 					</div>
 					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
-						
 						<ArtworkLine
 							renderForUITip={ showArtwork }
-							discoverNumber={3} />
+							discoverNumber={ 3 } />
 					</div>
 					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
-					
 						<ArtworkLine
 							renderForUITip={ showArtwork }
-							discoverNumber={4} />
+							discoverNumber={ 4 } />
 					</div>
 					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
-					
-						<ArtworkLine 
+						<ArtworkLine
 							renderForUITip={ showArtwork }
-							discoverNumber={5} />
+							discoverNumber={ 5 } />
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
-						
-						<ArtworkLine 
+						<ArtworkLine
 							renderForUITip={ showArtwork }
-							discoverNumber={6} />
+							discoverNumber={ 6 } />
 					</div>
 				</div>
-				<div 
+				<div
 					className="time-picker--wrapper"
 					style={{
 						visibility: !showSlider && this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
 					}}>
-					<TimePicker 
-						canvasId="timePicker--canvas" 
-						wrapperClassName="timePicker--wrapper" 
-						onSliderChange={ (this.props.modalType === 2 && this.props.isModalOpened) ? () => {} : this.props.handleTimePickerChange } 
+					<TimePicker
+						canvasId="timePicker--canvas"
+						wrapperClassName="timePicker--wrapper"
+						onSliderChange={ (this.props.modalType === 2 && this.props.isModalOpened) ? () => {} : this.props.handleTimePickerChange }
 						initialDiscover={ sliderInitDiscover ? sliderInitDiscover : 1 }
 						currentDiscover={ this.props.discoverNumber }
-						showHashtag={ true } 
+						showHashtag={ true }
 						sliderValue={ this.state.sliderValue }
 						initText="Drag the sun around!"
 						/>
