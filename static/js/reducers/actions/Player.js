@@ -266,6 +266,10 @@ export function playPlayer() {
 
 // resumes song based on given URL
 export function resumePlayer() {
+	// resume jPlayer
+	$('#jquery_jplayer_1').jPlayer("play")
+
+	// update UI state
 	return {
 		type: PLAY,
 	}
@@ -537,7 +541,7 @@ export function playRandomSong(timeInterval = 0) {
 		})
 		.catch( e => {
 			resetPlayer()
-			
+
 			if(e.status === 401)
 				dispatch(updateNotificationBar("Login to play music !"))
 		})
