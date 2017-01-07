@@ -60,7 +60,6 @@ var ArtworkLine = React.createClass({
 	},
 
 	scrollToEnd: function() {
-		// this.refs.artworkLine.animate({ scrollLeft: this.refs.artworkLine.scrollWidth }, 1000);
 		this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
 	},
 
@@ -69,12 +68,12 @@ var ArtworkLine = React.createClass({
 	},
 
 	render: function() {
-		let { renderForUITip, isModalOpened, modalType } = this.props
-
+		// get discover history
 		let history = this.props.history.all.filter( ({ MASAS_songInfo }) =>
 			parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === this.props.discoverNumber
 		)
 
+		// if playing from popular, get popular history
 		if(this.props.playFromPopular)
 			history = this.props.popularHistory.filter( ({ MASAS_songInfo }) =>
 				parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === getDiscoverNumberFromCurrentTime()
@@ -83,22 +82,15 @@ var ArtworkLine = React.createClass({
 		// if nothing is playing
 		if(history.length === 0)
 			return (
-
 				<div className="artwork-line--wrapper">
 					<div
-						className="left-side"
-						style={{
-							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-						}}>
+						className="left-side">
 						<div className="artwork-line" ref="artworkLine">
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
 					<div
-						className="artwork-playing--wrapper"
-						style={{
-							visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-						}}>
+						className="artwork-playing--wrapper">
 						<div className="artwork-playing">
 							<div
 								onClick={ () => this.playRandomSong() }
@@ -141,8 +133,6 @@ var ArtworkLine = React.createClass({
 				return (
 					<ArtworkLineItem
 						allowPlayPause={ !this.props.playFromPopular }
-						isModalOpened={ isModalOpened }
-						modalType={ modalType }
 						key_ID={ key_ID }
 						artworkURL={ artworkURL }
 						SC_songInfo={ SC_songInfo }
@@ -179,7 +169,7 @@ var ArtworkLine = React.createClass({
 						</div>
 					</div>
 					<div
-						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
+						className="artwork-playing--wrapper">
 
 						<img
 							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber) }
@@ -188,8 +178,6 @@ var ArtworkLine = React.createClass({
 							alt="next"
 							style={{ display: this.props.playFromPopular ? 'none' : 'inherit' }} />
 						<ArtworkLineItem
-							isModalOpened={ isModalOpened }
-							modalType={ modalType }
 							key_ID={ 0 }
 							artworkURL={ artworkPlayingURL }
 							SC_songInfo={ artworkPlaying }
@@ -211,10 +199,7 @@ var ArtworkLine = React.createClass({
 							alt="next" />
 					</div>
 					<div
-						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }
-						style={{
-							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-						}}>
+						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }>
 						<img
 							onClick={ () => this.playRandomSong() }
 							className="next-song"

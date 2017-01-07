@@ -63,8 +63,6 @@ var ArtworkLineItem = React.createClass({
 
 	render: function() {
 		let {
-			isModalOpened,
-			modalType,
 			key_ID,
 			artworkURL,
 			isItemPlaying,
@@ -81,10 +79,7 @@ var ArtworkLineItem = React.createClass({
 		return (
 			<div
 				className={ "artwork-line-item--wrapper " + (isArtworkLarge ? "artwork-playing" : "") }
-				key={ key_ID }
-				style={{
-					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-				}}>
+				key={ key_ID }>
 				<Artwork
 					artworkURL={ artworkURL }
 					onArtworkClick={ this.onArtworkClick }
