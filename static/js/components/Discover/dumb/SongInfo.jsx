@@ -4,7 +4,7 @@ var { Marquee } = require("../../UI/UI.jsx")
 export const SongInfo = props => {
 	if(props.small)
 		return (
-			<div 
+			<div
 				onClick={ props.toggleShowProfile }
 				className="song-info--wrapper">
 				<Marquee className="title">{ props.SC_songInfo.title }</Marquee>
@@ -13,11 +13,9 @@ export const SongInfo = props => {
 		)
 	else
 			return (
-				<div 
-					className="song-info--wrapper"
-					onClick={ props.toggleShowProfile }>
+				<div className="song-info--wrapper">
 					<div
-						className="like-icon" 
+						className="like-icon"
 						style={ {
 							display: (props.songPlaying === props.MASAS_songInfo.url ? 'flex' : 'none')
 						} }
@@ -29,7 +27,8 @@ export const SongInfo = props => {
 								<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
 						}
 					</div>
-					<div 
+					<div
+						onClick={ props.toggleShowProfile }
 						className="song-info">
 						<div className="title"><Marquee>{ props.SC_songInfo.title }</Marquee></div>
 						<div className="artist"><Marquee>{ props.SC_songInfo.user.username }</Marquee></div>
@@ -47,4 +46,8 @@ SongInfo.propTypes = {
 	SC_songInfo: React.PropTypes.object.isRequired,            // dict containing song info from SC api
 	isSongPlayingLiked: React.PropTypes.bool.isRequired,       // is song liked
 	MASAS_songInfo: React.PropTypes.object.isRequired,          // dict containing song info from MASAS api
+}
+
+SongInfo.defaultProps = {
+	isSongPlayingLiked: false,
 }

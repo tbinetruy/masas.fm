@@ -22,7 +22,7 @@ var ArtworkLineItem = React.createClass({
 		songPlaying: React.PropTypes.string,
 		isSongPlayingLiked: React.PropTypes.bool,
 		userToken: React.PropTypes.string,
-		artistInfo: React.PropTypes.object,						// artist info 
+		artistInfo: React.PropTypes.object,						// artist info
 		allowPlayPause: React.PropTypes.bool,					// can use click on artwork to play pause
 
 		updateMiniProfileContent: React.PropTypes.func,
@@ -41,10 +41,10 @@ var ArtworkLineItem = React.createClass({
 
 	componentWillMount: function() {
 	},
-	
+
 	componentDidMount: function() {
 	},
-	
+
 	componentWillUnmount: function() {
 	},
 
@@ -62,22 +62,24 @@ var ArtworkLineItem = React.createClass({
 	},
 
 	render: function() {
-		let { 
-			isModalOpened, 
-			modalType, 
-			key_ID, 
-			artworkURL, 
+		let {
+			isModalOpened,
+			modalType,
+			key_ID,
+			artworkURL,
 			isItemPlaying,
 			isArtworkLarge,
 			allowPlayPause,
 			MASAS_songInfo,
 			SC_songInfo,
 			isSongPlayingLiked,
+			songPlaying,
+			toggleSongLike,
 		} = this.props
 
 
 		return (
-			<div 
+			<div
 				className={ "artwork--wrapper " + (isArtworkLarge ? "artwork-playing" : "") }
 				key={ key_ID }
 				style={{
@@ -89,12 +91,14 @@ var ArtworkLineItem = React.createClass({
 					isItemPlaying={ isItemPlaying }
 					allowPlayPause={ allowPlayPause }
 					/>
-				<SongInfo 
+				<SongInfo
 					small={ !isArtworkLarge }
 					toggleShowProfile={ this.toggleShowProfile }
+					toggleSongLike={ toggleSongLike }
+					isSongPlayingLiked={ isSongPlayingLiked }
+					songPlaying={ songPlaying }
 					SC_songInfo={ SC_songInfo }
 					MASAS_songInfo={ MASAS_songInfo }
-					isSongPlayingLiked={ isSongPlayingLiked }
 					/>
 			</div>
 		)
