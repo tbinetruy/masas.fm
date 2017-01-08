@@ -164,10 +164,13 @@ var ArtworkLine = React.createClass({
 
 						<img
 							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber) }
-							className={ "pervious-song-button" + (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? " hidden" : "") }
+							className={
+								"pervious-song-button"
+								+ (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? " hidden" : "")
+								+ (this.props.playFromPopular ? " hidden" : "")
+							}
 							src="/static/img/MASAS_next.svg"
-							alt="next"
-							style={{ display: this.props.playFromPopular ? 'none' : 'inherit' }} />
+							alt="next" />
 						<ArtworkLineItem
 							key_ID={ 0 }
 							artworkURL={ artworkPlayingURL }

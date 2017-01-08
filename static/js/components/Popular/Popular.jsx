@@ -4,13 +4,13 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Popular.jsx")
 
 
-var { MobileBlurBackground } = require("../MASAS_mixins.jsx")
+var { BlurBackground } = require("../MASAS_mixins.jsx")
 
 var ArtworkLine = require("../Discover/ArtworkLine.jsx")
 
 
 var Popular = React.createClass({
-	mixins: [ MobileBlurBackground ],
+	mixins: [ BlurBackground ],
 
 	propTypes: {
 		updateTitle: React.PropTypes.func,
