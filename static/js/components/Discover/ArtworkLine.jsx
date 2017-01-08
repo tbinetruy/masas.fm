@@ -130,7 +130,9 @@ var ArtworkLine = React.createClass({
 
 		// if nothing is playing
 		if(history.length === 0)
-			return <EmptyArtwork playRandomSong={ this.playRandomSong } />
+			return <EmptyArtwork
+				playRandomSong={ this.playRandomSong }
+				popularTheme={ this.props.playFromPopular }/>
 		else {
 			const artworkLine = this.getArtworkLine(history)
 

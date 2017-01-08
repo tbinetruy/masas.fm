@@ -3,6 +3,13 @@ var React = require("react")
 export const EmptyArtwork = React.createClass({
 	propTypes: {
 		playRandomSong: React.PropTypes.func.isRequired,		// callback to execute when clicking on EmptyArtwork
+		popularTheme: React.PropTypes.bool,						// should comp be styled for popular theme
+	},
+
+	getDefaultProps: function() {
+		return {
+			popularTheme: false
+		}
 	},
 
 	render: function() {
@@ -24,7 +31,7 @@ export const EmptyArtwork = React.createClass({
 							<img src="/static/img/MASAS_player_play.svg" alt="play"/>
 						</div>
 					</div>
-					<div className="song-info--wrapper">
+					<div className={ "song-info--wrapper" + (this.props.popularTheme ? " popular" : "") }>
 						<div className="like-icon">
 							<img src="/static/img/MASAS_like_shadow.svg" style={{ pointer: 'default' }} alt="like" />
 						</div>
