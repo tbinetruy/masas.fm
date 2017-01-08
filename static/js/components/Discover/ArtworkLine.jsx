@@ -64,14 +64,48 @@ var ArtworkLine = React.createClass({
 	},
 
 	scrollToEnd: function() {
-		this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
+		const history = this.getHistory()
+		if(history.length > 0)
+			this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
 	},
 
 	playRandomSong: function() {
 		this.props.playRandomSong(this.props.playFromPopular ? POPULAR : this.props.discoverNumber)
 	},
 
-	render: function() {
+	getArtworkLine: function(history) {
+		let key_ID = 0
+
+		const artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo, artistInfo }) => {
+			key_ID = key_ID + 1
+			let artworkURL = ""
+			if(SC_songInfo.artwork_url !== null) {
+				artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+			}
+
+			let isItemPlaying = this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false
+
+			return (
+				<ArtworkLineItem
+					allowPlayPause={ !this.props.playFromPopular }
+					key_ID={ key_ID }
+					artworkURL={ artworkURL }
+					SC_songInfo={ SC_songInfo }
+					MASAS_songInfo={ MASAS_songInfo }
+					isItemPlaying={ isItemPlaying }
+					pause={ this.props.pause }
+					playAndSaveHistory={ this.props.playAndSaveHistory }
+					artistInfo={ artistInfo }
+					key={ key_ID }
+					/>
+				)
+		})
+		artworkLine.pop()
+
+		return artworkLine
+	},
+
+	getHistory: function() {
 		// get discover history
 		let history = this.props.history.all.filter( ({ MASAS_songInfo }) =>
 			parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === this.props.discoverNumber
@@ -83,50 +117,31 @@ var ArtworkLine = React.createClass({
 				parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === getDiscoverNumberFromCurrentTime()
 			)
 
+		// show only most recent songs in history
+		if(history.length > 10)
+			history = history.slice(history.length - 10, history.length)
+
+		return history
+	},
+
+	render: function() {
+		const history = this.getHistory()
+
 		// if nothing is playing
 		if(history.length === 0)
 			return <EmptyArtwork playRandomSong={ this.playRandomSong } />
 		else {
-			// artwork line (song history)
-			let key_ID = 0
-
-			// show only most recent songs in history
-			if(history.length > 10)
-				history = history.slice(history.length - 10, history.length)
-
-			let artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo, artistInfo }) => {
-				key_ID = key_ID + 1
-				let artworkURL = ""
-				if(SC_songInfo.artwork_url !== null) {
-					artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
-				}
-
-				let isItemPlaying = this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false
-
-				return (
-					<ArtworkLineItem
-						allowPlayPause={ !this.props.playFromPopular }
-						key_ID={ key_ID }
-						artworkURL={ artworkURL }
-						SC_songInfo={ SC_songInfo }
-						MASAS_songInfo={ MASAS_songInfo }
-						isItemPlaying={ isItemPlaying }
-						pause={ this.props.pause }
-						playAndSaveHistory={ this.props.playAndSaveHistory }
-						artistInfo={ artistInfo }
-						key={ key_ID }
-						/>
-					)
-			})
-			artworkLine.pop()
+			const artworkLine = this.getArtworkLine(history)
 
 			// bigger artwork in center
 			let artworkPlaying = history.map( ({ SC_songInfo, MASAS_songInfo }) => { return { SC_songInfo, MASAS_songInfo } }).pop()
 
 			const MASAS_songPlayingInfo = artworkPlaying.MASAS_songInfo
 			artworkPlaying = artworkPlaying.SC_songInfo 		// retro compa, needs refactor
+
 			// get bigger artwork
 			let artworkPlayingURL = ""
+
 			if(typeof(artworkPlaying) !== "undefined")
 				if(artworkPlaying.artwork_url)
 					artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
