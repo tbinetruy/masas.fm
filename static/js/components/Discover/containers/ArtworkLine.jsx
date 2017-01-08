@@ -36,7 +36,7 @@ ArtworkLine.mapStateToProps = function(state) {
 ArtworkLine.mapDispatchToProps = function(dispatch) {
 	return {
 		toggleSongLike: (userToken, songId) => dispatch(toggleSongLike(songId)),
-		playAndSaveHistory: (songToPlay) => dispatch(playSong(songToPlay)),
+		playAndSaveHistory: (songToPlay, playingFromPopular) => dispatch(playSong(songToPlay, playingFromPopular)),
 		playRandomSong: (timeInterval) => dispatch(playRandomSong(timeInterval)),
 		pause: () => dispatch(pausePlayer()),
 		toggleIsFooterOpened: () => dispatch(toogleIsFooterOpened()),

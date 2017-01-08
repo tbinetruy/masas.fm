@@ -6,6 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.js
 var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 
+import { POPULAR } from "../../reducers/actions/Player.js"
 export const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"
 
 var Player = React.createClass({
@@ -25,6 +26,7 @@ var Player = React.createClass({
 		MASAS_songInfo: React.PropTypes.object,
 		SC_songInfo: React.PropTypes.object,
 		isSongPlayingLiked: React.PropTypes.bool,
+		playingFromPopular: React.PropTypes.bool,
 
 
 		dispatch: React.PropTypes.func,
@@ -58,14 +60,14 @@ var Player = React.createClass({
 
 		// add event listener to play new song at end of current song
 		$("#jquery_jplayer_1").bind($.jPlayer.event.ended, () => {
-			// get state from reducer because "this" object doesn't have access to state mutations 
+			// get state from reducer because "this" object doesn't have access to state mutations
 			// (this object is a copy of component instance at componentDidMount)
 
 			const { getState } = require('../../reducers/reducers.js')
 			if(getState().playerReducer.songPlaying !== null) {
 				const currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval
 				const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
-				
+
 				if(this.props.isPlaylistPlaying) {
 					this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1)
 				} else {
@@ -85,7 +87,7 @@ var Player = React.createClass({
 		// test buffering
 		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, () => {
 			if($("#jquery_jplayer_1").data("jPlayer").status.src !== SILENT_SOUND_SRC)
-				this.props.setIsPlayerBuffering(true) 
+				this.props.setIsPlayerBuffering(true)
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, () => {
 			if($("#jquery_jplayer_1").data("jPlayer").status.src !== SILENT_SOUND_SRC)
@@ -103,13 +105,13 @@ var Player = React.createClass({
 	},
 
 	componentWillReceiveProps: function(newProps) {
-		if( newProps.songPlaying !== null && (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused)) 
+		if( newProps.songPlaying !== null && (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused))
 		{
 			if(newProps.songPlaying !== this.props.songPlaying) {
 				// if new song, fetch new song and play it
 				this.props.playNewSong()
 
-			} else if(newProps.isPaused === true) {	
+			} else if(newProps.isPaused === true) {
 				// if not a new song and is paused, then pause
 				this.props.pause()
 			} else
@@ -141,13 +143,13 @@ var Player = React.createClass({
 				const didUserSeeFirstTip = this.props.userData.usersteps.filter(({ step }) => step === 5).length ? true : false
 
 				if(didUserSeeFirstTip)
-					return <img 
-							src="/static/img/dynamic_like_icon.gif" 
-							alt="like icon" 
-							className="like-icon" 
+					return <img
+							src="/static/img/dynamic_like_icon.gif"
+							alt="like icon"
+							className="like-icon"
 							onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}
 							style={{ height: '1.8rem' }}/>
-			
+
 			}
 		}
 
@@ -173,28 +175,32 @@ var Player = React.createClass({
 			case "6":
 				return "#LateEvening"
 			default:
-				return 
+				return
 		}
 	},
 
 	getPreviousSongIcon: function() {
+		// no back button if playing from popular
+		if(this.props.playingFromPopular)
+			return
+
 		if(this.props.isPlaylistPlaying) {
 			if(this.props.playlistPosition === 0)
 				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
 			else
-				return <img 
-					src="/static/img/MASAS_next.svg" 
+				return <img
+					src="/static/img/MASAS_next.svg"
 					onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition - 1) }
-					alt="pevious song" 
-					className="previous-song-icon" 
+					alt="pevious song"
+					className="previous-song-icon"
 					/>
 		} else {
 			if(this.props.discoverHistory.all.length > 1)
-				return <img 
-					src="/static/img/MASAS_next.svg" 
-					onClick={ () => this.props.playPreviousSong() } 
-					alt="previous song" 
-					className="previous-song-icon" 
+				return <img
+					src="/static/img/MASAS_next.svg"
+					onClick={ () => this.props.playPreviousSong() }
+					alt="previous song"
+					className="previous-song-icon"
 					style={{ visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }}
 					/>
 			else
@@ -205,14 +211,39 @@ var Player = React.createClass({
 	getNextSongIcon: function() {
 		if(this.props.songPlaying) {
 			if(this.props.isPlaylistPlaying) {
+				// if there is a next song in playlist
 				if(this.props.playlistPosition < this.props.playlist.length - 1)
-					return <img onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1) } src="/static/img/MASAS_next.svg" alt="next song" className="next-song-icon" />
+					return <img
+						onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1) }
+						src="/static/img/MASAS_next.svg"
+						alt="next song"
+						className="next-song-icon" />
 				else
-					return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="next-song-icon" />
-			} else
-				return <img onClick={ () => this.props.playRandomSong(this.props.MASAS_songInfo.timeInterval[this.props.MASAS_songInfo.timeInterval.length - 2]) } src="/static/img/MASAS_next.svg" alt="next song" className="next-song-icon" />
+					return <img
+						src="/static/img/MASAS_next.svg"
+						style={{ visibility: 'hidden' }}
+						alt="next song"
+						className="next-song-icon" />
+			}
+			// not paying from playlist, play random song from discover of popular
+			else {
+				let timeInterval = this.props.MASAS_songInfo.timeInterval[this.props.MASAS_songInfo.timeInterval.length - 2]
+				if(this.props.playingFromPopular)
+					timeInterval = POPULAR
+
+				return <img
+					onClick={ () => this.props.playRandomSong(timeInterval) }
+					src="/static/img/MASAS_next.svg"
+					alt="next song"
+					className="next-song-icon" />
+			}
 		} else {
-			return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="next-song-icon" />
+			// hide next button if no songs are loaded
+			return <img
+				src="/static/img/MASAS_next.svg"
+				style={{ visibility: 'hidden' }}
+				alt="next song"
+				className="next-song-icon" />
 		}
 	},
 
@@ -223,11 +254,11 @@ var Player = React.createClass({
 			discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1))
 		return (
 			<div className="navbar-player--wrapper">
-				{ 
+				{
 					this.renderLikeIcon()
 				}
 				<div className="song-info--wrapper1">
-					{ this.props.SC_songInfo ? 
+					{ this.props.SC_songInfo ?
 						<div className="song-info--wrapper2">
 							<div className="text-info">
 								<div className="radio-info">
@@ -242,7 +273,7 @@ var Player = React.createClass({
 									<Marquee className="song-artist">
 										{ this.props.SC_songInfo.user.username }
 									</Marquee>
-								</div> 
+								</div>
 							</div>
 							<div className="sc-icon">
 								<a href={ this.props.SC_songInfo.permalink_url } target="_blank">

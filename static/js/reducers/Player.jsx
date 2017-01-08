@@ -15,12 +15,13 @@ import {
 	TOOGLE_SONG_LIKE,
 	PAUSE,
 	LOAD_PLAYLIST,
+	SET_PLAYING_FROM_POPULAR,
 } from "./actions/Player.js"
 
 let exportVar = {}
 
 exportVar.defaultState = {
-	songPlaying: null,					// (string) currently playing song (song api url)		
+	songPlaying: null,					// (string) currently playing song (song api url)
 	isPaused: false,					// (bool) is player paused
 	playerAtTime: 0,					// (float) time current song playing is at
 	MASAS_songInfo: null,					// song info from MASAS db
@@ -32,13 +33,26 @@ exportVar.defaultState = {
 	isPlaylistPlaying: false, 					// (bool)
 	playlist: [], 						// (array) array of songs to play
 	playlistPosition: 0, 					// (int) in [0, playlist.length-1], position in playlist (used to play previous and next songs)
+	playingFromPopular: false,				// (bool) is player playing from popular
 }
 
 const { defaultState } = exportVar
 
 exportVar.playerReducer = function(state = defaultState, action) {
-	
+
+	// using array in case needed ultiple tmp vars
+	// not sure about browser es6 block scoping implementation
+	// so using funciton scoping instead
+	// this pevents the same var name being declared in multiple case blocks
+	// which is not possible with es5 function scoping
+	let tmpVar = []
+
 	switch(action.type) {
+		case SET_PLAYING_FROM_POPULAR:
+			return {
+				...state,
+				playingFromPopular: action.playingFromPopular,
+			}
 		case UPDATE_ARTIST_INFO:
 			return {
 				...state,
@@ -55,9 +69,10 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				isBuffering: false
 			}
 		case PLAY:
+
 			return {
 				...state,
-				isPaused: false
+				isPaused: false,
 			}
 		case PAUSE:
 			return {
@@ -70,12 +85,17 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				defaultState
 			}
 		case PLAY_NEW_SONG:
+			tmpVar[0] = false
+			if(action.playingFromPopular)
+				tmpVar[0] = true
+
 			return {
 				...state,
 				isPaused: false,
 				playerAtTime: 0,
 				songPlaying: action.song,
 				isPlaylistPlaying: false,
+				playingFromPopular: tmpVar[0],
 			}
 		case PLAY_NEW_SONG_FROM_PLAYLIST:
 			if(action.playlistPosition < state.playlist.length)
@@ -86,6 +106,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 					songPlaying: state.playlist[action.playlistPosition],
 					isPlaylistPlaying: true,
 					playlistPosition: action.playlistPosition,
+					playingFromPopular: false,
 				}
 			else
 				return defaultState

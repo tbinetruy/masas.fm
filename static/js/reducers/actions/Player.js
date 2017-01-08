@@ -62,6 +62,7 @@ export const SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE"
 export const SET_IS_BUFFERING_FALSE = "SET_IS_BUFFERING_FALSE"
 export const TOOGLE_SONG_LIKE = "TOGGLE_SONG_LIKE"
 export const LOAD_PLAYLIST = "LOAD_PLAYLIST"
+export const SET_PLAYING_FROM_POPULAR = "SET_PLAYING_FROM_POPULAR"
 
 export function loadPlaylist(playlist) {
 	return {
@@ -265,13 +266,15 @@ export function playPlayer() {
 }
 
 // resumes song based on given URL
-export function resumePlayer() {
+// playingFromPopular: (bool) are we resuming popular player
+export function resumePlayer(playingFromPopular = false) {
 	// resume jPlayer
 	$('#jquery_jplayer_1').jPlayer("play")
 
 	// update UI state
 	return {
 		type: PLAY,
+		playingFromPopular,
 	}
 }
 
@@ -374,10 +377,12 @@ function updateArtistInfo(artistInfo) {
 
 
 // plays song from start based on given URL
-export function playSong(songURL) {
+// playFromPopular: (bool) is song played from popular (info useful for player bar next and back buttons)
+export function playSong(songURL, playingFromPopular = false) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL,
+		playingFromPopular,
 	}
 }
 
@@ -385,6 +390,7 @@ export function playSong(songURL) {
 // we get song to play from state
 // grab its stream link from SC
 // initiate jPlayer with new song
+// and do all the necessary UI updates (update like button etc)
 export function playNewSong() {
 	return (dispatch, getState) => {
 		const state = getState()
@@ -537,7 +543,7 @@ export function playRandomSong(timeInterval = 0) {
 
 			updateJPlayerState(data.metadata)
 			dispatch(updateSC_songInfo(data.metadata))
-			dispatch(playSong(data.url))
+			dispatch(playSong(data.url, timeInterval === POPULAR))
 		})
 		.catch( e => {
 			resetPlayer()

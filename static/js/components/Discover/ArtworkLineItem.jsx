@@ -57,9 +57,9 @@ var ArtworkLineItem = React.createClass({
 		if(this.props.isItemPlaying)
 			this.props.pause()
 		else if(this.props.songPlaying === this.props.MASAS_songInfo.url)
-			this.props.resumePlayer()
+			this.props.resumePlayer(this.props.popularTheme)
 		else
-			this.props.playAndSaveHistory(this.props.MASAS_songInfo.url)
+			this.props.playAndSaveHistory(this.props.MASAS_songInfo.url, this.props.popularTheme)
 	},
 
 	render: function() {

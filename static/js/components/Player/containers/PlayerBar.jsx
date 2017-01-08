@@ -37,6 +37,7 @@ Player.mapStateToProps = function(state) {
 		isModalOpened: state.appReducer.isModalOpened,
 		modalType: state.appReducer.modalType,
 		songPlayingArtistInfo: state.playerReducer.artistInfo,
+		playingFromPopular: state.playerReducer.playingFromPopular,
 	}
 }
 
