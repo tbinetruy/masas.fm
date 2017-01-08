@@ -53,11 +53,6 @@ var Discover = React.createClass({
 	},
 
 	componentWillUnmount: function() {
-		this.props.closeModal()
-
-		// prevent tip modal from showing if user switches page after setTimout starts in render but before the callback is called
-		if(this.modalTimeout)
-			window.clearTimeout(this.modalTimeout)
 	},
 
 	componentDidMount: function() {
@@ -73,10 +68,6 @@ var Discover = React.createClass({
 			sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
 		else
 			sliderInitDiscover = getDiscoverNumberFromCurrentTime()
-
-		// changing state in this.checkUserStep, delaying it until after this.render()
-		if(this.props.songPlaying)
-			this.modalTimeout = window.setTimeout(() => this.checkUserStep(), 3000)
 
 		return (
 			<div className="discover--wrapper">
