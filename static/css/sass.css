@@ -4284,6 +4284,8 @@ input[type=range].MASAS-slider {
       position: relative;
       cursor: pointer;
       display: flex; }
+      .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper.popular {
+        cursor: default; }
       .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper:hover .player-button {
         display: flex; }
       .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .artwork {
@@ -4313,6 +4315,8 @@ input[type=range].MASAS-slider {
     .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
       display: none;
       align-items: center; }
+      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info {
+        cursor: pointer; }
     @media screen and (min-width: 992px) {
       .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
         font-size: 0.49rem;
@@ -4326,7 +4330,8 @@ input[type=range].MASAS-slider {
         .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .artist {
           position: relative;
           height: 0.49rem;
-          width: calc(24.5vh - 2 * 1rem); } }
+          width: calc(24.5vh - 2 * 1rem);
+          cursor: pointer; } }
   @media screen and (min-width: 992px) {
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork--wrapper {
       height: 35vh;
@@ -4381,8 +4386,7 @@ input[type=range].MASAS-slider {
       background-color: rgba(0, 0, 0, 0.5);
       height: 35vh;
       width: 35vh;
-      position: relative;
-      cursor: pointer; }
+      position: relative; }
       .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
         position: absolute;
         top: 0;
@@ -4443,7 +4447,7 @@ input[type=range].MASAS-slider {
       .artwork-line--wrapper .button img.small {
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: 0.5rem; }
+        margin-right: .5rem; }
     .artwork-line--wrapper .button.show {
       display: flex;
       flex-direction: row-reverse;

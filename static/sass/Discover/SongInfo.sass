@@ -2,6 +2,9 @@
 	display: none
 	align-items: center
 
+	.song-info
+		cursor: pointer
+
 @media screen and (min-width: $desktop-min-width)
 	$ratio: 0.7
 	$artworkWidth: $artworkWidthDesktop * $ratio
@@ -24,3 +27,4 @@
 			position: relative
 			height: $font-size
 			width: calc(#{$artworkWidth} - 2 * #{$sidePadding})
+			cursor: pointer

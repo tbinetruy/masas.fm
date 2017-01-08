@@ -19,7 +19,7 @@ export const Artwork = props => {
 		PausePlayButton = PauseButton
 
 	return (
-		<div className="artwork--wrapper">
+		<div className={ "artwork--wrapper" + (props.allowPlayPause ? " news" : " popular") }>
 			{
 				props.artworkURL ?
 					<img src={ props.artworkURL } alt="artwork" className="artwork"/>
