@@ -24,6 +24,7 @@ var ArtworkLineItem = React.createClass({
 		userToken: React.PropTypes.string,
 		artistInfo: React.PropTypes.object,						// artist info
 		allowPlayPause: React.PropTypes.bool,					// can use click on artwork to play pause
+		popularTheme: React.PropTypes.bool,						// should comp be themed for popular page
 
 		updateMiniProfileContent: React.PropTypes.func,
 		pause: React.PropTypes.func,
@@ -73,6 +74,7 @@ var ArtworkLineItem = React.createClass({
 			isSongPlayingLiked,
 			songPlaying,
 			toggleSongLike,
+			popularTheme,
 		} = this.props
 
 
@@ -94,6 +96,7 @@ var ArtworkLineItem = React.createClass({
 					songPlaying={ songPlaying }
 					SC_songInfo={ SC_songInfo }
 					MASAS_songInfo={ MASAS_songInfo }
+					popularTheme={ popularTheme }
 					/>
 			</div>
 		)

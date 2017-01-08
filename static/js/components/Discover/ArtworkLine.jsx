@@ -97,6 +97,7 @@ var ArtworkLine = React.createClass({
 					playAndSaveHistory={ this.props.playAndSaveHistory }
 					artistInfo={ artistInfo }
 					key={ key_ID }
+					popularTheme={ this.props.playFromPopular }
 					/>
 				)
 		})
@@ -179,6 +180,7 @@ var ArtworkLine = React.createClass({
 							isSongPlayingLiked={ this.props.isSongPlayingLiked }
 							userToken={ this.props.userToken }
 							artistInfo={ this.props.songPlayingArtistInfo }
+							popularTheme={ this.props.playFromPopular }
 							/>
 						<img
 							onClick={ () => this.playRandomSong() }

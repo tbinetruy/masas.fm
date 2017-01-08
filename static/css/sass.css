@@ -4314,7 +4314,13 @@ input[type=range].MASAS-slider {
           width: 24.5vh; } }
     .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
       display: none;
-      align-items: center; }
+      align-items: center;
+      background-color: black; }
+      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular {
+        background-color: white;
+        color: black; }
+        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular .like-icon .img {
+          filter: invert(100%); }
       .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info {
         cursor: pointer; }
     @media screen and (min-width: 992px) {
@@ -4347,7 +4353,6 @@ input[type=range].MASAS-slider {
       justify-content: center;
       align-items: center;
       padding: 0 1rem;
-      background-color: black;
       flex-direction: row; }
       .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info {
         flex: 1; }
