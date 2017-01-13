@@ -1,10 +1,6 @@
 'use strict'
 
-jest.unmock('../App.jsx')
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import TestUtils from 'react-addons-test-utils'
 import { appReducer as reducer, defaultState } from '../App.jsx'
 
 describe('app reducer', () => {
@@ -16,7 +12,7 @@ describe('app reducer', () => {
 			defaultState
 		)
 	})
-	
+
 	it('should handle LOGIN', () => {
 		expect(
 			reducer(undefined, {
@@ -26,8 +22,8 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				MASASuser: 'ABC', 	
-				MASASuserPk: null, 	
+				MASASuser: 'ABC',
+				MASASuserPk: null,
 			}
 		)
 	})
@@ -37,9 +33,9 @@ describe('app reducer', () => {
 			reducer(
 				{
 					...defaultState,
-					MASASuser: 'ABC', 	
-					MASASuserPk: 4, 	
-				}, 
+					MASASuser: 'ABC',
+					MASASuserPk: 4,
+				},
 				{
 					type: 'LOGOUT',
 					token: 'ABC'
@@ -48,8 +44,8 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				MASASuser: null, 	
-				MASASuserPk: null, 	
+				MASASuser: null,
+				MASASuserPk: null,
 			}
 		)
 	})
@@ -57,7 +53,7 @@ describe('app reducer', () => {
 	it('should handle UPDATE_PAGE_TITLE', () => {
 		expect(
 			reducer(
-				defaultState, 
+				defaultState,
 				{
 					type: 'UPDATE_PAGE_TITLE',
 					title: 'test title',
@@ -67,14 +63,14 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				pageTitle: 'test title', 
-				pageType: 1,		
+				pageTitle: 'test title',
+				pageType: 1,
 			}
 		)
 
 		expect(
 			reducer(
-				defaultState, 
+				defaultState,
 				{
 					type: 'UPDATE_PAGE_TITLE',
 					title: 'test title',
@@ -84,14 +80,14 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				pageTitle: 'test title', 
-				pageType: 0,		
+				pageTitle: 'test title',
+				pageType: 0,
 			}
 		)
 
 		expect(
 			reducer(
-				defaultState, 
+				defaultState,
 				{
 					type: 'UPDATE_PAGE_TITLE',
 					title: 'test title',
@@ -101,15 +97,15 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				pageTitle: 'test title', 
-				pageType: 0,		
+				pageTitle: 'test title',
+				pageType: 0,
 			}
 		)
 
 		expect(
 			reducer(
 				{
-					...defaultState, 
+					...defaultState,
 					pageType: 1
 				},
 				{
@@ -121,8 +117,8 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				pageTitle: 'test title', 
-				pageType: 0,		
+				pageTitle: 'test title',
+				pageType: 0,
 			}
 		)
 	})
@@ -130,7 +126,7 @@ describe('app reducer', () => {
 	it('should handle TOOGLE_NAV_SIDEBAR', () => {
 		expect(
 			reducer(
-				defaultState, 
+				defaultState,
 				{
 					type: 'TOOGLE_NAV_SIDEBAR'
 				}
@@ -146,7 +142,7 @@ describe('app reducer', () => {
 	it('should handle UPDATE_USER_PK', () => {
 		expect(
 			reducer(
-				defaultState, 
+				defaultState,
 				{
 					type: 'UPDATE_USER_PK',
 					pk: 'ABC'
@@ -163,7 +159,7 @@ describe('app reducer', () => {
 	it('should handle DONE_PROCESSING_AUTH_COOKIE', () => {
 		expect(
 			reducer(
-				defaultState, 
+				defaultState,
 				{
 					type: 'DONE_PROCESSING_AUTH_COOKIE',
 				}
