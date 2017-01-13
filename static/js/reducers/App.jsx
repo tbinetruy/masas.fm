@@ -1,7 +1,7 @@
 var React = require('react')
 
-import { 
-	INCREMENT_LOGGED_OUT_USER_STEP, 
+import {
+	INCREMENT_LOGGED_OUT_USER_STEP,
 	RESET_LOGGED_OUT_USER_STEP,
 	CHANGE_MODAL_CONTENT,
 	UPDATE_MODAL_TYPE,
@@ -23,17 +23,17 @@ import {
 	UPDATE_SC_SONG_INFO,
 } from './actions/App.js'
 
-let exportVar = {} 
+let exportVar = {}
 
 exportVar.defaultState = {
 	MASASuser: "", 				// user login token
-	MASASuserPk: null, 	
+	MASASuserPk: null,
 	userData: {},					// user data (pk, username, email etc)
-	pageTitle: 'home', 
+	pageTitle: 'home',
 	pageType: 0,					// 0 = hamburger icon, 1 = arrow icon
 	navSiderbarOpen: false,
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
-	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow 
+	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow
 	isAppFetching: false,				// (bool)
 	isModalOpened: false,				// (bool) is modal opened
 	modalContent: <div></div>, 			// (obj) modal content
@@ -59,7 +59,7 @@ exportVar.defaultState = {
 const { defaultState } = exportVar
 
 exportVar.appReducer = function(state = defaultState, action) {
-	
+
 	switch(action.type) {
 		case UPDATE_SC_SONG_INFO:
 			return {
@@ -135,7 +135,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 					...state.bgFilter,
 					mobileSaturated: action.isSaturated
 				}
-			}	
+			}
 		case INCREMENT_LOGGED_OUT_USER_STEP:
 			return {
 				...state,
@@ -220,8 +220,8 @@ exportVar.appReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				MASASuser: defaultState.MASASuser,
-				MASASuserPk: defaultState.MASASuser,
-				userData: {}
+				MASASuserPk: defaultState.MASASuserPk,
+				userData: defaultState.userData,
 			}
 		case UPDATE_PAGE_TITLE:
 			// HANDLE PAGE TYPE
@@ -233,7 +233,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 
 			// HANDLE BACK ARROW FUNCTION
 			let backArrowFunc = defaultState.backArrowFunc
-			if(typeof(action.backArrowFunc) !== "undefined")			
+			if(typeof(action.backArrowFunc) !== "undefined")
 				backArrowFunc = action.backArrowFunc
 
 			return {

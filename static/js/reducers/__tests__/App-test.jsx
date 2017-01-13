@@ -13,21 +13,6 @@ describe('app reducer', () => {
 		)
 	})
 
-	it('should handle LOGIN', () => {
-		expect(
-			reducer(undefined, {
-				type: 'LOGIN',
-				token: 'ABC'
-			})
-		).toEqual(
-			{
-				...defaultState,
-				MASASuser: 'ABC',
-				MASASuserPk: null,
-			}
-		)
-	})
-
 	it('should handle LOGOUT', () => {
 		expect(
 			reducer(
@@ -44,8 +29,9 @@ describe('app reducer', () => {
 		).toEqual(
 			{
 				...defaultState,
-				MASASuser: null,
-				MASASuserPk: null,
+				MASASuser: defaultState.MASASuser,
+				MASASuserPk: defaultState.MASASuserPk,
+				userData: defaultState.userData,
 			}
 		)
 	})
