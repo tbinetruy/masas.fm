@@ -6,7 +6,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Footer.jsx")
 var FooterModal = require("./FooterModals.jsx")
 var UnsplashControls = require("./UnsplashControls.jsx")
 var MiniProfileWrapper = require("../Profile/MiniProfileWrapper.jsx")
-var Player = require("../Player/PlayerBar.jsx")
+var { PlayerBar } = require("../Player/PlayerBar.jsx")
+const Player = PlayerBar
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
 
@@ -68,7 +69,7 @@ var Footer = React.createClass({
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this
 		this.props.updateModalContent(
-			<FooterModal 
+			<FooterModal
 				isSpamModal={ modalType === 1}
 				isCopyrightModal={ modalType === 2 ? true : false}
 				isSuggestTimeModal={ modalType === 3 ? true : false}
@@ -86,28 +87,28 @@ var Footer = React.createClass({
 					return
 			} else
 				return <img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
-			
+
 		} else {
-			return 
+			return
 		}
 	},
 
 	render: function() {
 		return (
 			<div className="footer--wrapper">
-				
+
 				<UnsplashControls />
-				
+
 
 				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
 					<MiniProfileWrapper />
-					<div 
-						className="select-range" 
+					<div
+						className="select-range"
 						id="footer-select-range" >
-						<input 
-							type="range" 
-							value={ this.props.progressBarWidth } 
-							onChange={ this.onSliderChange } 
+						<input
+							type="range"
+							value={ this.props.progressBarWidth }
+							onChange={ this.onSliderChange }
 							className="MASAS-slider" />
 					</div>
 					<div className="visible--wrapper">
@@ -134,9 +135,9 @@ var Footer = React.createClass({
 								<div className="box nextSong--wrapper">
 									{ this.getNextSongIcon() }
 								</div>
-								<div 
-									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
-									onClick={ this.props.songPlaying ? this.toogleMenu : () => {} } 
+								<div
+									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") }
+									onClick={ this.props.songPlaying ? this.toogleMenu : () => {} }
 									style={ !this.props.songPlaying ? { cursor: 'default', opacity: 0.7 } : {} }>
 								</div>
 							</div>
@@ -145,7 +146,7 @@ var Footer = React.createClass({
 					<div className="hidden--wrapper">
 						<div className="col-md-2 col-display-none-sm">
 							<div className="box">
-								
+
 							</div>
 						</div>
 						<div className="dislike-choices--wrapper">
@@ -159,7 +160,7 @@ var Footer = React.createClass({
 						</div>
 						<div className="col-md-2 col-display-none-sm">
 							<div className="box">
-								
+
 							</div>
 						</div>
 					</div>

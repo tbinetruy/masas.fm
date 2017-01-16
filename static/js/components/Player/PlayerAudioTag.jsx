@@ -23,6 +23,7 @@ var PlayerAudioTag = React.createClass({
 		$("#jquery_jplayer_1").jPlayer({
 			ready: function() {
 				var streamURL = SILENT_SOUND_SRC
+				console.log(SILENT_SOUND_SRC)
 				$(this).jPlayer("setMedia", {
 					mp3: streamURL,
 					oga: ""

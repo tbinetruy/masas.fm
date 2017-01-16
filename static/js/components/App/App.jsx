@@ -54,7 +54,7 @@ var App = React.createClass({
 
 		if(userToken)
 			this.props.loginWithToken(userToken)
-		
+
 		this.props.forceRender()	// auth cookie is done processing
 
 
@@ -71,6 +71,14 @@ var App = React.createClass({
 			document.getElementsByTagName('body')[0].style.height = window.innerHeight + 'px'
 			document.getElementById('content').style.height = window.innerHeight + 'px'
 			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
+		})
+
+		// so mobile safari play/pause/play bug doesn't happen
+		$("body").mouseup(() => {
+			const currentjPlayerSource = $("#jquery_jplayer_1").data().jPlayer.status.src
+			console.log(currentjPlayerSource)
+			$("#jquery_jplayer_1").jPlayer("play")
+			$("body").unbind("mouseup")
 		})
 
 		// only show splashscreen on site root
@@ -98,14 +106,14 @@ var App = React.createClass({
 	},
 
 	render: function() {
-		let hideLoadingModalZIndex = 1000 
+		let hideLoadingModalZIndex = 1000
 		let loadingModalAnim = "none"
 		if(!this.props.processingAuthCookie) {
 			hideLoadingModalZIndex = -1000
 			loadingModalAnim = "fadeout-loading-modal 1s linear"
 		}
 
-		return <AppDumb 
+		return <AppDumb
 				hideLoadingModalZIndex={ hideLoadingModalZIndex }
 				loadingModalAnim={ loadingModalAnim }>{ this.props.children }</AppDumb>
 	}

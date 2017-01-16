@@ -7,7 +7,8 @@ var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_function
 var { Marquee } = require("../UI/UI.jsx")
 
 import { POPULAR } from "../../reducers/actions/Player.js"
-export const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"
+const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
+
 
 var Player = React.createClass({
 	propTypes: {
@@ -293,7 +294,10 @@ var Player = React.createClass({
 	}
 })
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Player)
+module.exports = {
+	PlayerBar: ReactRedux.connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(Player),
+	SILENT_SOUND_SRC: SILENT_SOUND_SRC,
+}

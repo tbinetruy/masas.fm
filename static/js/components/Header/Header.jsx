@@ -72,7 +72,7 @@ var Header = React.createClass({
 					<div className="col-xs-3">
 						<div className="box">
 							{ this.props.pageType === 0 ?
-								<img onClick={this.props.onSetNavSidebarOpen} src="/static/img/MASAS_hamburger_menu.svg" atl="menu" className="menu-icon"/>
+								<img onClick={this.props.onSetNavSidebarOpen} src="/static/img/MASAS_hamburger_menu.svg" alt="menu" className="menu-icon"/>
 								:
 								<img onClick={ () => { this.props.backArrowFunc(); this.props.closeModal() } } src="/static/img/MASAS_arrow_left.svg" atl="back" className="menu-icon"/>
 							}
@@ -87,13 +87,13 @@ var Header = React.createClass({
 					</div>
 					<div className="col-xs-3">
 						<div className="box tray-icon--wrapper">
-							
-								<div 
-									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
-									onClick={ this.props.songPlaying ? this.props.toogleIsOpened : () => {} } 
+
+								<div
+									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") }
+									onClick={ this.props.songPlaying ? this.props.toogleIsOpened : () => {} }
 									style={ !this.props.songPlaying ? { opacity: 0, cursor: 'default' } : {} } >
 								</div>
-							
+
 						</div>
 					</div>
 				</div>
