@@ -1,3 +1,5 @@
+import { updateNotificationBar } from "./Header.js"
+var Cookie = require("js-cookie")
 
 // to refactor
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
@@ -23,6 +25,16 @@ export const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
 export const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
 export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
 export const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
+
+export const logout = () => dispatch => {
+	Cookie.remove("MASAS_authToken")
+
+	dispatch({type: "LOGOUT"})
+
+	FB.logout(function(response) {
+		updateNotificationBar("Logged out !")
+	})
+}
 
 export function updateMiniProfileSCsongInfo() {
 	return (dispatch, getState) => {
@@ -109,10 +121,10 @@ export function resetLoggedOutUserStep() {
 export function changeModalContent(modalContent, modalType = 1, closeModalFunc = () => {} ) {
 	if(closeModalFunc === undefined)
 		closeModalFunc = () => {}
-	
-	return { 
-		type: CHANGE_MODAL_CONTENT, 
-		modalContent, 
+
+	return {
+		type: CHANGE_MODAL_CONTENT,
+		modalContent,
 		modalType,
 		closeModalFunc
 	}

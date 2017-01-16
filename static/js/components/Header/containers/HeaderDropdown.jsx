@@ -1,10 +1,10 @@
 import {
 	closeAndEmptyMainModal,
 	changeModalContent,
-	toogleIsModalOpened
+	toogleIsModalOpened,
+	logout
 } from "../../../reducers/actions/App.js"
 
-var { logout } = require("../../../MASAS_functions.jsx")
 
 var HeaderDropdown = {}
 
@@ -19,10 +19,8 @@ HeaderDropdown.mapStateToProps = function(state) {
 }
 
 HeaderDropdown.mapDispatchToProps = function(dispatch) {
-
 	return {
-		dispatch,
-		logout: logout.bind(null, dispatch),
+		logout: () => dispatch(logout()),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
