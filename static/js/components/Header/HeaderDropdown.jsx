@@ -10,7 +10,7 @@ var SplashScreen = require("../App/SplashScreen.jsx")
 var MenuLink = (props) => {
 	return (
 		<div className="menu-link">
-			<img src={props.src} atl="profile pic"/>
+			<img src={props.src} alt="profile pic"/>
 			<Link to={props.URL} onClick={props.onClick}>{props.children}</Link>
 		</div>
 	)
@@ -47,7 +47,7 @@ var HeaderDropdown = React.createClass({
 		if (this.props.MASASuser !== "") {
 			return (
 				<div className="dropdown--wrapper">
-					<div 
+					<div
 						onClick={ () => { this.props.closeModal(); browserHistory.push("/profile") } }
 						className="username--wrapper">
 						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture"/>
