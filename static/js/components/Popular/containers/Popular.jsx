@@ -5,6 +5,7 @@ var Popular = {}
 
 Popular.mapStateToProps = function(state) {
 	return {
+		userPk: state.appReducer.MASASuserPk,
 	}
 }
 

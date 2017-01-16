@@ -13,6 +13,8 @@ var Popular = React.createClass({
 	mixins: [ BlurBackground ],
 
 	propTypes: {
+		userPk: React.PropTypes.string,
+
 		updateTitle: React.PropTypes.func,
 	},
 
@@ -23,7 +25,7 @@ var Popular = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Popular', '0')
+		this.props.updateTitle('Crowdradio', '0')
 	},
 
 	componentDidMount: function() {
@@ -32,14 +34,30 @@ var Popular = React.createClass({
 	componentWillUnmount: function() {
 	},
 
-	render: function() {
-		return (
-			<div className="popular--wrapper">
-				<h1>Crowdradio</h1>
+	getContent: function() {
+		const userPk = parseInt(this.props.userPk)
+		const allowedUserPk = [4,5,6,10]
+
+		let content = <div>Coming Soon</div>
+		if(allowedUserPk.includes(userPk))
+			content = (
 				<div className="popular-content--wrapper">
 					<ArtworkLine
 						playFromPopular={ true }/>
 				</div>
+			)
+
+		return content
+	},
+
+	render: function() {
+
+		return (
+			<div className="popular--wrapper">
+				<h1>Crowdradio</h1>
+				{
+					this.getContent()
+				}
 			</div>
 		)
 	}
