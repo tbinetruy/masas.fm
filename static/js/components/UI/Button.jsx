@@ -57,7 +57,7 @@ var Button = React.createClass({
 					}
 					{
 						this.props.facebook ?
-							<img src="/static/img/facebook.svg" alt="facebook login" />
+							<img src="/static/img/facebook.svg" className="facebook-icon" alt="facebook login" />
 						:
 							""
 					}

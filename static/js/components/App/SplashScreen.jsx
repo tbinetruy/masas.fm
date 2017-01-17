@@ -62,7 +62,7 @@ var SplashScreen = React.createClass({
 						changeBackground(0)
 						break
 					case 1:
-						changeBackground(1)						
+						changeBackground(1)
 						break
 					case 2:
 						changeBackground(2)
@@ -114,8 +114,6 @@ var SplashScreen = React.createClass({
 	},
 
 	render: function() {
-		var styles = { swiperContainer: {} }
-
 		if(this.mainSwiper && this.props.splashScreenPage === 2)
 			styles = {
 				swiperContainer: {
@@ -125,13 +123,13 @@ var SplashScreen = React.createClass({
 
 		return (
 				<div className={ "splash-screen--wrapper " + (this.props.splashScreenPage === 1 ? "login" : "") + (this.props.splashScreenPage === 2 ? "legals" : "") }>
-					<div 
+					<div
 						className={ "swiper-container main-swiper-container " + (this.props.splashScreenPage === 2 ? "legals-height" : "") } >
 						<div className="swiper-wrapper main-swiper-wrapper">
 
 							<div className="swiper-slide first-slide">
 								<img src="/static/img/MASAS_logo_tipi.svg" alt="MASAS-logo" />
-								<div 
+								<div
 									className="main-content"
 									opacity>
 									<h1>music by the mood</h1>
@@ -150,10 +148,10 @@ var SplashScreen = React.createClass({
 									</div>
 									<div className="login-buttons--wrapper">
 										<Button
-											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } } 
+											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } }
 											isSecondaryAction={ true }>Share Your Sounds</Button>
 										<Button
-											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } } 
+											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } }
 											>Discover Music</Button>
 									</div>
 								</div>
@@ -167,7 +165,8 @@ var SplashScreen = React.createClass({
 										<LoginForm />
 										<Button
 											noBorders={ true }
-											onClick={ this.props.closeSplashScreen } 
+											onClick={ this.props.closeSplashScreen }
+											isBigButton={ false }
 											isSecondaryAction={ true }>
 											Cancel
 										</Button>
@@ -185,7 +184,7 @@ var SplashScreen = React.createClass({
 									splashScreenLegals={ true } />
 								<Button
 									isBigButton={ false }
-									onClick={ this.slidePrev } 
+									onClick={ this.slidePrev }
 									isSecondaryAction={ true }>
 									Back
 								</Button>
@@ -196,19 +195,19 @@ var SplashScreen = React.createClass({
 					</div>
 					<div className="test2">
 					</div>
-					<div 
+					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-2 preload">
 					</div>
-					<div 
+					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-3 preload">
 					</div>
-					<div 
+					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-4 preload">
 					</div>
-					<div 
+					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-5 preload">
 					</div>

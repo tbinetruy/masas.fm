@@ -31,10 +31,10 @@ var LoginForm = React.createClass({
 				this.props.updateTitle('Login', '0')
 	},
 
-	
+
 
 	render: function() {
-		
+
 		if(this.props.fullForm)
 			return (
 				<Body>
@@ -62,9 +62,9 @@ var LoginForm = React.createClass({
 						</div>
 						<div style={{ display: 'none' }}>
 							<div className="login-button">
-								<Button 
-									isBigButton={false} 
-									isSecondaryAction={false} 
+								<Button
+									isBigButton={false}
+									isSecondaryAction={false}
 									onClick={ () => { } }>Log In</Button>
 							</div>
 						</div>
@@ -74,16 +74,18 @@ var LoginForm = React.createClass({
 		else
 			return (
 				<div className="login-container">
-					<Button 
-						isBigButton={ true } 
-						isSecondaryAction={ false } 
+					<Button
+						isBigButton={ true }
+						isSecondaryAction={ false }
 						onClick={ () => this.props.login('facebook') }
-						facebook={ true }>Log-in via Facebook</Button>
+						facebook={ true }>
+						Facebook
+					</Button>
 					<div className="subtitle">
 						{ this.props.subtitle }
 					</div>
 				</div>
-				)
+			)
 	}
 })
 
