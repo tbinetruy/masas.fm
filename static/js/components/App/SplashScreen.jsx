@@ -91,7 +91,7 @@ var SplashScreen = React.createClass({
 			allowSwipeToNext: false,
 			onSlideChangeStart: (instance) => {
 				this.props.updateSplashScreenPage(instance.activeIndex)
-			}
+			},
 		})
 
 		// init starting page (home splash screen or login)
@@ -118,7 +118,7 @@ var SplashScreen = React.createClass({
 		if(this.mainSwiper && this.props.splashScreenPage === 2)
 			styles = {
 				swiperContainer: {
-					height: '80%',
+					height: '50%',
 				}
 			}
 
