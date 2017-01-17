@@ -4789,9 +4789,13 @@ input[type=range].MASAS-slider {
     margin-bottom: 1rem; }
   .popular--wrapper .popular-timer--wrapper .time {
     text-align: center; }
+  .popular--wrapper .coming-soon {
+    flex: 0.6;
+    display: flex;
+    align-items: center; }
   .popular--wrapper .title-top, .popular--wrapper .title-bottom {
     font-size: 1.5rem;
-    letter-spacing: .35rem;
+    letter-spacing: 0.35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -4799,12 +4803,12 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: .2;
+    flex: 0.2;
     align-items: flex-end; }
   .popular--wrapper .popular-content--wrapper {
-    transition: opacity .3s ease-in;
+    transition: opacity 0.3s ease-in;
     display: flex;
-    flex: .6;
+    flex: 0.6;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
@@ -4820,7 +4824,7 @@ input[type=range].MASAS-slider {
   .popular--wrapper .title-top h1, .popular--wrapper .title-bottom h1 {
     display: block; }
   .popular--wrapper .title-top {
-    flex: .15; }
+    flex: 0.15; }
   .popular--wrapper .hide-mobile {
     display: flex; }
   .popular--wrapper .hide-desktop {

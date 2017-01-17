@@ -39,7 +39,7 @@ var Popular = React.createClass({
 		const userPk = parseInt(this.props.userPk)
 		const allowedUserPk = [4,5,6,10]
 
-		let content = <div>Coming Soon</div>
+		let content = <div className="coming-soon">Coming Soon</div>
 		if(allowedUserPk.includes(userPk))
 			content = (
 				<div className="popular-content--wrapper">
