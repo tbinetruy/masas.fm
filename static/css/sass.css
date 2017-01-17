@@ -975,42 +975,56 @@ input[type=range].MASAS-slider {
           align-items: center; }
           .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
             font-size: 1.4rem; }
-    .splash-screen--wrapper .main-swiper-container .second-slide {
-      max-height: 78%;
-      margin: 6rem 0; }
-      .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
-        height: 6rem;
-        margin-bottom: 2rem; }
-      .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
-        z-index: -2;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+    .splash-screen--wrapper .main-swiper-container .second-slide .MASAS-button {
+      margin-bottom: 0;
+      width: 10rem; }
+    .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
+      z-index: -2;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top, .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
-        flex-direction: column; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons {
-          margin-bottom: 2rem;
-          width: 10rem; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
-            height: inherit; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
-          font-size: .9rem;
-          opacity: .8; }
-      .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
+        flex: 1; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .masas-logo {
+        height: 6rem;
+        display: flex;
+        flex: 1; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-privacy-info {
+        font-size: .65rem;
+        opacity: .7; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons {
+        margin-bottom: 2rem;
+        width: 15rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons .login-container {
+          height: inherit;
+          padding: 1rem 0; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .MASAS-button.no-borders {
+        font-size: .9rem;
+        opacity: .8; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph {
         cursor: pointer;
         font-size: .9rem;
         max-width: 80vw;
         line-height: 1.3rem;
         width: 16rem;
         letter-spacing: .05rem; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph em {
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph em {
           opacity: .87;
           text-decoration: underline; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph span {
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph span {
           opacity: .7; }
     .splash-screen--wrapper .main-swiper-container .third-slide {
       display: flex;
@@ -1496,11 +1510,11 @@ input[type=range].MASAS-slider {
   display: flex;
   flex-direction: column;
   height: 6rem;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 5rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.1rem; }
+  font-size: .85rem;
+  letter-spacing: .1rem; }
 
 .sign-up-form--wrapper1 {
   display: flex;

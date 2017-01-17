@@ -159,22 +159,30 @@ var SplashScreen = React.createClass({
 
 							<div className="swiper-slide second-slide">
 								<div className="login-content">
-									<img src="/static/img/MASAS_logo-M.svg" className="masas-logo" alt="MASAS-logo" />
-
-									<div className="login-buttons">
-										<LoginForm />
-										<Button
-											noBorders={ true }
-											onClick={ this.props.closeSplashScreen }
-											isBigButton={ false }
-											isSecondaryAction={ true }>
-											Cancel
-										</Button>
+									<div className="login-content-top">
+										<img src="/static/img/MASAS_logo-M.svg" className="masas-logo" alt="MASAS-logo" />
+										<h2>Please Login</h2>
 									</div>
 
-									<p onClick={ this.slideNext } className="terms-paragraph">
-										<span>By logging-in, you agree to MASAS' </span><em>Terms of Use</em> <span> & </span><em>Cookie Policy</em>
-									</p>
+									<div className="login-content-bottom">
+										<div className="login-buttons">
+											<p className="login-privacy-info">
+												We’ll never post anything without your permision!
+											</p>
+											<LoginForm />
+											<Button
+												noBorders={ true }
+												onClick={ this.props.closeSplashScreen }
+												isBigButton={ false }
+												isSecondaryAction={ true }>
+												Cancel
+											</Button>
+										</div>
+
+										<p onClick={ this.slideNext } className="terms-paragraph">
+											<span>By logging-in, you agree to MASAS' </span><em>Terms of Use</em> <span> & </span><em>Cookie Policy</em>
+										</p>
+									</div>
 								</div>
 							</div>
 

@@ -156,12 +156,11 @@
 						font-size: 1.4rem
 
 		.second-slide
-			max-height: 78%
-			margin: 6rem 0
 
-			.masas-logo
-				height: 6rem
-				margin-bottom: 2rem
+			.MASAS-button
+				margin-bottom: 0
+				width: 10rem
+
 
 			.login-content
 				z-index: -2
@@ -175,31 +174,54 @@
 				justify-content: space-between
 				flex-direction: column
 
-				.login-buttons
-					margin-bottom: 2rem
-					width: 10rem
+				.login-content-top, .login-content-bottom
+					display: flex
+					flex-direction: column
+					justify-content: center
+					align-items: center
+					flex: 1
 
-					.login-container
-						height: inherit
+				.login-content-top
+					.masas-logo
+						height: 6rem
+						display: flex
+						flex: 1
 
-				.MASAS-button.no-borders
-					font-size: 0.9rem
-					opacity: 0.8
+				.login-content-bottom
 
-			.terms-paragraph
-				cursor: pointer
-				font-size: 0.9rem
-				max-width: 80vw
-				line-height: 1.3rem
-				width: 16rem
-				letter-spacing: 0.05rem
+					.login-privacy-info
+						font-size: 0.65rem
+						opacity: 0.7
 
-				em
-					opacity: 0.87
-					text-decoration: underline
+					.login-buttons
+						margin-bottom: 2rem
+						width: 15rem
+						display: flex
+						flex-direction: column
+						align-items: center
 
-				span
-					opacity: 0.7
+						.login-container
+							height: inherit
+							padding: 1rem 0
+
+					.MASAS-button.no-borders
+						font-size: 0.9rem
+						opacity: 0.8
+
+					.terms-paragraph
+						cursor: pointer
+						font-size: 0.9rem
+						max-width: 80vw
+						line-height: 1.3rem
+						width: 16rem
+						letter-spacing: 0.05rem
+
+						em
+							opacity: 0.87
+							text-decoration: underline
+
+						span
+							opacity: 0.7
 
 		.third-slide
 			display: flex
