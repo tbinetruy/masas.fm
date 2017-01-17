@@ -1135,17 +1135,22 @@ input[type=range].MASAS-slider {
           .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-message-desktop {
             display: block;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
-            letter-spacing: 0.03rem; }
+            font-size: 1.25rem;
+            letter-spacing: 0.07rem; }
           .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-privacy-info {
-            font-size: 0.8rem; }
+            font-size: 0.85rem;
+            letter-spacing: 0.03rem; }
           .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons {
-            width: 20rem; }
+            width: 22rem; }
             .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons .login-cancel-button {
               padding-top: 0; }
           .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph {
             width: 25rem;
             font-size: 0.7rem; }
+            .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph em {
+              opacity: 1; }
+            .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph span {
+              opacity: 1; }
       .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
         width: auto; }
       .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
