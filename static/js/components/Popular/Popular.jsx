@@ -55,14 +55,17 @@ var Popular = React.createClass({
 
 		return (
 			<div className="popular--wrapper">
-				<div className="popular-timer">
-					<PopularTimer />
-
+				<div className="title-top">
+					<div className="hide-desktop">
+						<PopularTimer />
+					</div>
+					<h1 className="hide-mobile">Crowdradio</h1>
 				</div>
 				{
 					this.getContent()
 				}
-				<div className="empty-div">
+				<div className="popular-timer hide-mobile title-bottom">
+					<PopularTimer />
 				</div>
 			</div>
 		)

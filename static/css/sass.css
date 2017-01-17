@@ -4783,7 +4783,13 @@ input[type=range].MASAS-slider {
   flex: 1;
   align-items: center;
   position: relative; }
-  .popular--wrapper .popular-timer {
+  .popular--wrapper .popular-timer--wrapper .hashtag {
+    border-bottom: 1px solid white;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem; }
+  .popular--wrapper .popular-timer--wrapper .time {
+    text-align: center; }
+  .popular--wrapper .title-top, .popular--wrapper .title-bottom {
     font-size: 1.5rem;
     letter-spacing: .35rem;
     width: min-content;
@@ -4795,12 +4801,6 @@ input[type=range].MASAS-slider {
     display: flex;
     flex: .2;
     align-items: flex-end; }
-    .popular--wrapper .popular-timer .popular-timer--wrapper .hashtag {
-      border-bottom: 1px solid white;
-      padding-bottom: 1rem;
-      margin-bottom: 1rem; }
-    .popular--wrapper .popular-timer .popular-timer--wrapper .time {
-      text-align: center; }
   .popular--wrapper .popular-content--wrapper {
     transition: opacity .3s ease-in;
     display: flex;
@@ -4808,9 +4808,20 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
-  .popular--wrapper .empty-div {
-    flex: .2; }
+  .popular--wrapper .hide-mobile {
+    display: none; }
+  .popular--wrapper .hide-desktop {
+    display: flex; }
 
+@media screen and (min-width: 992px) {
+  .popular--wrapper .title-top h1, .popular--wrapper .title-bottom h1 {
+    display: block; }
+  .popular--wrapper .title-top {
+    flex: .15; }
+  .popular--wrapper .hide-mobile {
+    display: flex; }
+  .popular--wrapper .hide-desktop {
+    display: none; } }
 html {
   font-size: 14px;
   color: white;

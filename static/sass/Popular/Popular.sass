@@ -6,7 +6,9 @@
 	position: relative
 
 
-	.popular-timer
+	@import "./PopularTimer"
+
+	.title-top, .title-bottom
 		font-size: 1.5rem
 		letter-spacing: 0.35rem
 		width: min-content
@@ -19,7 +21,6 @@
 		flex: 0.2
 		align-items: flex-end
 
-		@import "./PopularTimer"
 
 	.popular-content--wrapper
 		transition: opacity 0.3s ease-in
@@ -29,12 +30,27 @@
 		align-items: center
 		justify-content: space-around
 
-	.empty-div
-		flex: 0.2
+	.hide-mobile
+		display: none
+
+	.hide-desktop
+		display: flex
+
 
 
 @media screen and (min-width: $desktop-min-width)
 	.popular--wrapper
-		.popular-timer
+		.title-top, .title-bottom
+			h1
+				display: block
+
+		.title-top
+			flex: 0.15
+
+		.hide-mobile
+			display: flex
+
+		.hide-desktop
+			display: none
 
 
