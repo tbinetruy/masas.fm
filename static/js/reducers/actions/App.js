@@ -25,6 +25,14 @@ export const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
 export const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
 export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
 export const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
+export const UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE = 'UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE'
+
+export const updateSplashScreenLoginMessage = message => {
+	return {
+		type: UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
+		splashScreenLoginMessage: message,
+	}
+}
 
 export const logout = () => dispatch => {
 	Cookie.remove("MASAS_authToken")

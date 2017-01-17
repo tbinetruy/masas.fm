@@ -6,6 +6,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.js
 var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 
+var SplashScreen = require("../App/SplashScreen.jsx")
+
 import { POPULAR } from "../../reducers/actions/Player.js"
 const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
 
@@ -41,6 +43,9 @@ var Player = React.createClass({
 		playNewSongFromPlaylist: React.PropTypes.func,
 		setIsPlayerBuffering: React.PropTypes.func,
 		updateMiniProfileContent: React.PropTypes.func,
+		updateLoginMessage: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -156,10 +161,37 @@ var Player = React.createClass({
 			}
 		}
 
-		if(this.props.isSongPlayingLiked && this.props.MASASuser !== "")
-			return <img src="/static/img/MASAS_liked.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}/>
+		// user not logged in => return login modal with message
+		if(this.props.MASASuser === "")
+			return (
+				<img
+					src="/static/img/MASAS_like_shadow.svg"
+					alt="like icon"
+					className="like-icon"
+					onClick={
+						() => {
+							this.props.updateLoginMessage(
+								"Please log-in to Like & Save songs"
+							)
+							this.props.updateModalContent(<SplashScreen startPage={1} />, 3)
+							this.props.toogleModal()
+						}
+					} />
+			)
+		// user is logged in => show correct icon (liked/unliked alreaday) and correct callback
 		else
-			return <img src="/static/img/MASAS_like_shadow.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)} />
+			return (
+				<img
+					src={
+						"/static/img/MASAS_like"
+						+ (this.props.isSongPlayingLiked ? "d.svg" : "_shadow.svg")
+					}
+					alt="like icon"
+					className="like-icon"
+					onClick={
+						this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)
+					} />
+			)
 	},
 
 	renderRadioTime: function() {

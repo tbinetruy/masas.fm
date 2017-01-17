@@ -499,7 +499,6 @@ export function playPreviousSongInDiscover(discoverNum) {
 }
 
 export function playRandomSong(timeInterval = 0) {
-	console.log(timeInterval)
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuser } = state.appReducer

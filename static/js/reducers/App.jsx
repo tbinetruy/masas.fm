@@ -21,6 +21,7 @@ import {
 	UPDATE_MINI_PROFILE_VISIBILITY,
 	UPDATE_MINI_PROFILE_CONTENT,
 	UPDATE_SC_SONG_INFO,
+	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
 } from './actions/App.js'
 
 let exportVar = {}
@@ -62,6 +63,11 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
+		case UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE:
+			return {
+				...state,
+				splashScreenLoginMessage: action.splashScreenLoginMessage,
+			}
 		case UPDATE_SC_SONG_INFO:
 			return {
 				...state,

@@ -12,6 +12,9 @@ import {
 
 import {
 	updateMiniProfileContent,
+	changeModalContent,
+	updateSplashScreenLoginMessage,
+	toogleIsModalOpened,
 } from "../../../reducers/actions/App.js"
 
 // var { toggleSongLike } = require("../../../MASAS_functions.jsx")
@@ -44,6 +47,9 @@ Player.mapStateToProps = function(state) {
 Player.mapDispatchToProps = function(dispatch) {
 	return {
 		dispatch,
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
 		play: () => dispatch(playPlayer()),
 		pause: () => dispatch(pausePlayer()),
 		resumePlaying: () => dispatch(resumePlayer()),	// same as this.props.play (see actions/Player.js) Not sure keeping both for historical reasons for now
