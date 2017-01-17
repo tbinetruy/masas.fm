@@ -38,6 +38,15 @@
 	&.login::before
 		opacity: 0.7
 
+	&.login, &.legals
+		.test1
+			$radius: -4px
+			filter: blur(-$radius)
+			top: $radius
+			bottom: $radius
+			left: $radius
+			right: $radius
+
 	&.legals::before
 		opacity: 0.7
 
@@ -151,7 +160,7 @@
 			margin: 6rem 0
 
 			.masas-logo
-				height: 15rem
+				height: 6rem
 				margin-bottom: 2rem
 
 			.login-content
@@ -181,6 +190,16 @@
 				cursor: pointer
 				font-size: 0.9rem
 				max-width: 80vw
+				line-height: 1.3rem
+				width: 16rem
+				letter-spacing: 0.05rem
+
+				em
+					opacity: 0.87
+					text-decoration: underline
+
+				span
+					opacity: 0.7
 
 		.third-slide
 			display: flex

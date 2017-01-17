@@ -832,13 +832,13 @@ input[type=range].MASAS-slider {
   opacity: 0; }
   .MASAS-modal.closed .splash-screen--wrapper {
     z-index: -1000;
-    animation: fadeout-modal 0.5s linear; }
+    animation: fadeout-modal .5s linear; }
     .MASAS-modal.closed .splash-screen--wrapper .test1, .MASAS-modal.closed .splash-screen--wrapper .test2 {
       z-index: -1000 !important;
-      animation: fadeout-modal 0.5s linear; }
+      animation: fadeout-modal .5s linear; }
     .MASAS-modal.closed .splash-screen--wrapper .main-swiper-container {
       z-index: -1000;
-      animation: fadeout-modal 0.5s linear; }
+      animation: fadeout-modal .5s linear; }
 
 .splash-screen--wrapper {
   display: flex;
@@ -877,14 +877,20 @@ input[type=range].MASAS-slider {
     left: 0;
     right: 0;
     background-color: black;
-    opacity: 0.7;
+    opacity: .7;
     transition: opacity 1s linear;
     content: "";
     z-index: 1; }
   .splash-screen--wrapper.login::before {
-    opacity: 0.7; }
+    opacity: .7; }
+  .splash-screen--wrapper.login .test1, .splash-screen--wrapper.legals .test1 {
+    filter: blur(4px);
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px; }
   .splash-screen--wrapper.legals::before {
-    opacity: 0.7; }
+    opacity: .7; }
   .splash-screen--wrapper .test1, .splash-screen--wrapper .test2 {
     background-image: url(/static/img/splashscreen/0_mobile.jpg);
     position: absolute;
@@ -923,7 +929,7 @@ input[type=range].MASAS-slider {
     max-width: 60rem;
     max-height: 400rem;
     z-index: 1;
-    animation: fadein-modal 0.5s linear; }
+    animation: fadein-modal .5s linear; }
     .splash-screen--wrapper .main-swiper-container .swiper-pagination .swiper-pagination-bullet {
       width: 4px;
       height: 4px;
@@ -973,7 +979,7 @@ input[type=range].MASAS-slider {
       max-height: 78%;
       margin: 6rem 0; }
       .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
-        height: 15rem;
+        height: 6rem;
         margin-bottom: 2rem; }
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
         z-index: -2;
@@ -992,12 +998,20 @@ input[type=range].MASAS-slider {
           .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
             height: inherit; }
         .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
-          font-size: 0.9rem;
-          opacity: 0.8; }
+          font-size: .9rem;
+          opacity: .8; }
       .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
         cursor: pointer;
-        font-size: 0.9rem;
-        max-width: 80vw; }
+        font-size: .9rem;
+        max-width: 80vw;
+        line-height: 1.3rem;
+        width: 16rem;
+        letter-spacing: .05rem; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph em {
+          opacity: .87;
+          text-decoration: underline; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph span {
+          opacity: .7; }
     .splash-screen--wrapper .main-swiper-container .third-slide {
       display: flex;
       flex-direction: column;
@@ -1027,7 +1041,7 @@ input[type=range].MASAS-slider {
           padding-bottom: 3rem; }
         .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
           max-height: 14rem;
-          font-size: 0.8rem;
+          font-size: .8rem;
           align-items: flex-start;
           padding-left: 4rem; }
           .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
@@ -1045,9 +1059,9 @@ input[type=range].MASAS-slider {
     padding: 4rem 4rem;
     background-position: inherit; }
     .splash-screen--wrapper::before {
-      opacity: 0.3; }
+      opacity: .3; }
     .splash-screen--wrapper.login::before {
-      opacity: 0.5; }
+      opacity: .5; }
     .splash-screen--wrapper .test2 {
       background-image: url(/static/img/splashscreen/1.jpg); }
     .splash-screen--wrapper .test1.background-0, .splash-screen--wrapper .test2.background-0 {

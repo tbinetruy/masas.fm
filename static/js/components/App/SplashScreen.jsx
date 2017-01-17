@@ -159,7 +159,7 @@ var SplashScreen = React.createClass({
 
 							<div className="swiper-slide second-slide">
 								<div className="login-content">
-									<img src="/static/img/MASAS_logo_tipi.svg" className="masas-logo" alt="MASAS-logo" />
+									<img src="/static/img/MASAS_logo-M.svg" className="masas-logo" alt="MASAS-logo" />
 
 									<div className="login-buttons">
 										<LoginForm />
@@ -173,7 +173,7 @@ var SplashScreen = React.createClass({
 									</div>
 
 									<p onClick={ this.slideNext } className="terms-paragraph">
-										By logging-in, you agree to MASAS' Terms of Use & Cookie Policy
+										<span>By logging-in, you agree to MASAS' </span><em>Terms of Use</em> <span> & </span><em>Cookie Policy</em>
 									</p>
 								</div>
 							</div>
