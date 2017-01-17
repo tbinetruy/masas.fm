@@ -19,6 +19,13 @@ var PopularTimer = React.createClass({
 		return hastagNames[discoverNumer - 1]
 	},
 
+	formatNumber: function(number) {
+		if(number < 10)
+			return "0" + number
+
+		return number
+	},
+
 	render: function() {
 		// event loop hack
 		// update state.time evey 10 sec
@@ -31,9 +38,9 @@ var PopularTimer = React.createClass({
 				</h2>
 				<h3 className="time">
 					{
-						this.state.time.getHours()
+						this.formatNumber(this.state.time.getHours())
 						+ ":"
-						+ this.state.time.getMinutes()
+						+ this.formatNumber(this.state.time.getMinutes())
 					}
 				</h3>
 			</div>
