@@ -162,11 +162,16 @@ var SplashScreen = React.createClass({
 								<div className="login-content">
 									<div className="login-content-top">
 										<img src="/static/img/MASAS_logo-M.svg" className="masas-logo" alt="MASAS-logo" />
-										<h2>{ this.props.splashScreenLoginMessage }</h2>
+										<h2 className="login-message-mobile">{ this.props.splashScreenLoginMessage }</h2>
+										<div className="logo-subtitle">
+											<img src="/static/img/login/logo_subtitle_1.png" className="img1" />
+											<img src="/static/img/login/logo_subtitle_2.png" className="img2" />
+										</div>
 									</div>
 
 									<div className="login-content-bottom">
 										<div className="login-buttons">
+											<h2 className="login-message-desktop">{ this.props.splashScreenLoginMessage }</h2>
 											<p className="login-privacy-info">
 												We’ll never post anything without your permision!
 											</p>
@@ -175,6 +180,7 @@ var SplashScreen = React.createClass({
 												noBorders={ true }
 												onClick={ this.props.closeSplashScreen }
 												isBigButton={ false }
+												className="login-cancel-button"
 												isSecondaryAction={ true }>
 												Cancel
 											</Button>
