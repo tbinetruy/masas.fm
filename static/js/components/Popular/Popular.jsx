@@ -58,6 +58,8 @@ var Popular = React.createClass({
 				{
 					this.getContent()
 				}
+				<div className="empty-div">
+				</div>
 			</div>
 		)
 	}
