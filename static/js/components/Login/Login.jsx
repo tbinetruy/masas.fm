@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Login.jsx")
@@ -11,12 +10,12 @@ var LoginForm = require("./LoginForm.jsx")
 
 // var Login = (props) => {
 var Login = React.createClass({
+
 	componentDidMount: function() {
 		this.props.updateTitle()
 	},
 
 	render: function() {
-		console.log("loginnn")
 		var marginHeight = '3rem'
 		var marginStyle = {
 			minHeight:  marginHeight,
@@ -57,15 +56,6 @@ var Login = React.createClass({
 			</div>
 			</Body>
 		)
-		// return (
-		// 	<div className="app-body" >
-		// 		<h1>{this.props.title}</h1>
-		// 		<hr />
-		// 		<div style="content-overlay">
-					
-		// 		</div>
-		// 	</div>
-		// )
 	}
 })
 
