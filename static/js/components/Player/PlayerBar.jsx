@@ -71,6 +71,8 @@ var Player = React.createClass({
 
 				if(this.props.isPlaylistPlaying) {
 					this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1)
+				} else if(this.props.playingFromPopular) {
+					this.props.playRandomSong(POPULAR)
 				} else {
 					this.props.playRandomSong(currentTimeInterval)
 				}
