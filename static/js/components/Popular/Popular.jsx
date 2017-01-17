@@ -7,6 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Popular.jsx"
 var { BlurBackground } = require("../MASAS_mixins.jsx")
 
 var ArtworkLine = require("../Discover/ArtworkLine.jsx")
+var PopularTimer = require("./PopularTimer.jsx")
 
 
 var Popular = React.createClass({
@@ -54,7 +55,10 @@ var Popular = React.createClass({
 
 		return (
 			<div className="popular--wrapper">
-				<h1>Crowdradio</h1>
+				<div className="popular-timer">
+					<PopularTimer />
+
+				</div>
 				{
 					this.getContent()
 				}

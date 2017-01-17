@@ -6,7 +6,7 @@
 	position: relative
 
 
-	h1
+	.popular-timer
 		font-size: 1.5rem
 		letter-spacing: 0.35rem
 		width: min-content
@@ -17,7 +17,9 @@
 		z-index: 1
 		display: flex
 		flex: 0.2
-		align-items: center
+		align-items: flex-end
+
+		@import "./PopularTimer"
 
 	.popular-content--wrapper
 		transition: opacity 0.3s ease-in
@@ -33,6 +35,6 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.popular--wrapper
-		h1
+		.popular-timer
 
 

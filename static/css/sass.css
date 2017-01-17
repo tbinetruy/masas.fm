@@ -4783,7 +4783,7 @@ input[type=range].MASAS-slider {
   flex: 1;
   align-items: center;
   position: relative; }
-  .popular--wrapper h1 {
+  .popular--wrapper .popular-timer {
     font-size: 1.5rem;
     letter-spacing: .35rem;
     width: min-content;
@@ -4794,7 +4794,13 @@ input[type=range].MASAS-slider {
     z-index: 1;
     display: flex;
     flex: .2;
-    align-items: center; }
+    align-items: flex-end; }
+    .popular--wrapper .popular-timer .popular-timer--wrapper .hashtag {
+      border-bottom: 1px solid white;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem; }
+    .popular--wrapper .popular-timer .popular-timer--wrapper .time {
+      text-align: center; }
   .popular--wrapper .popular-content--wrapper {
     transition: opacity .3s ease-in;
     display: flex;
