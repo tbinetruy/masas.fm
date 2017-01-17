@@ -2,6 +2,7 @@ import {
 	closeAndEmptyMainModal,
 	changeModalContent,
 	toogleIsModalOpened,
+	updateSplashScreenLoginMessage,
 	logout
 } from "../../../reducers/actions/App.js"
 
@@ -21,6 +22,7 @@ HeaderDropdown.mapStateToProps = function(state) {
 HeaderDropdown.mapDispatchToProps = function(dispatch) {
 	return {
 		logout: () => dispatch(logout()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
