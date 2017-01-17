@@ -4814,6 +4814,9 @@ input[type=range].MASAS-slider {
     display: flex; }
 
 @media screen and (min-width: 992px) {
+  .popular--wrapper .artwork-line {
+    min-width: 50vw;
+    transform: translateX(-50%); }
   .popular--wrapper .title-top h1, .popular--wrapper .title-bottom h1 {
     display: block; }
   .popular--wrapper .title-top {
