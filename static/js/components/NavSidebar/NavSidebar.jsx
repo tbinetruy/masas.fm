@@ -23,6 +23,7 @@ var NavSidebar = React.createClass({
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
+		updateLoginMessage: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -36,7 +37,8 @@ var NavSidebar = React.createClass({
 	goToLogin: function() {
 		if(!this.props.isModalOpened)
 			this.props.toogleModal()
-		
+
+		this.props.updateLoginMessage("")
 		this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
 		this.props.toogleSidebar()
 	},

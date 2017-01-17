@@ -4,6 +4,7 @@ import {
 	toogleNavSidebar,
 	changeModalContent,
 	logout,
+	updateSplashScreenLoginMessage,
 } from "../../../reducers/actions/App.js"
 //var { logout } = require("../../../MASAS_functions.jsx")
 
@@ -21,6 +22,7 @@ NavSidebar.mapStateToProps = function(state) {
 NavSidebar.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleSidebar: () => dispatch(toogleNavSidebar()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
 		logout: () => dispatch(logout()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
