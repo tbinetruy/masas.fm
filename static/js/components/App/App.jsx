@@ -76,7 +76,6 @@ var App = React.createClass({
 		// so mobile safari play/pause/play bug doesn't happen
 		$("body").mouseup(() => {
 			const currentjPlayerSource = $("#jquery_jplayer_1").data().jPlayer.status.src
-			console.log(currentjPlayerSource)
 			$("#jquery_jplayer_1").jPlayer("play")
 			$("body").unbind("mouseup")
 		})
