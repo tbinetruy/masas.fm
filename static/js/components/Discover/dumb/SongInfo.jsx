@@ -19,10 +19,10 @@ export const SongInfo = props => {
 						style={ {
 							display: (props.songPlaying === props.MASAS_songInfo.url ? 'flex' : 'none')
 						} }
-						onClick={ () => props.toggleSongLike(props.userToken, props.songPlaying) }>
+						onClick={ () => props.toggleSongLike() }>
 						{
-							props.isSongPlayingLiked ?
-								<img src="/static/img/MASAS_liked.svg" alt="like" />
+							props.isSongPlayingLiked && props.MASASuser !== "" ?
+								<img src="/static/img/MASAS_liked.svg" alt="unlike" />
 							:
 								<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
 						}
@@ -39,7 +39,7 @@ export const SongInfo = props => {
 
 SongInfo.propTypes = {
 	small: React.PropTypes.bool,								// should show small version of component
-	userToken: React.PropTypes.string,							// user login token
+	MASASuser: React.PropTypes.string,							// user login token
 	songPlaying: React.PropTypes.string,						// MASAS api url of currently playing song
 	toggleShowProfile: React.PropTypes.func.isRequired,			// callback called when clicking on component
 	toggleSongLike: React.PropTypes.func,						// callback called when song is liked from component
