@@ -1,9 +1,10 @@
-import { 
+import {
 	toogleIsModalOpened,
 	changeModalContent,
+	updateSplashScreenLoginMessage,
 } from '../../../reducers/actions/App.js'
 
-import { 
+import {
 	updateSCUserTracks,
 	updateSCUsername,
 	updateIsConnectedSC,
@@ -22,6 +23,7 @@ UploadSCHome.mapStateToProps = function(state) {
 UploadSCHome.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 		updateIsConnectedSC: (isConnectedSoundcloud) => dispatch(updateIsConnectedSC(isConnectedSoundcloud)),
 		updateSCusername: (SCusername) => dispatch(updateSCUsername(SCusername)),

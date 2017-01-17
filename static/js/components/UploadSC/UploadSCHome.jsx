@@ -29,6 +29,7 @@ var UploadSCHome = React.createClass({
 		getUserTracks: React.PropTypes.func,
 		updateMasasUserTracks: React.PropTypes.func,
 		updateSoundcloudUserTracks: React.PropTypes.func,
+		updateLoginMessage: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -62,7 +63,7 @@ var UploadSCHome = React.createClass({
 						</ol>
 						<div className="img-container">
 						</div>
-				
+
 						{
 							this.props.MASASuser !== "" ?
 								<div className="connect-button">
@@ -74,7 +75,11 @@ var UploadSCHome = React.createClass({
 							:
 								<div className="connect-button">
 									<Button
-										onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }
+										onClick={ () => {
+											this.props.toogleModal()
+											this.props.updateLoginMessage("Please log-in to upload your music")
+											this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
+										} }
 										isBigButton={ true }>Log-in to Upload</Button>
 									<div className="button-subtitle">It's free!</div>
 								</div>
