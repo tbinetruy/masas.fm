@@ -3323,7 +3323,7 @@ input[type=range].MASAS-slider {
           display: flex; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .username {
           font-family: Lato-Semibold;
-          padding-bottom: .5rem;
+          padding-bottom: 0.5rem;
           width: 100%; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper {
           display: flex;
@@ -3332,8 +3332,8 @@ input[type=range].MASAS-slider {
           width: 100%; }
           .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .location {
             color: rgba(255, 255, 255, 0.8);
-            font-size: .8rem;
-            padding-bottom: .2rem;
+            font-size: 0.8rem;
+            padding-bottom: 0.2rem;
             width: 100%; }
           .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .occupation {
             color: rgba(255, 255, 255, 0.8);
@@ -3364,9 +3364,10 @@ input[type=range].MASAS-slider {
           transform: translateX(-50%);
           display: flex;
           align-items: center;
-          justify-content: center; }
+          justify-content: center;
+          bottom: 0; }
           .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a {
-            margin-right: .5rem; }
+            margin-right: 0.5rem; }
             .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a img {
               width: 2rem;
               height: 2rem;
@@ -3376,7 +3377,7 @@ input[type=range].MASAS-slider {
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
           width: 1rem;
           max-height: 1rem;
-          padding-right: .15rem; }
+          padding-right: 0.15rem; }
 .profile--wrapper .song-list--wrapper {
   display: flex;
   flex-direction: column;
@@ -3642,13 +3643,13 @@ input[type=range].MASAS-slider {
         position: inherit;
         transform: inherit;
         justify-content: flex-start;
-        margin-top: .5rem; }
+        margin-top: 0.5rem; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a {
-          margin-right: .5rem; }
+          margin-right: 0.5rem; }
           .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a img {
             width: 1rem;
             height: 1rem;
-            margin-left: .5rem; }
+            margin-left: 0.5rem; }
         .profile--wrapper .main--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links a:first-child > img {
           margin-left: 0; }
   .profile--wrapper .song-list--wrapper {
@@ -4784,7 +4785,7 @@ input[type=range].MASAS-slider {
   position: relative; }
   .popular--wrapper h1 {
     font-size: 1.5rem;
-    letter-spacing: 0.35rem;
+    letter-spacing: .35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -4792,17 +4793,17 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: 0.2;
+    flex: .2;
     align-items: center; }
   .popular--wrapper .popular-content--wrapper {
-    transition: opacity 0.3s ease-in;
+    transition: opacity .3s ease-in;
     display: flex;
-    flex: 0.6;
+    flex: .6;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
   .popular--wrapper .empty-div {
-    flex: 0.2; }
+    flex: .2; }
 
 html {
   font-size: 14px;
