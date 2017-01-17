@@ -499,6 +499,7 @@ export function playPreviousSongInDiscover(discoverNum) {
 }
 
 export function playRandomSong(timeInterval = 0) {
+	console.log(timeInterval)
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuser } = state.appReducer
@@ -510,8 +511,8 @@ export function playRandomSong(timeInterval = 0) {
 		if(timeInterval && timeInterval !== POPULAR)
 			URL = URL + "&time_interval_id=" + timeInterval
 		else if(timeInterval && timeInterval === POPULAR) {
-			const timeInterval = getDiscoverNumberFromCurrentTime()
-			URL = URL + "&time_interval_id=" + timeInterval + "&radio=popular"
+			const popularTimeInterval = getDiscoverNumberFromCurrentTime()
+			URL = URL + "&time_interval_id=" + popularTimeInterval + "&radio=popular"
 		}
 
 		var headers = {}
