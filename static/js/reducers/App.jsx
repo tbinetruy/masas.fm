@@ -26,33 +26,34 @@ import {
 let exportVar = {}
 
 exportVar.defaultState = {
-	MASASuser: "", 				// user login token
-	MASASuserPk: null,
-	userData: {},					// user data (pk, username, email etc)
+	MASASuser: "", 						// user login token
+	MASASuserPk: null,					// (str) user pk from masas api
+	userData: {},						// user data (pk, username, email etc)
 	pageTitle: 'home',
-	pageType: 0,					// 0 = hamburger icon, 1 = arrow icon
+	pageType: 0,						// 0 = hamburger icon, 1 = arrow icon
 	navSiderbarOpen: false,
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
 	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow
 	isAppFetching: false,				// (bool)
 	isModalOpened: false,				// (bool) is modal opened
 	modalContent: <div></div>, 			// (obj) modal content
-	modalType: 1,					// (int) how the modal looks like. 1 for default
+	modalType: 1,						// (int) how the modal looks like. 1 for default
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
+	splashScreenLoginMessage: "",		// (str) login message to show on login modal
 	closeModalFunc: () => {}, 			// (func) function called on closin modal
 	loggedOutUserStep: 0,				// (int) user step used to show tip modals when user logged out
-	bgFilter: {					// (dict of bools) background state
-		blurred: false,				// (bool) is app bg blurred
-		saturated: false,			// (bool) is app bg saturated
+	bgFilter: {							// (dict of bools) background state
+		blurred: false,					// (bool) is app bg blurred
+		saturated: false,				// (bool) is app bg saturated
 		mobileBlurred: false,			// (bool) is app bg blurred only on mobile
 		mobileSaturated: false,			// (bool) is app bg saturated only on mobile
 		modalBlurred: false,			// (bool) is app bg blurred *because* of modal
 		modalSaturated: false,			// (bool) is app bg saturated *because* of modal
 	},
-	miniProfile: {					// (obj) containing info relative to mini profile
+	miniProfile: {						// (obj) containing info relative to mini profile
 		isVisible: false,				// (bool) should mini profile be shown
-		userData: {},				// (obj) mini profile content
-		SC_songInfo: [],			// (obj) array containing SC info for songs in userData
+		userData: {},					// (obj) mini profile content
+		SC_songInfo: [],				// (obj) array containing SC info for songs in userData
 	}
 }
 

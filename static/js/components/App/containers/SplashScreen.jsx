@@ -10,6 +10,7 @@ SplashScreen.mapStateToProps = function(state) {
 	return {
 		splashScreenPage: state.appReducer.splashScreenPage,
 		MASASuser: state.appReducer.MASASuser,
+		splashScreenLoginMessage: state.appReducer.splashScreenLoginMessage,
 	}
 }
 

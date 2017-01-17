@@ -14,6 +14,7 @@ var SplashScreen = React.createClass({
 		startPage: React.PropTypes.number,
 		splashScreenPage: React.PropTypes.number,
 		MASASuser: React.PropTypes.string,
+		splashScreenLoginMessage: React.PropTypes.string,
 
 		updateSplashScreenPage: React.PropTypes.func,
 		closeSplashScreen: React.PropTypes.func,
@@ -161,7 +162,7 @@ var SplashScreen = React.createClass({
 								<div className="login-content">
 									<div className="login-content-top">
 										<img src="/static/img/MASAS_logo-M.svg" className="masas-logo" alt="MASAS-logo" />
-										<h2>Please Login</h2>
+										<h2>{ this.props.splashScreenLoginMessage }</h2>
 									</div>
 
 									<div className="login-content-bottom">
