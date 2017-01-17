@@ -61,8 +61,10 @@ var UploadSC = React.createClass({
 		else if(this.props.isConnectedSoundcloud) {
 			this.props.blurBg(false)
 			this.props.blurMobileBr(true)
-		} else
-			this.props.blurBg(true)
+		} else {
+			this.props.blurBg(false)
+			this.props.blurMobileBr(true)
+		}
 	},
 
 
@@ -139,7 +141,7 @@ var UploadSC = React.createClass({
 
 		if(this.props.choosingTime) {
 			content = (
-					<PickTimeUpload 
+					<PickTimeUpload
 						logoutSC={ this.logoutSC }/>
 			)
 			title = "Now pick the right time for your sound"
@@ -161,7 +163,7 @@ var UploadSC = React.createClass({
 					}
 				}
 			} else {
-				content = <UploadSCHome 
+				content = <UploadSCHome
 					getUserTracks={ this.getUserTracks }/>
 				title = "Get Featured on our Crowd-Radio"
 				pageNumber = 1
