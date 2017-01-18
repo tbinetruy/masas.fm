@@ -4,6 +4,13 @@ export const UPDATE_SC_USERNAME = 'UPDATE_SC_USERNAME'
 export const UPDATE_IS_CONNECTED_SC = 'UPDATE_IS_CONNECTED_SC'
 export const HANDLE_PICK_TIME_UPLOAD = 'HANDLE_PICK_TIME_UPLOAD'
 export const UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE = 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE'
+export const CLOSE_PICK_TIME_WINDOW = 'CLOSE_PICK_TIME_WINDOW'
+
+export function closePickTimeWindow() {
+	return {
+		type: CLOSE_PICK_TIME_WINDOW,
+	}
+}
 
 export function updateUploadTipTimePickerValue(tipTimePickerValue) {
 	return {

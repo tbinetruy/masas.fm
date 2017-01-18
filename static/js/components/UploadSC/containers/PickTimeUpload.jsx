@@ -2,6 +2,20 @@ import {
 	updateProfileInfo,
 } from "../../../reducers/actions/Profile.js"
 
+import {
+	closePickTimeWindow,
+} from "../../../reducers/actions/UploadSC.js"
+
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
+
+import {
+	updateNotificationBar,
+} from "../../../reducers/actions/Header.js"
+
 var PickTimeUpload = {}
 
 
@@ -19,20 +33,17 @@ PickTimeUpload.mapStateToProps = function(state) {
 PickTimeUpload.mapDispatchToProps = function(dispatch) {
 
 	var closeWindow = () => {
-		dispatch({ type:'CLOSE_PICK_TIME_WINDOW' })
+		dispatch(closePickTimeWindow())
 	}
 
 	return {
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType, backArrowFunc: closeWindow}),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		closeWindow,
-		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
-		handleTimePickerChange: (newDiscover) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', newDiscover}),
-		emitNotification: (text) => {
-			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
-			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: text})
-		},
+		onTimeChanged: time => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
+		handleTimePickerChange: newDiscover => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', newDiscover}),
+		emitNotification: text =>  dispatch(updateNotificationBar(text)),
 		updateProfileInfo: () => dispatch(updateProfileInfo()),
 	}
 }
