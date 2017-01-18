@@ -1,3 +1,6 @@
+import {
+	toogleIsModalOpened,
+} from "../../../reducers/actions/App.js"
 
 var ModalContent = {}
 
@@ -10,7 +13,7 @@ ModalContent.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 ModalContent.mapDispatchToProps = function(dispatch) {
 	return {
-		toogleIsModalOpened: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		toogleIsModalOpened: () => dispatch(toogleIsModalOpened()),
 	}
 }
 
