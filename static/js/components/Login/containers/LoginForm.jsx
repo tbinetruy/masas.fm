@@ -1,18 +1,22 @@
 var LoginForm = {}
 
-import { login } from "../../../reducers/actions/login.js"
+import {
+	login,
+} from "../../../reducers/actions/Login.js"
 
-// Which part of the Redux global state does our component want to receive as props?
+import {
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
+
 LoginForm.mapStateToProps = function(state) {
 	return {
 
 	}
 }
 
-// Which action creators does it want to receive by props?
 LoginForm.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		login: backend => dispatch(login(backend)),
 	}
 }
