@@ -20,7 +20,6 @@ import {
 var PickTimeUpload = {}
 
 
-// Which part of the Redux global state does our component want to receive as props?
 PickTimeUpload.mapStateToProps = function(state) {
 	return {
 		track: state.uploadSCReducer.choosingTime,
@@ -30,18 +29,13 @@ PickTimeUpload.mapStateToProps = function(state) {
 	}
 }
 
-// Which action creators does it want to receive by props?
 PickTimeUpload.mapDispatchToProps = function(dispatch) {
-
-	var closeWindow = () => {
-		dispatch(closePickTimeWindow())
-	}
 
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
-		closeWindow,
+		closeWindow: () => dispatch(closePickTimeWindow()),
 		handleTimePickerChange: newDiscover => dispatch(handlePickTimeUpload(newDiscover)),
 		emitNotification: text =>  dispatch(updateNotificationBar(text)),
 		updateProfileInfo: () => dispatch(updateProfileInfo()),
