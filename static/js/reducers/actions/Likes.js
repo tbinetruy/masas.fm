@@ -1,6 +1,20 @@
 import 'whatwg-fetch'
 
 export const UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN'
+export const REQUEST_LIKES = 'REQUEST_LIKES'
+export const TOOGLE_HASHTAG_FILTER = 'TOOGLE_HASHTAG_FILTER'
+export const UPDATE_LIKES = 'UPDATE_LIKES'
+export const UPDATE_MINI_PROFILE = 'UPDATE_LIKE_ARTWORK_MINI_PROFILE'
+export const TOGGLE_MINI_PROFILE = 'TOGGLE_LIKE_ARTWORK_MINI_PROFILE'
+export const UPDATE_LIKES_SEARCH_INPUT = 'UPDATE_LIKES_SEARCH_INPUT'
+
+export function updateLikesSearchInput(input) {
+	return {
+		type: UPDATE_LIKES_SEARCH_INPUT,
+		input
+	}
+}
+
 export function updateNumberLikesShown(numRowLikesShown) {
 	return {
 		type: UPDATE_NUMBER_OF_LIKES_SHOWN,
@@ -8,8 +22,15 @@ export function updateNumberLikesShown(numRowLikesShown) {
 	}
 }
 
+export function updateLikes(SCinfo) {
+	return {
+		type: 'UPDATE_LIKES',
+		SCinfo,
+		userLikes: null
+	}
+}
+
 // const apiRoot = 'http://masas.fm//'
-export const TOOGLE_HASHTAG_FILTER = 'TOOGLE_HASHTAG_FILTER'
 export function toogleHashtagFilter(hashtagNumber) {
 	return {
 		type: TOOGLE_HASHTAG_FILTER,
@@ -17,23 +38,20 @@ export function toogleHashtagFilter(hashtagNumber) {
 	}
 }
 
-export const REQUEST_LIKES = 'REQUEST_LIKES'
 function requestLikes() {
 	return {
 		type: REQUEST_LIKES
 	}
 }
 
-export const UPDATE_LIKES = 'UPDATE_LIKES'
 function updateLikesOld(SCinfo) {
 	return {
 		type: UPDATE_LIKES,
-		SCinfo, 
+		SCinfo,
 		userLikes: null
 	}
 }
 
-export const UPDATE_MINI_PROFILE = 'UPDATE_LIKE_ARTWORK_MINI_PROFILE'
 function updateMiniProfile(songPk, artistInfo) {
 	return {
 		type: UPDATE_MINI_PROFILE,
@@ -49,7 +67,7 @@ function fetchMiniProfile(MASAS_songInfo) {
 }
 
 function updateLikes(dispatch, SCinfo, MASASinfo) {
-	const userLikes =  SCinfo.map( song => { 
+	const userLikes =  SCinfo.map( song => {
 		var MASAS_songInfo = MASASinfo.filter( like => like.song.SC_ID === song.id )
 
 		if(MASAS_songInfo.length === 1) {
@@ -61,17 +79,16 @@ function updateLikes(dispatch, SCinfo, MASASinfo) {
 				artistInfo: null,
 			}
 		} else
-			return		
+			return
 	})
 
 	return {
 		type: UPDATE_LIKES,
-		SCinfo, 
+		SCinfo,
 		userLikes,
 	}
 }
 
-export const TOGGLE_MINI_PROFILE = 'TOGGLE_LIKE_ARTWORK_MINI_PROFILE'
 export function toogleMiniProfile(MASAS_songPk) {
 	return {
 		type: TOGGLE_MINI_PROFILE,

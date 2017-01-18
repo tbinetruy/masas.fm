@@ -1,4 +1,15 @@
-import { fetchLikes } from "../../../reducers/actions/Likes.js"
+import {
+	fetchLikes,
+	updateLikes,
+	toogleHashtagFilter,
+	updateLikesSearchInput,
+} from "../../../reducers/actions/Likes.js"
+
+import {
+	toogleIsModalOpened,
+	changeModalContent,
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
 
 var Likes = {}
 
@@ -19,13 +30,13 @@ Likes.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 Likes.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		getLikes: () => dispatch(fetchLikes()),
-		updateLikes: (SCinfo) => dispatch({ type: 'UPDATE_LIKES', SCinfo, userLikes: null }),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
-		toogleHashtag: (hashtagNumber) => dispatch({ type: "TOOGLE_HASHTAG_FILTER", hashtagNumber }),
-		updateSearchInput: (input) => dispatch({ type: "UPDATE_LIKES_SEARCH_INPUT", input })
+		updateLikes: SCinfo => dispatch(updateLikes(SCinfo)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		toogleHashtag: hashtagNumber => dispatch(toogleHashtagFilter(hashtagNumber)),
+		updateSearchInput: input => dispatch(updateLikesSearchInput(input)),
 	}
 }
 
