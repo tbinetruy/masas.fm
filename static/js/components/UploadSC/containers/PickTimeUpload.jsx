@@ -4,6 +4,7 @@ import {
 
 import {
 	closePickTimeWindow,
+	handlePickTimeUpload,
 } from "../../../reducers/actions/UploadSC.js"
 
 import {
@@ -41,8 +42,7 @@ PickTimeUpload.mapDispatchToProps = function(dispatch) {
 		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		closeWindow,
-		onTimeChanged: time => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
-		handleTimePickerChange: newDiscover => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', newDiscover}),
+		handleTimePickerChange: newDiscover => dispatch(handlePickTimeUpload(newDiscover)),
 		emitNotification: text =>  dispatch(updateNotificationBar(text)),
 		updateProfileInfo: () => dispatch(updateProfileInfo()),
 	}
