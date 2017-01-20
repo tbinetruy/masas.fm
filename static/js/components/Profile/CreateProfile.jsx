@@ -20,12 +20,17 @@ var CreateProfile = React.createClass({
 		saveProfile: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
 		updateProfilePicture: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
 		return {
 			avatar: this.getDefaultAvatar(),
 		}
+	},
+
+	componentDidMount: function() {
+		this.props.updateTitle('My Profile')		// 0 = menu icon; 1 = arrow back
 	},
 
 	getDefaultAvatar: function() {

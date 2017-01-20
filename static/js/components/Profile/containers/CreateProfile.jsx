@@ -8,6 +8,7 @@ import {
 
 import {
 	closeAndEmptyMainModal,
+	updatePageTitle,
 } from "../../../reducers/actions/App.js"
 var CreateProfile = {}
 
@@ -20,6 +21,7 @@ CreateProfile.mapStateToProps = function(state) {
 
 CreateProfile.mapDispatchToProps = function(dispatch) {
 	return {
+		updateTitle: (title, pageType, backArrowFunc) => dispatch(updatePageTitle(title, pageType, backArrowFunc)),
 		saveProfile: (getCookie, callbackSuccess, callbackError = () => {}) => dispatch(saveProfile(getCookie, callbackSuccess, callbackError)),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 		updateProfilePicture: isDefaultPicture => dispatch(updateProfilePicture(isDefaultPicture))
