@@ -198,6 +198,9 @@ export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError
 			dispatch(deleteLinks(userData, textboxValues, header, csrftoken))
 
 			callbackSuccess()
+
+			// close edit profile
+			dispatch(toggleEditingProfile())
 		}).catch( e => {
 			dispatch(updateNotificationBar("Error updating profile..."))
 
