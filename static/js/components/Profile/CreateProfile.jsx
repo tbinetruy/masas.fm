@@ -9,12 +9,19 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/CreateProfil
 // var { browserHistory } = require('react-router')
 
 import ProfileEdit from "./ProfileEdit.jsx"
+var { getCookie } = require("../../MASAS_functions.jsx")
 
 var CreateProfile = React.createClass({
 	propTypes: {
+		saveProfile: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
+	},
+
+	saveProfile: function() {
+		this.props.saveProfile(getCookie, this.props.closeModal)
 	},
 
 	render: function() {
@@ -22,6 +29,8 @@ var CreateProfile = React.createClass({
 			<div className="create-profile--wrapper">
 				<ProfileEdit
 					show={ true } />
+
+				<div onClick={ this.saveProfile }>Save</div>
 			</div>
 		)
 	}

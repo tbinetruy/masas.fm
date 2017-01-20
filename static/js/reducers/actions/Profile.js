@@ -1,6 +1,6 @@
 import "whatwg-fetch"
 
-import { 
+import {
 	updateNotificationBar
 } from "./Header.js"
 
@@ -74,7 +74,7 @@ export function getSCinfo() {
 				dispatch(updateUserSCSongs(response))
 			})
 		}
-	}	
+	}
 }
 
 
@@ -82,7 +82,7 @@ export function getSCinfo() {
 export function getPublicProfileInfo(userPk) {
 	return dispatch => fetch("/api/users/" + userPk + "/")
 			.then( resp => resp.json() )
-			.then( resp => { 
+			.then( resp => {
 				dispatch( updatePublicProfileInfo(resp) )
 				dispatch( getSCinfo() )
 			} )
@@ -168,7 +168,11 @@ function deleteLinks(userData, textboxValues, header, csrftoken) {
 	}
 }
 
-export function saveProfile(getCookie) {
+// saves profile
+// getCookie: function to get for csrftoken from cookies
+// callbackSuccess: callback to call on success
+// callbackError: callback to call on error
+export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError = () => {}) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuser, userData } = state.appReducer
@@ -188,12 +192,16 @@ export function saveProfile(getCookie) {
 				"X-CSRFToken": csrftoken,
 				"content-type": "application/json"
 			},
-			body: JSON.stringify(textboxValues), 
+			body: JSON.stringify(textboxValues),
 		}).then( r => {
 			textboxValues = { ...state.profileReducer.textboxValues }
 			dispatch(deleteLinks(userData, textboxValues, header, csrftoken))
+
+			callbackSuccess()
 		}).catch( e => {
 			dispatch(updateNotificationBar("Error updating profile..."))
+
+			callbackError()
 		})
 	}
 }
