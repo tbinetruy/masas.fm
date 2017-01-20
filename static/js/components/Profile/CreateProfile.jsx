@@ -6,7 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/CreateProfil
 import { updateUserStep, consts as MASAS_consts } from "../../MASAS_functions.jsx"
 
 // import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
+var { Button } = require("../UI/UI.jsx")
 // var { browserHistory } = require('react-router')
 
 import ProfileEdit from "./ProfileEdit.jsx"
@@ -69,10 +69,15 @@ var CreateProfile = React.createClass({
 						className="avatar"
 						alt="avatar" />
 				</div>
-				<ProfileEdit
-					show={ true } />
+				<div className="create-profile-form">
+					<div className="scroll--wrapper">
+						<ProfileEdit
+							show={ true } />
+					</div>
 
-				<div onClick={ this.saveProfile }>Save</div>
+					<Button onClick={ this.saveProfile } className="save-button">Save</Button>
+				</div>
+
 			</div>
 		)
 	}

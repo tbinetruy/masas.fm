@@ -3267,16 +3267,60 @@ input[type=range].MASAS-slider {
       .profile-edit--wrapper .links-info .links-edit--wrapper {
         flex: 1; } }
 
-.create-profile--wrapper .profile-edit--wrapper .links-info {
-  display: flex; }
-  .create-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
-    flex-direction: row;
+.create-profile--wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 3.5rem; }
+  .create-profile--wrapper .avatar--wrapper {
     display: flex;
     justify-content: center;
-    align-items: center; }
-    .create-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
-      width: 1.5rem;
+    align-items: center;
+    margin: 2rem; }
+    .create-profile--wrapper .avatar--wrapper .avatar {
+      width: 4rem;
+      height: 4rem;
+      border: 1px solid white;
+      padding: 1rem; }
+  .create-profile--wrapper .create-profile-form .scroll--wrapper {
+    height: 50vh;
+    overflow-y: scroll;
+    padding: 1.5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0 1rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(1) .MASAS-textbox--wrapper .MASAS-text-input {
+      height: 2rem;
+      font-size: 1.3rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox.country-autocomplete--wrapper .MASAS-textbox--wrapper #city {
+      padding-left: 1rem;
+      width: calc(100% - 1rem); }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(2) .MASAS-textbox--wrapper .MASAS-text-input, .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(3) .MASAS-textbox--wrapper .MASAS-text-input {
       height: 1.5rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(2) .MASAS-label, .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(3) .MASAS-label {
+      margin-top: .7rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox .MASAS-label {
+      font-size: .8rem;
+      padding-bottom: .2rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox .MASAS-textbox--wrapper .MASAS-text-input {
+      letter-spacing: .07rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info {
+      display: flex; }
+      .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem; }
+        .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
+          width: 1.5rem;
+          height: 1.5rem; }
+        .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit input, .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit label {
+          margin-top: 0; }
+        .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit input {
+          margin-left: 1rem; }
+  .create-profile--wrapper .create-profile-form .save-button {
+    margin: 1rem auto;
+    width: 10rem; }
 
 #app-body--profile {
   overflow-y: scroll;

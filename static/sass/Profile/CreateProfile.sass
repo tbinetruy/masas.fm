@@ -1,15 +1,82 @@
 .create-profile--wrapper
-	.profile-edit--wrapper
-		.links-info
-			display: flex
+	display: flex
+	flex-direction: column
+	flex: 1
+	padding: 0 3.5rem
 
-			.links-edit--wrapper
-				.link-edit
-					flex-direction: row
+	.avatar--wrapper
+		display: flex
+		justify-content: center
+		align-items: center
+		margin: 2rem
+
+		.avatar
+			width: 4rem
+			height: 4rem
+			border: 1px solid white
+			padding: 1rem
+
+	.create-profile-form
+		.scroll--wrapper
+			height: 50vh
+			overflow-y: scroll
+			padding: 1.5rem 1.5rem
+			border: 1px solid rgba(255,255,255,0.3)
+			margin: 0 1rem
+
+			// profile edit overrides
+			.profile-edit--wrapper
+				// masas textbox UI overrides
+				.MASAS-textbox
+					&:nth-child(1)
+						.MASAS-textbox--wrapper
+							.MASAS-text-input
+								height: 2rem
+								font-size: 1.3rem
+
+					&.country-autocomplete--wrapper
+						.MASAS-textbox--wrapper
+							#city
+								padding-left: 1rem
+								width: calc(100% - 1rem)
+
+					&:nth-child(2), &:nth-child(3)
+						.MASAS-textbox--wrapper
+							.MASAS-text-input
+								height: 1.5rem
+
+						.MASAS-label
+							margin-top: 0.7rem
+
+					.MASAS-label
+						font-size: 0.8rem
+						padding-bottom: 0.2rem
+
+					.MASAS-textbox--wrapper
+						.MASAS-text-input
+							letter-spacing: 0.07rem
+
+				.links-info
 					display: flex
-					justify-content: center
-					align-items: center
 
-					img
-						width: 1.5rem
-						height: 1.5rem
+					.links-edit--wrapper
+						.link-edit
+							flex-direction: row
+							display: flex
+							justify-content: center
+							align-items: center
+							margin-top: 1rem
+
+							img
+								width: 1.5rem
+								height: 1.5rem
+
+							input, label
+								margin-top: 0
+
+							input
+								margin-left: 1rem
+
+		.save-button
+			margin: 1rem auto
+			width: 10rem
