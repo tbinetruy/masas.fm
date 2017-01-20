@@ -13,7 +13,13 @@ export const TOGGLE_EDITING_PROFILE = 'TOOGLE_EDITING_PROFILE'
 export const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES'
 export const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
 export const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
+export const RESET_TEXTBOX_VALUES = 'RESET_TEXTBOX_VALUES'
 
+export const resetTextboxValue = () => {
+	return {
+		type: RESET_TEXTBOX_VALUES,
+	}
+}
 
 // returns url of random default avatar
 export const getRandomDefaultAvatar = () => {

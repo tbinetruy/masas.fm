@@ -4,22 +4,23 @@ import {
 	UPDATE_EDIT_PROFILE_TEXTBOX_VALUES,
 	TOGGLE_EDITING_PROFILE,
 	UPDATE_SONG_MOOD_MODAL_VALUE,
-	UPDATE_BACK_ARROW_FUNC
+	UPDATE_BACK_ARROW_FUNC,
+	RESET_TEXTBOX_VALUES,
 } from "./actions/Profile.js"
 
 let exportVar = {}
 
 exportVar.defaultState = {
 	// profileInfo: {},						// user MASAS profile Info
-	changeSongMoodValue: 0,				// (int) in [1,6], discover number on modal called when changing discover number for a song 
+	changeSongMoodValue: 0,				// (int) in [1,6], discover number on modal called when changing discover number for a song
 	isEditingProfile: false,					// (bool) is user editing profile
 	textboxValues: {					// (obj) values of textboxes when editing profile info
 		name: "",
 		city: "",
 		occupation: "",
 		link_set: ["", "", "", ""],				// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
-	},		
-	publicProfileInfo: {},					// (obj) public info profile on /user/:username		
+	},
+	publicProfileInfo: {},					// (obj) public info profile on /user/:username
 	userSCSongs: [],
 	backArrowFunc: null,					// (func) if not null, profile shows back arrow in header on mobile and call this callback when back arrow pressed
 }
@@ -27,8 +28,13 @@ exportVar.defaultState = {
 const { defaultState } = exportVar
 
 exportVar.profileReducer = function(state = defaultState, action) {
-	
+
 	switch(action.type) {
+		case RESET_TEXTBOX_VALUES:
+			return {
+				...state,
+				textboxValues: defaultState.textboxValues,
+			}
 		case UPDATE_BACK_ARROW_FUNC:
 			var backArrowFunc = action.backArrowFunc
 			if(typeof(backArrowFunc) !== "function")
@@ -50,7 +56,7 @@ exportVar.profileReducer = function(state = defaultState, action) {
 			}
 		case UPDATE_EDIT_PROFILE_TEXTBOX_VALUES:
 			var textboxValues = {...state.textboxValues, ...action.textboxValues}
-			
+
 			return {
 				...state,
 				textboxValues
