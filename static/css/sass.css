@@ -224,7 +224,7 @@
 .MASAS-button {
   font-size: 1.1rem;
   width: 10rem;
-  padding: 0.7rem 0;
+  padding: .7rem 0;
   font-family: Lato-Light;
   display: flex;
   text-align: center;
@@ -258,13 +258,16 @@
 
 .MASAS-button.facebook-login-button {
   background-color: #3b5997; }
+  .MASAS-button.facebook-login-button .wrapper {
+    display: flex;
+    padding-left: .5rem; }
 
 .MASAS-button.twitter-login-button {
   background-color: #4099ff; }
 
 .MASAS-button.disabled {
   cursor: default;
-  opacity: 0.3; }
+  opacity: .3; }
 
 .MASAS-button:active.disabled {
   cursor: default;
@@ -866,13 +869,13 @@ input[type=range].MASAS-slider {
   opacity: 0; }
   .MASAS-modal.closed .splash-screen--wrapper {
     z-index: -1000;
-    animation: fadeout-modal 0.5s linear; }
+    animation: fadeout-modal .5s linear; }
     .MASAS-modal.closed .splash-screen--wrapper .test1, .MASAS-modal.closed .splash-screen--wrapper .test2 {
       z-index: -1000 !important;
-      animation: fadeout-modal 0.5s linear; }
+      animation: fadeout-modal .5s linear; }
     .MASAS-modal.closed .splash-screen--wrapper .main-swiper-container {
       z-index: -1000;
-      animation: fadeout-modal 0.5s linear; }
+      animation: fadeout-modal .5s linear; }
 
 .splash-screen--wrapper {
   display: flex;
@@ -911,12 +914,12 @@ input[type=range].MASAS-slider {
     left: 0;
     right: 0;
     background-color: black;
-    opacity: 0.7;
+    opacity: .7;
     transition: opacity 1s linear;
     content: "";
     z-index: 1; }
   .splash-screen--wrapper.login::before {
-    opacity: 0.7; }
+    opacity: .7; }
   .splash-screen--wrapper.login .test1, .splash-screen--wrapper.legals .test1 {
     filter: blur(4px);
     top: -4px;
@@ -924,7 +927,7 @@ input[type=range].MASAS-slider {
     left: -4px;
     right: -4px; }
   .splash-screen--wrapper.legals::before {
-    opacity: 0.7; }
+    opacity: .7; }
   .splash-screen--wrapper .test1, .splash-screen--wrapper .test2 {
     background-image: url(/static/img/splashscreen/0_mobile.jpg);
     position: absolute;
@@ -963,7 +966,7 @@ input[type=range].MASAS-slider {
     max-width: 60rem;
     max-height: 400rem;
     z-index: 1;
-    animation: fadein-modal 0.5s linear; }
+    animation: fadein-modal .5s linear; }
     .splash-screen--wrapper .main-swiper-container .swiper-pagination .swiper-pagination-bullet {
       width: 4px;
       height: 4px;
@@ -1038,8 +1041,8 @@ input[type=range].MASAS-slider {
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-message-desktop {
         display: none; }
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-privacy-info {
-        font-size: 0.65rem;
-        opacity: 0.7; }
+        font-size: .65rem;
+        opacity: .7; }
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons {
         margin-bottom: 2rem;
         width: 15rem;
@@ -1050,20 +1053,20 @@ input[type=range].MASAS-slider {
           height: inherit;
           padding: 1rem 0; }
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .MASAS-button.no-borders {
-        font-size: 0.9rem;
-        opacity: 0.8; }
+        font-size: .9rem;
+        opacity: .8; }
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph {
         cursor: pointer;
-        font-size: 0.9rem;
+        font-size: .9rem;
         max-width: 80vw;
         line-height: 1.3rem;
         width: 16rem;
-        letter-spacing: 0.05rem; }
+        letter-spacing: .05rem; }
         .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph em {
-          opacity: 0.87;
+          opacity: .87;
           text-decoration: underline; }
         .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph span {
-          opacity: 0.7; }
+          opacity: .7; }
     .splash-screen--wrapper .main-swiper-container .third-slide {
       display: flex;
       flex-direction: column;
@@ -1094,7 +1097,7 @@ input[type=range].MASAS-slider {
           padding-bottom: 3rem; }
         .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
           max-height: 14rem;
-          font-size: 0.8rem;
+          font-size: .8rem;
           align-items: flex-start;
           padding-left: 4rem; }
           .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
@@ -1112,9 +1115,9 @@ input[type=range].MASAS-slider {
     padding: 4rem 4rem;
     background-position: inherit; }
     .splash-screen--wrapper::before {
-      opacity: 0.3; }
+      opacity: .3; }
     .splash-screen--wrapper.login::before {
-      opacity: 0.5; }
+      opacity: .5; }
     .splash-screen--wrapper .test2 {
       background-image: url(/static/img/splashscreen/1.jpg); }
     .splash-screen--wrapper .test1.background-0, .splash-screen--wrapper .test2.background-0 {
@@ -1144,47 +1147,45 @@ input[type=range].MASAS-slider {
         height: 19rem;
         margin: 0;
         margin-bottom: 3rem; }
-      .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
-        flex-direction: row; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button {
-          width: 13rem; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .masas-logo {
-          height: 10rem; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .login-message-mobile {
-          display: none; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .logo-subtitle {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .logo-subtitle .img1 {
-            margin: 3rem 0;
-            height: 2.4rem;
-            width: auto; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .logo-subtitle .img2 {
-            height: 1.3rem; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom {
-          justify-content: flex-end;
-          height: 100%; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-message-desktop {
-            display: block;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            letter-spacing: 0.07rem; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-privacy-info {
-            font-size: 0.85rem;
-            letter-spacing: 0.03rem; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons {
-            width: 22rem; }
-            .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons .login-cancel-button {
-              padding-top: 0; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph {
-            width: 25rem;
-            font-size: 0.7rem; }
-            .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph em {
-              opacity: 1; }
-            .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph span {
-              opacity: 1; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button {
+        width: 13rem; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .masas-logo {
+        height: 10rem; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .login-message-mobile {
+        display: none; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .logo-subtitle {
+        display: display none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .logo-subtitle .img1 {
+          margin: 3rem 0;
+          height: 2.4rem;
+          width: auto; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-top .logo-subtitle .img2 {
+          height: 1.3rem; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom {
+        justify-content: space-between;
+        height: 100%; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-message-desktop {
+          display: block;
+          margin-bottom: 1rem;
+          font-size: 1.25rem;
+          letter-spacing: .07rem; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-privacy-info {
+          font-size: .85rem;
+          letter-spacing: .03rem; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons {
+          width: 22rem; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .login-buttons .login-cancel-button {
+            padding-top: 0; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph {
+          width: 25rem;
+          font-size: .7rem; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph em {
+            opacity: 1; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-content-bottom .terms-paragraph span {
+            opacity: 1; }
       .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
         width: auto; }
       .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
@@ -1604,7 +1605,47 @@ input[type=range].MASAS-slider {
   height: 5rem;
   font-size: .85rem;
   letter-spacing: .1rem; }
+  .login-container .google-login-button {
+    background-color: black;
+    display: inline-block;
+    background: #d14836;
+    color: white;
+    border: 1px solid transparent;
+    font-weight: bold;
+    width: 12rem;
+    border-radius: 0;
+    margin-top: 1rem;
+    height: 2.5rem;
+    font-family: Lato-Light;
+    font-size: 1.1rem;
+    letter-spacing: .1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer; }
+    .login-container .google-login-button:before {
+      content: "";
+      display: block;
+      background-image: url("/static/img/google-logo.png");
+      height: 1rem;
+      width: 1rem;
+      background-size: contain;
+      margin-right: 1.5rem;
+      margin-left: 1rem;
+      background-repeat: no-repeat; }
 
+@media screen and (min-width: 992px) {
+  .login-container .google-login-button {
+    width: 15rem; }
+    .login-container .google-login-button:before {
+      content: "";
+      display: block;
+      background-image: url("/static/img/google-logo.png");
+      height: 1rem;
+      width: 1rem;
+      background-size: contain;
+      margin-right: 1.5rem;
+      margin-left: 1rem;
+      background-repeat: no-repeat; } }
 .sign-up-form--wrapper1 {
   display: flex;
   flex: 1;
