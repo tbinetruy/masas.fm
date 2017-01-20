@@ -84,7 +84,7 @@ var LoginForm = React.createClass({
 						Facebook
 					</Button>
 					<GoogleLogin
-						clientId="375876250017-60e48n07m846idoukpaifjqn2bdu6alm.apps.googleusercontent.com"
+						clientId={ document.MASAS.GOOGLE.key }
 						className="google-login-button"
 						buttonText="Google"
 						onSuccess={ r => { this.props.login('google', r.accessToken) } }

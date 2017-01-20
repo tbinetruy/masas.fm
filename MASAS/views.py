@@ -265,6 +265,9 @@ class SPAView(generic.TemplateView):
             'FB': {
                 'KEY': settings.SOCIAL_AUTH_FACEBOOK_KEY,
             },
+			'GOOGLE': {
+				'KEY': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+			}
         }
 
         return c
