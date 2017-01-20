@@ -11,6 +11,8 @@
 		display: flex
 		justify-content: center
 		align-items: center
+		display: flex
+		flex-direction: column
 
 	.modal-background
 		position: absolute
@@ -147,6 +149,9 @@
 	animation: fadeout-modal 0.5s linear
 
 @media screen and (min-width: $desktop-min-width)
+	.MASAS-modal.type5
+		top: 0
+
 	.MASAS-modal.type2
 		top: $desktop-header-height
 		height: inherit

@@ -19,6 +19,7 @@ let Modal = React.createClass({
 		type: React.PropTypes.number, 			// what type the modal is
 		children: React.PropTypes.node,
 		backgroundURL: React.PropTypes.string,
+		pageTitle: React.PropTypes.string,
 
 		modalBlurBg: React.PropTypes.func,
 		modalSaturateBg: React.PropTypes.func,

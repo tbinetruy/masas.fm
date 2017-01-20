@@ -16,6 +16,7 @@ CreateProfile.mapStateToProps = function(state) {
 	return {
 		userToken: state.appReducer.MASASuser,
 		userData: state.appReducer.userData,
+		pageTitle: state.appReducer.pageTitle,
 	}
 }
 

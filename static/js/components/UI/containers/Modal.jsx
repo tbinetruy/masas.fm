@@ -6,6 +6,7 @@ var Modal = {}
 Modal.mapStateToProps = function(state) {
 	return {
 		backgroundURL: state.homeReducer.backgroundURL,
+		pageTitle: state.appReducer.pageTitle,
 	}
 }
 

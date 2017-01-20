@@ -16,6 +16,7 @@ var CreateProfile = React.createClass({
 	propTypes: {
 		userToken: React.PropTypes.string,
 		userData: React.PropTypes.object,
+		pageTitle: React.PropTypes.string,
 
 		saveProfile: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
@@ -67,22 +68,26 @@ var CreateProfile = React.createClass({
 	render: function() {
 		return (
 			<div className="create-profile--wrapper">
-				<div className="avatar--wrapper">
-					<img
-						src={ this.state.avatar }
-						onClick={ this.updateDefaultAvatar }
-						className="avatar"
-						alt="avatar" />
-				</div>
-				<div className="create-profile-form">
-					<div className="scroll--wrapper">
-						<ProfileEdit
-							show={ true } />
+				<h1 className="page-title">
+					{ this.props.pageTitle }
+				</h1>
+				<div className="alignment">
+					<div className="avatar--wrapper">
+						<img
+							src={ this.state.avatar }
+							onClick={ this.updateDefaultAvatar }
+							className="avatar"
+							alt="avatar" />
 					</div>
+					<div className="create-profile-form">
+						<div className="scroll--wrapper">
+							<ProfileEdit
+								show={ true } />
+						</div>
 
-					<Button onClick={ this.saveProfile } className="save-button">Save</Button>
+						<Button onClick={ this.saveProfile } className="save-button">Save</Button>
+					</div>
 				</div>
-
 			</div>
 		)
 	}
