@@ -10,9 +10,10 @@ var CountryAutocomplete = require("./CountryAutocomplete.jsx")
 var ProfileEdit = React.createClass({
 	propTypes: {
 		textboxValues: React.PropTypes.object,
-		updateTextboxValues: React.PropTypes.func,
 		userData: React.PropTypes.object,
 		show: React.PropTypes.bool.isRequired,		// should comp be shown
+
+		updateTextboxValues: React.PropTypes.func,
 	},
 
 	componentDidMount: function() {
@@ -39,23 +40,34 @@ var ProfileEdit = React.createClass({
 	},
 
 	render: function() {
+		let {
+			name,
+			occupation
+		} = this.props.textboxValues
+
+		if(name === null)
+			name = ""
+
+		if(occupation === null)
+			occupation = ""
+
 		if(this.props.show)
 			return (
 				<div className="profile-edit--wrapper">
 					<div className="personal-info">
-						<Textbox 
-							onChange={ this.updateName } 
-							value={ this.props.textboxValues.name } 
+						<Textbox
+							onChange={ this.updateName }
+							value={ name }
 							id="stage-name"
 							isRequired={ true }>
-							Stage Name 
+							Stage Name
 							</Textbox>
 						<CountryAutocomplete onChange={ this.updateCity }/>
-						<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
+						<Textbox onChange={ this.updateOccupation } value={ occupation } id="occupation">Occupation</Textbox>
 					</div>
 					<div className="links-info">
 						<ProfileEditLinks show={ this.props.show } />
-					</div> 
+					</div>
 				</div>
 			)
 		else
