@@ -18,6 +18,7 @@ let Modal = React.createClass({
 		closeModalFunc: React.PropTypes.func, 		// what to execute when clicking on close modal area (arrow or overlay)
 		type: React.PropTypes.number, 			// what type the modal is
 		children: React.PropTypes.node,
+		backgroundURL: React.PropTypes.string,
 
 		modalBlurBg: React.PropTypes.func,
 		modalSaturateBg: React.PropTypes.func,
@@ -25,7 +26,7 @@ let Modal = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			isOpened: false,	
+			isOpened: false,
 			closeModalFunc: () => {},
 			type: 1,
 		}
@@ -71,7 +72,7 @@ let Modal = React.createClass({
 			return (
 				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
 					<div className="modal-overlay" onClick={ this.props.closeModalFunc }>
-						
+
 					</div>
 					<div className="modal-content--wrapper">
 						<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" className="close-icon" alt="close modal" />
@@ -80,11 +81,11 @@ let Modal = React.createClass({
 						</div>
 					</div>
 				</div>
-				)
+			)
 		// tip modal
 		else if(this.props.type === 2)
 			return (
-				<div 
+				<div
 					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
 					id="MASAS-modal"
 					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
@@ -94,7 +95,7 @@ let Modal = React.createClass({
 							Tip
 						</div>
 						{/* <div className="close-icon">
-							<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" alt="close modal" /> 
+							<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" alt="close modal" />
 							dismiss tips
 						</div> */}
 						<div className="">
@@ -102,11 +103,11 @@ let Modal = React.createClass({
 						</div>
 					</div>
 				</div>
-				)
+			)
 		// info modal (why can't sync song)
 		else if(this.props.type === 4)
 			return (
-				<div 
+				<div
 					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
 					id="MASAS-modal"
 					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
@@ -114,7 +115,7 @@ let Modal = React.createClass({
 						{ this.props.children }
 					</div>
 				</div>
-				)
+			)
 		// splash screen
 		else if(this.props.type === 3)
 			return (
@@ -123,7 +124,22 @@ let Modal = React.createClass({
 						{ this.props.children }
 					</div>
 				</div>
-				)
+			)
+		// create my profile
+		else if(this.props.type === 5)
+			return (
+				<div className={ "MASAS-modal type5" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
+					<div
+						className="modal-background"
+						style={{
+							backgroundImage: "url(" + this.props.backgroundURL + ")"
+						}}>
+					</div>
+					<div className="modal-type-5--wrapper">
+						{ this.props.children }
+					</div>
+				</div>
+			)
 	}
 })
 

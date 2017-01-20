@@ -692,6 +692,34 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .timePicker--wrapper .timePicker-slider--wrapper {
     bottom: 2.5rem; } }
+.MASAS-modal.type5 {
+  bottom: 0; }
+  .MASAS-modal.type5 .modal-type-5--wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .MASAS-modal.type5 .modal-background {
+    position: absolute;
+    top: -5rem;
+    bottom: -5rem;
+    left: -5rem;
+    right: -5rem;
+    background-size: cover;
+    filter: blur(10px); }
+    .MASAS-modal.type5 .modal-background:before {
+      background-color: rgba(0, 0, 0, 0.3);
+      content: " ";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+
 .MASAS-modal.type2 {
   top: 4.1rem;
   padding-top: 0rem; }
@@ -701,9 +729,9 @@ input[type=range].MASAS-slider {
     align-items: center;
     text-transform: uppercase;
     font-family: Lato-Semibold;
-    opacity: .5;
-    font-size: .7rem;
-    letter-spacing: .12rem; }
+    opacity: 0.5;
+    font-size: 0.7rem;
+    letter-spacing: 0.12rem; }
     .MASAS-modal.type2 .close-icon img {
       margin-right: 1rem; }
   .MASAS-modal.type2 .tip-title {
@@ -715,7 +743,7 @@ input[type=range].MASAS-slider {
       height: 3rem; }
     .MASAS-modal.type2 .tip-title span {
       font-size: 1.7rem;
-      letter-spacing: .35rem;
+      letter-spacing: 0.35rem;
       padding-left: 1.5rem; }
   .MASAS-modal.type2 .modal-type-4--wrapper {
     display: flex;
@@ -748,7 +776,7 @@ input[type=range].MASAS-slider {
   flex: 1;
   justify-content: center;
   align-items: center;
-  animation: fadein-modal .5s linear; }
+  animation: fadein-modal 0.5s linear; }
   .MASAS-modal .close-icon {
     z-index: 3;
     position: absolute;
@@ -757,9 +785,9 @@ input[type=range].MASAS-slider {
     padding: 2rem;
     cursor: pointer;
     height: 1.4rem;
-    opacity: .6; }
+    opacity: 0.6; }
   .MASAS-modal .close-icon:hover {
-    opacity: .8; }
+    opacity: 0.8; }
   .MASAS-modal .close-icon:active {
     opacity: 1; }
   .MASAS-modal .modal-overlay {
@@ -788,7 +816,7 @@ input[type=range].MASAS-slider {
 
 .MASAS-modal.closed {
   z-index: -10;
-  animation: fadeout-modal .5s linear; }
+  animation: fadeout-modal 0.5s linear; }
 
 @media screen and (min-width: 992px) {
   .MASAS-modal.type2 {

@@ -110,7 +110,7 @@ var App = React.createClass({
 					this.props.closeModal()
 				} else {
 					console.log("create profile")
-					this.props.updateModalContent(<CreateProfile />, 3)
+					this.props.updateModalContent(<CreateProfile />, 5)
 					// call create profile
 				}
 
