@@ -3297,12 +3297,12 @@ input[type=range].MASAS-slider {
     .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(2) .MASAS-textbox--wrapper .MASAS-text-input, .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(3) .MASAS-textbox--wrapper .MASAS-text-input {
       height: 1.5rem; }
     .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(2) .MASAS-label, .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox:nth-child(3) .MASAS-label {
-      margin-top: .7rem; }
+      margin-top: 0.7rem; }
     .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox .MASAS-label {
-      font-size: .8rem;
-      padding-bottom: .2rem; }
+      font-size: 0.8rem;
+      padding-bottom: 0.2rem; }
     .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .MASAS-textbox .MASAS-textbox--wrapper .MASAS-text-input {
-      letter-spacing: .07rem; }
+      letter-spacing: 0.07rem; }
     .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info {
       display: flex; }
       .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
@@ -3322,6 +3322,30 @@ input[type=range].MASAS-slider {
     margin: 1rem auto;
     width: 10rem; }
 
+@media screen and (min-width: 992px) {
+  .create-profile--wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute; }
+    .create-profile--wrapper .avatar--wrapper {
+      height: 11.7rem;
+      margin: 0; }
+      .create-profile--wrapper .avatar--wrapper .avatar {
+        width: 9rem;
+        height: 9rem; }
+    .create-profile--wrapper .create-profile-form .scroll--wrapper {
+      height: 13rem;
+      overflow-y: auto;
+      border: none;
+      padding-top: 0; }
+      .create-profile--wrapper .create-profile-form .scroll--wrapper .profile-edit--wrapper .personal-info {
+        margin: 0 4rem;
+        width: calc(50% - 4rem); }
+    .create-profile--wrapper .create-profile-form .save-button {
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%); } }
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }

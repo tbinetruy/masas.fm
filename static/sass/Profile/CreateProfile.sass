@@ -80,3 +80,68 @@
 		.save-button
 			margin: 1rem auto
 			width: 10rem
+
+@media screen and (min-width: $desktop-min-width)
+
+	.create-profile--wrapper
+		flex-direction: row
+		align-items: flex-start
+		justify-content: center
+		position: absolute
+
+		.avatar--wrapper
+			height: 11.7rem	// eyeballing
+			margin: 0
+
+			.avatar
+				width: 9rem
+				height: 9rem
+
+		.create-profile-form
+			.scroll--wrapper
+				height: 13rem
+				overflow-y: auto
+				border: none
+				padding-top: 0
+
+				.profile-edit--wrapper
+					.personal-info
+						margin: 0 4rem
+						width: calc(50% - 4rem)
+
+					// masas textbox UI overrides
+					.MASAS-textbox
+						&:nth-child(1)
+							.MASAS-textbox--wrapper
+								.MASAS-text-input
+
+						&.country-autocomplete--wrapper
+							.MASAS-textbox--wrapper
+								#city
+
+						&:nth-child(2), &:nth-child(3)
+							.MASAS-textbox--wrapper
+								.MASAS-text-input
+
+							.MASAS-label
+
+						.MASAS-label
+
+						.MASAS-textbox--wrapper
+							.MASAS-text-input
+
+					.links-info
+
+						.links-edit--wrapper
+							.link-edit
+
+								img
+
+								input, label
+
+								input
+
+			.save-button
+				position: absolute
+				right: 50%
+				transform: translateX(+50%)
