@@ -21,6 +21,8 @@ var Header = React.createClass({
 		// isModalOpened: React.PropTypes.bool,
 		// toogleModal: React.PropTypes.func,
 		// updateModalContent: React.PropTypes.func,
+		modalType: React.PropTypes.number,
+		isModalOpened: React.PropTypes.bool,
 
 		onSetNavSidebarOpen: React.PropTypes.func,
 		toogleIsOpened: React.PropTypes.func,
@@ -29,8 +31,12 @@ var Header = React.createClass({
 	},
 
 	render: function() {
+		let formatForModal = false
+		if(this.props.modalType === 5 && this.props.isModalOpened)
+			formatForModal = true
+
 		return (
-			<nav  className="header">
+			<nav  className={ "header" + (formatForModal ? " show-mobile" : "") }>
 				<div className="ajax-loader--wrapper">
 					<div className={ "ajax-loader" + (this.props.isAppFetching ? " visible" : "") }>
 					</div>
@@ -70,9 +76,9 @@ var Header = React.createClass({
 				</div>
 				<div className="row middle-xs phone-header">
 					<div className="col-xs-3">
-						<div className="box">
+						<div className="box" style={ formatForModal ? { pointerEvents: "none", opacity: 0 } : {} }>
 							{ this.props.pageType === 0 ?
-								<img onClick={this.props.onSetNavSidebarOpen} src="/static/img/MASAS_hamburger_menu.svg" alt="menu" className="menu-icon"/>
+								<img onClick={ this.props.onSetNavSidebarOpen} src="/static/img/MASAS_hamburger_menu.svg" alt="menu" className="menu-icon"/>
 								:
 								<img onClick={ () => { this.props.backArrowFunc(); this.props.closeModal() } } src="/static/img/MASAS_arrow_left.svg" alt="back" className="menu-icon"/>
 							}

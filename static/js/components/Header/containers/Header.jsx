@@ -24,6 +24,8 @@ Header.mapStateToProps = function(state) {
 		isAppFetching: state.appReducer.isAppFetching,
 		songPlaying: state.playerReducer.songPlaying,
 		MASASuser: state.appReducer.MASASuser,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
 	}
 }
 

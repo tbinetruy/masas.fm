@@ -14,13 +14,19 @@ $B: 0
 	min-height: min-content
 	position: relative
 
+	&.show-mobile
+		z-index: 10000
+
+		@media screen and (min-width: $desktop-min-width)
+			z-index: inherit
+
 	.ajax-loader--wrapper
 		position: absolute
 		top: 100%
 		left: 0
 		right: 0
 		height: 2px
-		
+
 		.ajax-loader
 			visibility: hidden
 			position: absolute
@@ -65,7 +71,7 @@ $B: 0
 		display: flex
 
 	.desktop-header
-		display: none		
+		display: none
 
 	.phone-header
 		background-color: rgba($R,$G,$B,$opacity)
@@ -108,7 +114,7 @@ $B: 0
 				background-size: contain
 				background-position: center
 				background-repeat: no-repeat
-				
+
 
 			.toogle-open-tray-icon.opened
 				background-image: url('/static/img/MASAS_icon_close.svg')
