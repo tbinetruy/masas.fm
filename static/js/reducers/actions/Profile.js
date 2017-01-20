@@ -174,10 +174,11 @@ function updateLinks(userData, textboxValues, header, csrftoken) {
 					if(counterSuccess === counterTotal) {
 						dispatch(updateProfileInfo())
 						dispatch(updateNotificationBar('Profile updated !'))
-						dispatch(toggleEditingProfile())
 					}
 				}).catch( e => {
 					dispatch(updateNotificationBar("Error updating profile..."))
+					// optimistic ui, close profile on save click and show again if problem occurred
+					dispatch(toggleEditingProfile())
 				})
 		})
 	}
