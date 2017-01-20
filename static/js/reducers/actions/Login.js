@@ -76,13 +76,21 @@ export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
 	})
 }
 
-// (obj) userDict => userDict.userToken and userDict.userPk
-export const updateProfilePicture = ({ userToken, userPk, avatar_url }) => (dispatch, getState) =>{
-	const header = "Bearer " + userToken
+
+// isDefaultPicture: (bool) should update profile with url of default profile picture
+// pictureURL: (str) url of profile picture if not default
+export const updateProfilePicture = pictureURL => (dispatch, getState) =>{
+	const state = getState()
+	const {
+		MASASuser,
+		MASASuserPk,
+	} = state.appReducer
+	const header = "Bearer " + MASASuser
+	const avatar_url = pictureURL
 
 	$.ajax({
 		type: "PATCH",
-		url: "/api/users/" + userPk + "/",
+		url: "/api/users/" + MASASuserPk + "/",
 		headers: {
 			"Authorization": header,
 			"Content-Type": "application/json"
@@ -94,7 +102,7 @@ export const updateProfilePicture = ({ userToken, userPk, avatar_url }) => (disp
 			const { userData } = getState().appReducer
 
 			if(userData.avatar_url !== avatar_url)
-				dispatch(updateUserInfo(userPk, userToken))
+				dispatch(updateUserInfo(MASASuserPk, MASASuser))
 		},
 		error: () => { }
 	})
@@ -118,14 +126,6 @@ export const updateUserInfo = (userPk, userToken) => dispatch => {
 	})
 }
 
-// returns url of random default avatar
-export const getRandomDefaultAvatar = () => {
-	const avatarUrlRoot = "/static/img/avatars/avatar_"
-	const avatarUrlSuffix = ".svg"
-	const randomAvatar = Math.floor(Math.random() * 6)
-
-	return avatarUrlRoot + randomAvatar + avatarUrlSuffix
-}
 
 // checks masas api user token and logs him in UI if token valid
 // userToken: (str) masas api user token

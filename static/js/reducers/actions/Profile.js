@@ -14,6 +14,50 @@ export const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_V
 export const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
 export const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
 
+
+// returns url of random default avatar
+export const getRandomDefaultAvatar = () => {
+	const avatarUrlRoot = "/static/img/avatars/"
+	const avatarUrlSuffix = ".svg"
+	const randomAvatar = Math.floor(Math.random() * 6)
+
+	return avatarUrlRoot + randomAvatar + avatarUrlSuffix
+}
+
+// isDefaultPicture: (bool) should update profile with url of default profile picture
+// pictureURL: (str) url of profile picture if not default
+export const updateProfilePicture = (isDefaultPicture, pictureURL) => (dispatch, getState) =>{
+	const state = getState()
+	const {
+		MASASuser,
+		MASASuserPk,
+	} = state
+	const header = "Bearer " + MASASuser
+	let avatar_url = getRandomDefaultAvatar()
+
+	if(!isDefaultPicture)
+		avatar_url = pictureURL
+
+	$.ajax({
+		type: "PATCH",
+		url: "/api/users/" + MASASuserPk + "/",
+		headers: {
+			"Authorization": header,
+			"Content-Type": "application/json"
+		},
+		data: JSON.stringify({
+			avatar_url,
+		}),
+		success: () => {
+			const { userData } = getState().appReducer
+
+			if(userData.avatar_url !== avatar_url)
+				dispatch(updateUserInfo(userPk, userToken))
+		},
+		error: () => { }
+	})
+}
+
 export function updateProfileBackArrowFunc(backArrowFunc) {
 	return {
 		type: UPDATE_BACK_ARROW_FUNC,

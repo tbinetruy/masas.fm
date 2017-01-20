@@ -1,3 +1,13 @@
+//
+//	All functions used that I don't know where to factor that are often used throughout the code
+//
+
+// should not touch redux states
+
+// some functions still do but should be removed soon
+
+import 'whatwg-fetch'
+
 const { dispatch } = require("./reducers/reducers.js")
 
 import {
@@ -20,6 +30,42 @@ var { browserHistory } = require("react-router")
 var Cookie = require("js-cookie")
 
 var MASAS_functions = {}
+
+/////
+/////
+/////
+////		Ajax
+////
+/////
+/////
+
+// userStep: (int)
+MASAS_functions.consts = {
+	userSteps: {
+		HAS_CREATED_PROFILE: 8,
+	}
+}
+MASAS_functions.updateUserStep = (userData, userToken, userStep) => {
+
+	const header = "Bearer " + userToken
+	var csrftoken = MASAS_functions.getCookie("csrftoken")
+
+	////////// UPDATE PROFILE
+	fetch("/api/usersteps/", {
+		method: "POST",
+		headers: {
+			"Authorization": header,
+			"X-CSRFToken": csrftoken,
+			"content-type": "application/json"
+		},
+		body: JSON.stringify({
+			user: userData.url,
+			step: userStep
+		}),
+	}).then( r => {
+	}).catch( e => {
+	})
+}
 
 /////
 /////
