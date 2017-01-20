@@ -30,6 +30,7 @@ var UploadSCHome = React.createClass({
 		updateMasasUserTracks: React.PropTypes.func,
 		updateSoundcloudUserTracks: React.PropTypes.func,
 		updateLoginMessage: React.PropTypes.func,
+		updateProfilePicture: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -38,12 +39,15 @@ var UploadSCHome = React.createClass({
 	connectToSC: function() {
 		SC.connect().then( () => {
 			this.props.updateIsConnectedSC(true)
-			SC.get('/me').then( (r) => {
+			SC.get('/me').then( r => {
 				// store suername for mobile
 				this.props.updateSCusername(r.username)
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
 				this.props.getUserTracks()
+
+				// update profile picture with soundcloud account
+				this.props.updateProfilePicture(r.avatar_url.replace('large.jpg', 't500x500.jpg'))
 			}).catch( () => {
 				this.props.updateSCusername(null)
 			})

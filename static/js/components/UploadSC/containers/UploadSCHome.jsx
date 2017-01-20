@@ -11,6 +11,10 @@ import {
 	updateMasasUserTracks,
 } from '../../../reducers/actions/UploadSC.js'
 
+import {
+	updateProfilePicture,
+} from "../../../reducers/actions/Login.js"
+
 var UploadSCHome = {}
 
 UploadSCHome.mapStateToProps = function(state) {
@@ -29,6 +33,7 @@ UploadSCHome.mapDispatchToProps = function(dispatch) {
 		updateSCusername: (SCusername) => dispatch(updateSCUsername(SCusername)),
 		updateMasasUserTracks: (masasUserTracks) => dispatch(updateMasasUserTracks(masasUserTracks)),
 		updateSoundcloudUserTracks: (soundcloudUserTracks) => dispatch(updateSCUserTracks(soundcloudUserTracks)),
+		updateProfilePicture: isDefaultPicture => dispatch(updateProfilePicture(isDefaultPicture))
 	}
 }
 
