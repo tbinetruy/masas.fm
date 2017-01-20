@@ -220,6 +220,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+	# Google OAuth2
+    'social.backends.google.GoogleOAuth2',
+
     # Facebook OAuth2
     'social.backends.facebook.FacebookAppOAuth2',
     'social.backends.facebook.FacebookOAuth2',
@@ -230,6 +233,18 @@ AUTHENTICATION_BACKENDS = (
     # Django
     'django.contrib.auth.backends.ModelBackend',
 )
+
+# Google configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get(
+    'GOOGLE_KEY',
+    '375876250017-60e48n07m846idoukpaifjqn2bdu6alm.apps.googleusercontent.com'
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get(
+    'GOOGLE_SECRET',
+    'ryqcaLrclKXeXtU2keTUzaov'
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email',]
 
 # Facebook configuration
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get(

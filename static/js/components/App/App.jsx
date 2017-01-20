@@ -9,6 +9,7 @@ var SplashScreen = require("./SplashScreen.jsx")
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
+var CreateProfile = require("../Profile/CreateProfile.jsx")
 
 
 var App = React.createClass({
@@ -20,6 +21,7 @@ var App = React.createClass({
 		processingAuthCookie: React.PropTypes.bool,
 		modalContent: React.PropTypes.element,
 		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
 		location: React.PropTypes.object,
 
 		toogleModal: React.PropTypes.func,
@@ -99,8 +101,23 @@ var App = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps) {
+		// check if user has logged in
 		if(this.props.MASASuser !== prevProps.MASASuser) {
-			this.props.closeModal()
+			// check if userData is not empty array.
+			if(this.props.userData.usersteps){
+				// if has created profile => close modal
+				if(this.props.userData.usersteps.map( entry => entry.step ).includes(8)) {
+					this.props.closeModal()
+				} else {
+					console.log("create profile")
+					this.props.updateModalContent(<CreateProfile />, 3)
+					// call create profile
+				}
+
+			}
+
+			// otherwise, close modal
+
 		}
 	},
 

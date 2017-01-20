@@ -6,6 +6,10 @@ import {
 } from "./Header.js"
 
 
+// global vars to this file
+let GOOGLE_USER_ID = undefined
+const GOOGLE_API_KEY = "AIzaSyCOTG3VdcDm8hAKe1abZQMjIggV4atedtI"
+
 export const logout = () => {
 	return dispatch => {
 		Cookie.remove("MASAS_authToken")
@@ -55,7 +59,7 @@ export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",
-		url: "/api/check-user/",	
+		url: "/api/check-user/",
 		headers: {
 			"Authorization": header,
 		},
@@ -72,41 +76,36 @@ export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
 	})
 }
 
-// (obj) userDict => userDict.userToken and userDict.userPk 
-export const updateProfilePicture = ({ userToken, userPk }) => (dispatch, getState) =>{
+// (obj) userDict => userDict.userToken and userDict.userPk
+export const updateProfilePicture = ({ userToken, userPk, avatar_url }) => (dispatch, getState) =>{
 	const header = "Bearer " + userToken
 
-	if(typeof(FB) !== "undefined")
-		if(FB.getUserID()) {
-			const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
+	$.ajax({
+		type: "PATCH",
+		url: "/api/users/" + userPk + "/",
+		headers: {
+			"Authorization": header,
+			"Content-Type": "application/json"
+		},
+		data: JSON.stringify({
+			avatar_url,
+		}),
+		success: () => {
+			const { userData } = getState().appReducer
 
-			$.ajax({
-				type: "PATCH",
-				url: "/api/users/" + userPk + "/",
-				headers: {
-					"Authorization": header,
-					"Content-Type": "application/json"
-				},
-				data: JSON.stringify({
-					avatar_url,
-				}),
-				success: () => {
-					const { userData } = getState().appReducer
-
-					if(userData.avatar_url !== avatar_url)
-						dispatch(updateUserInfo(userPk, userToken))
-				},
-				error: () => { }
-			})
-		}
+			if(userData.avatar_url !== avatar_url)
+				dispatch(updateUserInfo(userPk, userToken))
+		},
+		error: () => { }
+	})
 }
 
+// updates profile picture
 export const updateUserInfo = (userPk, userToken) => dispatch => {
 	$.ajax({
 		type: "GET",
 		url: "/api/users/" + userPk + "/",
 		success: userData => {
-			dispatch(updateProfilePicture({ userToken, userPk, userData }))
 
 			// log in user
 			dispatch({ type: "UPDATE_USER_PK", pk: userPk })
@@ -119,11 +118,23 @@ export const updateUserInfo = (userPk, userToken) => dispatch => {
 	})
 }
 
-export const loginWithToken = userToken => dispatch => {
+// returns url of random default avatar
+export const getRandomDefaultAvatar = () => {
+	const avatarUrlRoot = "/static/img/avatars/avatar_"
+	const avatarUrlSuffix = ".svg"
+	const randomAvatar = Math.floor(Math.random() * 6)
+
+	return avatarUrlRoot + randomAvatar + avatarUrlSuffix
+}
+
+// checks masas api user token and logs him in UI if token valid
+// userToken: (str) masas api user token
+// backend: (str) backend used to log in (to update profile picture)
+export const loginWithToken = (userToken, backend) => dispatch => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",
-		url: "/api/check-user/",	
+		url: "/api/check-user/",
 		headers: {
 			"Authorization": header,
 		},
@@ -139,7 +150,7 @@ export const loginWithToken = userToken => dispatch => {
 				} else {
 					var pk = r.userPk
 
-					dispatch(updateUserInfo(pk, userToken))
+					dispatch(updateUserInfo(pk, userToken, backend))
 				}
 			}
 
@@ -155,6 +166,7 @@ export const loginWithToken = userToken => dispatch => {
 	})
 }
 
+// converts backend (FB, google, etc) tokens to MASAS token (masas api)
 export const convertToken = (token, backend) => dispatch =>{
 	$.ajax({
 		type: "POST",
@@ -166,12 +178,12 @@ export const convertToken = (token, backend) => dispatch =>{
 			backend,
 			token,
 		},
-		success: r => { 
-			dispatch(loginWithToken(r.access_token))
+		success: r => {
+			dispatch(loginWithToken(r.access_token, backend))
 			dispatch(getUserPk(r.access_token))
 			updateAuthCookie(r.access_token)
 		},
-		error: () => { 
+		error: () => {
 			dispatch({ type:"LOGOUT" })
 		}
 	})
@@ -201,13 +213,23 @@ export const loginFB = () => dispatch => {
 		})
 }
 
+const loginGoogle = token => dispatch => {
+	GOOGLE_USER_ID = token
+	dispatch(convertToken(token, 'google-oauth2'))
+}
+
 // get token from oauth apis
 // service: service to oauth against
 // 'twiiter', 'facebook'
-export const login = service => dispatch => {
+// token: undefined for FB (calculated later) ; token value as string if Google
+export const login = (service, token = undefined) => dispatch => {
+	console.log(token, service)
 	switch(service) {
 		case 'facebook':
 			dispatch(loginFB())
+			break
+		case 'google':
+			dispatch(loginGoogle(token))
 			break
 		case 'twitter':
 			break

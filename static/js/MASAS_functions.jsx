@@ -29,6 +29,12 @@ var MASAS_functions = {}
 /////
 /////
 
+// input: usersteps from masas api
+// output: array of ints filled with user steps
+MASAS_functions.getUserSteps = usersteps => {
+	return usersteps.map( entry => entry.step )
+}
+
 // source: http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
 MASAS_functions.copyTextToClipboard = function(text) {
 	var textArea = document.createElement("textarea")

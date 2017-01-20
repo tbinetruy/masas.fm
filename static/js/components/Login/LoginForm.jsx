@@ -5,6 +5,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/LoginForm.js
 
 var { Body, Textbox, Password, Button, Link } = require("../UI/UI.jsx")
 
+import GoogleLogin from 'react-google-login'
+
 var LoginForm = React.createClass({
 	propTypes: {
 		fullForm: React.PropTypes.bool, 			// show the full login form be shown
@@ -81,6 +83,12 @@ var LoginForm = React.createClass({
 						facebook={ true }>
 						Facebook
 					</Button>
+					<GoogleLogin
+						clientId="375876250017-60e48n07m846idoukpaifjqn2bdu6alm.apps.googleusercontent.com"
+						buttonText="Google"
+						onSuccess={ r => { this.props.login('google', r.accessToken) } }
+						onFailure={ e => {} }
+						/>
 					<div className="subtitle">
 						{ this.props.subtitle }
 					</div>

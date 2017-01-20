@@ -3267,6 +3267,17 @@ input[type=range].MASAS-slider {
       .profile-edit--wrapper .links-info .links-edit--wrapper {
         flex: 1; } }
 
+.create-profile--wrapper .profile-edit--wrapper .links-info {
+  display: flex; }
+  .create-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .create-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
+      width: 1.5rem;
+      height: 1.5rem; }
+
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }

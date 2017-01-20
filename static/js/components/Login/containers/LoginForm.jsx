@@ -17,7 +17,7 @@ LoginForm.mapStateToProps = function(state) {
 LoginForm.mapDispatchToProps = function(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
-		login: backend => dispatch(login(backend)),
+		login: (backend, token = undefined) => dispatch(login(backend, token)),
 	}
 }
 

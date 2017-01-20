@@ -23,6 +23,7 @@ App.mapStateToProps = function(state) {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
 		processingAuthCookie: state.appReducer.processingAuthCookie,
 		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
 
 		bgFilter: state.appReducer.bgFilter,
 		modalType: state.appReducer.modalType,
