@@ -229,6 +229,9 @@ export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError
 		const header = "Bearer " + userToken
 		var csrftoken = getCookie("csrftoken")
 
+		if(textboxValues.city === "")
+			textboxValues.city = undefined
+
 		////////// UPDATE PROFILE
 		fetch(userData.url, {
 			method: "PATCH",
