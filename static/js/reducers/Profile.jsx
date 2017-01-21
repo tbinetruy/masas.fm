@@ -6,6 +6,7 @@ import {
 	UPDATE_SONG_MOOD_MODAL_VALUE,
 	UPDATE_BACK_ARROW_FUNC,
 	RESET_TEXTBOX_VALUES,
+	SET_EDITING_PROFILE_VISIBILITY,
 } from "./actions/Profile.js"
 
 let exportVar = {}
@@ -30,6 +31,11 @@ const { defaultState } = exportVar
 exportVar.profileReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
+		case SET_EDITING_PROFILE_VISIBILITY:
+			return {
+				...state,
+				isEditingProfile: action.isEditingProfile
+			}
 		case RESET_TEXTBOX_VALUES:
 			return {
 				...state,

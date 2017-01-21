@@ -14,6 +14,7 @@ export const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_V
 export const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
 export const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
 export const RESET_TEXTBOX_VALUES = 'RESET_TEXTBOX_VALUES'
+export const SET_EDITING_PROFILE_VISIBILITY = 'SET_EDITING_PROFILE_VISIBILITY'
 
 export const resetTextboxValue = () => {
 	return {
@@ -86,6 +87,13 @@ export function updateSongMoodModalValue(discoverNumber) {
 export function toggleEditingProfile() {
 	return {
 		type: TOGGLE_EDITING_PROFILE,
+	}
+}
+
+export function setEditingProfile(isEditingProfile) {
+	return {
+		type: SET_EDITING_PROFILE_VISIBILITY,
+		isEditingProfile: !!isEditingProfile,
 	}
 }
 

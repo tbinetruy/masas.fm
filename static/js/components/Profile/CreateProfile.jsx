@@ -22,6 +22,7 @@ var CreateProfile = React.createClass({
 		closeModal: React.PropTypes.func,
 		updateProfilePicture: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
+		setEditingProfile: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -32,6 +33,11 @@ var CreateProfile = React.createClass({
 
 	componentDidMount: function() {
 		this.props.updateTitle('My Profile')		// 0 = menu icon; 1 = arrow back
+	},
+
+	componentWillUnmount: function() {
+		// close edit profile form at unmount
+		this.props.setEditingProfile(false)
 	},
 
 	getDefaultAvatar: function() {

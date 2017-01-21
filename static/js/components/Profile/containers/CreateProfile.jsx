@@ -4,6 +4,7 @@ import {
 
 import {
 	updateProfilePicture,
+	setEditingProfile,
 } from "../../../reducers/actions/Login.js"
 
 import {
@@ -25,7 +26,8 @@ CreateProfile.mapDispatchToProps = function(dispatch) {
 		updateTitle: (title, pageType, backArrowFunc) => dispatch(updatePageTitle(title, pageType, backArrowFunc)),
 		saveProfile: (getCookie, callbackSuccess, callbackError = () => {}) => dispatch(saveProfile(getCookie, callbackSuccess, callbackError)),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
-		updateProfilePicture: isDefaultPicture => dispatch(updateProfilePicture(isDefaultPicture))
+		updateProfilePicture: isDefaultPicture => dispatch(updateProfilePicture(isDefaultPicture)),
+		setEditingProfile: isEditingProfile => dispatch(setEditingProfile(isEditingProfile)),
 	}
 }
 
