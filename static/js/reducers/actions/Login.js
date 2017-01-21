@@ -223,7 +223,6 @@ const loginGoogle = token => dispatch => {
 // 'twiiter', 'facebook'
 // token: undefined for FB (calculated later) ; token value as string if Google
 export const login = (service, token = undefined) => dispatch => {
-	console.log(token, service)
 	switch(service) {
 		case 'facebook':
 			dispatch(loginFB())
@@ -232,6 +231,7 @@ export const login = (service, token = undefined) => dispatch => {
 			dispatch(loginGoogle(token))
 			break
 		case 'twitter':
+			dispatch(convertToken(token, service))
 			break
 	}
 }

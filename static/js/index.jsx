@@ -39,7 +39,7 @@ ReactDOM.render((
                                <Route path="upload" component={UploadSC} />
                        </Route>
                        <Route path="/sc-callback" component={SoundcloudCallback} />
-                       <Route path="/social/complete/twitter" component={TwitterCallback} />
+                       <Route path="/twitter-callback" component={TwitterCallback} />
                </Router>
        </ReactRedux.Provider>
 ), document.getElementById("content"))

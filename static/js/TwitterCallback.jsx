@@ -8,7 +8,7 @@ var TwitterCallback = React.createClass({
 		this.processToken()
 
 		// close popup
-		window.close()
+		// window.close()
 	},
 
 	componentDidMount: function() {
@@ -16,8 +16,14 @@ var TwitterCallback = React.createClass({
 	},
 
 	processToken: function() {
-		const { oauth_token } = getUrlParams()
-		opener.document.twitterLogin(oauth_token)
+		const { oauth_token, oauth_token_secret } = getUrlParams()
+
+		const token = "oauth_token_secret="
+			+ oauth_token_secret
+			+ '&'
+			+ 'oauth_token='
+			+ oauth_token
+		opener.document.twitterLogin(token)
 	},
 
 	render() {

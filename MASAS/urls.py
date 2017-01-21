@@ -48,6 +48,8 @@ urlpatterns = format_suffix_patterns([
 
 urlpatterns += [
     url(r'^api/', include(router.urls)),
+	url(r'^twitter-login/', views.twitter_login),
+	url(r'^oauth/complete/twitter/$', views.twitter_authenticated),
 	url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(
         r'^.*',

@@ -1,5 +1,7 @@
 var React = require("react")
 
+var ReactRedux = require("react-redux")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/TwitterLoginButton.jsx")
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
@@ -9,8 +11,9 @@ var React = require("react")
 
 // }
 
-export const TwitterLoginButton = React.createClass({
+const TwitterLoginButtonContent = React.createClass({
 	propTypes: {
+		login: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -21,8 +24,9 @@ export const TwitterLoginButton = React.createClass({
 
 	},
 
-	processToken: function(token) {
-		document.twitterLogin = token => console.log(token)
+	processToken: function() {
+		// this.props.login(token)
+		document.twitterLogin = token => { console.log(token); this.props.login(token) }
 	},
 
 	windowpop: function(url, width, height) {
@@ -38,9 +42,14 @@ export const TwitterLoginButton = React.createClass({
 	render: function() {
 
 		return (
-			<div onClick={ () => this.windowpop(document.MASAS.FOO + "?next=" + encodeURI("/twitter-callback/"), 545, 433) } >
+			<div onClick={ () => this.windowpop(window.location.origin + "/twitter-login/", 545, 433) } >
 				<span>Twitter Login</span>
 			</div>
 		)
 	}
 })
+
+export const TwitterLoginButton = ReactRedux.connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(TwitterLoginButtonContent)
