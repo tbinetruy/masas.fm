@@ -26,7 +26,7 @@ const TwitterLoginButtonContent = React.createClass({
 
 	processToken: function() {
 		// this.props.login(token)
-		document.twitterLogin = token => { console.log(token); this.props.login(token) }
+		document.twitterLogin = token => this.props.login(token)
 	},
 
 	windowpop: function(url, width, height) {

@@ -57,8 +57,7 @@ export const updateProfilePicture = (isDefaultPicture, pictureURL) => (dispatch,
 		success: () => {
 			const { userData } = getState().appReducer
 
-			if(userData.avatar_url !== avatar_url)
-				dispatch(updateUserInfo(userPk, userToken))
+			dispatch(updateProfileInfo())
 		},
 		error: () => { }
 	})
@@ -226,7 +225,7 @@ function deleteLinks(userData, textboxValues, header, csrftoken) {
 export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError = () => {}) {
 	return (dispatch, getState) => {
 		const state = getState()
-		const { MASASuser, userData } = state.appReducer
+		const { MASASuser, MASASuserPk, userData } = state.appReducer
 		const userToken = MASASuser
 		var textboxValues = { ...state.profileReducer.textboxValues }
 		delete textboxValues.link_set
@@ -250,6 +249,9 @@ export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError
 		}).then( r => {
 			textboxValues = { ...state.profileReducer.textboxValues }
 			dispatch(deleteLinks(userData, textboxValues, header, csrftoken))
+
+			// update profile info state on save
+			dispatch(updateProfileInfo())
 
 			callbackSuccess()
 
