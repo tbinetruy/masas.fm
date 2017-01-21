@@ -1,6 +1,7 @@
 @import "./LoginForm"
 @import './TermsAndCond'
 @import './InvitationPending'
+@import './LoginButtons'
 
 .login-container
 	width: 100%
@@ -14,34 +15,6 @@
 	font-size: 0.85rem
 	letter-spacing: 0.1rem
 
-	.google-login-button
-		background-color: black
-		display: inline-block
-		background: rgb(209, 72, 54)
-		color: rgb(255, 255, 255)
-		border: 1px solid transparent
-		font-weight: bold
-		width: 12rem
-		border-radius: 0
-		margin-top: 1rem
-		height: 2.5rem
-		font-family: Lato-Light
-		font-size: 1.1rem
-		letter-spacing: .1rem
-		display: flex
-		align-items: center
-		cursor: pointer
-
-		&:before
-			content: ''
-			display: block
-			background-image: url("/static/img/google-logo.png")
-			height: 1rem
-			width: 1rem
-			background-size: contain
-			margin-right: 1.5rem
-			margin-left: 1rem
-			background-repeat: no-repeat
 
 @media screen and (min-width: $desktop-min-width)
 	.login-container

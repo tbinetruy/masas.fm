@@ -8,7 +8,7 @@ var TwitterCallback = React.createClass({
 		this.processToken()
 
 		// close popup
-		// window.close()
+		window.close()
 	},
 
 	componentDidMount: function() {

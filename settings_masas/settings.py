@@ -264,22 +264,20 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get(
     '09333f2e3964f73fdc0c6a9488122bb8'
 )
 
-SOCIAL_AUTH_TWITTER_KEY = "cW27zRFzW46Wr6uXmWJp8iMRJ"
-#  os.environ.get(
-# 	'TWITTER_KEY',
-# 	'cW27zRFzW46Wr6uXmWJp8iMRJ',
-# ),
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get(
+	'SOCIAL_AUTH_TWITTER_KEY',
+	'cW27zRFzW46Wr6uXmWJp8iMRJ',
+)
 
-SOCIAL_AUTH_TWITTER_SECRET = "xNSN2QJgWLpZJo0oDPviSDTZn83LejYMW2ar1jFC6NP0PzgjbY"
-# os.environ.get(
-# 	'TWITTER_SECRET',
-# 	'xNSN2QJgWLpZJo0oDPviSDTZn83LejYMW2ar1jFC6NP0PzgjbY',
-# ),
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get(
+	'SOCIAL_AUTH_TWITTER_SECRET',
+	'xNSN2QJgWLpZJo0oDPviSDTZn83LejYMW2ar1jFC6NP0PzgjbY',
+)
 
 TWITTER = {
     'KEY': os.environ.get(
         'TWITTER_KEY',
-        'cW27zRFzW46Wr6uXmWJp8iMRJ',
+        SOCIAL_AUTH_TWITTER_KEY,
     ),
 }
 

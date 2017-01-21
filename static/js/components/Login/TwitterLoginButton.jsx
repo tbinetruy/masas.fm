@@ -42,8 +42,11 @@ const TwitterLoginButtonContent = React.createClass({
 	render: function() {
 
 		return (
-			<div onClick={ () => this.windowpop(window.location.origin + "/twitter-login/", 545, 433) } >
-				<span>Twitter Login</span>
+			<div
+				className="twitter-login-button"
+				onClick={ () => this.windowpop(window.location.origin + "/twitter-login/", 545, 433) }
+			>
+				<span>Twitter</span>
 			</div>
 		)
 	}
