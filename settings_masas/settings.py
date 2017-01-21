@@ -104,6 +104,8 @@ MIDDLEWARE_CLASSES += [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
+	'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 ]
 
 AUTH_USER_MODEL = 'MASAS.User'
@@ -130,6 +132,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+				'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     }
@@ -223,6 +228,9 @@ AUTHENTICATION_BACKENDS = (
 	# Google OAuth2
     'social.backends.google.GoogleOAuth2',
 
+	# twitter OAuth
+	'social.backends.twitter.TwitterOAuth',
+
     # Facebook OAuth2
     'social.backends.facebook.FacebookAppOAuth2',
     'social.backends.facebook.FacebookOAuth2',
@@ -255,6 +263,18 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get(
     'FACEBOOK_SECRET',
     '09333f2e3964f73fdc0c6a9488122bb8'
 )
+
+SOCIAL_AUTH_TWITTER_KEY = "cW27zRFzW46Wr6uXmWJp8iMRJ"
+#  os.environ.get(
+# 	'TWITTER_KEY',
+# 	'cW27zRFzW46Wr6uXmWJp8iMRJ',
+# ),
+
+SOCIAL_AUTH_TWITTER_SECRET = "xNSN2QJgWLpZJo0oDPviSDTZn83LejYMW2ar1jFC6NP0PzgjbY"
+# os.environ.get(
+# 	'TWITTER_SECRET',
+# 	'xNSN2QJgWLpZJo0oDPviSDTZn83LejYMW2ar1jFC6NP0PzgjbY',
+# ),
 
 TWITTER = {
     'KEY': os.environ.get(

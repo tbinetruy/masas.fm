@@ -48,6 +48,7 @@ urlpatterns = format_suffix_patterns([
 
 urlpatterns += [
     url(r'^api/', include(router.urls)),
+	url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(
         r'^.*',
         views.SPAView.as_view()
