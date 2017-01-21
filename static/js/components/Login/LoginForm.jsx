@@ -91,8 +91,6 @@ var LoginForm = React.createClass({
 						onSuccess={ r => { this.props.login('google', r.accessToken) } }
 						onFailure={ e => {} }
 						/>
-					<TwitterLoginButton
-						/>
 					<div className="subtitle">
 						{ this.props.subtitle }
 					</div>
