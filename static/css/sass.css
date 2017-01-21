@@ -258,6 +258,9 @@
 
 .MASAS-button.facebook-login-button {
   background-color: #3b5997; }
+  @media screen and (min-width: 992px) {
+    .MASAS-button.facebook-login-button {
+      height: 1.15rem; } }
   .MASAS-button.facebook-login-button .wrapper {
     display: flex;
     padding-left: .5rem; }
@@ -1607,7 +1610,7 @@ input[type=range].MASAS-slider {
   height: 2.5rem;
   font-family: Lato-Light;
   font-size: 1.1rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: .1rem;
   display: flex;
   align-items: center;
   cursor: pointer; }
@@ -1624,7 +1627,7 @@ input[type=range].MASAS-slider {
 .login-container .twitter-login-button {
   background-color: #1da1f2; }
   .login-container .twitter-login-button:before {
-    background-image: url("/static/img/google-logo.png"); }
+    background-image: url("/static/img/twitter-logo.svg"); }
 
 @media screen and (min-width: 992px) {
   .login-container .google-login-button, .login-container .twitter-login-button {
