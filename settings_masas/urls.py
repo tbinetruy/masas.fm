@@ -1,5 +1,7 @@
 import os
 
+from MASAS import views
+
 from django.conf.urls import url, include
 from django.views import generic
 from django import http
@@ -16,6 +18,7 @@ class VerificationView(generic.View):
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^social/complete/twitter/', views.SPAView.as_view()),
     url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

@@ -9,6 +9,7 @@ var Route = require("react-router").Route
 var browserHistory = require("react-router").browserHistory
 
 var SoundcloudCallback = require("./SoundcloudCallback.jsx")
+var TwitterCallback = require("./TwitterCallback.jsx")
 
 var App = require("./components/App/App.jsx")
 var Login = require("./components/Login/LoginForm.jsx")
@@ -38,6 +39,7 @@ ReactDOM.render((
                                <Route path="upload" component={UploadSC} />
                        </Route>
                        <Route path="/sc-callback" component={SoundcloudCallback} />
+                       <Route path="/social/complete/twitter" component={TwitterCallback} />
                </Router>
        </ReactRedux.Provider>
 ), document.getElementById("content"))

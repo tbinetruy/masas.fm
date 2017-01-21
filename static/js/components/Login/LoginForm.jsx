@@ -6,7 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/LoginForm.js
 var { Body, Textbox, Password, Button, Link } = require("../UI/UI.jsx")
 
 import GoogleLogin from "react-google-login"
-import TwitterLoginButton from "./TwitterLoginButton.jsx"
+import { TwitterLoginButton } from "./TwitterLoginButton.jsx"
 
 var LoginForm = React.createClass({
 	propTypes: {
