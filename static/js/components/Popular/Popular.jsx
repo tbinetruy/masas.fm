@@ -36,12 +36,7 @@ var Popular = React.createClass({
 	},
 
 	getContent: function() {
-		const userPk = parseInt(this.props.userPk)
-		const allowedUserPk = [4,5,6,10]
-
-		let content = <div className="coming-soon">Coming Soon</div>
-		if(allowedUserPk.includes(userPk))
-			content = (
+		const content = (
 				<div className="popular-content--wrapper">
 					<ArtworkLine
 						playFromPopular={ true }/>
