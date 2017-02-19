@@ -60,11 +60,11 @@ var UploadSCHome = React.createClass({
 	render: function() {
 		return (
 					<div className="description">
-						<ol>
-							<li>Music you share gets featured at the time of your choice on Discover</li>
-							<li>Your recent uploads get listened to and liked by Music Lovers</li>
-							<li>The most liked ones are selected daily to play on the Crowdradio</li>
-						</ol>
+						
+							<p className="description-paragraph">Your music will first play in Discover - If the community likes it there, 
+ then you’ll play on the Crowradio!</p>
+						
+						
 						<div className="img-container">
 						</div>
 

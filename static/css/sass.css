@@ -2771,12 +2771,10 @@ input[type=range].MASAS-slider {
       justify-content: center;
       width: auto;
       margin: 0 auto; }
-      .outer-upload-sc--wrapper .content .description ol {
-        list-style-type: decimal;
-        font-family: Lato-Light;
-        margin-left: 1rem; }
-        .outer-upload-sc--wrapper .content .description ol li {
-          margin-bottom: .5rem; }
+      .outer-upload-sc--wrapper .content .description .description-paragraph {
+        margin: auto;
+        text-align: center;
+        max-width: 100%; }
       .outer-upload-sc--wrapper .content .description .img-container {
         margin: 1rem 0;
         display: flex;
@@ -2790,17 +2788,19 @@ input[type=range].MASAS-slider {
         width: 100%;
         max-height: 60vw; }
       .outer-upload-sc--wrapper .content .description .connect-button {
-        margin-bottom: .5rem; }
+        margin-bottom: 0.5rem; }
         .outer-upload-sc--wrapper .content .description .connect-button .MASAS-button {
           width: auto; }
         .outer-upload-sc--wrapper .content .description .connect-button .button-subtitle {
           display: flex;
           justify-content: center;
-          margin-top: .5rem;
-          opacity: .8;
-          letter-spacing: .04rem;
+          margin-top: 0.5rem;
+          opacity: 0.8;
+          letter-spacing: 0.04rem;
           font-family: Lato-Light; }
     @media screen and (min-width: 992px) {
+      .outer-upload-sc--wrapper .content .description .description-paragraph {
+        max-width: 95%; }
       .outer-upload-sc--wrapper .content .connect-button {
         width: 20rem;
         align-self: center; } }
