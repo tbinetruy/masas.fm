@@ -61,7 +61,7 @@ var UploadSCHome = React.createClass({
 		return (
 					<div className="description">
 						
-							<p className="description-paragraph">Your music will first play in Discover - If the community likes it there, 
+							<p className="description-paragraph">Your music will first play in Discover - If the community likes it, 
  then you’ll play on the Crowradio!</p>
 						
 						

@@ -165,7 +165,7 @@ var UploadSC = React.createClass({
 			} else {
 				content = <UploadSCHome
 					getUserTracks={ this.getUserTracks }/>
-				title = "Get Featured on our Crowdradio"
+				title = "Get Featured on the Crowdradio"
 				pageNumber = 1
 			}
 		}

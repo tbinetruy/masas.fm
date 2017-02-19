@@ -2736,6 +2736,7 @@ input[type=range].MASAS-slider {
           font-size: 1.2rem; } }
 .outer-upload-sc--wrapper {
   flex: 1;
+  margin: 1rem 0;
   align-items: center;
   display: flex;
   width: 90%;
@@ -2746,9 +2747,11 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column; }
     .outer-upload-sc--wrapper .header h2 {
-      margin-top: .5rem;
-      font-size: 1.5rem;
-      text-align: center; }
+      margin-top: 0.5rem;
+      text-align: center;
+      line-height: 1.8rem;
+      letter-spacing: 0.13rem;
+      font-size: 1.7rem; }
     .outer-upload-sc--wrapper .header .nav-dots {
       display: flex;
       justify-content: center;
@@ -2773,7 +2776,10 @@ input[type=range].MASAS-slider {
       margin: 0 auto; }
       .outer-upload-sc--wrapper .content .description .description-paragraph {
         margin: auto;
-        text-align: center; }
+        text-align: center;
+        line-height: 1.3rem;
+        letter-spacing: 0.03rem;
+        font-size: 1rem; }
       .outer-upload-sc--wrapper .content .description .img-container {
         margin: 1rem 0;
         display: flex;
