@@ -2773,8 +2773,7 @@ input[type=range].MASAS-slider {
       margin: 0 auto; }
       .outer-upload-sc--wrapper .content .description .description-paragraph {
         margin: auto;
-        text-align: center;
-        max-width: 100%; }
+        text-align: center; }
       .outer-upload-sc--wrapper .content .description .img-container {
         margin: 1rem 0;
         display: flex;
