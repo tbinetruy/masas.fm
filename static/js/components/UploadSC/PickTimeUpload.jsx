@@ -13,7 +13,7 @@ var PickTimeUpload = React.createClass({
 	propTypes: {
 		// NONE REDUX
 		visible: React.PropTypes.bool,				// is cancel button visible
-		checkUserStep: React.PropTypes.func,		// check user step and show tip modal if necessary 
+		checkUserStep: React.PropTypes.func,		// check user step and show tip modal if necessary
 		track: React.PropTypes.object,			// array containing track information
 
 		// REDUX
@@ -36,7 +36,7 @@ var PickTimeUpload = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Upload', 1)		// 0 = menu icon; 1 = arrow back
+		this.props.updateTitle('Upload', 1, this.props.closeWindow)		// 0 = menu icon; 1 = arrow back
 
 		this.props.checkUserStep()
 	},
@@ -47,7 +47,7 @@ var PickTimeUpload = React.createClass({
 		var header = "Bearer " + this.props.MASASuser
 		$.ajax({
 			type: "POST",
-			url: 'api/songs/',	
+			url: 'api/songs/',
 			headers: {
 				"Authorization": header,
 				"X-CSRFToken": csrftoken
@@ -64,7 +64,7 @@ var PickTimeUpload = React.createClass({
 				// UPDATE USER INFO
 				this.props.updateProfileInfo()
 
-				// CLOSE MODAL 
+				// CLOSE MODAL
 				this.props.toogleModal()
 
 				// CLOSE CHOOSING TIME
@@ -72,7 +72,7 @@ var PickTimeUpload = React.createClass({
 
 			},
 			error: (err) => {
-				// CLOSE MODAL 
+				// CLOSE MODAL
 				this.props.toogleModal()
 
 				// EMIT NOTIFICATION
@@ -99,7 +99,7 @@ var PickTimeUpload = React.createClass({
 		return (
 			<div className="pick-time-sc-sync">
 				<div className="song-name--wrapper">
-					{ 
+					{
 						this.props.track.artwork_url ?
 							<img src={this.props.track.artwork_url} alt="song artwork" className="artwork" />
 						:
@@ -110,19 +110,19 @@ var PickTimeUpload = React.createClass({
 				</div>
 				<div className="pickTime--wrapper">
 					<div className="canvas">
-						<TimePicker 
+						<TimePicker
 							initialDiscover={ 2 }
-							currentDiscover={ this.props.pickTimeUpload } 
-							onSliderChange={ this.props.handleTimePickerChange } 
+							currentDiscover={ this.props.pickTimeUpload }
+							onSliderChange={ this.props.handleTimePickerChange }
 							wrapperClassName="timePicker--pick-time-upload--wrapper"
 							canvasId="timePicker--pick-time-upload--id" />
 					</div>
 				</div>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.openModal}>Submit</Button>
-					<Link 
-						to="/upload" 
-						className="cancel-button" 
+					<Link
+						to="/upload"
+						className="cancel-button"
 						onClick={this.props.closeWindow}>
 						<span>cancel</span>
 					</Link>

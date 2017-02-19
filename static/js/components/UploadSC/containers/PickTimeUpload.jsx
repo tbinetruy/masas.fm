@@ -34,7 +34,7 @@ PickTimeUpload.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
-		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		updateTitle: (title, pageType, callback) => dispatch(updatePageTitle(title, pageType, callback)),
 		closeWindow: () => dispatch(closePickTimeWindow()),
 		handleTimePickerChange: newDiscover => dispatch(handlePickTimeUpload(newDiscover)),
 		emitNotification: text =>  dispatch(updateNotificationBar(text)),
