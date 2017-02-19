@@ -13,3 +13,4 @@ logs
 db.sqlite3
 activate
 data
+wsgi
