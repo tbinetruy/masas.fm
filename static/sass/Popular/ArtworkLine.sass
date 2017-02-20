@@ -1,4 +1,7 @@
+// overridding Discover/ArtworkLine.sass
+
 .artwork-line--wrapper.popular
+	@import "./ArtworkLineItem"
 
 	.button
 
@@ -36,6 +39,7 @@
 	.left-side, .right-side
 
 	.left-side
+		display: none
 
 		.artwork-line
 
@@ -48,8 +52,8 @@
 
 
 @media screen and (min-width: $desktop-min-width)
-	.artwork-line--wrapper
-		$artworkWidth: 35vh
+	.artwork-line--wrapper.popular
+		$artworkWidth: 45vh
 		$song-info-height: 3rem
 		$font-size: 0.7rem
 		$ratio: $artworkWidth / $song-info-height
@@ -58,6 +62,8 @@
 		$like-icon-width: 1.5rem
 
 		.button
+			padding-left: 2*$artworkWidth
+
 			img
 
 			img.small
@@ -68,29 +74,44 @@
 		.artwork-playing--wrapper.hide-on-mobile
 
 		.artwork-playing--wrapper
+			max-width: $artworkWidth
+			height: calc(#{$artworkWidth} + #{$song-info-height})
 
 			.next-song-button
 
 			.pervious-song-button
 
 			.artwork-playing
+				width: $artworkWidth
+				height: $artworkWidth
 
 				.artwork
+					width: $artworkWidth
+					height: $artworkWidth
 
 			.song-info--wrapper
-				
+				height: $song-info-height
+				padding: 0 $sidePadding
+
 				&.popular
 
 					.like-icon
+						width: $like-icon-width
+
 						img
+							width: $like-icon-width
 
 				.like-icon
-					
+
 					img
-						
+
 
 				.song-info
+					padding-left: $sidePadding
+
 					.title, .artist
+						height: $font-size
+						width: calc(#{$artworkWidth} - 3 * (#{$sidePadding} + #{$like-icon-width}))
 
 		.left-side, .right-side
 
@@ -102,11 +123,12 @@
 		$sidePadding: $sidePadding * 1
 		height: calc(#{$artworkWidth} + #{$song-info-height})
 		.left-side
+			width: calc(50% - #{$artworkWidth} / 2.2)
 
 			.artwork-line
 
 				.artwork-line2
-					
+
 
 				.empty-artwork
 					// height: $artworkWidth
