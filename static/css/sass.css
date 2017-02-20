@@ -2478,7 +2478,7 @@ input[type=range].MASAS-slider {
       justify-content: center; }
   .pick-time-sc-sync .pickTime--wrapper #timePicker--pick-time-upload--wrapper, .pick-time-sc-sync .pickTime--wrapper .timePicker--pick-time-upload--wrapper {
     height: 90px;
-    width: 220px; }
+    width: 250px; }
   .pick-time-sc-sync .question-text {
     font-size: 1.02rem;
     letter-spacing: 0.18rem;
