@@ -132,6 +132,7 @@ var ArtworkLine = React.createClass({
 		if(history.length === 0)
 			return <EmptyArtwork
 				playRandomSong={ this.playRandomSong }
+				playFromPopular={ this.props.playFromPopular }
 				popularTheme={ this.props.playFromPopular }/>
 		else {
 			const artworkLine = this.getArtworkLine(history)
@@ -150,7 +151,7 @@ var ArtworkLine = React.createClass({
 					artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 
 			return  (
-				<div className="artwork-line--wrapper">
+				<div className={ "artwork-line--wrapper " + (this.props.playFromPopular ? "popular" : "") }>
 					<div className="left-side">
 						<div className="artwork-line" ref="artworkLine">
 							<div className="artwork-line2">

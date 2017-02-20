@@ -4,6 +4,7 @@ export const EmptyArtwork = React.createClass({
 	propTypes: {
 		playRandomSong: React.PropTypes.func.isRequired,		// callback to execute when clicking on EmptyArtwork
 		popularTheme: React.PropTypes.bool,						// should comp be styled for popular theme
+		playFromPopular: React.PropTypes.bool,
 	},
 
 	getDefaultProps: function() {
@@ -14,7 +15,7 @@ export const EmptyArtwork = React.createClass({
 
 	render: function() {
 		return (
-			<div className="artwork-line--wrapper">
+			<div className={ "artwork-line--wrapper " + (this.props.playFromPopular ? "popular" : "") }>
 				<div
 					className="left-side">
 					<div className="artwork-line" ref="artworkLine">

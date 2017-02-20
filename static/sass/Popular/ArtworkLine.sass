@@ -1,0 +1,115 @@
+.artwork-line--wrapper.popular
+
+	.button
+
+	.artwork-playing--wrapper.hide-on-mobile
+
+	.artwork-playing--wrapper.hide-content
+
+	.artwork-playing--wrapper
+
+
+		.next-song-button
+
+		.pervious-song-button
+			&.hidden
+
+		.artwork-playing
+			height: 45vh
+			width: 45vh
+
+			.player-button
+
+				img
+
+			.player-button.show-play-button
+
+
+			.artwork
+				height: 45vh
+				width: 45vh
+
+
+
+		.song-info--wrapper
+
+	.left-side, .right-side
+
+	.left-side
+
+		.artwork-line
+
+			$artworkWidth: 12rem
+			.artwork-line2
+
+			.empty-artwork
+
+
+
+
+@media screen and (min-width: $desktop-min-width)
+	.artwork-line--wrapper
+		$artworkWidth: 35vh
+		$song-info-height: 3rem
+		$font-size: 0.7rem
+		$ratio: $artworkWidth / $song-info-height
+		$font-ratio: $artworkWidth / $font-size
+		$sidePadding: 1rem
+		$like-icon-width: 1.5rem
+
+		.button
+			img
+
+			img.small
+
+
+		.button.show
+
+		.artwork-playing--wrapper.hide-on-mobile
+
+		.artwork-playing--wrapper
+
+			.next-song-button
+
+			.pervious-song-button
+
+			.artwork-playing
+
+				.artwork
+
+			.song-info--wrapper
+				
+				&.popular
+
+					.like-icon
+						img
+
+				.like-icon
+					
+					img
+						
+
+				.song-info
+					.title, .artist
+
+		.left-side, .right-side
+
+
+		$ratio: 0.7
+		$artworkWidth: $artworkWidth * $ratio
+		$song-info-height: $song-info-height * $ratio
+		$font-size: $font-size * $ratio
+		$sidePadding: $sidePadding * 1
+		height: calc(#{$artworkWidth} + #{$song-info-height})
+		.left-side
+
+			.artwork-line
+
+				.artwork-line2
+					
+
+				.empty-artwork
+					// height: $artworkWidth
+					// width: $artworkWidth / 2
+
+
