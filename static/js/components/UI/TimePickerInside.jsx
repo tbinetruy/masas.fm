@@ -1,5 +1,5 @@
 // STATEFULL COMPONENT
-// no performant enough to be fuly coupled with redux, so no 2 way binding between redux state and slider value. 
+// no performant enough to be fuly coupled with redux, so no 2 way binding between redux state and slider value.
 // instead, slider value binded 2 ways with inner state var calling this.props.onChange when slider movement is
 // triggered.
 
@@ -18,7 +18,7 @@ var TimePicker = React.createClass({
 	cancelablePromise: makePromiseCancelable(new Promise( () => {} )),
 
 	propTypes: {
-		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
+		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
 		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
 		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
 		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
@@ -68,7 +68,7 @@ var TimePicker = React.createClass({
 
 	componentWillUnmount: function() {
 		$(window).unbind('resize', this.updateCanvasDim)
-		this.cancelablePromise.cancel()		
+		this.cancelablePromise.cancel()
 	},
 
 	updateCanvasDim: function() {
@@ -81,7 +81,7 @@ var TimePicker = React.createClass({
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width
 		canvasHeight = parseInt(canvasHeight.split("p")[0])
 		canvasWidth = parseInt(canvasWidth.split("p")[0])
-		
+
 			// define sun arc path center and radius (magic numbers used for ajusting curves)
 		var arcRadius = canvasWidth / 1.9
 		var arcCenterCoords = { x: canvasWidth / 2, y: arcRadius + 15 }
@@ -107,7 +107,7 @@ var TimePicker = React.createClass({
 			var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1"
 
 			var d = [
-				"M", start.x, start.y, 
+				"M", start.x, start.y,
 				"A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
 			].join(" ")
 
@@ -142,11 +142,11 @@ var TimePicker = React.createClass({
 	getSunCoords: function(sliderValue) {
 		var { sqrt, pow } = Math
 
-		if(sliderValue > 100) 
+		if(sliderValue > 100)
 			sliderValue = 100
 		else if(sliderValue < 0)
 			sliderValue = 0
-		
+
 		var R = this.state.arcRadius
 		var C = this.state.arcCenterCoords
 		var x = sliderValue / 100 * this.state.canvasWidth
@@ -200,7 +200,7 @@ var TimePicker = React.createClass({
 			this.renderNumber = this.renderNumber + 1
 
 		// accounting for sun icon size
-		var sunIconSize = 45	
+		var sunIconSize = 45
 		var sunCoords = this.getSunCoords(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 		var top = sunCoords.y - sunIconSize / 2
 		var left = sunCoords.x - sunIconSize / 2
@@ -243,23 +243,25 @@ var TimePicker = React.createClass({
 							right: 0,
 							left: 0,
 							bottom: "1rem",
-							zIndex: "-2"
+							zIndex: "-2",
+							display: "none",
 						}}/>
-						<img 
+						<img
 							src="/static/img/MASAS_slider_thumb_icon.svg"
 							style={{
 								position: "absolute",
 								bottom: "1rem",
 								left: sunIconStyle.left,
 								transform: "translateY(37%)",
-								zIndex: "-1"
-							}} 
+								zIndex: "-1",
+								display: "none"
+							}}
 							alt="slider thumb icon"/>
 					</div>
 					<div className="timeRange-hashtag">
-						{ 
+						{
 							this.props.showHashtag ?
-								this.getHashtag(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue) 
+								this.getHashtag(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 							:
 								""
 						}

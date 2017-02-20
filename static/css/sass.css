@@ -693,7 +693,16 @@ input[type=range].MASAS-slider {
       font-size: 0.8rem;
       opacity: 0.8;
       font-family: Lato-Light;
-      letter-spacing: 0.2rem; }
+      letter-spacing: 0.2rem;
+      position: absolute;
+      bottom: 0.5rem;
+      font-size: 1.2rem;
+      opacity: 1;
+      font-family: Lato-Semibold;
+      border-bottom: 1px solid white;
+      padding-bottom: 1rem;
+      padding-right: 1rem;
+      padding-left: 1rem; }
 
 @media screen and (min-width: 992px) {
   .timePicker--wrapper .timePicker-slider--wrapper {
@@ -4847,10 +4856,10 @@ input[type=range].MASAS-slider {
     height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
       height: 7rem;
-      width: 15rem; }
+      width: 22rem; }
       .discover--wrapper .time-picker--wrapper .timePicker--wrapper #timePicker--canvas {
         height: 7rem;
-        width: 15rem; }
+        width: 22rem; }
       .discover--wrapper .time-picker--wrapper .timePicker--wrapper .timePicker-slider--wrapper {
         bottom: 0; }
 
