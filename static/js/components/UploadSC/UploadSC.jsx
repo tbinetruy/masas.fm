@@ -144,7 +144,7 @@ var UploadSC = React.createClass({
 					<PickTimeUpload
 						logoutSC={ this.logoutSC }/>
 			)
-			title = "Now pick the right time for your sound"
+			title = "When do you want this sound to play?"
 			pageNumber = 3
 		} else {
 			if(this.props.isConnectedSoundcloud && this.props.userPk) {
@@ -158,14 +158,14 @@ var UploadSC = React.createClass({
 						)
 					} else {
 						content = <UploadSCSongTable />
-						title = "Today let’s feature..."
+						title = "Sync any tracks that you want!"
 						pageNumber = 2
 					}
 				}
 			} else {
 				content = <UploadSCHome
 					getUserTracks={ this.getUserTracks }/>
-				title = "Get Featured on the Crowdradio"
+				title = "Get Featured on the Crowdradio!"
 				pageNumber = 1
 			}
 		}
