@@ -69,9 +69,9 @@ var NavSidebar = React.createClass({
 						<div className="content">
 							<div className="nav-links">
 								<div className="link">
-									<Link to="/" onClick={this.clearUI}>
-										{ /* <img src="/static/img/MASAS_logo-M.svg" alt="radio icon" /> */}
-										home
+									<Link disabled={ false } to="/upload" onClick={this.clearUI}>
+										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
+										upload
 									</Link>
 								</div>
 								<div className="link">
@@ -84,12 +84,6 @@ var NavSidebar = React.createClass({
 									<Link to='/discover' disabled={ false } onClick={this.clearUI}>
 										{ /* <img src="/static/img/MASAS_icon_Discover.svg" alt="radio icon" />*/}
 										discover
-									</Link>
-								</div>
-								<div className="link">
-									<Link disabled={ false } to="/upload" onClick={this.clearUI}>
-										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
-										upload
 									</Link>
 								</div>
 								<div className="link">

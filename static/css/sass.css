@@ -1955,7 +1955,7 @@ input[type=range].MASAS-slider {
       justify-content: center;
       align-items: center;
       font-size: .85rem;
-      margin-right: .5rem; }
+      margin-left: 0rem; }
     .header .desktop-header .search-icon {
       height: 1rem; }
     .header .desktop-header .username {
@@ -2864,17 +2864,19 @@ input[type=range].MASAS-slider {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 15rem;
+  height: 25rem;
   text-transform: capitalize;
-  width: 10rem;
+  width: 12rem;
   align-self: center;
   flex: 1;
-  justify-content: center;
-  letter-spacing: .05rem;
-  font-family: Lato-Light; }
+  /*justify-content: center */
+  margin-top: 4rem;
+  letter-spacing: 0.09rem;
+  font-family: Lato-Light;
+  font-size: 1rem; }
 .navSidebar--wrapper .content .nav-links .link {
   align-self: flex-start;
-  padding-bottom: 1.9rem;
+  padding-bottom: 2.4rem;
   padding-left: 1.8rem; }
 .navSidebar--wrapper .content .nav-links .link .MASAS-link {
   display: flex;
@@ -2882,7 +2884,7 @@ input[type=range].MASAS-slider {
   height: 2rem; }
 .navSidebar--wrapper .content .nav-links .link .MASAS-link img {
   width: 2rem;
-  padding-right: .5rem; }
+  padding-right: 0.5rem; }
 .navSidebar--wrapper .content .nav-links .link .MASAS-link span {
   align-self: center; }
 .navSidebar--wrapper .profile-picture--wrapper {
@@ -2895,7 +2897,7 @@ input[type=range].MASAS-slider {
     position: absolute;
     bottom: 0;
     font-size: 1.5rem;
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
     padding-bottom: 1rem;
     padding-left: 2rem; }
   .navSidebar--wrapper .profile-picture--wrapper .profile-picture {
@@ -2904,9 +2906,9 @@ input[type=range].MASAS-slider {
 .navSidebar--wrapper .navSidebar-footer {
   display: flex;
   justify-content: space-between;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-family: Lato-Semibold;
-  margin: 1rem .5rem; }
+  margin: 1rem 0.5rem; }
 
 .profile--wrapper {
   display: flex;

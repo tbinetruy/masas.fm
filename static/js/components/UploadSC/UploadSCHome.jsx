@@ -74,7 +74,7 @@ you'll play on the <span className="discoverBold">Crowdradio!</span></p>
 									<Button
 										onClick={ this.connectToSC }
 										isBigButton={ true }
-										soundcloud={ true }>Login via SoundCloud</Button>
+										soundcloud={ true }>Sync My SoundCloud</Button>
 								</div>
 							:
 								<div className="connect-button">
