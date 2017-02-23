@@ -130,11 +130,10 @@ var SplashScreen = React.createClass({
 
 							<div className="swiper-slide first-slide">
 								<img src="/static/img/MASAS_logo_tipi.svg" alt="MASAS-logo" />
+
 								<div
 									className="main-content"
-									opacity>
-									<h1>music by the mood</h1>
-
+									>
 									<div className="swiper-container hashtag-swiper-container">
 										<div className="swiper-wrapper hashtag-swiper-wrapper">
 											<div className="swiper-slide">#EarlyMorning</div>
