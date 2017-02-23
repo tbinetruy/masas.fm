@@ -2796,6 +2796,8 @@ input[type=range].MASAS-slider {
         letter-spacing: .03rem;
         font-size: 1.2rem;
         font-family: Lato-Hairline; }
+      .outer-upload-sc--wrapper .content .description .discoverBold {
+        font-family: Lato-Semibold; }
       .outer-upload-sc--wrapper .content .description .img-container {
         margin: 1rem 0;
         display: flex;
