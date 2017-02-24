@@ -71,15 +71,9 @@ var SplashScreen = React.createClass({
 					case 3:
 						changeBackground(3)
 						break
-					case 4:
-						changeBackground(4)
-						break
-					case 5:
-						changeBackground(5)
-						break
 				}
 
-			if(this.backgroundNumber < 5)
+			if(this.backgroundNumber < 3)
 				this.backgroundNumber = this.backgroundNumber  + 1
 			else
 				this.backgroundNumber = 0
@@ -149,10 +143,10 @@ var SplashScreen = React.createClass({
 									<div className="login-buttons--wrapper">
 										<Button
 											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } }
-											isSecondaryAction={ true }>Share Your Sounds</Button>
+											isSecondaryAction={ true }>Share My Sounds</Button>
 										<Button
 											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } }
-											>Discover Music</Button>
+											>Play Crowdradio</Button>
 									</div>
 								</div>
 							</div>
@@ -216,14 +210,6 @@ var SplashScreen = React.createClass({
 					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-3 preload">
-					</div>
-					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
-						className="test1 background-4 preload">
-					</div>
-					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
-						className="test1 background-5 preload">
 					</div>
 				</div>
 		)
