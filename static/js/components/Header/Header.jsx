@@ -66,7 +66,7 @@ var Header = React.createClass({
 							<div className="header-link"><Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link></div>
 							<div className="header-link"><Link onClick={ this.props.closeModal } to="/popular" disabled={false}>Crowdradio</Link></div>
 							<div className="header-link"><Link onClick={ this.props.closeModal } to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
-							<div className="header-link"><Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link></div>
+							<div className="header-link-upload"><Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link></div>
 
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
 								<img src="/static/img/MASAS_search.svg" alt="search" className="search-icon"/>

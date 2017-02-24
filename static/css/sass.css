@@ -429,15 +429,15 @@
   height: 1rem;
   font-family: Lato-Light; }
 
-.MASAS-link:active {
-  font-family: Lato-Heavy; }
-
 .MASAS-link:hover {
+  font-family: Lato-Semibold; }
+
+.MASAS-link:active {
   font-family: Lato-Semibold; }
 
 .MASAS-link.disabled {
   cursor: default;
-  opacity: .7;
+  opacity: 0.7;
   font-family: Lato-Hairline; }
 
 .MASAS-link.disabled:hover {
@@ -1949,13 +1949,23 @@ input[type=range].MASAS-slider {
       height: 4.2rem; }
       .header .desktop-header .logo img {
         height: 3.2rem; }
-    .header .desktop-header .header-link {
-      min-width: 6rem;
+    .header .desktop-header .box {
+      margin-right: 11rem; }
+    .header .desktop-header .header-link-upload {
+      min-width: 5rem;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: .85rem;
-      margin-left: 0rem; }
+      margin-right: -10rem;
+      margin-left: 10rem; }
+    .header .desktop-header .header-link {
+      min-width: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: .9rem;
+      margin-left: 2.5rem; }
     .header .desktop-header .search-icon {
       height: 1rem; }
     .header .desktop-header .username {
