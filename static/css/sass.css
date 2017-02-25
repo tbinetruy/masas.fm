@@ -965,12 +965,6 @@ input[type=range].MASAS-slider {
     background-image: url(/static/img/splashscreen/1_mobile.jpg); }
   .splash-screen--wrapper .test1.background-2, .splash-screen--wrapper .test2.background-2 {
     background-image: url(/static/img/splashscreen/2_mobile.jpg); }
-  .splash-screen--wrapper .test1.background-3, .splash-screen--wrapper .test2.background-3 {
-    background-image: url(/static/img/splashscreen/3_mobile.jpg); }
-  .splash-screen--wrapper .test1.background-4, .splash-screen--wrapper .test2.background-4 {
-    background-image: url(/static/img/splashscreen/4_mobile.jpg); }
-  .splash-screen--wrapper .test1.background-5, .splash-screen--wrapper .test2.background-5 {
-    background-image: url(/static/img/splashscreen/5_mobile.jpg); }
   .splash-screen--wrapper .main-swiper-container.legals-height {
     height: 100%; }
   .splash-screen--wrapper .main-swiper-container {
@@ -1143,12 +1137,6 @@ input[type=range].MASAS-slider {
       background-image: url(/static/img/splashscreen/1.jpg); }
     .splash-screen--wrapper .test1.background-2, .splash-screen--wrapper .test2.background-2 {
       background-image: url(/static/img/splashscreen/2.jpg); }
-    .splash-screen--wrapper .test1.background-3, .splash-screen--wrapper .test2.background-3 {
-      background-image: url(/static/img/splashscreen/3.jpg); }
-    .splash-screen--wrapper .test1.background-4, .splash-screen--wrapper .test2.background-4 {
-      background-image: url(/static/img/splashscreen/4.jpg); }
-    .splash-screen--wrapper .test1.background-5, .splash-screen--wrapper .test2.background-5 {
-      background-image: url(/static/img/splashscreen/5.jpg); }
     .splash-screen--wrapper .main-swiper-container.legals-height {
       height: 80%; }
     .splash-screen--wrapper .main-swiper-container {

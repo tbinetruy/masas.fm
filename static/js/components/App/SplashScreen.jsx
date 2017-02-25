@@ -68,12 +68,9 @@ var SplashScreen = React.createClass({
 					case 2:
 						changeBackground(2)
 						break
-					case 3:
-						changeBackground(3)
-						break
 				}
 
-			if(this.backgroundNumber < 3)
+			if(this.backgroundNumber < 2)
 				this.backgroundNumber = this.backgroundNumber  + 1
 			else
 				this.backgroundNumber = 0
@@ -206,10 +203,6 @@ var SplashScreen = React.createClass({
 					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-2 preload">
-					</div>
-					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
-						className="test1 background-3 preload">
 					</div>
 				</div>
 		)
