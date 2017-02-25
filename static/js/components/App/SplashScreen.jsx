@@ -145,7 +145,7 @@ var SplashScreen = React.createClass({
 											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } }
 											isSecondaryAction={ true }>Share My Sounds</Button>
 										<Button
-											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } }
+											onClick={ () => { this.props.closeSplashScreen(); goToURL('/popular') } }
 											>Play Crowdradio</Button>
 									</div>
 								</div>

@@ -101,8 +101,8 @@ var Home = React.createClass({
 						</div>
 						
 						<div className="link-button--wrapper">
-							<Button className="upload-link-button" onClick={ () => browserHistory.push('/upload') } isBigButton={ true } isSecondaryAction={ true }>Share Your Sounds</Button>
-							<Button className="discover-link-button" onClick={ () => browserHistory.push('/discover') } isBigButton={ true } isSecondaryAction={ false }>Discover Music</Button>
+							<Button className="upload-link-button" onClick={ () => browserHistory.push('/upload') } isBigButton={ true } isSecondaryAction={ true }>Share My Sounds</Button>
+							<Button className="popular-link-button" onClick={ () => browserHistory.push('/popular') } isBigButton={ true } isSecondaryAction={ false }>Play Crowdradio</Button>
 						</div>
 					</div>
 				</div>
