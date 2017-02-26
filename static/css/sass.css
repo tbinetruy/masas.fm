@@ -1957,6 +1957,8 @@ input[type=range].MASAS-slider {
       align-items: center;
       font-size: 0.9rem;
       margin-left: 2.5rem; }
+    .header .desktop-header .header-link.active .MASAS-link, .header .desktop-header .header-link-upload.active .MASAS-link {
+      font-family: Lato-Semibold; }
     .header .desktop-header .search-icon {
       height: 1rem; }
     .header .desktop-header .username {
