@@ -75,7 +75,7 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link to='/popular' onClick={ this.clearUI }>
+									<Link to='/crowdradio' onClick={ this.clearUI }>
 										{ /* <img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />*/}
 										crowdradio
 									</Link>
