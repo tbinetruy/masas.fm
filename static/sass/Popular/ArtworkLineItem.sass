@@ -1,0 +1,49 @@
+// overridding Discover/ArtworkLineItem.sass
+
+$artworkWidthDesktop: 45vh
+$song-info-height-desktop: 3rem
+$font-size-desktop: 0.7rem
+$sidePaddingDesktop: 1rem
+
+.artwork-line-item--wrapper
+	background-color: black
+	position: relative
+
+
+@media screen and (min-width: $desktop-min-width)
+	.artwork-line-item--wrapper
+		&.artwork-playing
+			$ratio: 1
+			$artworkWidth: $artworkWidthDesktop * $ratio
+			$song-info-height: $song-info-height-desktop * $ratio
+			$font-size: $font-size-desktop * $ratio
+			$sidePadding: $sidePaddingDesktop * 1
+
+			// overrides ./Artworks.sass for big artworkLineItem
+			.artwork--wrapper
+				height: $artworkWidth
+				width: $artworkWidth
+
+				.artwork
+					height: $artworkWidth
+					width: $artworkWidth
+
+
+			// overrides ./SongInfo.sass for big artworkLineItem
+			.song-info--wrapper
+				font-size: $font-size
+				height: $song-info-height
+				display: flex
+				flex-direction: column
+				justify-content: center
+				align-items: center
+				padding: 0 $sidePadding
+				flex-direction: row
+
+				.song-info
+					flex: 1
+
+					.title, .artist
+						position: relative
+						height: $font-size
+						width: calc($artworkWidth - 2 * #{$sidePadding})
