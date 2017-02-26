@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Header.jsx")
 
-// var { goToURL } = require("../../MASAS_functions.jsx")
+var { getPathList } = require("../../MASAS_functions.jsx")
 var HeaderDropdown = require("./HeaderDropdown.jsx")
 var Link = require("../UI/Link.jsx")
 
@@ -29,6 +29,8 @@ var Header = React.createClass({
 		goToHomepageSlide1: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
 	},
+
+
 
 	render: function() {
 		let formatForModal = false
@@ -63,10 +65,18 @@ var Header = React.createClass({
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
-							<div className="header-link"><Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link></div>
-							<div className="header-link"><Link onClick={ this.props.closeModal } to="/crowdradio" disabled={false}>Crowdradio</Link></div>
-							<div className="header-link"><Link onClick={ this.props.closeModal } to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
-							<div className="header-link-upload"><Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link></div>
+							<div className={ "header-link" + (getPathList.discover === window.location.pathname ? " active" : "")}>
+								<Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link>
+							</div>
+							<div className={ "header-link" + (getPathList.popular === window.location.pathname ? " active" : "") }>
+								<Link onClick={ this.props.closeModal } to="/crowdradio" disabled={false}>Crowdradio</Link>
+							</div>
+							<div className={ "header-link" + (getPathList.likes  === window.location.pathname ? " active" : "") }>
+								<Link onClick={ this.props.closeModal } to="/likes" disabled={this.props.user ? false : true}>Likes</Link>
+							</div>
+							<div className={ "header-link-upload" + (getPathList.upload === window.location.pathname ? " active" : "") }>
+								<Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link>
+							</div>
 
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
 								<img src="/static/img/MASAS_search.svg" alt="search" className="search-icon"/>

@@ -75,6 +75,19 @@ MASAS_functions.updateUserStep = (userData, userToken, userStep) => {
 /////
 /////
 
+// returns a dict with urls used for different pages on the website
+MASAS_functions.getPathList = {
+	home: "/",
+	discover: "/discover",
+	popular: "/crowdradio",
+	likes: "/likes",
+	profile: "/profile",
+	user: "/user",
+	legals: "/legals",
+	upload: "/upload",
+	settings: "/settings"
+}
+
 // return key pair object with key = url get params ; pair = value associated with get key
 // source: http://stackoverflow.com/a/979995
 MASAS_functions.getUrlParams = () => {
