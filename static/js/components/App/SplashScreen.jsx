@@ -68,18 +68,9 @@ var SplashScreen = React.createClass({
 					case 2:
 						changeBackground(2)
 						break
-					case 3:
-						changeBackground(3)
-						break
-					case 4:
-						changeBackground(4)
-						break
-					case 5:
-						changeBackground(5)
-						break
 				}
 
-			if(this.backgroundNumber < 5)
+			if(this.backgroundNumber < 2)
 				this.backgroundNumber = this.backgroundNumber  + 1
 			else
 				this.backgroundNumber = 0
@@ -130,11 +121,10 @@ var SplashScreen = React.createClass({
 
 							<div className="swiper-slide first-slide">
 								<img src="/static/img/MASAS_logo_tipi.svg" alt="MASAS-logo" />
+
 								<div
 									className="main-content"
-									opacity>
-									<h1>music by the mood</h1>
-
+									>
 									<div className="swiper-container hashtag-swiper-container">
 										<div className="swiper-wrapper hashtag-swiper-wrapper">
 											<div className="swiper-slide">#EarlyMorning</div>
@@ -150,10 +140,10 @@ var SplashScreen = React.createClass({
 									<div className="login-buttons--wrapper">
 										<Button
 											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } }
-											isSecondaryAction={ true }>Share Your Sounds</Button>
+											isSecondaryAction={ true }>Share My Sounds</Button>
 										<Button
-											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } }
-											>Discover Music</Button>
+											onClick={ () => { this.props.closeSplashScreen(); goToURL('/popular') } }
+											>Play Crowdradio</Button>
 									</div>
 								</div>
 							</div>
@@ -213,18 +203,6 @@ var SplashScreen = React.createClass({
 					<div
 						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
 						className="test1 background-2 preload">
-					</div>
-					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
-						className="test1 background-3 preload">
-					</div>
-					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
-						className="test1 background-4 preload">
-					</div>
-					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
-						className="test1 background-5 preload">
 					</div>
 				</div>
 		)

@@ -61,8 +61,8 @@ var UploadSCHome = React.createClass({
 		return (
 					<div className="description">
 						
-							<p className="description-paragraph">Your music will first play in Discover - If the community likes it there, 
- then you’ll play on the Crowradio!</p>
+							<p className="description-paragraph">Your music will first play in <span className="discoverBold">Discover</span> - If the community likes it, 
+you'll play on the <span className="discoverBold">Crowdradio!</span></p>
 						
 						
 						<div className="img-container">
@@ -74,7 +74,7 @@ var UploadSCHome = React.createClass({
 									<Button
 										onClick={ this.connectToSC }
 										isBigButton={ true }
-										soundcloud={ true }>Login via SoundCloud</Button>
+										soundcloud={ true }>Sync My SoundCloud</Button>
 								</div>
 							:
 								<div className="connect-button">

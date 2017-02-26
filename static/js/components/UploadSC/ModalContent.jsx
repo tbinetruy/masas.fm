@@ -26,7 +26,7 @@ var ModalContent = React.createClass({
 				</div>
 				<div className="checkbox--wrapper">
 					<p className="paragraph">
-					Before you get Discovered on MASAS, you have to certify that:
+					Before you get Discovered, please certify that:
 					</p>
 					<ul className="bullets" type="disc">
 						<li>You have the explicit permission from all right-holders of this sound to agree to the Terms of Use.</li>
