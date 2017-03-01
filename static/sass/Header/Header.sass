@@ -171,16 +171,12 @@ $B: 0
 				img
 					height: 3.2rem
 			.box
-				margin-right: 11rem
 
 			.header-link-upload
-				min-width: 5rem
-				display: flex
-				justify-content: center
-				align-items: center
-				font-size: 0.85rem
-				margin-right: -10rem
-				margin-left: 1rem
+				position: absolute
+				right: 2rem
+				top: 50%
+				transform: translateY(-50%)
 
 			.header-link
 				min-width: 5rem
@@ -190,9 +186,13 @@ $B: 0
 				font-size: 0.9rem
 				margin-left: 2.5rem
 
+				&.first
+					margin-left: 0
+
 			.header-link.active, .header-link-upload.active
 				.MASAS-link
 					font-family: Lato-Semibold
+					font-size: 1rem
 
 			.search-icon
 				height: 1rem

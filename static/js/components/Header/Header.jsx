@@ -64,20 +64,25 @@ var Header = React.createClass({
 						<Link to="/" className="logo" onClick={ () => { this.props.goToHomepageSlide1(); this.props.closeModal() } }>
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
-						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
-							<div className={ "header-link" + (getPathList.discover === window.location.pathname ? " active" : "")}>
+						<div className="box" style={{
+							display: 'flex', 
+							flex: 2, 
+							flexDirection: 'row', 
+							justifyContent: 'center',
+							position: 'relative'
+						}}>
+							<div className={ "header-link first" + (getPathList.discover === window.location.pathname ? " active" : "")}>
 								<Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link>
 							</div>
 							<div className={ "header-link" + (getPathList.popular === window.location.pathname ? " active" : "") }>
 								<Link onClick={ this.props.closeModal } to="/crowdradio" disabled={false}>Crowdradio</Link>
 							</div>
 							<div className={ "header-link" + (getPathList.likes  === window.location.pathname ? " active" : "") }>
-								<Link onClick={ this.props.closeModal } to="/likes" disabled={this.props.user ? false : true}>Likes</Link>
+								<Link onClick={ this.props.closeModal } to="/likes" disabled={false}>Likes</Link>
 							</div>
 							<div className={ "header-link-upload" + (getPathList.upload === window.location.pathname ? " active" : "") }>
 								<Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link>
 							</div>
-
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
 								<img src="/static/img/MASAS_search.svg" alt="search" className="search-icon"/>
 							</div>

@@ -69,12 +69,6 @@ var NavSidebar = React.createClass({
 						<div className="content">
 							<div className="nav-links">
 								<div className="link">
-									<Link disabled={ false } to="/upload" onClick={this.clearUI}>
-										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
-										upload
-									</Link>
-								</div>
-								<div className="link">
 									<Link to='/crowdradio' onClick={ this.clearUI }>
 										{ /* <img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />*/}
 										crowdradio
@@ -87,9 +81,15 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link disabled={ !this.props.MASASuser ? true : false } to="/likes" onClick={this.clearUI}>
+									<Link disabled={ false } to="/likes" onClick={this.clearUI}>
 										{ /* <img src="/static/img/MASAS_liked.svg" alt="radio icon" />*/}
 										likes
+									</Link>
+								</div>
+								<div className="link">
+									<Link disabled={ false } to="/upload" onClick={this.clearUI}>
+										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
+										upload
 									</Link>
 								</div>
 							</div>
