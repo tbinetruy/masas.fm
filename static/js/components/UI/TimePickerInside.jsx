@@ -28,6 +28,8 @@ var TimePicker = React.createClass({
 		renderForUITip: React.PropTypes.bool,				// slider controlled by mouse.onMove
 		rangePercent: React.PropTypes.number,				// slider value
 		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
+
+		onFirstSunMove: React.PropTypes.func,				// callback called on first user interaction with the sun
 	},
 
 	getInitialState: function() {
@@ -189,8 +191,12 @@ var TimePicker = React.createClass({
 
 	componentWillUpdate(nextProps, nextState) {
 		// if sun has not moved and sun isn't at init coord, update has sun moved state
-		if(!this.state.hasSunMoved && this.getSunCoords(nextState.rangePercent).x !== this.getSunCoords(this.state.rangePercent).x)
+		if(!this.state.hasSunMoved && this.getSunCoords(nextState.rangePercent).x !== this.getSunCoords(this.state.rangePercent).x) {
 			this.setState({ hasSunMoved: true })
+
+			// callback
+			this.props.onFirstSunMove()
+		}
 	},
 
 	render: function() {

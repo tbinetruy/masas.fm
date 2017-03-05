@@ -15,7 +15,7 @@ var NoUISlider = require("react-nouislider")
 
 var TimePickerWrapper = React.createClass({
 	propTypes: {
-		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
+		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
 		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
 		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
 		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
@@ -23,6 +23,8 @@ var TimePickerWrapper = React.createClass({
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number,					// slider value affecting sun position
 		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
+
+		onFirstSunMove: React.PropTypes.func,				// called on first user interaction with the sun
 	},
 
 	getDefaultProps: function() {
@@ -54,15 +56,16 @@ var TimePickerWrapper = React.createClass({
 
 		return (
 			<div className="time-picker-wrapper-comp">
-				<NoUISlider 
+				<NoUISlider
 					range={{ min: 0, max: 100}}
-					start={[startValue]} 
+					start={[startValue]}
 					onUpdate={ this.updateCanvas }
 					/>
-				<TimePickerInside 
+				<TimePickerInside
 					{ ...this.props }
 					ref="canvas"
 					rangePercent={ startValue }
+					onFirstSunMove={ this.props.onFirstSunMove }
 					/>
 			</div>
 		)
