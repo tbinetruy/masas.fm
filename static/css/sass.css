@@ -1951,7 +1951,8 @@ input[type=range].MASAS-slider {
     .header .desktop-header .links--wrapper {
       min-width: 82vw; }
     .header .desktop-header .logo {
-      height: 4.2rem; }
+      height: 4.2rem;
+      display: flex; }
       .header .desktop-header .logo img {
         height: 3.2rem; }
     .header .desktop-header .header-link-upload {
@@ -4913,7 +4914,8 @@ input[type=range].MASAS-slider {
   .legals-content--wrapper .back-icon {
     position: absolute;
     top: 0;
-    left: 0; }
+    left: 0;
+    cursor: pointer; }
     .legals-content--wrapper .back-icon img {
       display: none;
       width: 1.5rem;
@@ -4959,7 +4961,7 @@ input[type=range].MASAS-slider {
     line-height: 1.4rem;
     text-align: justify; }
     .legals-content--wrapper ol li, .legals-content--wrapper ul li {
-      padding-bottom: .8rem;
+      padding-bottom: 0.8rem;
       word-break: break-all; }
 
 @media screen and (min-width: 992px) {
@@ -4968,9 +4970,9 @@ input[type=range].MASAS-slider {
     .legals-content--wrapper .back-icon img {
       display: block; }
     .legals-content--wrapper .legals-content p {
-      font-size: .7rem; }
+      font-size: 0.7rem; }
     .legals-content--wrapper .legals-content ol, .legals-content--wrapper .legals-content ul {
-      font-size: .7rem; } }
+      font-size: 0.7rem; } }
 .legals--wrapper {
   display: flex;
   flex: 1;
