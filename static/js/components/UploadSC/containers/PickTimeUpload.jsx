@@ -5,6 +5,7 @@ import {
 import {
 	closePickTimeWindow,
 	handlePickTimeUpload,
+	updateIsUploadButtonDisabled,
 } from "../../../reducers/actions/UploadSC.js"
 
 import {
@@ -26,6 +27,7 @@ PickTimeUpload.mapStateToProps = function(state) {
 		MASASuser: state.appReducer.MASASuser,
 		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
 		userPk: state.appReducer.MASASuserPk,
+		isUploadButtonDisabled: state.uploadSCReducer.isUploadButtonDisabled,
 	}
 }
 
@@ -39,6 +41,7 @@ PickTimeUpload.mapDispatchToProps = function(dispatch) {
 		handleTimePickerChange: newDiscover => dispatch(handlePickTimeUpload(newDiscover)),
 		emitNotification: text =>  dispatch(updateNotificationBar(text)),
 		updateProfileInfo: () => dispatch(updateProfileInfo()),
+		updateIsUploadButtonDisabled: isUploadButtonDisabled => dispatch(updateIsUploadButtonDisabled(isUploadButtonDisabled)),
 	}
 }
 

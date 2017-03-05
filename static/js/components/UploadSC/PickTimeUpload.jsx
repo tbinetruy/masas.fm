@@ -19,6 +19,7 @@ var PickTimeUpload = React.createClass({
 		// REDUX
 		MASASuser: React.PropTypes.string,
 		pickTimeUpload: React.PropTypes.number,
+		isUploadButtonDisabled: React.PropTypes.bool,
 
 		updateTitle: React.PropTypes.func,
 		emitNotification: React.PropTypes.func,
@@ -27,6 +28,7 @@ var PickTimeUpload = React.createClass({
 		updateModalContent: React.PropTypes.func,
 		handleTimePickerChange: React.PropTypes.func,
 		updateProfileInfo: React.PropTypes.func,
+		updateIsUploadButtonDisabled: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
@@ -37,6 +39,9 @@ var PickTimeUpload = React.createClass({
 
 	componentWillMount: function() {
 		this.props.updateTitle('Upload', 1, this.props.closeWindow)		// 0 = menu icon; 1 = arrow back
+
+		// disable uplaod button until user has interacted with sun
+		this.props.updateIsUploadButtonDisabled(true)
 
 		this.props.checkUserStep()
 	},
@@ -81,10 +86,6 @@ var PickTimeUpload = React.createClass({
 		})
 	},
 
-	componentWillUnmount: function() {
-	},
-
-
 	openModal: function() {
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this
@@ -115,11 +116,19 @@ var PickTimeUpload = React.createClass({
 							currentDiscover={ this.props.pickTimeUpload }
 							onSliderChange={ this.props.handleTimePickerChange }
 							wrapperClassName="timePicker--pick-time-upload--wrapper"
+							initText="Drag the sun around!"
+							ref="timePicker"
+							onFirstSunMove={ () => this.props.updateIsUploadButtonDisabled(false) }
 							canvasId="timePicker--pick-time-upload--id" />
 					</div>
 				</div>
 				<div className="button--wrapper">
-					<Button className="submit" small={true} white={true} onClick={this.openModal}>Submit</Button>
+					<Button
+						className="submit"
+						small={true}
+						white={true}
+						isDisabled={ this.props.isUploadButtonDisabled }
+						onClick={this.openModal}>Submit</Button>
 					<Link
 						to="/upload"
 						className="cancel-button"

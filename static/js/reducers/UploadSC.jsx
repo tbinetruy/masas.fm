@@ -1,12 +1,13 @@
 var SC = require('soundcloud')
 
-import { 
-	UPDATE_SC_USER_TRACKS, 
+import {
+	UPDATE_SC_USER_TRACKS,
 	UPDATE_MASAS_USER_TRACKS,
 	UPDATE_SC_USERNAME,
 	UPDATE_IS_CONNECTED_SC,
 	HANDLE_PICK_TIME_UPLOAD,
 	UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE,
+	UPDATE_IS_DISABLED_UPLOAD_BUTTON,
 } from './actions/UploadSC.js'
 
 let exportVar = {}
@@ -16,20 +17,25 @@ exportVar.defaultState = {
 	isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
 	masasUserTracks: null,
-	SCusername: null,	
+	SCusername: null,
 	pickTimeUpload: 2, 				// (int) 1 to 6, time interval
 	pickTimeSliderValue: 10,			// (int) 0 - 100 __ [ slider controls pickTimeUpload ]
 	checkbox1_checked: false,			// (bool) checkbox values for song ownership conf checkboxes
 	checkbox2_checked: false,
 	checkbox3_checked: false,
 	tipTimePickerValue: 2,				// (int) \in [1,6], slider hashtag on tip modal
-
+	isUploadButtonDisabled: true,		// (bool) is the upload button disabled on the time picker page
 }
 const { defaultState } = exportVar
 
 exportVar.uploadSCReducer = function(state = defaultState, action) {
-	
+
 	switch(action.type) {
+		case UPDATE_IS_DISABLED_UPLOAD_BUTTON:
+			return {
+				...state,
+				isUploadButtonDisabled: !!action.isUploadButtonDisabled,
+			}
 		case UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE:
 			var tipTimePickerValue = action.tipTimePickerValue
 
