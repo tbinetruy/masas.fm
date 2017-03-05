@@ -1776,12 +1776,12 @@ input[type=range].MASAS-slider {
   position: relative;
   z-index: 2; }
   .header .dropdown--wrapper .MASAS-button {
-    height: .75rem;
-    width: 13rem;
-    font-size: .9rem;
-    letter-spacing: .13rem; }
+    height: 0.75rem;
+    width: 6.8rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.13rem; }
   .header .dropdown--wrapper .username.login {
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding-left: 2rem; }
   .header .dropdown--wrapper .username--wrapper {
     display: flex;
@@ -1790,10 +1790,10 @@ input[type=range].MASAS-slider {
     border: 1px solid;
     height: calc(2.2rem - 5px);
     width: calc(2.2rem - 5px);
-    margin-right: .75rem; }
+    margin-right: 0.75rem; }
   .header .dropdown--wrapper .username--wrapper .username {
     font-family: Lato-Semibold;
-    font-size: .75rem;
+    font-size: 0.75rem;
     text-transform: capitalize;
     align-self: center; }
   .header .dropdown--wrapper .dropdown-content {
@@ -1806,28 +1806,28 @@ input[type=range].MASAS-slider {
     top: 4.2rem;
     left: 0;
     min-width: 9rem;
-    border-right: .5px solid rgba(255, 255, 255, 0.6);
-    border-left: .5px solid rgba(255, 255, 255, 0.6);
-    border-bottom: .5px solid rgba(255, 255, 255, 0.6);
+    border-right: 0.5px solid rgba(255, 255, 255, 0.6);
+    border-left: 0.5px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.6);
     border-top: 0px solid white; }
   .header .dropdown--wrapper .dropdown-content hr {
-    margin: 0 .7rem;
+    margin: 0 0.7rem;
     border-color: white;
-    opacity: .3; }
+    opacity: 0.3; }
   .header .dropdown--wrapper .menu-link {
     display: flex;
-    margin: .7rem 0rem;
-    height: .8rem;
+    margin: 0.7rem 0rem;
+    height: 0.8rem;
     margin-left: 1rem; }
   .header .dropdown--wrapper .menu-link img {
-    height: .9rem;
-    margin: 0rem .3rem;
+    height: 0.9rem;
+    margin: 0rem 0.3rem;
     align-self: center; }
   .header .dropdown--wrapper .menu-link span {
     flex-grow: 1;
     align-self: center;
-    padding-left: .3rem;
-    font-size: .6rem; }
+    padding-left: 0.3rem;
+    font-size: 0.6rem; }
 .header .dropdown--wrapper:hover .dropdown-content {
   display: block; }
 
