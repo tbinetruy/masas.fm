@@ -439,7 +439,6 @@
 
 .MASAS-link {
   cursor: pointer;
-  display: flex;
   align-items: center;
   height: 1rem;
   font-family: Lato-Hairline; }
@@ -452,7 +451,7 @@
 
 .MASAS-link.disabled {
   cursor: default;
-  opacity: 0.7;
+  opacity: .7;
   font-family: Lato-Hairline; }
 
 .MASAS-link.disabled:hover {

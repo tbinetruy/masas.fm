@@ -6,9 +6,9 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSCHome
 var SplashScreen = require("../App/SplashScreen.jsx")
 
 
-var { Button, Body } = require("../UI/UI.jsx")
+var { Button, Body, Link } = require("../UI/UI.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { getPathList } = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
 // var { browserHistory } = require('react-router')
@@ -60,11 +60,11 @@ var UploadSCHome = React.createClass({
 	render: function() {
 		return (
 					<div className="description">
-						
-							<p className="description-paragraph">Your music will first play in <span className="discoverBold">Discover</span> - If the community likes it, 
-you'll play on the <span className="discoverBold">Crowdradio!</span></p>
-						
-						
+
+							<p className="description-paragraph">Your music will first play in <Link to={ getPathList.discover }><span className="discoverBold">Discover</span></Link> - If the community likes it,
+you'll play on the <Link to={ getPathList.popular }><span className="discoverBold">Crowdradio!</span></Link></p>
+
+
 						<div className="img-container">
 						</div>
 
