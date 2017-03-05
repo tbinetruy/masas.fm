@@ -20,6 +20,16 @@
   font-weight: normal;
   src: url(./../fonts/Lato/Lato-LightItalic.woff) format("woff"), url(./../fonts/Lato/Lato-LightItalic.woff2) format("woff2"); }
 @font-face {
+  font-family: Lato-Hairline;
+  font-style: 500;
+  font-weight: normal;
+  src: url(./../fonts/Lato/Lato-Hairline.ttf); }
+@font-face {
+  font-family: Lato-Hairline-Italic;
+  font-style: 500;
+  font-weight: normal;
+  src: url(./../fonts/Lato/Lato-HairlineItalic.ttf); }
+@font-face {
   font-family: Lato-Semibold;
   font-style: 500;
   font-weight: normal;
@@ -29,6 +39,11 @@
   font-style: 500;
   font-weight: normal;
   src: url(./../fonts/Lato/Lato-SemiboldItalic.woff) format("woff"), url(./../fonts/Lato/Lato-SemiboldItalic.woff2) format("woff2"); }
+@font-face {
+  font-family: Lato-Heavy;
+  font-style: 500;
+  font-weight: normal;
+  src: url(./../fonts/Lato/Lato-Heavy.ttf); }
 @font-face {
   font-family: Anders;
   font-style: 500;
