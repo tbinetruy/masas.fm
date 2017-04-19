@@ -15,6 +15,7 @@ var Footer = React.createClass({
 	propTypes: {
 		playlist: React.PropTypes.array,
 		isPlaylistPlaying: React.PropTypes.bool,
+		isPlayerBarOpened: React.PropTypes.bool,
 		playlistPosition: React.PropTypes.number,
 		playRandomSong: React.PropTypes.func,
 		playNewSongFromPlaylist: React.PropTypes.func,
