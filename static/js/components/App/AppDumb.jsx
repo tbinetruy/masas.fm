@@ -11,6 +11,7 @@ var Home = require("../Home/Home.jsx")
 var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
 var { Modal } = require("../UI/UI.jsx")
 var PlayerAudioTag = require("../Player/PlayerAudioTag.jsx")
+var PlayerMobile = require("../Player/PlayerMobile.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
@@ -65,33 +66,33 @@ var AppDumb = React.createClass({
 		return (
 			<NavSidebar>
 				<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
-					<div 
+					<div
 						className={
 							"body--background"
-							+ 
+							+
 							( this.props.bgFilter.blurred ? " blurred " : "" )
-							+ 
+							+
 							( this.props.bgFilter.saturated ? " saturated " : "" )
-							+ 
+							+
 							( this.props.bgFilter.mobileBlurred ? " blurred-mobile " : "" )
-							+ 
+							+
 							( this.props.bgFilter.mobileSaturated ? " mobileSaturated " : "" )
-							+ 
+							+
 							( this.props.bgFilter.modalBlurred ? " modal-blurred " : "" )
-							+ 
+							+
 							( this.props.bgFilter.modalSaturated ? " modal-saturated " : "" )
-						} 
+						}
 						id="body--background">
 						<div className="bg-image" id="app-bg-image"></div>
 					</div>
 					<Header />
-						<div 
+						<div
 							className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}
 							style={{
 								opacity: !(this.props.isModalOpened && this.props.modalType === 4) ? 1 : 0,
 							}}>
 							{
-								this.props.children ? 
+								this.props.children ?
 									this.props.children
 								:
 									<Home />
@@ -104,20 +105,21 @@ var AppDumb = React.createClass({
 									height: '7rem',
 									width: '7rem',
 								}}
-								src="/static/img/MASAS_logo-M.svg" 
+								src="/static/img/MASAS_logo-M.svg"
 								alt="loading" />
 						</div>
 
 					<Footer />
-								
+
 				</div>
 				<PlayerAudioTag />
-				<Modal 
+				<Modal
 					isOpened={ this.props.isModalOpened }
 					closeModalFunc={ this.props.closeModal }
 					type={ this.props.modalType }>
 					{ this.props.modalContent }
 				</Modal>
+				<PlayerMobile />
 			</NavSidebar>
 		)
 	}

@@ -22,6 +22,7 @@ import {
 	UPDATE_MINI_PROFILE_CONTENT,
 	UPDATE_SC_SONG_INFO,
 	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
+	SHOW_PLAYER_MOBILE,
 } from './actions/App.js'
 
 let exportVar = {}
@@ -55,7 +56,8 @@ exportVar.defaultState = {
 		isVisible: false,				// (bool) should mini profile be shown
 		userData: {},					// (obj) mini profile content
 		SC_songInfo: [],				// (obj) array containing SC info for songs in userData
-	}
+	},
+	isPlayerMobileShown: false,			// (bool)
 }
 
 const { defaultState } = exportVar
@@ -63,6 +65,12 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
+		case SHOW_PLAYER_MOBILE:
+			console.log(state, action.isPlayerMobileShown)
+			return {
+				...state,
+				isPlayerMobileShown: action.isPlayerMobileShown,
+			}
 		case UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE:
 			return {
 				...state,

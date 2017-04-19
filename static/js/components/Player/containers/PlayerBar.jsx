@@ -15,6 +15,7 @@ import {
 	changeModalContent,
 	updateSplashScreenLoginMessage,
 	toogleIsModalOpened,
+	showPlayerMobile,
 } from "../../../reducers/actions/App.js"
 
 // var { toggleSongLike } = require("../../../MASAS_functions.jsx")
@@ -59,7 +60,8 @@ Player.mapDispatchToProps = function(dispatch) {
 		playPreviousSong: () => dispatch(playPreviousSongInHistory()),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
 		setIsPlayerBuffering: value => dispatch(setIsPlayerBuffering(value)),
-		updateMiniProfileContent: userApiURL => dispatch(updateMiniProfileContent(userApiURL))
+		updateMiniProfileContent: userApiURL => dispatch(updateMiniProfileContent(userApiURL)),
+		showPlayerMobile: choice => dispatch(showPlayerMobile(choice)),
 	}
 }
 

@@ -4143,6 +4143,17 @@ input[type=range].MASAS-slider {
     min-width: inherit; }
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper {
       display: none; } }
+.player-mobile--top-wrapper {
+  position: absolute;
+  background-color: red;
+  bottom: 0;
+  top: 0;
+  let: 0;
+  right: 0;
+  display: none; }
+  .player-mobile--top-wrapper.show {
+    display: flex; }
+
 .footer--wrapper .slider--wrapper.opened .player-controls--wrapper {
   position: absolute;
   right: 50%;

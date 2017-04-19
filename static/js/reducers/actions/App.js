@@ -28,6 +28,14 @@ export const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
 export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
 export const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
 export const UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE = 'UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE'
+export const SHOW_PLAYER_MOBILE = 'SHOW_PLAYER_MOBILE'
+
+export const showPlayerMobile = isPlayerMobileShown => {
+	return {
+		type: SHOW_PLAYER_MOBILE,
+		isPlayerMobileShown,
+	}
+}
 
 export const updateSplashScreenLoginMessage = message => {
 	return {
