@@ -296,11 +296,6 @@ var Player = React.createClass({
 					{ this.props.SC_songInfo ?
 						<div className="song-info--wrapper2">
 							<div className="text-info">
-								<div className="radio-info">
-									<Marquee>
-										Playing from <span className="time">{ this.renderRadioTime() }</span>
-									</Marquee>
-								</div>
 								<div className="song-name" onClick={ () => this.props.updateMiniProfileContent(this.props.MASAS_songInfo.trackArtist) }>
 									<Marquee className="song-title">
 										{ this.props.SC_songInfo.title+ " - " }
