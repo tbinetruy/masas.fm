@@ -31,6 +31,12 @@ export const UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE = 'UPDATE_SPLASH_SCREEN_LOGIN_ME
 export const SHOW_PLAYER_MOBILE = 'SHOW_PLAYER_MOBILE'
 
 export const showPlayerMobile = isPlayerMobileShown => {
+	// $desktop-min-width: 992px
+	if($(window).width() > 992)
+		return {
+			type: ''
+		}
+
 	return {
 		type: SHOW_PLAYER_MOBILE,
 		isPlayerMobileShown,

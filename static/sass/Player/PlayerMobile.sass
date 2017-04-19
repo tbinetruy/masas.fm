@@ -1,11 +1,19 @@
 .player-mobile--top-wrapper
-    position: absolute
-    background-color: red
-    bottom: 0
-    top: 0
-    let: 0
-    right: 0
-    display: none
+	position: absolute
+	background-color: red
+	bottom: 0
+	top: 0
+	let: 0
+	right: 0
+	display: none
 
-    &.show
-        display: flex
+	&.show
+		display: flex
+
+
+@media screen and (min-width: $desktop-min-width)
+	.player-mobile--top-wrapper
+		display: none
+
+		&.show
+			display: none

@@ -4154,6 +4154,11 @@ input[type=range].MASAS-slider {
   .player-mobile--top-wrapper.show {
     display: flex; }
 
+@media screen and (min-width: 992px) {
+  .player-mobile--top-wrapper {
+    display: none; }
+    .player-mobile--top-wrapper.show {
+      display: none; } }
 .footer--wrapper .slider--wrapper.opened .player-controls--wrapper {
   position: absolute;
   right: 50%;

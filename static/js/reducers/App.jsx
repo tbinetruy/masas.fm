@@ -66,7 +66,6 @@ exportVar.appReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
 		case SHOW_PLAYER_MOBILE:
-			console.log(state, action.isPlayerMobileShown)
 			return {
 				...state,
 				isPlayerMobileShown: action.isPlayerMobileShown,
