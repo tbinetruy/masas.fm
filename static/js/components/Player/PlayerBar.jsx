@@ -289,14 +289,14 @@ var Player = React.createClass({
 		if(this.props.MASAS_songInfo)
 			discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1))
 		return (
-			<div className="navbar-player--wrapper" onClick={ () => this.props.showPlayerMobile(true) }>
+			<div className="navbar-player--wrapper">
 				{
 					this.renderLikeIcon()
 				}
 				<div className="song-info--wrapper1">
 					{ this.props.SC_songInfo ?
 						<div className="song-info--wrapper2" >
-							<div className="text-info">
+							<div className="text-info" onClick={ () => this.props.showPlayerMobile(true) }>
 								<div className="song-name">
 									<Marquee className="song-title">
 										{ this.props.SC_songInfo.title+ " - " }

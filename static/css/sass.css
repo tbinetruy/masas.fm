@@ -4153,7 +4153,8 @@ input[type=range].MASAS-slider {
   transform: translateY(100%);
   z-index: 4;
   width: 100%;
-  transition: transform 0.2s linear; }
+  transition: transform 0.2s linear;
+  flex-direction: column; }
   .player-mobile--top-wrapper.show {
     display: flex;
     transform: translateY(0px); }
@@ -4166,6 +4167,16 @@ input[type=range].MASAS-slider {
     position: absolute;
     right: 0;
     top: 0; }
+  .player-mobile--top-wrapper .player-mobile-player--wrapper {
+    display: flex;
+    flex: 0.3; }
+  .player-mobile--top-wrapper .player-mobile-discover--wrapper {
+    display: flex;
+    flex: 0.7; }
+  .player-mobile--top-wrapper .player-mobile-player--wrapper {
+    display: flex;
+    flex: 0.3;
+    position: relative; }
 
 @media screen and (min-width: 992px) {
   .player-mobile--top-wrapper {

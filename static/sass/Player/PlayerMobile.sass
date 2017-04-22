@@ -9,6 +9,7 @@
 	z-index: 4
 	width: 100%
 	transition: transform 0.2s linear
+	flex-direction: column
 
 	&.show
 		display: flex
@@ -24,6 +25,18 @@
 		right: 0
 		top: 0
 
+	.player-mobile-player--wrapper
+		display: flex
+		flex: 0.3
+
+	.player-mobile-discover--wrapper
+		display: flex
+		flex: 0.7
+
+	.player-mobile-player--wrapper
+		display: flex
+		flex: 0.3
+		position: relative
 
 @media screen and (min-width: $desktop-min-width)
 	.player-mobile--top-wrapper
