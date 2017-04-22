@@ -26,7 +26,7 @@ var Popular = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Crowdradio', '0')
+		this.props.updateTitle('Discover', '0')
 	},
 
 	componentDidMount: function() {

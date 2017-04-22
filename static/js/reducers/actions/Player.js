@@ -507,11 +507,14 @@ export function playRandomSong(timeInterval = 0) {
 		if (URL.indexOf('?') < 0)
 			URL = URL + '?'
 
+        // switch popular and dicover for testing
 		if(timeInterval && timeInterval !== POPULAR)
-			URL = URL + "&time_interval_id=" + timeInterval
+			URL = URL + "&time_interval_id=" + timeInterval + "&radio=popular"
+
 		else if(timeInterval && timeInterval === POPULAR) {
-			const popularTimeInterval = getDiscoverNumberFromCurrentTime()
-			URL = URL + "&time_interval_id=" + popularTimeInterval + "&radio=popular"
+            // no time interval for discover for this test
+			// const popularTimeInterval = getDiscoverNumberFromCurrentTime()
+			// URL = URL + "&time_interval_id=" + popularTimeInterval
 		}
 
 		var headers = {}
