@@ -87,7 +87,7 @@ var ArtworkLine = React.createClass({
 
 			return (
 				<ArtworkLineItem
-					allowPlayPause={ !this.props.playFromPopular }
+					allowPlayPause={ this.props.playFromPopular }
 					key_ID={ key_ID }
 					artworkURL={ artworkURL }
 					SC_songInfo={ SC_songInfo }
@@ -97,7 +97,7 @@ var ArtworkLine = React.createClass({
 					playAndSaveHistory={ this.props.playAndSaveHistory }
 					artistInfo={ artistInfo }
 					key={ key_ID }
-					popularTheme={ this.props.playFromPopular }
+					popularTheme={ !this.props.playFromPopular }
 					/>
 				)
 		})
@@ -114,9 +114,7 @@ var ArtworkLine = React.createClass({
 
 		// if playing from popular, get popular history
 		if(this.props.playFromPopular)
-			history = this.props.popularHistory.filter( ({ MASAS_songInfo }) =>
-				parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === getDiscoverNumberFromCurrentTime()
-			)
+			history = this.props.popularHistory
 
 		// show only most recent songs in history
 		if(history.length > 10)
