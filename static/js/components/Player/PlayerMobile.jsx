@@ -6,6 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerMobile
 var { PlayerBar } = require("./PlayerBar.jsx")
 
 import ProgressBar from "../Footer/ProgressBar.jsx"
+import PlayingArtwork from "./PlayingArtwork.jsx"
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
@@ -35,6 +36,7 @@ var PlayerMobile = React.createClass({
 					close
 				</div>
 				<div className="player-mobile-discover--wrapper">
+					<PlayingArtwork />
 				</div>
                 <div className="player-mobile-player--wrapper">
 					<ProgressBar />

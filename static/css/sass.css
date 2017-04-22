@@ -4206,9 +4206,11 @@ input[type=range].MASAS-slider {
     .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 .text-info {
       display: none; }
     .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
-      opacity: 1; }
+      opacity: 1;
+      pointer-events: inherit; }
     .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
-      opacity: 1; }
+      opacity: 1;
+      pointer-events: inherit; }
 
 @media screen and (min-width: 992px) {
   .player-mobile--top-wrapper {
