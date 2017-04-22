@@ -218,6 +218,9 @@ var Player = React.createClass({
 	},
 
 	getPreviousSongIcon: function() {
+		if(this.props.playingFromPopular && this.props.isPlayerMobile)
+			return <div className="previous-song-icon"></div>
+
 		// no back button if playing from popular
 		if(this.props.playingFromPopular)
 			return

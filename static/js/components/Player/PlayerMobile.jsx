@@ -33,7 +33,7 @@ var PlayerMobile = React.createClass({
 				<div
 					className="close-button--wrapper"
 					onClick={ () => this.props.showPlayerMobile(false) }>
-					close
+					<img src="/static/img/icon_close.svg" alt="close" />
 				</div>
 				<div className="header">
 					MASAS Player

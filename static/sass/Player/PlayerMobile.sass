@@ -64,6 +64,9 @@
 		z-index: 2
 		margin-right: 1.5rem
 
+		img
+			height: 1rem
+
 	.header
 		display: flex
 		justify-content: center
@@ -100,9 +103,17 @@
 				position: absolute
 				width: 100%
 				transition: opacity 0.1s linear
+				justify-content: center
+				align-items: center
+				height: 100%
+				display: flex
 
 				&:hover
 					opacity: 1
+
+				img
+					height: 50%
+					width: 50%
 
 		.song-info--wrapper
 			width: $height
@@ -153,6 +164,9 @@
 					a
 						img
 							height: 2rem
+							margin-right: 1rem
+							margin-bottom: 2rem
+							height: 1.5rem
 
 			.player-controls--wrapper
 				position: relative
@@ -163,12 +177,18 @@
 				.previous-song-icon
 					opacity: 1
 					pointer-events: inherit
+					height: 2rem
+					width: 2rem
 
-				.play-button
+				.player-button
+					height: 4rem
+					margin: 0 2rem
 
 				.next-song-icon
 					opacity: 1
 					pointer-events: inherit
+					height: 2rem
+					width: 2rem
 
 @media screen and (min-width: $desktop-min-width)
 	.player-mobile--top-wrapper

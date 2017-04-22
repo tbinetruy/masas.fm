@@ -4198,6 +4198,8 @@ input[type=range].MASAS-slider {
     align-items: flex-end;
     z-index: 2;
     margin-right: 1.5rem; }
+    .player-mobile--top-wrapper .close-button--wrapper img {
+      height: 1rem; }
   .player-mobile--top-wrapper .header {
     display: flex;
     justify-content: center;
@@ -4227,9 +4229,16 @@ input[type=range].MASAS-slider {
         opacity: 0;
         position: absolute;
         width: 100%;
-        transition: opacity 0.1s linear; }
+        transition: opacity 0.1s linear;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        display: flex; }
         .player-mobile--top-wrapper .player-mobile-discover--wrapper .artwork--wrapper .player-button:hover {
           opacity: 1; }
+        .player-mobile--top-wrapper .player-mobile-discover--wrapper .artwork--wrapper .player-button img {
+          height: 50%;
+          width: 50%; }
     .player-mobile--top-wrapper .player-mobile-discover--wrapper .song-info--wrapper {
       width: 36vh;
       height: 4rem;
@@ -4266,7 +4275,10 @@ input[type=range].MASAS-slider {
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 .sc-icon {
           justify-content: flex-end; }
           .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 .sc-icon a img {
-            height: 2rem; }
+            height: 2rem;
+            margin-right: 1rem;
+            margin-bottom: 2rem;
+            height: 1.5rem; }
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper {
         position: relative;
         flex: 0.8;
@@ -4274,10 +4286,17 @@ input[type=range].MASAS-slider {
         width: 100%; }
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
           opacity: 1;
-          pointer-events: inherit; }
+          pointer-events: inherit;
+          height: 2rem;
+          width: 2rem; }
+        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .player-button {
+          height: 4rem;
+          margin: 0 2rem; }
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
           opacity: 1;
-          pointer-events: inherit; }
+          pointer-events: inherit;
+          height: 2rem;
+          width: 2rem; }
 
 @media screen and (min-width: 992px) {
   .player-mobile--top-wrapper {
