@@ -29,6 +29,7 @@
 			top: 50%
 			right: -20%
 			transform: translate(50%, -50%)
+			display: none
 
 		.pervious-song-button
 			position: absolute
@@ -36,15 +37,17 @@
 			top: 50%
 			left: -20%
 			transform: translate(-50%, -50%)rotate(180deg)
+			display: none
 
 			&.hidden
 				display: none
 
+		$artwork-height: 38vh
 		.artwork-playing
 			background-color: rgba(0,0,0,0.5)
 			$artworkWidth: 13rem
-			height: 35vh
-			width: 35vh
+			height: $artwork-height
+			width: $artwork-height
 			position: relative
 
 			.player-button
@@ -65,8 +68,8 @@
 				display: flex
 
 			.artwork
-				height: 35vh
-				width: 35vh
+				height: $artwork-height
+				width: $artwork-height
 
 		.song-info--wrapper
 			display: none
@@ -91,7 +94,7 @@
 			$artworkWidth: 12rem
 			.artwork-line2
 				position: absolute
-				display: none
+				// display: none
 				width: min-content
 				min-width: 100%
 				justify-content: flex-end
@@ -123,7 +126,7 @@
 			transform: translate(-50%, -50%)
 			padding-left: 2*$artworkWidth
 			cursor: pointer
-			
+
 
 			img
 				width: 2rem

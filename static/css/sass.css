@@ -4873,19 +4873,21 @@ input[type=range].MASAS-slider {
       height: 2rem;
       top: 50%;
       right: -20%;
-      transform: translate(50%, -50%); }
+      transform: translate(50%, -50%);
+      display: none; }
     .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
       position: absolute;
       height: 2rem;
       top: 50%;
       left: -20%;
-      transform: translate(-50%, -50%) rotate(180deg); }
+      transform: translate(-50%, -50%) rotate(180deg);
+      display: none; }
       .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button.hidden {
         display: none; }
     .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
       background-color: rgba(0, 0, 0, 0.5);
-      height: 35vh;
-      width: 35vh;
+      height: 38vh;
+      width: 38vh;
       position: relative; }
       .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
         position: absolute;
@@ -4902,8 +4904,8 @@ input[type=range].MASAS-slider {
       .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button {
         display: flex; }
       .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
-        height: 35vh;
-        width: 35vh; }
+        height: 38vh;
+        width: 38vh; }
     .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
       display: none; }
   .artwork-line--wrapper .left-side, .artwork-line--wrapper .right-side {
@@ -4920,7 +4922,6 @@ input[type=range].MASAS-slider {
       display: flex; }
       .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
         position: absolute;
-        display: none;
         width: min-content;
         min-width: 100%;
         justify-content: flex-end;
@@ -4947,7 +4948,7 @@ input[type=range].MASAS-slider {
       .artwork-line--wrapper .button img.small {
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: .5rem; }
+        margin-right: 0.5rem; }
     .artwork-line--wrapper .button.show {
       display: flex;
       flex-direction: row-reverse;
