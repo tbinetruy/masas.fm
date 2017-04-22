@@ -67,17 +67,31 @@
 			display: none
 
 		.navbar-player--wrapper
+			flex-direction: column-reverse
+
 			.like-icon
 				display: none
 
 			.song-info--wrapper1
+				flex: 0.2
+				width: 100%
+
 				.text-info
 					display: none
 
 				.sc-icon
+					justify-content: flex-end
+
 					a
+						img
+							height: 2rem
 
 			.player-controls--wrapper
+				position: relative
+				flex: 0.8
+				justify-content: center
+				width: 100%
+
 				.previous-song-icon
 					opacity: 1
 					pointer-events: inherit
