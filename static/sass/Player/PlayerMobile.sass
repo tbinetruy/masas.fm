@@ -1,14 +1,28 @@
 .player-mobile--top-wrapper
 	position: absolute
-	background-color: red
+	background-color: #111
 	bottom: 0
 	top: 0
 	let: 0
 	right: 0
-	display: none
+	transform: translateY(100%)
+	z-index: 4
+	width: 100%
+	transition: transform 0.2s linear
 
 	&.show
 		display: flex
+		transform: translateY(0px)
+
+	.close-button--wrapper
+		height: 3rem
+		width: 3rem
+		display: flex
+		justify-content: center
+		align-items: center
+		position: absolute
+		right: 0
+		top: 0
 
 
 @media screen and (min-width: $desktop-min-width)

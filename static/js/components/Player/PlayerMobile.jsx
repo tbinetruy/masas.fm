@@ -25,7 +25,9 @@ var PlayerMobile = React.createClass({
 	render: function() {
 		return (
 			<div className={ "player-mobile--top-wrapper" + (this.props.isPlayerMobileShown ? " show" : "") }>
-				<div onClick={ () => this.props.showPlayerMobile(false) }>hello</div>
+				<div
+					className="close-button--wrapper"
+					onClick={ () => this.props.showPlayerMobile(false) }>close</div>
 			</div>
 		)
 	}

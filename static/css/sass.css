@@ -4145,14 +4145,27 @@ input[type=range].MASAS-slider {
       display: none; } }
 .player-mobile--top-wrapper {
   position: absolute;
-  background-color: red;
+  background-color: #111;
   bottom: 0;
   top: 0;
   let: 0;
   right: 0;
-  display: none; }
+  transform: translateY(100%);
+  z-index: 4;
+  width: 100%;
+  transition: transform 0.2s linear; }
   .player-mobile--top-wrapper.show {
-    display: flex; }
+    display: flex;
+    transform: translateY(0px); }
+  .player-mobile--top-wrapper .close-button--wrapper {
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0; }
 
 @media screen and (min-width: 992px) {
   .player-mobile--top-wrapper {
@@ -4194,7 +4207,8 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column;
     align-content: flex-start;
-    flex: 1; }
+    flex: 1;
+    height: 100%; }
     .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 {
       display: flex;
       align-content: flex-start;
@@ -4206,7 +4220,8 @@ input[type=range].MASAS-slider {
         display: flex;
         flex: 1;
         flex-direction: column;
-        max-width: 10rem; }
+        max-width: 10rem;
+        justify-content: center; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info {
         position: relative;
         width: 100%;
