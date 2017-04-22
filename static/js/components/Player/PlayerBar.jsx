@@ -14,6 +14,8 @@ const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"  // "http://www.xamuel.com/bla
 
 var Player = React.createClass({
 	propTypes: {
+		isPlayerMobile: React.PropTypes.bool, 			// is UI on mobile player in footer tray
+
 		songPlayingArtistInfo: React.PropTypes.object,
 		playlist: React.PropTypes.array,
 		isPlaylistPlaying: React.PropTypes.bool,
@@ -289,7 +291,7 @@ var Player = React.createClass({
 		if(this.props.MASAS_songInfo)
 			discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1))
 		return (
-			<div className="navbar-player--wrapper">
+			<div className={ "navbar-player--wrapper" + (this.props.isPlayerMobile ? " player-mobile" : "") }>
 				{
 					this.renderLikeIcon()
 				}

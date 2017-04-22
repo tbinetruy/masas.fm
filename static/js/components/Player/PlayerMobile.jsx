@@ -5,6 +5,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerMobile
 
 var { PlayerBar } = require("./PlayerBar.jsx")
 
+import ProgressBar from "../Footer/ProgressBar.jsx"
+
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
@@ -35,7 +37,9 @@ var PlayerMobile = React.createClass({
 				<div className="player-mobile-discover--wrapper">
 				</div>
                 <div className="player-mobile-player--wrapper">
-					<PlayerBar />
+					<ProgressBar />
+					<PlayerBar
+						isPlayerMobile={ true }/>
 				</div>
 			</div>
 		)

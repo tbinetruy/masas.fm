@@ -2176,6 +2176,41 @@ input[type=range].MASAS-slider {
       display: block; }
     .footer-modal--wrapper .buttons .cancel-button:active {
       font-family: Lato-Semibold, sans-serif; } }
+.player-progress-bar--wrapper .select-range {
+  height: 10px;
+  transform: translateY(-50%);
+  position: absolute;
+  z-Index: 10;
+  width: 100%; }
+.player-progress-bar--wrapper .playerProgressBar--wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 2px;
+  position: absolute;
+  top: 0;
+  left: 0; }
+  .player-progress-bar--wrapper .playerProgressBar--wrapper .playerProgressBar {
+    display: flex;
+    background-color: white;
+    width: 0vw;
+    z-index: 2; }
+  .player-progress-bar--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper {
+    display: flex;
+    height: 2px;
+    flex: 1;
+    position: relative;
+    width: 100%; }
+    .player-progress-bar--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper .bufferingBar.buffering {
+      position: absolute;
+      width: 300%;
+      background: linear-gradient(45deg, white, rgba(0, 0, 0, 0.5), white, rgba(0, 0, 0, 0.5));
+      height: 2px;
+      animation-name: buffering;
+      animation-duration: 1.5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite; }
+
 .footer--wrapper {
   position: relative;
   height: 4rem;
@@ -2215,12 +2250,6 @@ input[type=range].MASAS-slider {
       display: flex; }
     .footer--wrapper .unsplash-controls.hidden {
       display: none; } }
-  .footer--wrapper .select-range {
-    height: 10px;
-    transform: translateY(-50%);
-    position: absolute;
-    z-Index: 10;
-    width: 100%; }
   .footer--wrapper .slider--wrapper.opened {
     transform: translateY(-17rem); }
     .footer--wrapper .slider--wrapper.opened .copyright {
@@ -2261,34 +2290,6 @@ input[type=range].MASAS-slider {
         justify-content: center;
         font-family: Lato-Light;
         font-size: .7rem; }
-      .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper {
-        display: flex;
-        justify-content: flex-start;
-        width: 100vw;
-        height: 2px;
-        position: absolute;
-        top: 0;
-        left: 0; }
-        .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .playerProgressBar {
-          display: flex;
-          background-color: white;
-          width: 0vw;
-          z-index: 2; }
-        .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper {
-          display: flex;
-          height: 2px;
-          flex: 1;
-          position: relative;
-          width: 100%; }
-          .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper .bufferingBar.buffering {
-            position: absolute;
-            width: 300%;
-            background: linear-gradient(45deg, white, rgba(0, 0, 0, 0.5), white, rgba(0, 0, 0, 0.5));
-            height: 2px;
-            animation-name: buffering;
-            animation-duration: 1.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite; }
       .footer--wrapper .slider--wrapper .visible--wrapper img {
         cursor: pointer; }
       .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
@@ -4158,6 +4159,30 @@ input[type=range].MASAS-slider {
   .player-mobile--top-wrapper.show {
     display: flex;
     transform: translateY(0px); }
+    .player-mobile--top-wrapper.show .player-mobile-player--wrapper .player-progress-bar--wrapper {
+      display: block; }
+      .player-mobile--top-wrapper.show .player-mobile-player--wrapper .player-progress-bar--wrapper input[type=range]::-webkit-slider-thumb {
+        box-shadow: 1px 1px 1px #000000;
+        border: 1px solid #000000;
+        height: 32px;
+        width: 32px;
+        border-radius: 20px;
+        background: #FFFFFF;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -12px; }
+      .player-mobile--top-wrapper.show .player-mobile-player--wrapper .player-progress-bar--wrapper input[type=range]::-moz-slider-thumb {
+        box-shadow: 1px 1px 1px #000000;
+        border: 1px solid #000000;
+        height: 32px;
+        width: 32px;
+        border-radius: 20px;
+        background: #FFFFFF;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -12px; }
+      .player-mobile--top-wrapper.show .player-mobile-player--wrapper .player-progress-bar--wrapper .playerProgressBar {
+        background-color: red; }
   .player-mobile--top-wrapper .close-button--wrapper {
     height: 3rem;
     width: 3rem;
@@ -4167,9 +4192,6 @@ input[type=range].MASAS-slider {
     position: absolute;
     right: 0;
     top: 0; }
-  .player-mobile--top-wrapper .player-mobile-player--wrapper {
-    display: flex;
-    flex: 0.3; }
   .player-mobile--top-wrapper .player-mobile-discover--wrapper {
     display: flex;
     flex: 0.7; }
@@ -4177,6 +4199,16 @@ input[type=range].MASAS-slider {
     display: flex;
     flex: 0.3;
     position: relative; }
+    .player-mobile--top-wrapper .player-mobile-player--wrapper .player-progress-bar--wrapper {
+      display: none; }
+    .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .like-icon {
+      display: none; }
+    .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 .text-info {
+      display: none; }
+    .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
+      opacity: 1; }
+    .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
+      opacity: 1; }
 
 @media screen and (min-width: 992px) {
   .player-mobile--top-wrapper {

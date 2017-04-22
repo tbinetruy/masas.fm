@@ -9,6 +9,7 @@ var MiniProfileWrapper = require("../Profile/MiniProfileWrapper.jsx")
 var { PlayerBar } = require("../Player/PlayerBar.jsx")
 const Player = PlayerBar
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
+const ProgressBar = require("./ProgressBar.jsx")
 
 
 var Footer = React.createClass({
@@ -23,6 +24,11 @@ var Footer = React.createClass({
 
 
 	componentWillMount: function() {
+
+        // Keeping track of progress bar here with a timer
+		// allows us to reuse the progressBar component many times
+		// without having to use multiple timers
+		// probably needs to be moved to the playerBar comp however
 
 		// init progress bar width
 		var progressBarWidth = 0
@@ -59,10 +65,6 @@ var Footer = React.createClass({
 			this.props.toogleIsOpened()
 	},
 
-	onSliderChange: function(e) {
-		$("#jquery_jplayer_1").jPlayer('play', e.target.value / 100 * this.props.SC_songInfo.duration/1000)
-		this.props.updateProgressBar(e.target.value)
-	},
 
 	openModal: function(modalType) {
 		this.toogleMenu()
@@ -102,25 +104,12 @@ var Footer = React.createClass({
 
 
 				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
+
 					<MiniProfileWrapper />
-					<div
-						className="select-range"
-						id="footer-select-range" >
-						<input
-							type="range"
-							value={ this.props.progressBarWidth }
-							onChange={ this.onSliderChange }
-							className="MASAS-slider" />
-					</div>
+
+					<ProgressBar />
+
 					<div className="visible--wrapper">
-						<div className="playerProgressBar--wrapper">
-							<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
-							</div>
-							<div className="bufferingBar--wrapper">
-								<div className={ "bufferingBar" + (this.props.isBuffering ? " buffering" : "")}>
-								</div>
-							</div>
-						</div>
 						<div className="row no-margin"  style={{height: '100%'}}>
 							<div className="col-md-2 col-display-none-sm buffer-info">
 								<div className="box">

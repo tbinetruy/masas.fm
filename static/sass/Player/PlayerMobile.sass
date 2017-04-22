@@ -15,6 +15,35 @@
 		display: flex
 		transform: translateY(0px)
 
+		.player-mobile-player--wrapper
+			.player-progress-bar--wrapper
+				display: block
+
+				input[type=range]::-webkit-slider-thumb
+					box-shadow: 1px 1px 1px #000000
+					border: 1px solid #000000
+					height: 32px
+					width: 32px
+					border-radius: 20px
+					background: #FFFFFF
+					cursor: pointer
+					-webkit-appearance: none
+					margin-top: -12px
+
+				input[type=range]::-moz-slider-thumb
+					box-shadow: 1px 1px 1px #000000
+					border: 1px solid #000000
+					height: 32px
+					width: 32px
+					border-radius: 20px
+					background: #FFFFFF
+					cursor: pointer
+					-webkit-appearance: none
+					margin-top: -12px
+
+				.playerProgressBar
+					background-color: red
+
 	.close-button--wrapper
 		height: 3rem
 		width: 3rem
@@ -25,10 +54,6 @@
 		right: 0
 		top: 0
 
-	.player-mobile-player--wrapper
-		display: flex
-		flex: 0.3
-
 	.player-mobile-discover--wrapper
 		display: flex
 		flex: 0.7
@@ -38,6 +63,28 @@
 		flex: 0.3
 		position: relative
 
+		.player-progress-bar--wrapper
+			display: none
+
+		.navbar-player--wrapper
+			.like-icon
+				display: none
+
+			.song-info--wrapper1
+				.text-info
+					display: none
+
+				.sc-icon
+					a
+
+			.player-controls--wrapper
+				.previous-song-icon
+					opacity: 1
+
+				.play-button
+
+				.next-song-icon
+					opacity: 1
 @media screen and (min-width: $desktop-min-width)
 	.player-mobile--top-wrapper
 		display: none

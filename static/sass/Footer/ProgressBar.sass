@@ -1,0 +1,41 @@
+.player-progress-bar--wrapper
+
+	.select-range
+		height: 10px
+		transform: translateY(-50%)
+		position: absolute
+		z-Index: 10
+		width: 100%
+
+	.playerProgressBar--wrapper
+		// position: relative
+		display: flex
+		justify-content: flex-start
+		width: 100vw
+		height: 2px
+		position: absolute
+		top: 0
+		left: 0
+
+		.playerProgressBar
+			display: flex
+			background-color: white
+			width: 0vw
+			z-index: 2
+
+		.bufferingBar--wrapper
+			display: flex
+			height: 2px
+			flex: 1
+			position: relative
+			width: 100%
+
+			.bufferingBar.buffering
+				position: absolute
+				width: 300%
+				background: linear-gradient(45deg, white, rgba(0,0,0,0.5), white, rgba(0,0,0,0.5))
+				height: 2px
+				animation-name: buffering
+				animation-duration: 1.5s
+				animation-timing-function: linear
+				animation-iteration-count: infinite
