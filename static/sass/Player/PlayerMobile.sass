@@ -1,6 +1,6 @@
 .player-mobile--top-wrapper
 	position: absolute
-	background-color: #111
+	background-color: #000
 	bottom: 0
 	top: 0
 	let: 0
@@ -19,30 +19,36 @@
 			.player-progress-bar--wrapper
 				display: block
 
+				$height: 1rem
+				$width: 1rem
+				$border-radius: 0.5rem
+				$margin-top: -$height / 3
 				input[type=range]::-webkit-slider-thumb
 					box-shadow: 1px 1px 1px #000000
 					border: 1px solid #000000
-					height: 32px
-					width: 32px
-					border-radius: 20px
+					height: $height
+					width: $width
+					border-radius: $border-radius
 					background: #FFFFFF
 					cursor: pointer
 					-webkit-appearance: none
-					margin-top: -12px
+					margin-top: $margin-top
 
 				input[type=range]::-moz-slider-thumb
 					box-shadow: 1px 1px 1px #000000
 					border: 1px solid #000000
-					height: 32px
-					width: 32px
-					border-radius: 20px
+					height: $height
+					width: $width
+					border-radius: $border-radius
 					background: #FFFFFF
 					cursor: pointer
 					-webkit-appearance: none
-					margin-top: -12px
+					margin-top: $margin-top
 
-				.playerProgressBar
-					background-color: red
+				.playerProgressBar--wrapper
+					background-color: rgba(216, 216, 216, 0.4)
+					.playerProgressBar
+						background-color: white
 
 	.close-button--wrapper
 		height: 3rem
@@ -53,10 +59,72 @@
 		position: absolute
 		right: 0
 		top: 0
+		height: 4rem
+		align-items: flex-end
+		z-index: 2
+		margin-right: 1.5rem
+
+	.header
+		display: flex
+		justify-content: center
+		height: 4rem
+		align-items: flex-end
+		font-size: 1.3rem
+		font-family: Lato-Semibold
+		letter-spacing: 0.18rem
 
 	.player-mobile-discover--wrapper
 		display: flex
 		flex: 0.7
+
+		.player-mobile-artwork-playing--wrapper
+			display: flex
+			flex: 1
+			justify-content: center
+			align-items: center
+			flex-direction: column
+
+		$height: 36vh
+		.artwork--wrapper
+			width: 100%
+			position: relative
+			height: $height
+			width: $height
+
+			.artwork
+				position: absolute
+				width: 100%
+
+			.player-button
+				opacity: 0
+				position: absolute
+				width: 100%
+				transition: opacity 0.1s linear
+
+				&:hover
+					opacity: 1
+
+		.song-info--wrapper
+			width: $height
+			height: 4rem
+			display: flex
+			flex-direction: column
+			justify-content: flex-end
+
+			.song-name, .artist-name
+				text-overflow: ellipsis
+				white-space: nowrap
+				overflow: hidden
+				font-family: Lato-Light
+				font-size: 1.25rem
+
+			.song-name
+				margin-bottom: 0.3rem
+				letter-spacing: 0.05rem
+
+			.artist-name
+				opacity: 0.7
+				letter-spacing: 0.1rem
 
 	.player-mobile-player--wrapper
 		display: flex

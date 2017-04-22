@@ -30,16 +30,29 @@ var PlayingArtwork = React.createClass({
 	render: function() {
 		let artworkURL = ""
 		if(this.props.SC_songInfo)
-			artworkURL = this.props.SC_songInfo.artwork_url
+			artworkURL = this.props.SC_songInfo.artwork_url.substring(0,this.props.SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 
 		return (
-			<div>
+			<div className="player-mobile-artwork-playing--wrapper">
 				<Artwork
 					artworkURL={ artworkURL }
 					allowPlayPause={ true }
 					isItemPlaying={ !this.props.isPaused }
 					onArtworkClick={ this.props.isPaused ? this.props.play : this.props.pause }
 				/>
+                {
+					this.props.SC_songInfo ?
+						<div className="song-info--wrapper">
+							<div className="song-name">
+								{ this.props.MASAS_songInfo.trackTitle }
+							</div>
+							<div className="artist-name">
+								{ this.props.SC_songInfo.user.username }
+							</div>
+						</div>
+					:
+						<div></div>
+				}
 			</div>
 		)
 	}

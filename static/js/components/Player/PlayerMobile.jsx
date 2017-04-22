@@ -35,6 +35,9 @@ var PlayerMobile = React.createClass({
 					onClick={ () => this.props.showPlayerMobile(false) }>
 					close
 				</div>
+				<div className="header">
+					MASAS Player
+				</div>
 				<div className="player-mobile-discover--wrapper">
 					<PlayingArtwork />
 				</div>
