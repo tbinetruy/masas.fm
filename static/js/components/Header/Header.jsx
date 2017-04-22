@@ -30,8 +30,6 @@ var Header = React.createClass({
 		closeModal: React.PropTypes.func,
 	},
 
-
-
 	render: function() {
 		let formatForModal = false
 		if(this.props.modalType === 5 && this.props.isModalOpened)
@@ -65,9 +63,9 @@ var Header = React.createClass({
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
 						<div className="box" style={{
-							display: 'flex', 
-							flex: 2, 
-							flexDirection: 'row', 
+							display: 'flex',
+							flex: 2,
+							flexDirection: 'row',
 							justifyContent: 'center',
 							position: 'relative'
 						}}>
@@ -108,15 +106,6 @@ var Header = React.createClass({
 						}
 					</div>
 					<div className="col-xs-3">
-						<div className="box tray-icon--wrapper">
-
-								<div
-									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") }
-									onClick={ this.props.songPlaying ? this.props.toogleIsOpened : () => {} }
-									style={ !this.props.songPlaying ? { opacity: 0, cursor: 'default' } : {} } >
-								</div>
-
-						</div>
 					</div>
 				</div>
 			</nav>

@@ -125,11 +125,6 @@ var Footer = React.createClass({
 								<div className="box nextSong--wrapper">
 									{ this.getNextSongIcon() }
 								</div>
-								<div
-									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") }
-									onClick={ this.props.songPlaying ? this.toogleMenu : () => {} }
-									style={ !this.props.songPlaying ? { cursor: 'default', opacity: 0.7 } : {} }>
-								</div>
 							</div>
 						</div>
 					</div>

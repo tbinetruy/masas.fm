@@ -201,26 +201,11 @@ var ArtworkLine = React.createClass({
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
-						{
-							this.props.isFooterOpened === false ?
-								<img
-									onClick={ this.props.toggleIsFooterOpened }
-									src="/static/img/MASAS_icon_dot.svg"
-									className="toggle-menu"
-									alt="menu icon" />
-							:
-								<img
-									onClick={ this.props.toggleIsFooterOpened }
-									src="/static/img/MASAS_icon_close.svg"
-									className="toggle-menu small"
-									alt="menu icon" />
-						}
-
 					</div>
 					<div className="right-side">
 					</div>
 				</div>
-				)
+			)
 		}
 	}
 })
