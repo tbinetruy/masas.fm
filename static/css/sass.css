@@ -4820,19 +4820,6 @@ input[type=range].MASAS-slider {
         filter: invert(100%); }
       .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info {
         cursor: pointer; }
-        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info .title {
-          margin-top: 1.5rem;
-          margin-bottom: 0.3rem; }
-          .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info .title .MASAS_marquee {
-            height: 1.35rem;
-            font-size: 1.25rem;
-            letter-spacing: 0.1rem;
-            font-family: Lato-Semibold; }
-        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info .artist .MASAS_marquee {
-          height: 1.25rem;
-          font-size: 1.25rem;
-          letter-spacing: 0.1rem;
-          font-family: Lato-Light; }
     @media screen and (min-width: 992px) {
       .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
         font-size: 0.49rem;
@@ -4847,7 +4834,23 @@ input[type=range].MASAS-slider {
           position: relative;
           height: 0.49rem;
           width: calc(24.5vh - 2 * 1rem);
-          cursor: pointer; } }
+          cursor: pointer; }
+          .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .title .MASAS_marquee, .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .artist .MASAS_marquee {
+            font-size: 0.49rem;
+            height: 0.49rem; } }
+    .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title {
+      margin-top: 1.5rem;
+      margin-bottom: .3rem; }
+      .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title .MASAS_marquee {
+        height: 1.35rem;
+        font-size: 1.25rem;
+        letter-spacing: 0.1rem;
+        font-family: Lato-Semibold; }
+    .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist .MASAS_marquee {
+      height: 1.25rem;
+      font-size: 1.25rem;
+      letter-spacing: 0.1rem;
+      font-family: Lato-Light; }
   @media screen and (min-width: 992px) {
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork--wrapper {
       height: 35vh;
@@ -4866,10 +4869,15 @@ input[type=range].MASAS-slider {
       flex-direction: row; }
       .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info {
         flex: 1; }
+        .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title {
+          margin-top: inherit; }
         .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
           position: relative;
           height: 0.7rem;
-          width: calc($artworkWidth - 2 * 1rem); } }
+          width: calc($artworkWidth - 2 * 1rem); }
+          .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title .MASAS_marquee, .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist .MASAS_marquee {
+            height: 0.7rem;
+            font-size: 0.7rem; } }
   .artwork-line--wrapper .button {
     display: none; }
   .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
@@ -4991,11 +4999,6 @@ input[type=range].MASAS-slider {
         align-items: center;
         padding: 0 1rem;
         background-color: black; }
-        .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper.popular {
-          background-color: white;
-          color: black; }
-          .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper.popular .like-icon img {
-            filter: invert(100%); }
         .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon {
           width: 1.5rem;
           cursor: pointer; }
@@ -5238,7 +5241,7 @@ input[type=range].MASAS-slider {
           .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title, .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
             position: relative;
             height: 0.7rem;
-            width: calc($artworkWidth - 2 * 1rem); } }
+            width: calc(45vh - 2 * 1rem); } }
     .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing {
       height: 38vh;
       width: 38vh; }
@@ -5278,7 +5281,8 @@ input[type=range].MASAS-slider {
             .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .like-icon img {
               width: 1.5rem; }
           .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper .song-info {
-            padding-left: 1rem; }
+            padding-left: 1rem;
+            padding-right: 1rem; }
             .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper .song-info .title, .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
               height: 0.7rem;
               width: calc(45vh - 3 * (1rem + 1.5rem)); }
@@ -5325,7 +5329,8 @@ input[type=range].MASAS-slider {
       height: 2rem;
       background-color: white;
       width: 10rem;
-      height: 3rem; }
+      height: 3rem;
+      cursor: pointer; }
       .popular--wrapper .vote--wrapper .like-button img, .popular--wrapper .vote--wrapper .dislike-button img {
         filter: invert(100%); }
     .popular--wrapper .vote--wrapper .like-button {
