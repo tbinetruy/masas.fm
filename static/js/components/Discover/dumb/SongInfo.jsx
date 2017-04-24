@@ -15,10 +15,7 @@ export const SongInfo = props => {
 			return (
 				<div className={"song-info--wrapper" + (props.popularTheme ? " popular" : "" ) }>
 					<div
-						className="like-icon"
-						style={ {
-							display: (props.songPlaying === props.MASAS_songInfo.url ? 'flex' : 'none')
-						} }
+						className={ "like-icon " + (props.songPlaying === props.MASAS_songInfo.url ? 'show' : 'hide') }
 						onClick={ () => props.toggleSongLike() }>
 						{
 							props.isSongPlayingLiked && props.MASASuser !== "" ?

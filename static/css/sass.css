@@ -4810,14 +4810,29 @@ input[type=range].MASAS-slider {
     .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
       display: none;
       align-items: center;
-      background-color: black; }
-      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular {
-        background-color: white;
-        color: black; }
-        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular .like-icon img {
-          filter: invert(100%); }
+      background-color: transparent;
+      color: white; }
+      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular .like-icon.show {
+        display: flex; }
+      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular .like-icon.hide {
+        display: none; }
+      .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper.popular .like-icon img {
+        filter: invert(100%); }
       .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info {
         cursor: pointer; }
+        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info .title {
+          margin-top: 1.5rem;
+          margin-bottom: 0.3rem; }
+          .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info .title .MASAS_marquee {
+            height: 1.35rem;
+            font-size: 1.25rem;
+            letter-spacing: 0.1rem;
+            font-family: Lato-Semibold; }
+        .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .song-info .artist .MASAS_marquee {
+          height: 1.25rem;
+          font-size: 1.25rem;
+          letter-spacing: 0.1rem;
+          font-family: Lato-Light; }
     @media screen and (min-width: 992px) {
       .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
         font-size: 0.49rem;
@@ -4925,7 +4940,8 @@ input[type=range].MASAS-slider {
         width: min-content;
         min-width: 100%;
         justify-content: flex-end;
-        z-index: 3; }
+        z-index: 3;
+        display: flex; }
       .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
         height: 12rem;
         width: 0; }
@@ -4948,7 +4964,7 @@ input[type=range].MASAS-slider {
       .artwork-line--wrapper .button img.small {
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: 0.5rem; }
+        margin-right: .5rem; }
     .artwork-line--wrapper .button.show {
       display: flex;
       flex-direction: row-reverse;
@@ -5187,10 +5203,9 @@ input[type=range].MASAS-slider {
   display: flex;
   flex-direction: column;
   flex: 1;
-  align-items: center;
   position: relative;
-  flex-direction: column-reverse;
-  justify-content: center; }
+  justify-content: center;
+  background-color: black; }
   .popular--wrapper .popular-timer--wrapper .hashtag {
     border-bottom: 1px solid white;
     padding-bottom: 1rem;
@@ -5225,13 +5240,17 @@ input[type=range].MASAS-slider {
             height: 0.7rem;
             width: calc($artworkWidth - 2 * 1rem); } }
     .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing {
-      height: 45vh;
-      width: 45vh; }
+      height: 38vh;
+      width: 38vh; }
       .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing .artwork {
-        height: 45vh;
-        width: 45vh; }
-    .popular--wrapper .artwork-line--wrapper.popular .left-side {
-      display: none; }
+        height: 38vh;
+        width: 38vh; }
+    .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular {
+      display: flex; }
+      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .like-icon {
+        display: none; }
+      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .song-info {
+        width: 100%; }
   @media screen and (min-width: 992px) {
     .popular--wrapper .artwork-line--wrapper.popular {
       margin-bottom: 0.1rem;
@@ -5266,13 +5285,13 @@ input[type=range].MASAS-slider {
       .popular--wrapper .artwork-line--wrapper.popular .left-side {
         width: calc(50% - 31.5vh / 2.2); } }
   .popular--wrapper .coming-soon {
-    flex: 0.6;
+    flex: .6;
     display: flex;
     align-items: center; }
   .popular--wrapper .title-top, .popular--wrapper .title-bottom {
     align-items: center;
     font-size: 1.9rem;
-    letter-spacing: 0.35rem;
+    letter-spacing: .35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -5281,17 +5300,36 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: 0.2;
+    flex: .2;
     align-items: center; }
   .popular--wrapper .popular-content--wrapper {
     margin-bottom: 2rem;
     margin-top: 3rem;
-    transition: opacity 0.3s ease-in;
+    transition: opacity .3s ease-in;
     display: flex;
-    flex: 0.7;
+    flex: .7;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
+  .popular--wrapper .vote--wrapper {
+    display: flex;
+    flex: .2;
+    width: 100%;
+    justify-content: center;
+    align-items: center; }
+    .popular--wrapper .vote--wrapper .like-button, .popular--wrapper .vote--wrapper .dislike-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 7rem;
+      height: 2rem;
+      background-color: white;
+      width: 10rem;
+      height: 3rem; }
+      .popular--wrapper .vote--wrapper .like-button img, .popular--wrapper .vote--wrapper .dislike-button img {
+        filter: invert(100%); }
+    .popular--wrapper .vote--wrapper .like-button {
+      margin-left: 2rem; }
   .popular--wrapper .hide-mobile {
     display: none; }
   .popular--wrapper .hide-desktop {
@@ -5304,6 +5342,7 @@ input[type=range].MASAS-slider {
     flex: 1;
     align-items: center;
     position: relative;
+    background-color: transparent;
     justify-content: center; }
     .popular--wrapper .artwork-line {
       min-width: 50vw;
@@ -5313,7 +5352,7 @@ input[type=range].MASAS-slider {
       .popular--wrapper .title-bottom h1 {
         display: block; }
     .popular--wrapper .title-top {
-      flex: 0.15;
+      flex: .15;
       display: none; }
     .popular--wrapper .hide-mobile {
       display: flex; }

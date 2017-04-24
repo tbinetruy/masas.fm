@@ -1,18 +1,40 @@
 .song-info--wrapper
 	display: none
 	align-items: center
-	background-color: black
+	background-color: rgba(0,0,0,0)
+	color: white
 
 	&.popular
-		background-color: white
-		color: black
 
 		.like-icon
+			&.show
+				display: flex
+			&.hide
+				display: none
 			img
 				filter: invert(100%)
 
 	.song-info
 		cursor: pointer
+
+		$height: 1.25rem
+		$letter-spacing: 0.1rem
+		.title
+			margin-top: 1.5rem
+			margin-bottom: 0.3rem
+
+			.MASAS_marquee
+				height: $height + 0.1rem
+				font-size: $height
+				letter-spacing: $letter-spacing
+				font-family: Lato-Semibold
+
+		.artist .MASAS_marquee
+			height: $height
+			font-size: $height
+			letter-spacing: $letter-spacing
+			font-family: Lato-Light
+
 
 @media screen and (min-width: $desktop-min-width)
 	$ratio: 0.7

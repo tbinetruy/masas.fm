@@ -19,8 +19,8 @@
 			&.hidden
 
 		.artwork-playing
-			height: 45vh
-			width: 45vh
+			height: 38vh
+			width: 38vh
 
 			.player-button
 
@@ -30,17 +30,23 @@
 
 
 			.artwork
-				height: 45vh
-				width: 45vh
+				height: 38vh
+				width: 38vh
 
 
 
-		.song-info--wrapper
+		.song-info--wrapper.popular
+			display: flex
+
+			.like-icon
+				display: none
+
+			.song-info
+				width: 100%
 
 	.left-side, .right-side
 
 	.left-side
-		display: none
 
 		.artwork-line
 
@@ -65,17 +71,17 @@
 
 		.button
 			padding-left: 2*$artworkWidth
-			
+
 
 			img
 				margin-right: 5rem
-				
+
 			img.small
-			
+
 
 
 		.button.show
-		
+
 		.toggle-menu
 			display: none
 
@@ -85,8 +91,8 @@
 			max-width: $artworkWidth
 			height: calc(#{$artworkWidth} + #{$song-info-height})
 
-		
-		
+
+
 
 			.pervious-song-button
 
