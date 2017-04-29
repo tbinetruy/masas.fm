@@ -4,7 +4,6 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/App.jsx")
 
 var AppDumb = require("./AppDumb.jsx")
-var SplashScreen = require("./SplashScreen.jsx")
 
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
@@ -120,7 +119,7 @@ var App = React.createClass({
 		let loadingModalAnim = "none"
 		if(!this.props.processingAuthCookie) {
 			hideLoadingModalZIndex = -1000
-			loadingModalAnim = "fadeout-loading-modal 1s linear"
+			loadingModalAnim = "fadeout-loading-modal 3s cubic-bezier(1, 0.02, 0.78,-0.2)"
 		}
 
 		return <AppDumb

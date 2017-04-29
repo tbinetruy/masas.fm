@@ -57,7 +57,7 @@ var AppDumb = React.createClass({
 			alignItems: 'center',
 			backgroundColor: 'black',
 			color: 'white',
-			zIndex: this.props.hideLoadingModalZIndex,
+			// zIndex: this.props.hideLoadingModalZIndex,
 			opacity: this.props.hideLoadingModalZIndex ? 0 : 1,
 			animation: this.props.loadingModalAnim,
 			pointerEvents: this.props.hideLoadingModalZIndex > 0 ? 'default' : 'none'
