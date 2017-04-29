@@ -19,6 +19,10 @@ import {
 	PreviousButton,
 } from "./controls/PreviousButton.jsx"
 
+import {
+	NextButton,
+} from "./controls/NextButton.jsx"
+
 var Player = React.createClass({
 	propTypes: {
 		isPlayerMobile: React.PropTypes.bool, 			// is UI on mobile player in footer tray
@@ -208,45 +212,6 @@ var Player = React.createClass({
 	},
 
 
-	getNextSongIcon: function() {
-		if(this.props.songPlaying) {
-			if(this.props.isPlaylistPlaying) {
-				// if there is a next song in playlist
-				if(this.props.playlistPosition < this.props.playlist.length - 1)
-					return <img
-						onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1) }
-						src="/static/img/MASAS_next.svg"
-						alt="next song"
-						className="next-song-icon" />
-				else
-					return <img
-						src="/static/img/MASAS_next.svg"
-						style={{ visibility: 'hidden' }}
-						alt="next song"
-						className="next-song-icon" />
-			}
-			// not paying from playlist, play random song from discover of popular
-			else {
-				let timeInterval = this.props.MASAS_songInfo.timeInterval[this.props.MASAS_songInfo.timeInterval.length - 2]
-				if(this.props.playingFromPopular)
-					timeInterval = POPULAR
-
-				return <img
-					onClick={ () => this.props.playRandomSong(timeInterval) }
-					src="/static/img/MASAS_next.svg"
-					alt="next song"
-					className="next-song-icon" />
-			}
-		} else {
-			// hide next button if no songs are loaded
-			return <img
-				src="/static/img/MASAS_next.svg"
-				style={{ visibility: 'hidden' }}
-				alt="next song"
-				className="next-song-icon" />
-		}
-	},
-
 	render: function() {
 		// store discover number for previous icon
 		let discoverNumber = 0
@@ -281,7 +246,7 @@ var Player = React.createClass({
 				<div className="player-controls--wrapper">
 					<PreviousButton />
                     <PlayButton />
-					{ this.getNextSongIcon() }
+					<NextButton />
 				</div>
 			</div>
 		)

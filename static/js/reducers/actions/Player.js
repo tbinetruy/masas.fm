@@ -378,7 +378,7 @@ function updateArtistInfo(artistInfo) {
 
 // plays song from start based on given URL
 // playFromPopular: (bool) is song played from popular (info useful for player bar next and back buttons)
-export function playSong(songURL, playingFromPopular = false) {
+export function playSong(songURL, playingFromPopular = true) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL,

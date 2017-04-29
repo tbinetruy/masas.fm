@@ -30,7 +30,8 @@ var PlayingArtwork = React.createClass({
 	render: function() {
 		let artworkURL = ""
 		if(this.props.SC_songInfo)
-			artworkURL = this.props.SC_songInfo.artwork_url.substring(0,this.props.SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+			if(this.props.SC_songInfo.artwork_url)
+				artworkURL = this.props.SC_songInfo.artwork_url.substring(0,this.props.SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 
 		return (
 			<div className="player-mobile-artwork-playing--wrapper">

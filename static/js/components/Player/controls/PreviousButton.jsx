@@ -1,7 +1,3 @@
-import {
-	updatePageTitle,
-} from "../../../reducers/actions/App.js"
-
 import react from "react"
 const React = react
 
@@ -54,7 +50,7 @@ class PreviousButtonSmart extends React.Component {
 			return <div className="previous-song-icon"></div>
 
 		// no back button if playing from discover
-		if(!this.props.playingFromPopular)
+		if(!this.props.playingFromPopular && !this.props.isPlaylistPlaying)
 			return
 
 		if(this.props.isPlaylistPlaying) {
@@ -83,7 +79,7 @@ class PreviousButtonSmart extends React.Component {
 
 	render = () => {
 		return (
-			<div className="play-button-component--wrapper">
+			<div className="previous-button-component--wrapper">
                 { this.getPreviousButton() }
 			</div>
 		)
