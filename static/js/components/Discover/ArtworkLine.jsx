@@ -97,7 +97,7 @@ var ArtworkLine = React.createClass({
 					playAndSaveHistory={ this.props.playAndSaveHistory }
 					artistInfo={ artistInfo }
 					key={ key_ID }
-					popularTheme={ !this.props.playFromPopular }
+					popularTheme={ this.props.playFromPopular }
 					/>
 				)
 		})
@@ -131,7 +131,7 @@ var ArtworkLine = React.createClass({
 			return <EmptyArtwork
 				playRandomSong={ this.playRandomSong }
 				playFromPopular={ this.props.playFromPopular }
-				popularTheme={ this.props.playFromPopular }/>
+				popularTheme={ !this.props.playFromPopular }/>
 		else {
 			const artworkLine = this.getArtworkLine(history)
 
@@ -159,7 +159,7 @@ var ArtworkLine = React.createClass({
 						</div>
 					</div>
 					<div
-						className="artwork-playing--wrapper">
+						className={ "artwork-playing--wrapper" + (this.props.playFromPopular ? " popular" : "") }  >
 
 						<img
 							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber) }

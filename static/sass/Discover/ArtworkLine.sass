@@ -151,6 +151,10 @@
 		.artwork-playing--wrapper
 			max-width: $artworkWidth
 			height: calc(#{$artworkWidth} + #{$song-info-height})
+			border: 1px solid white
+
+			&.popular
+				border: none
 
 			.next-song-button
 				display: none
@@ -172,7 +176,6 @@
 				display: flex
 				align-items: center
 				padding: 0 $sidePadding
-				background-color: black
 
 				.like-icon
 					width: $like-icon-width
