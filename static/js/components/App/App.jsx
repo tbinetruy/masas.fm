@@ -88,12 +88,6 @@ var App = React.createClass({
 	},
 
 	showSplashScreen: function() {
-		if(this.props.MASASuser === "") {
-			this.props.toogleModal()
-			this.props.updateModalContent(<SplashScreen />, 3)
-		} else {
-			this.props.closeModal()
-		}
 	},
 
 	getUserTokenFromCookie: function() {
