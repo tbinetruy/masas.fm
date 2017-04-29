@@ -1,18 +1,21 @@
 .song-info--wrapper
 	display: none
 	align-items: center
-	background-color: black
 
 	&.popular
-		background-color: white
-		color: black
 
 		.like-icon
+			&.show
+				display: flex
+			&.hide
+				display: none
 			img
 				filter: invert(100%)
 
 	.song-info
 		cursor: pointer
+
+
 
 @media screen and (min-width: $desktop-min-width)
 	$ratio: 0.7
@@ -30,10 +33,19 @@
 		justify-content: center
 		align-items: center
 		padding: 0 $sidePadding
-		background-color: black
+		background-color: white
+		color: black
+
+		&.popular
+			background-color: black
+			color: white
 
 		.title, .artist
 			position: relative
 			height: $font-size
 			width: calc(#{$artworkWidth} - 2 * #{$sidePadding})
 			cursor: pointer
+
+			.MASAS_marquee
+				font-size: $font-size
+				height: $font-size

@@ -27,12 +27,12 @@ ReactDOM.render((
        <ReactRedux.Provider store={store}>
                <Router history={browserHistory}>
                        <Route path="/" component={App}>
-                               <Route path="discover" component={Discover} />
+                               <Route path="discover" component={Popular} />
                                <Route path="pending" component={InvitationPending} />
                                <Route path="login" component={Login} />
                                <Route path="likes" component={Likes} />
                                <Route path="legals" component={Legals} />
-                               <Route path="crowdradio" component={Popular} />
+                               <Route path="crowdradio" component={Discover} />
                                <Route path="profile" publicProfile={false} component={Profile} />
                                <Route path="/user/:username" publicProfile={true} component={Profile} />
                                <Route path="sign-up" component={SignUp} />

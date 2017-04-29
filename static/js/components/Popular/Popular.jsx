@@ -15,8 +15,13 @@ var Popular = React.createClass({
 
 	propTypes: {
 		userPk: React.PropTypes.string,
+		MASASuser: React.PropTypes.string,
+		songPlaying: React.PropTypes.string,
+
 
 		updateTitle: React.PropTypes.func,
+		playRandomSong: React.PropTypes.func,
+		toggleSongLike: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -26,7 +31,7 @@ var Popular = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Crowdradio', '0')
+		this.props.updateTitle('Discover', '0')
 	},
 
 	componentDidMount: function() {
@@ -50,17 +55,16 @@ var Popular = React.createClass({
 
 		return (
 			<div className="popular--wrapper">
-				<div className="title-top">
-					<div className="hide-desktop">
-						<PopularTimer />
-					</div>
-					<h1 className="hide-mobile">Crowdradio</h1>
-				</div>
 				{
 					this.getContent()
 				}
-				<div className="popular-timer hide-mobile title-bottom">
-					<PopularTimer />
+				<div className="vote--wrapper">
+					<div className="dislike-button" onClick={ this.props.playRandomSong }>
+						<img src="/static/img/vote/icon_dislike.svg" alt="dislike" />
+					</div>
+					<div className="like-button" onClick={ () => this.props.toggleSongLike(this.props.MASASuser, this.props.songPlaying) }>
+						<img src="/static/img/vote/icon_like.svg" alt="like" />
+					</div>
 				</div>
 			</div>
 		)

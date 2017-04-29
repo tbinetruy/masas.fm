@@ -11,6 +11,27 @@ $sidePaddingDesktop: 1rem
 	@import "./Artwork.sass"
 	@import "./SongInfo.sass"
 
+	&.artwork-playing
+		.song-info--wrapper
+			.song-info
+				$height: 1.25rem
+				$letter-spacing: 0.1rem
+				.title
+					margin-top: 1.5rem
+					margin-bottom: 0.3rem
+
+					.MASAS_marquee
+						height: $height + 0.1rem
+						font-size: $height
+						letter-spacing: $letter-spacing
+						font-family: Lato-Semibold
+
+				.artist .MASAS_marquee
+					height: $height
+					font-size: $height
+					letter-spacing: $letter-spacing
+					font-family: Lato-Light
+
 @media screen and (min-width: $desktop-min-width)
 	.artwork-line-item--wrapper
 		&.artwork-playing
@@ -44,7 +65,14 @@ $sidePaddingDesktop: 1rem
 				.song-info
 					flex: 1
 
+					.title
+						margin-top: inherit
+
 					.title, .artist
 						position: relative
 						height: $font-size
 						width: calc($artworkWidth - 2 * #{$sidePadding})
+
+						.MASAS_marquee
+							height: $font-size
+							font-size: $font-size

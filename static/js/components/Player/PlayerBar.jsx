@@ -3,34 +3,39 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.jsx")
 
-var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
-
-var SplashScreen = require("../App/SplashScreen.jsx")
 
 import { POPULAR } from "../../reducers/actions/Player.js"
 const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
 
+import {
+	PlayButton,
+} from "./controls/PlayButton.jsx"
+
+import {
+	PreviousButton,
+} from "./controls/PreviousButton.jsx"
+
+import {
+	NextButton,
+} from "./controls/NextButton.jsx"
+
+import {
+	LikeButton,
+} from "./controls/LikeButton.jsx"
 
 var Player = React.createClass({
 	propTypes: {
 		isPlayerMobile: React.PropTypes.bool, 			// is UI on mobile player in footer tray
 
-		songPlayingArtistInfo: React.PropTypes.object,
 		playlist: React.PropTypes.array,
 		isPlaylistPlaying: React.PropTypes.bool,
 		playlistPosition: React.PropTypes.number,
-		discoverHistory: React.PropTypes.object,
 		isPaused: React.PropTypes.bool,
 		songPlaying: React.PropTypes.string,
-		userData: React.PropTypes.object,
-		modalType: React.PropTypes.number,
-		isFetchingSong: React.PropTypes.bool,
-		isModalOpened: React.PropTypes.bool,
-		MASASuser: React.PropTypes.string,
 		MASAS_songInfo: React.PropTypes.object,
 		SC_songInfo: React.PropTypes.object,
-		isSongPlayingLiked: React.PropTypes.bool,
 		playingFromPopular: React.PropTypes.bool,
 
 
@@ -39,15 +44,9 @@ var Player = React.createClass({
 		pause: React.PropTypes.func,
 		resumePlaying: React.PropTypes.func,
 		playNewSong: React.PropTypes.func,
-		toggleSongLike: React.PropTypes.func,
 		playRandomSong: React.PropTypes.func,
-		playPreviousSong: React.PropTypes.func,
 		playNewSongFromPlaylist: React.PropTypes.func,
 		setIsPlayerBuffering: React.PropTypes.func,
-		updateMiniProfileContent: React.PropTypes.func,
-		updateLoginMessage: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		toogleModal: React.PropTypes.func,
 		showPlayerMobile: React.PropTypes.func,
 	},
 
@@ -130,73 +129,6 @@ var Player = React.createClass({
 		}
 	},
 
-	getControlButtons() {
-		// show loader if fetching song info
-		if(this.props.isFetchingSong)
-			return <img src="/static/img/puff_loader.svg" alt="loading" className="player-button"  id="player-play-button"/>
-
-		// pause on click if song playing is not paused
-		if(this.props.songPlaying !== null && this.props.isPaused === false)
-			return <img onClick={ this.props.pause } src="/static/img/MASAS_player_pause.svg" alt="pause button" className="player-button"  id="player-play-button"/>
-
-		// if nothing is playing, play random song on play icon
-		if(!this.props.songPlaying)
-			return <img onClick={ () => this.props.playRandomSong(0) } src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button"  id="player-play-button"/>
-
-		// else, click play to unpause
-		return <img onClick={ this.props.play } src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button"  id="player-play-button" />
-	},
-
-	renderLikeIcon: function() {
-		if(this.props.isModalOpened && this.props.modalType === 2) {
-			if(isObjectNotEmpty(this.props.userData)) {
-				// if user has not dismissed tips yet
-				const didUserSeeFirstTip = this.props.userData.usersteps.filter(({ step }) => step === 5).length ? true : false
-
-				if(didUserSeeFirstTip)
-					return <img
-							src="/static/img/dynamic_like_icon.gif"
-							alt="like icon"
-							className="like-icon"
-							onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}
-							style={{ height: '1.8rem' }}/>
-
-			}
-		}
-
-		// user not logged in => return login modal with message
-		if(this.props.MASASuser === "")
-			return (
-				<img
-					src="/static/img/MASAS_like_shadow.svg"
-					alt="like icon"
-					className="like-icon"
-					onClick={
-						() => {
-							this.props.updateLoginMessage(
-								"Please log-in to Like & Save songs"
-							)
-							this.props.updateModalContent(<SplashScreen startPage={1} />, 3)
-							this.props.toogleModal()
-						}
-					} />
-			)
-		// user is logged in => show correct icon (liked/unliked alreaday) and correct callback
-		else
-			return (
-				<img
-					src={
-						"/static/img/MASAS_like"
-						+ (this.props.isSongPlayingLiked ? "d.svg" : "_shadow.svg")
-					}
-					alt="like icon"
-					className="like-icon"
-					onClick={
-						this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)
-					} />
-			)
-	},
-
 	renderRadioTime: function() {
 		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
 		switch(switchVar) {
@@ -217,87 +149,11 @@ var Player = React.createClass({
 		}
 	},
 
-	getPreviousSongIcon: function() {
-		if(this.props.playingFromPopular && this.props.isPlayerMobile)
-			return <div className="previous-song-icon"></div>
-
-		// no back button if playing from popular
-		if(this.props.playingFromPopular)
-			return
-
-		if(this.props.isPlaylistPlaying) {
-			if(this.props.playlistPosition === 0)
-				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
-			else
-				return <img
-					src="/static/img/MASAS_next.svg"
-					onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition - 1) }
-					alt="pevious song"
-					className="previous-song-icon"
-					/>
-		} else {
-			if(this.props.discoverHistory.all.length > 1)
-				return <img
-					src="/static/img/MASAS_next.svg"
-					onClick={ () => this.props.playPreviousSong() }
-					alt="previous song"
-					className="previous-song-icon"
-					style={{ visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }}
-					/>
-			else
-				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
-		}
-	},
-
-	getNextSongIcon: function() {
-		if(this.props.songPlaying) {
-			if(this.props.isPlaylistPlaying) {
-				// if there is a next song in playlist
-				if(this.props.playlistPosition < this.props.playlist.length - 1)
-					return <img
-						onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1) }
-						src="/static/img/MASAS_next.svg"
-						alt="next song"
-						className="next-song-icon" />
-				else
-					return <img
-						src="/static/img/MASAS_next.svg"
-						style={{ visibility: 'hidden' }}
-						alt="next song"
-						className="next-song-icon" />
-			}
-			// not paying from playlist, play random song from discover of popular
-			else {
-				let timeInterval = this.props.MASAS_songInfo.timeInterval[this.props.MASAS_songInfo.timeInterval.length - 2]
-				if(this.props.playingFromPopular)
-					timeInterval = POPULAR
-
-				return <img
-					onClick={ () => this.props.playRandomSong(timeInterval) }
-					src="/static/img/MASAS_next.svg"
-					alt="next song"
-					className="next-song-icon" />
-			}
-		} else {
-			// hide next button if no songs are loaded
-			return <img
-				src="/static/img/MASAS_next.svg"
-				style={{ visibility: 'hidden' }}
-				alt="next song"
-				className="next-song-icon" />
-		}
-	},
 
 	render: function() {
-		// store discover number for previous icon
-		let discoverNumber = 0
-		if(this.props.MASAS_songInfo)
-			discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1))
 		return (
 			<div className={ "navbar-player--wrapper" + (this.props.isPlayerMobile ? " player-mobile" : "") }>
-				{
-					this.renderLikeIcon()
-				}
+                <LikeButton />
 				<div className="song-info--wrapper1">
 					{ this.props.SC_songInfo ?
 						<div className="song-info--wrapper2" >
@@ -320,9 +176,9 @@ var Player = React.createClass({
 					: "" }
 				</div>
 				<div className="player-controls--wrapper">
-					{ this.getPreviousSongIcon() }
-					{ this.getControlButtons() }
-					{ this.getNextSongIcon() }
+					<PreviousButton />
+                    <PlayButton />
+					<NextButton />
 				</div>
 			</div>
 		)

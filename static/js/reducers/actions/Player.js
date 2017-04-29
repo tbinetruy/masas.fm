@@ -2,11 +2,11 @@ import "whatwg-fetch"
 
 import {
 	addSongToHistory as addSongToDiscoverHistory,
-	popSongFromHistory,
 	removeSongFromHistory
 } from "./Discover.js"
 
 import {
+	popSongFromHistory,
 	addSongToHistory as addSongToPopularHistory,
 } from "./Popular.js"
 
@@ -378,7 +378,7 @@ function updateArtistInfo(artistInfo) {
 
 // plays song from start based on given URL
 // playFromPopular: (bool) is song played from popular (info useful for player bar next and back buttons)
-export function playSong(songURL, playingFromPopular = false) {
+export function playSong(songURL, playingFromPopular = true) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL,
@@ -446,13 +446,13 @@ export function playNewSong() {
 export function playPreviousSongInHistory() {
 	return (dispatch, getState) => {
 		const state = getState()
-		const { history } = state.discoverReducer
+		const { history } = state.popularReducer
 
 		// POP SONG FROM HISTORY
 		dispatch(popSongFromHistory())
 
 		// PLAY LATEST SONG IN HISTORY
-		const songURL = history.all[history.all.length-1].MASAS_songInfo.url
+		const songURL = history[history.length-1].MASAS_songInfo.url
 		dispatch(playSong(songURL))
 	}
 }
@@ -507,11 +507,14 @@ export function playRandomSong(timeInterval = 0) {
 		if (URL.indexOf('?') < 0)
 			URL = URL + '?'
 
+        // switch popular and dicover for testing
 		if(timeInterval && timeInterval !== POPULAR)
-			URL = URL + "&time_interval_id=" + timeInterval
+			URL = URL + "&time_interval_id=" + timeInterval + "&radio=popular"
+
 		else if(timeInterval && timeInterval === POPULAR) {
-			const popularTimeInterval = getDiscoverNumberFromCurrentTime()
-			URL = URL + "&time_interval_id=" + popularTimeInterval + "&radio=popular"
+            // no time interval for discover for this test
+			// const popularTimeInterval = getDiscoverNumberFromCurrentTime()
+			// URL = URL + "&time_interval_id=" + popularTimeInterval
 		}
 
 		var headers = {}

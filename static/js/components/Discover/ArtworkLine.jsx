@@ -87,7 +87,7 @@ var ArtworkLine = React.createClass({
 
 			return (
 				<ArtworkLineItem
-					allowPlayPause={ !this.props.playFromPopular }
+					allowPlayPause={ this.props.playFromPopular }
 					key_ID={ key_ID }
 					artworkURL={ artworkURL }
 					SC_songInfo={ SC_songInfo }
@@ -114,9 +114,7 @@ var ArtworkLine = React.createClass({
 
 		// if playing from popular, get popular history
 		if(this.props.playFromPopular)
-			history = this.props.popularHistory.filter( ({ MASAS_songInfo }) =>
-				parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === getDiscoverNumberFromCurrentTime()
-			)
+			history = this.props.popularHistory
 
 		// show only most recent songs in history
 		if(history.length > 10)
@@ -133,7 +131,7 @@ var ArtworkLine = React.createClass({
 			return <EmptyArtwork
 				playRandomSong={ this.playRandomSong }
 				playFromPopular={ this.props.playFromPopular }
-				popularTheme={ this.props.playFromPopular }/>
+				popularTheme={ !this.props.playFromPopular }/>
 		else {
 			const artworkLine = this.getArtworkLine(history)
 
@@ -161,7 +159,7 @@ var ArtworkLine = React.createClass({
 						</div>
 					</div>
 					<div
-						className="artwork-playing--wrapper">
+						className={ "artwork-playing--wrapper" + (this.props.playFromPopular ? " popular" : "") }  >
 
 						<img
 							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber) }

@@ -7,7 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/AppDumb.jsx"
 
 var Header = require("../Header/Header.jsx")
 var Footer = require("../Footer/Footer.jsx")
-var Home = require("../Home/Home.jsx")
+var Discover = require("../Discover/Discover.jsx")
 var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
 var { Modal } = require("../UI/UI.jsx")
 var PlayerAudioTag = require("../Player/PlayerAudioTag.jsx")
@@ -57,7 +57,7 @@ var AppDumb = React.createClass({
 			alignItems: 'center',
 			backgroundColor: 'black',
 			color: 'white',
-			zIndex: this.props.hideLoadingModalZIndex,
+			// zIndex: this.props.hideLoadingModalZIndex,
 			opacity: this.props.hideLoadingModalZIndex ? 0 : 1,
 			animation: this.props.loadingModalAnim,
 			pointerEvents: this.props.hideLoadingModalZIndex > 0 ? 'default' : 'none'
@@ -95,7 +95,7 @@ var AppDumb = React.createClass({
 								this.props.children ?
 									this.props.children
 								:
-									<Home />
+									<Discover />
 							}
 						</div>
 						<div

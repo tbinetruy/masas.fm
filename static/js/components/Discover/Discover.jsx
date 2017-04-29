@@ -44,7 +44,7 @@ var Discover = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Discover', '0')		// 0 = menu icon; 1 = arrow back
+		this.props.updateTitle('Crowdradio', '0')		// 0 = menu icon; 1 = arrow back
 
 		// check what discover is playing
 		if(this.props.MASAS_songInfo)
