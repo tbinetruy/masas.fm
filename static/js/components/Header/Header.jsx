@@ -66,19 +66,16 @@ var Header = React.createClass({
 							display: 'flex',
 							flex: 2,
 							flexDirection: 'row',
-							justifyContent: 'center',
+							justifyContent: 'flex-end',
 							position: 'relative'
 						}}>
 							<div className={ "header-link first" + (getPathList.discover === window.location.pathname ? " active" : "")}>
 								<Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link>
 							</div>
-							<div className={ "header-link" + (getPathList.popular === window.location.pathname ? " active" : "") }>
-								<Link onClick={ this.props.closeModal } to="/crowdradio" disabled={false}>Crowdradio</Link>
-							</div>
 							<div className={ "header-link" + (getPathList.likes  === window.location.pathname ? " active" : "") }>
 								<Link onClick={ this.props.closeModal } to="/likes" disabled={false}>Likes</Link>
 							</div>
-							<div className={ "header-link-upload" + (getPathList.upload === window.location.pathname ? " active" : "") }>
+							<div className={ "header-link" + (getPathList.upload === window.location.pathname ? " active" : "") }>
 								<Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link>
 							</div>
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
