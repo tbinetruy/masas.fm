@@ -34,7 +34,7 @@ Player.mapStateToProps = function(state) {
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userPk: state.appReducer.MASASuserPk,
 		isFetchingSong: state.playerReducer.isFetchingSong,
-		discoverHistory: state.discoverReducer.history,
+		popularHistory: state.popularReducer.history,
 		playlist: state.playerReducer.playlist,
 		playlistPosition: state.playerReducer.playlistPosition,
 		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying,

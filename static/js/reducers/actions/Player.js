@@ -2,11 +2,11 @@ import "whatwg-fetch"
 
 import {
 	addSongToHistory as addSongToDiscoverHistory,
-	popSongFromHistory,
 	removeSongFromHistory
 } from "./Discover.js"
 
 import {
+	popSongFromHistory,
 	addSongToHistory as addSongToPopularHistory,
 } from "./Popular.js"
 
@@ -446,13 +446,13 @@ export function playNewSong() {
 export function playPreviousSongInHistory() {
 	return (dispatch, getState) => {
 		const state = getState()
-		const { history } = state.discoverReducer
+		const { history } = state.popularReducer
 
 		// POP SONG FROM HISTORY
 		dispatch(popSongFromHistory())
 
 		// PLAY LATEST SONG IN HISTORY
-		const songURL = history.all[history.all.length-1].MASAS_songInfo.url
+		const songURL = history[history.length-1].MASAS_songInfo.url
 		dispatch(playSong(songURL))
 	}
 }

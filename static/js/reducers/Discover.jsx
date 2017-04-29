@@ -1,6 +1,5 @@
 import {
 	ADD_SONG_TO_HISTORY,
-	POP_SONG_FROM_HISTORY,
 	CHANGE_DISCOVER_NUMBER,
 	REMOVE_SONG_FROM_HISTORY,
 } from "./actions/Discover.js"
@@ -28,7 +27,7 @@ exportVar.defaultState = {
 const { defaultState } = exportVar
 
 exportVar.discoverReducer = function(state = defaultState, action) {
-	
+
 	switch(action.type) {
 		case ADD_SONG_TO_HISTORY:
 			// action.SC_songInfo: (object)
@@ -69,7 +68,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 					all: [
 						...state.history.all,
 						{
-							MASAS_songInfo: action.MASAS_songInfo, 
+							MASAS_songInfo: action.MASAS_songInfo,
 							SC_songInfo: action.SC_songInfo,
 							artistInfo: action.artistInfo,
 						}
@@ -79,15 +78,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			}
 
 			return resultState
-			
-		case POP_SONG_FROM_HISTORY:
-			var stateBis = state
-			stateBis.history.all.pop()
 
-			return {
-				...state,
-				history: stateBis.history
-			}
 		case REMOVE_SONG_FROM_HISTORY:
 			const history = [].concat(state.history.all)
 			history.splice(action.indexToRemove, 1)

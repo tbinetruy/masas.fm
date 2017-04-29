@@ -11,6 +11,13 @@ var SplashScreen = require("../App/SplashScreen.jsx")
 import { POPULAR } from "../../reducers/actions/Player.js"
 const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
 
+import {
+	PlayButton,
+} from "./controls/PlayButton.jsx"
+
+import {
+	PreviousButton,
+} from "./controls/PreviousButton.jsx"
 
 var Player = React.createClass({
 	propTypes: {
@@ -20,7 +27,7 @@ var Player = React.createClass({
 		playlist: React.PropTypes.array,
 		isPlaylistPlaying: React.PropTypes.bool,
 		playlistPosition: React.PropTypes.number,
-		discoverHistory: React.PropTypes.object,
+		popularHistory: React.PropTypes.array,
 		isPaused: React.PropTypes.bool,
 		songPlaying: React.PropTypes.string,
 		userData: React.PropTypes.object,
@@ -130,23 +137,6 @@ var Player = React.createClass({
 		}
 	},
 
-	getControlButtons() {
-		// show loader if fetching song info
-		if(this.props.isFetchingSong)
-			return <img src="/static/img/puff_loader.svg" alt="loading" className="player-button"  id="player-play-button"/>
-
-		// pause on click if song playing is not paused
-		if(this.props.songPlaying !== null && this.props.isPaused === false)
-			return <img onClick={ this.props.pause } src="/static/img/MASAS_player_pause.svg" alt="pause button" className="player-button"  id="player-play-button"/>
-
-		// if nothing is playing, play random song on play icon
-		if(!this.props.songPlaying)
-			return <img onClick={ () => this.props.playRandomSong(0) } src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button"  id="player-play-button"/>
-
-		// else, click play to unpause
-		return <img onClick={ this.props.play } src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button"  id="player-play-button" />
-	},
-
 	renderLikeIcon: function() {
 		if(this.props.isModalOpened && this.props.modalType === 2) {
 			if(isObjectNotEmpty(this.props.userData)) {
@@ -217,37 +207,6 @@ var Player = React.createClass({
 		}
 	},
 
-	getPreviousSongIcon: function() {
-		if(this.props.playingFromPopular && this.props.isPlayerMobile)
-			return <div className="previous-song-icon"></div>
-
-		// no back button if playing from popular
-		if(this.props.playingFromPopular)
-			return
-
-		if(this.props.isPlaylistPlaying) {
-			if(this.props.playlistPosition === 0)
-				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
-			else
-				return <img
-					src="/static/img/MASAS_next.svg"
-					onClick={ () => this.props.playNewSongFromPlaylist(this.props.playlistPosition - 1) }
-					alt="pevious song"
-					className="previous-song-icon"
-					/>
-		} else {
-			if(this.props.discoverHistory.all.length > 1)
-				return <img
-					src="/static/img/MASAS_next.svg"
-					onClick={ () => this.props.playPreviousSong() }
-					alt="previous song"
-					className="previous-song-icon"
-					style={{ visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }}
-					/>
-			else
-				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
-		}
-	},
 
 	getNextSongIcon: function() {
 		if(this.props.songPlaying) {
@@ -320,8 +279,8 @@ var Player = React.createClass({
 					: "" }
 				</div>
 				<div className="player-controls--wrapper">
-					{ this.getPreviousSongIcon() }
-					{ this.getControlButtons() }
+					<PreviousButton />
+                    <PlayButton />
 					{ this.getNextSongIcon() }
 				</div>
 			</div>
