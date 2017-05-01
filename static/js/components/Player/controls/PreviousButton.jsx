@@ -1,20 +1,11 @@
-import react from "react"
-const React = react
-
-import { connect }from "react-redux"
+import * as React from 'react'
 
 import {
-	playPlayer,
-	pausePlayer,
-	playRandomSong,
-	playPreviousSongInHistory,
-
 	playNewSongFromPlaylist,
-	playNewSong,
-	resumePlayer,
-	setIsPlayerBuffering,
-	toggleSongLike,
-} from "../../../reducers/actions/Player.js"
+	playPreviousSongInHistory,
+} from '../../../reducers/actions/Player.js'
+
+import { connect }from 'react-redux'
 
 /**
  * Redux container
@@ -45,7 +36,7 @@ class PreviousButtonSmart extends React.Component {
         super(props)
     }
 
-	getPreviousButton = () => {
+	getPreviousButton() {
 		if(this.props.playingFromPopular && this.props.isPlayerMobile)
 			return <div className="previous-song-icon"></div>
 
@@ -77,7 +68,7 @@ class PreviousButtonSmart extends React.Component {
 		}
 	}
 
-	render = () => {
+	render() {
 		return (
 			<div className="previous-button-component--wrapper">
                 { this.getPreviousButton() }
@@ -90,12 +81,12 @@ PreviousButtonSmart.propTypes = {
     isPlayerMobile: React.PropTypes.bool,
 
     isPlaylistPlaying: React.PropTypes.bool,
+    playNewSongFromPlaylist: React.PropTypes.func,
+    playPreviousSong: React.PropTypes.func,
     playingFromPopular: React.PropTypes.bool,
     playlistPosition: React.PropTypes.number,
     popularHistory: React.PropTypes.array,
 
-    playNewSongFromPlaylist: React.PropTypes.func,
-    playPreviousSong: React.PropTypes.func,
 }
 
 const PreviousButton = connect(

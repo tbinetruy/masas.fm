@@ -1,65 +1,67 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/PlayerBar.jsx')
 
-var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
-var { Marquee } = require("../UI/UI.jsx")
+var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
+var { Marquee } = require('../UI/UI.jsx')
 
-import { POPULAR } from "../../reducers/actions/Player.js"
-const SILENT_SOUND_SRC = "/static/mp3/silent.mp3"  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
-
-import {
-	PlayButton,
-} from "./controls/PlayButton.jsx"
-
-import {
-	PreviousButton,
-} from "./controls/PreviousButton.jsx"
-
-import {
-	NextButton,
-} from "./controls/NextButton.jsx"
+import { POPULAR } from '../../reducers/actions/Player.js'
+const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
 
 import {
 	LikeButton,
-} from "./controls/LikeButton.jsx"
+} from './controls/LikeButton.jsx'
+
+import {
+	NextButton,
+} from './controls/NextButton.jsx'
+
+import {
+	PlayButton,
+} from './controls/PlayButton.jsx'
+
+import {
+	PreviousButton,
+} from './controls/PreviousButton.jsx'
+
+
 
 var Player = React.createClass({
 	propTypes: {
-		isPlayerMobile: React.PropTypes.bool, 			// is UI on mobile player in footer tray
-
-		playlist: React.PropTypes.array,
-		isPlaylistPlaying: React.PropTypes.bool,
-		playlistPosition: React.PropTypes.number,
-		isPaused: React.PropTypes.bool,
-		songPlaying: React.PropTypes.string,
 		MASAS_songInfo: React.PropTypes.object,
 		SC_songInfo: React.PropTypes.object,
-		playingFromPopular: React.PropTypes.bool,
 
 
 		dispatch: React.PropTypes.func,
-		play: React.PropTypes.func,
+		isPaused: React.PropTypes.bool,
+		isPlayerMobile: React.PropTypes.bool, 			// is UI on mobile player in footer tray
+		isPlaylistPlaying: React.PropTypes.bool,
 		pause: React.PropTypes.func,
-		resumePlaying: React.PropTypes.func,
+		play: React.PropTypes.func,
 		playNewSong: React.PropTypes.func,
-		playRandomSong: React.PropTypes.func,
 		playNewSongFromPlaylist: React.PropTypes.func,
+		playRandomSong: React.PropTypes.func,
+		playingFromPopular: React.PropTypes.bool,
+		playlist: React.PropTypes.array,
+		playlistPosition: React.PropTypes.number,
+		resumePlaying: React.PropTypes.func,
 		setIsPlayerBuffering: React.PropTypes.func,
 		showPlayerMobile: React.PropTypes.func,
+		songPlaying: React.PropTypes.string,
+		zzhhhhh: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
 	},
 
 	componentWillUnmount: function() {
-		$("#jquery_jplayer_1").unbind($.jPlayer.event.ended)
-		$("#jquery_jplayer_1").unbind($.jPlayer.event.play)
-		$("#jquery_jplayer_1").unbind($.jPlayer.event.waiting)
-		$("#jquery_jplayer_1").unbind($.jPlayer.event.stalled)
-		$("#jquery_jplayer_1").unbind($.jPlayer.event.canplay)
-		$("#jquery_jplayer_1").unbind($.jPlayer.event.pause)
+		$('#jquery_jplayer_1').unbind($.jPlayer.event.ended)
+		$('#jquery_jplayer_1').unbind($.jPlayer.event.play)
+		$('#jquery_jplayer_1').unbind($.jPlayer.event.waiting)
+		$('#jquery_jplayer_1').unbind($.jPlayer.event.stalled)
+		$('#jquery_jplayer_1').unbind($.jPlayer.event.canplay)
+		$('#jquery_jplayer_1').unbind($.jPlayer.event.pause)
 	},
 
 	componentDidMount: function() {
@@ -67,7 +69,7 @@ var Player = React.createClass({
 			this.props.resumePlaying()
 
 		// add event listener to play new song at end of current song
-		$("#jquery_jplayer_1").bind($.jPlayer.event.ended, () => {
+		$('#jquery_jplayer_1').bind($.jPlayer.event.ended, () => {
 			// get state from reducer because "this" object doesn't have access to state mutations
 			// (this object is a copy of component instance at componentDidMount)
 
@@ -87,7 +89,7 @@ var Player = React.createClass({
 		})
 
 		// update player UI on start play
-		$("#jquery_jplayer_1").bind($.jPlayer.event.play, () => {
+		$('#jquery_jplayer_1').bind($.jPlayer.event.play, () => {
 			// this.props.dispatch({ type: 'PLAY' })
 			// this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
 			this.props.play()
@@ -95,20 +97,20 @@ var Player = React.createClass({
 		})
 
 		// test buffering
-		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, () => {
-			if($("#jquery_jplayer_1").data("jPlayer").status.src !== SILENT_SOUND_SRC)
+		$('#jquery_jplayer_1').bind($.jPlayer.event.waiting, () => {
+			if($('#jquery_jplayer_1').data('jPlayer').status.src !== SILENT_SOUND_SRC)
 				this.props.setIsPlayerBuffering(true)
 		})
-		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, () => {
-			if($("#jquery_jplayer_1").data("jPlayer").status.src !== SILENT_SOUND_SRC)
+		$('#jquery_jplayer_1').bind($.jPlayer.event.stalled, () => {
+			if($('#jquery_jplayer_1').data('jPlayer').status.src !== SILENT_SOUND_SRC)
 				this.props.setIsPlayerBuffering(true)
 		})
-		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, () => {
+		$('#jquery_jplayer_1').bind($.jPlayer.event.canplay, () => {
 			this.props.setIsPlayerBuffering(false)
 		})
 
 		// update player UI on start play
-		$("#jquery_jplayer_1").bind($.jPlayer.event.pause, () => {
+		$('#jquery_jplayer_1').bind($.jPlayer.event.pause, () => {
 			// this.props.dispatch({ type: 'PAUSE' })
 			this.props.pause()
 		})
@@ -132,18 +134,18 @@ var Player = React.createClass({
 	renderRadioTime: function() {
 		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
 		switch(switchVar) {
-			case "1":
-				return "#EarlyMorning"
-			case "2":
-				return "#LateMorning"
-			case "3":
-				return "#EarlyAfternoon"
-			case "4":
-				return "#LateAfternoon"
-			case "5":
-				return "#EarlyEvening"
-			case "6":
-				return "#LateEvening"
+			case '1':
+				return '#EarlyMorning'
+			case '2':
+				return '#LateMorning'
+			case '3':
+				return '#EarlyAfternoon'
+			case '4':
+				return '#LateAfternoon'
+			case '5':
+				return '#EarlyEvening'
+			case '6':
+				return '#LateEvening'
 			default:
 				return
 		}
@@ -152,7 +154,7 @@ var Player = React.createClass({
 
 	render: function() {
 		return (
-			<div className={ "navbar-player--wrapper" + (this.props.isPlayerMobile ? " player-mobile" : "") }>
+			<div className={ 'navbar-player--wrapper' + (this.props.isPlayerMobile ? ' player-mobile' : '') }>
                 <LikeButton />
 				<div className="song-info--wrapper1">
 					{ this.props.SC_songInfo ?
@@ -160,7 +162,7 @@ var Player = React.createClass({
 							<div className="text-info" onClick={ () => this.props.showPlayerMobile(true) }>
 								<div className="song-name">
 									<Marquee className="song-title">
-										{ this.props.SC_songInfo.title+ " - " }
+										{ this.props.SC_songInfo.title+ ' - ' }
 									</Marquee>
 									<Marquee className="song-artist">
 										{ this.props.SC_songInfo.user.username }
@@ -173,7 +175,7 @@ var Player = React.createClass({
 								</a>
 							</div>
 						</div>
-					: "" }
+					: '' }
 				</div>
 				<div className="player-controls--wrapper">
 					<PreviousButton />

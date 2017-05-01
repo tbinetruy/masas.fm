@@ -44,7 +44,7 @@
     "babel-rewire-plugin": "^0.1.0",
     "babelify": "^7.2.0",
     "enzyme": "^2.7.0",
-    "eslint": "^3.5.0",
+    "eslint": "^3.19.0",
     "eslint-config-standard": "^6.0.0",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^6.2.0",
