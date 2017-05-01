@@ -8,16 +8,8 @@ var { PlayerBar } = require("./PlayerBar.jsx")
 import ProgressBar from "../Footer/ProgressBar.jsx"
 import PlayingArtwork from "./PlayingArtwork.jsx"
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-// var { browserHistory } = require('react-router')
 
-// var Template = (props) => {
-
-// }
-
-var PlayerMobile = React.createClass({
+const PlayerMobile = React.createClass({
 	propTypes: {
 		isPlayerMobileShown: React.PropTypes.bool,
 
