@@ -1,19 +1,19 @@
 import {
-	closeAndEmptyMainModal,
-	toogleIsModalOpened,
-	doneProcessingAuthCookie,
-	setAppFetchingStateTrue,
-	setAppFetchingStateFalse,
 	changeModalContent,
-} from "../../../reducers/actions/App.js"
+	closeAndEmptyMainModal,
+	doneProcessingAuthCookie,
+	setAppFetchingStateFalse,
+	setAppFetchingStateTrue,
+	toogleIsModalOpened,
+} from '../../../reducers/actions/App.js'
 
 import {
 	changeUnsplashArtist,
-} from "../../../reducers/actions/Home.js"
+} from '../../../reducers/actions/Home.js'
 
 import {
 	loginWithToken,
-} from "../../../reducers/actions/login.js"
+} from '../../../reducers/actions/login.js'
 
 var App = {}
 

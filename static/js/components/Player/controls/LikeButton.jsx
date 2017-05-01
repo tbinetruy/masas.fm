@@ -1,5 +1,4 @@
-import react from "react"
-const React = react
+import * as React from "react"
 
 import { connect }from "react-redux"
 
