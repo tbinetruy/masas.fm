@@ -1,6 +1,6 @@
 @import "./FiltersModal"
 
-.likes-scroll--wrapper	
+.likes-scroll--wrapper
 
 	overflow-y: scroll
 	-webkit-overflow-scrolling: touch
@@ -8,7 +8,7 @@
 
 	.likes--wrapper
 		@import "./Likes"
-		
+
 		display: flex
 		flex: 1
 		flex-direction: column
@@ -18,14 +18,19 @@
 		animation: fadein-menu 1s linear
 
 @media screen and (min-width: $desktop-min-width)
-	.likes-scroll--wrapper
-		background-color: rgba(0,0,0,0)
-
-		.likes--wrapper
-			// flex-direction: row
-			flex-wrap: wrap
-			justify-content: space-between	
+	.app-body
+		.likes-scroll--wrapper
 			background-color: rgba(0,0,0,0)
 
-		.likes--wrapper > .likes--wrapper
-			flex-direction: row
+			.page-content--wrapper
+				.page-content
+					padding: 0 4rem
+
+					.likes--wrapper
+						// flex-direction: row
+						flex-wrap: wrap
+						justify-content: space-between
+						background-color: rgba(0,0,0,0)
+
+			.likes--wrapper > .likes--wrapper
+				flex-direction: row

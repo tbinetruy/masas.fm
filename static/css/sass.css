@@ -1777,12 +1777,12 @@ input[type=range].MASAS-slider {
   position: absolute;
   right: 7rem; }
   .header .dropdown--wrapper .MASAS-button {
-    height: 0.75rem;
+    height: .75rem;
     width: 6.8rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.13rem; }
+    font-size: .9rem;
+    letter-spacing: .13rem; }
   .header .dropdown--wrapper .username.login {
-    font-size: 0.9rem;
+    font-size: .9rem;
     padding-left: 2rem; }
   .header .dropdown--wrapper .username--wrapper {
     display: flex;
@@ -1791,10 +1791,10 @@ input[type=range].MASAS-slider {
     border: 1px solid;
     height: calc(2.2rem - 5px);
     width: calc(2.2rem - 5px);
-    margin-right: 0.75rem; }
+    margin-right: .75rem; }
   .header .dropdown--wrapper .username--wrapper .username {
     font-family: Lato-Semibold;
-    font-size: 0.75rem;
+    font-size: .75rem;
     text-transform: capitalize;
     align-self: center; }
   .header .dropdown--wrapper .dropdown-content {
@@ -1807,28 +1807,28 @@ input[type=range].MASAS-slider {
     top: 4.2rem;
     left: 0;
     min-width: 9rem;
-    border-right: 0.5px solid rgba(255, 255, 255, 0.6);
-    border-left: 0.5px solid rgba(255, 255, 255, 0.6);
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.6);
+    border-right: .5px solid rgba(255, 255, 255, 0.6);
+    border-left: .5px solid rgba(255, 255, 255, 0.6);
+    border-bottom: .5px solid rgba(255, 255, 255, 0.6);
     border-top: 0px solid white; }
   .header .dropdown--wrapper .dropdown-content hr {
-    margin: 0 0.7rem;
+    margin: 0 .7rem;
     border-color: white;
-    opacity: 0.3; }
+    opacity: .3; }
   .header .dropdown--wrapper .menu-link {
     display: flex;
-    margin: 0.7rem 0rem;
-    height: 0.8rem;
+    margin: .7rem 0rem;
+    height: .8rem;
     margin-left: 1rem; }
   .header .dropdown--wrapper .menu-link img {
-    height: 0.9rem;
-    margin: 0rem 0.3rem;
+    height: .9rem;
+    margin: 0rem .3rem;
     align-self: center; }
   .header .dropdown--wrapper .menu-link span {
     flex-grow: 1;
     align-self: center;
-    padding-left: 0.3rem;
-    font-size: 0.6rem; }
+    padding-left: .3rem;
+    font-size: .6rem; }
 .header .dropdown--wrapper:hover .dropdown-content {
   display: block; }
 
@@ -1892,10 +1892,10 @@ input[type=range].MASAS-slider {
     margin: 0;
     position: relative; }
   .header .phone-header .header-login-button--wrapper .MASAS-button {
-    height: .7rem;
+    height: 0.7rem;
     width: 13rem;
-    font-size: .9rem;
-    letter-spacing: .13rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.13rem;
     position: absolute;
     top: calc( ( 3rem / 2 - 0.7rem ) / 2 );
     right: 1rem; }
@@ -1936,7 +1936,7 @@ input[type=range].MASAS-slider {
   @media screen and (min-width: 992px) {
     .header .notification--wrapper1 {
       top: calc(100% + 0.5rem);
-      right: .5rem;
+      right: 0.5rem;
       justify-content: flex-end; }
       .header .notification--wrapper1 .notification--wrapper2 {
         flex: 0;
@@ -1972,7 +1972,7 @@ input[type=range].MASAS-slider {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: .9rem;
+      font-size: 0.9rem;
       margin-left: 2.5rem; }
       .header .desktop-header .header-link.first {
         margin-left: 0; }
@@ -4720,13 +4720,15 @@ input[type=range].MASAS-slider {
         display: flex; } }
 
 @media screen and (min-width: 992px) {
-  .likes-scroll--wrapper {
+  .app-body .likes-scroll--wrapper {
     background-color: transparent; }
-    .likes-scroll--wrapper .likes--wrapper {
-      flex-wrap: wrap;
-      justify-content: space-between;
-      background-color: transparent; }
-    .likes-scroll--wrapper .likes--wrapper > .likes--wrapper {
+    .app-body .likes-scroll--wrapper .page-content--wrapper .page-content {
+      padding: 0 4rem; }
+      .app-body .likes-scroll--wrapper .page-content--wrapper .page-content .likes--wrapper {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: transparent; }
+    .app-body .likes-scroll--wrapper .likes--wrapper > .likes--wrapper {
       flex-direction: row; } }
 .teach-modal--wrapper {
   display: flex;
@@ -4845,7 +4847,7 @@ input[type=range].MASAS-slider {
             height: 0.49rem; } }
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title {
       margin-top: 1.5rem;
-      margin-bottom: .3rem; }
+      margin-bottom: 0.3rem; }
       .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title .MASAS_marquee {
         height: 1.35rem;
         font-size: 1.25rem;
@@ -5263,7 +5265,7 @@ input[type=range].MASAS-slider {
         width: 100%; }
   @media screen and (min-width: 992px) {
     .popular--wrapper .artwork-line--wrapper.popular {
-      margin-bottom: 0.1rem;
+      margin-bottom: .1rem;
       height: calc(24.5vh + 2.1rem); }
       .popular--wrapper .artwork-line--wrapper.popular .button {
         padding-left: 70vh; }
@@ -5296,13 +5298,13 @@ input[type=range].MASAS-slider {
       .popular--wrapper .artwork-line--wrapper.popular .left-side {
         width: calc(50% - 24.5vh / 2.2); } }
   .popular--wrapper .coming-soon {
-    flex: 0.6;
+    flex: .6;
     display: flex;
     align-items: center; }
   .popular--wrapper .title-top, .popular--wrapper .title-bottom {
     align-items: center;
     font-size: 1.9rem;
-    letter-spacing: 0.35rem;
+    letter-spacing: .35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -5311,20 +5313,20 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: 0.2;
+    flex: .2;
     align-items: center; }
   .popular--wrapper .popular-content--wrapper {
     margin-bottom: 2rem;
     margin-top: 3rem;
-    transition: opacity 0.3s ease-in;
+    transition: opacity .3s ease-in;
     display: flex;
-    flex: 0.7;
+    flex: .7;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
   .popular--wrapper .vote--wrapper {
     display: flex;
-    flex: 0.2;
+    flex: .2;
     width: 100%;
     justify-content: center;
     align-items: center; }
@@ -5363,7 +5365,7 @@ input[type=range].MASAS-slider {
       .popular--wrapper .title-bottom h1 {
         display: block; }
     .popular--wrapper .title-top {
-      flex: 0.15;
+      flex: .15;
       display: none; }
     .popular--wrapper .hide-mobile {
       display: flex; }
