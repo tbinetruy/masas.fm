@@ -1,44 +1,41 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/App.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/App.jsx')
 
-var AppDumb = require("./AppDumb.jsx")
+var AppDumb = require('./AppDumb.jsx')
 
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
-var CreateProfile = require("../Profile/CreateProfile.jsx")
+var CreateProfile = require('../Profile/CreateProfile.jsx')
 
 
 var App = React.createClass({
 	propTypes: {
-		finishProcessingAuthCookie: React.PropTypes.func,
-
-		// redux
-		children: React.PropTypes.element,
-		processingAuthCookie: React.PropTypes.bool,
-		modalContent: React.PropTypes.element,
 		MASASuser: React.PropTypes.string,
-		userData: React.PropTypes.object,
-		location: React.PropTypes.object,
-
-		toogleModal: React.PropTypes.func,
-		loginWithToken: React.PropTypes.func,
-		forceRender: React.PropTypes.func,
-		showAppFetchingBar: React.PropTypes.func,
-		hideAppFetchingBar: React.PropTypes.func,
-		updateUnsplashArtist: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
+		children: React.PropTypes.element,
 		closeModal: React.PropTypes.func,
+		finishProcessingAuthCookie: React.PropTypes.func,
+		forceRender: React.PropTypes.func,
+		hideAppFetchingBar: React.PropTypes.func,
+		location: React.PropTypes.object,
+		loginWithToken: React.PropTypes.func,
+		modalContent: React.PropTypes.element,
+		processingAuthCookie: React.PropTypes.bool,
+		showAppFetchingBar: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		updateUnsplashArtist: React.PropTypes.func,
+		userData: React.PropTypes.object,
 	},
 
 	componentWillMount: function() {
 		// BIND EVENTS TO AJAX REQUESTS
 		// http://api.jquery.com/Ajax_Events/
-		$(document).bind("ajaxStart", () => {
+		$(document).bind('ajaxStart', () => {
 			this.props.showAppFetchingBar()
-		}).bind("ajaxStop", () => {
+		}).bind('ajaxStop', () => {
 			this.props.hideAppFetchingBar()
 		})
 
@@ -68,17 +65,17 @@ var App = React.createClass({
 		document.getElementById('content').style.height = window.innerHeight + 'px'
 		document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
 
-		window.addEventListener("resize", () => {
+		window.addEventListener('resize', () => {
 			document.getElementsByTagName('body')[0].style.height = window.innerHeight + 'px'
 			document.getElementById('content').style.height = window.innerHeight + 'px'
 			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
 		})
 
 		// so mobile safari play/pause/play bug doesn't happen
-		$("body").mouseup(() => {
-			const currentjPlayerSource = $("#jquery_jplayer_1").data().jPlayer.status.src
-			$("#jquery_jplayer_1").jPlayer("play")
-			$("body").unbind("mouseup")
+		$('body').mouseup(() => {
+			const currentjPlayerSource = $('#jquery_jplayer_1').data().jPlayer.status.src
+			$('#jquery_jplayer_1').jPlayer('play')
+			$('body').unbind('mouseup')
 		})
 
 		// only show splashscreen on site root
@@ -102,7 +99,6 @@ var App = React.createClass({
 				if(this.props.userData.usersteps.map( entry => entry.step ).includes(8)) {
 					this.props.closeModal()
 				} else {
-					console.log("create profile")
 					this.props.updateModalContent(<CreateProfile />, 5)
 					// call create profile
 				}
@@ -116,10 +112,10 @@ var App = React.createClass({
 
 	render: function() {
 		let hideLoadingModalZIndex = 1000
-		let loadingModalAnim = "none"
+		let loadingModalAnim = 'none'
 		if(!this.props.processingAuthCookie) {
 			hideLoadingModalZIndex = -1000
-			loadingModalAnim = "fadeout-loading-modal 3s cubic-bezier(1, 0.02, 0.78,-0.2)"
+			loadingModalAnim = 'fadeout-loading-modal 3s cubic-bezier(1, 0.02, 0.78,-0.2)'
 		}
 
 		return <AppDumb
