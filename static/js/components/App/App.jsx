@@ -10,6 +10,21 @@ var Cookie = require('js-cookie')
 
 var CreateProfile = require('../Profile/CreateProfile.jsx')
 
+import { addSongToHistory as addSongToDiscoverHistoryRedux } from '../../reducers/actions/Discover.js'
+import { addSongToHistory as addSongToPopularHistoryRedux } from '../../reducers/actions/Popular.js'
+
+async function addSongToDiscoverHistory() {
+	const MASAS_songInfoPromise = await fetch('/api/play/')
+	const MASAS_songInfo = await MASAS_songInfoPromise.json()
+	const { SC_ID } = MASAS_songInfo
+}
+/**
+ *
+ */
+async function initHistories() {
+	console.log()
+}
+
 
 var App = React.createClass({
 	propTypes: {
@@ -58,6 +73,8 @@ var App = React.createClass({
 
 		// INIT BACKGROUND WITH UNSPLASH MASAS LIKES
 		this.props.updateUnsplashArtist()
+
+		// INIT DISCOVER AND POPULAR HISTORIES
 	},
 
 	componentDidMount: function() {
