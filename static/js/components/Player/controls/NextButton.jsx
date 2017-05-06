@@ -62,7 +62,7 @@ class NextButtonSmart extends React.Component {
 						className="next-song-icon" />
 			}
 			// not paying from playlist, play random song from discover of popular
-			else {
+			else if(this.props.MASAS_songInfo) {
 				let timeInterval = this.props.MASAS_songInfo.timeInterval[this.props.MASAS_songInfo.timeInterval.length - 2]
 				if(this.props.playingFromPopular)
 					timeInterval = POPULAR

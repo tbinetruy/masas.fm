@@ -1,12 +1,12 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLineItem.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/ArtworkLineItem.jsx')
 
 
-import { Artwork } from "./dumb/Artwork.jsx"
-import { SongInfo } from "./dumb/SongInfo.jsx"
-var SplashScreen = require("../App/SplashScreen.jsx")
+import { Artwork } from './dumb/Artwork.jsx'
+import { SongInfo } from './dumb/SongInfo.jsx'
+var SplashScreen = require('../App/SplashScreen.jsx')
 
 
 var ArtworkLineItem = React.createClass({
@@ -60,8 +60,8 @@ var ArtworkLineItem = React.createClass({
 
 	toggleSongLike: function() {
 		// show login modal if user not logged in
-		if(this.props.MASASuser === "") {
-			this.props.updateLoginMessage("Please log-in to Like & Save songs")
+		if(this.props.MASASuser === '') {
+			this.props.updateLoginMessage('Please log-in to Like & Save songs')
 			this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
 			this.props.toggleModal()
 		} else {
@@ -96,7 +96,7 @@ var ArtworkLineItem = React.createClass({
 
 		return (
 			<div
-				className={ "artwork-line-item--wrapper " + (isArtworkLarge ? "artwork-playing" : "") }
+				className={ 'artwork-line-item--wrapper ' + (isArtworkLarge ? 'artwork-playing' : '') }
 				key={ key_ID }>
 				<Artwork
 					artworkURL={ artworkURL }

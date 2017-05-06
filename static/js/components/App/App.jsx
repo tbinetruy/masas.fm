@@ -13,7 +13,7 @@ var CreateProfile = require('../Profile/CreateProfile.jsx')
 /**
  * pre fetch songs
  */
-async function initHistories(addRandomSongToDiscoverHistory, addRandomSongToPopularHistory) {
+function initHistories(addRandomSongToDiscoverHistory, addRandomSongToPopularHistory) {
     const i_d = [1, 2, 3, 4, 5, 6] // 6 discover times
 	const i_p = [0] // 1 popular
 
