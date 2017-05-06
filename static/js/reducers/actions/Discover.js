@@ -25,4 +25,17 @@ export function addSongToHistory(MASAS_songInfo, SC_songInfo) {
 	}
 }
 
+/**
+ *
+ */
+export const addRandomSongToHistory = interval => async (dispatch) => {
+	const MASAS_songInfoPromise = await fetch('/api/play/?&time_interval_id=' + interval )
+	const MASAS_songInfo = await MASAS_songInfoPromise.json()
+
+	const { SC_ID } = MASAS_songInfo
+	const SC_songInfo= await SC.get('/tracks/' + SC_ID)
+
+	dispatch(addSongToHistory(MASAS_songInfo, SC_songInfo))
+}
+
 

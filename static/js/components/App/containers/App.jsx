@@ -15,6 +15,14 @@ import {
 	loginWithToken,
 } from '../../../reducers/actions/login.js'
 
+import {
+	addRandomSongToHistory as addRandomSongToDiscoverHistory,
+} from '../../../reducers/actions/discover.js'
+
+import {
+	addRandomSongToHistory as addRandomSongToPopularHistory
+} from '../../../reducers/actions/popular.js'
+
 var App = {}
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -35,6 +43,8 @@ App.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 App.mapDispatchToProps = function(dispatch) {
 	return {
+        addRandomSongToDiscoverHistory: interval => dispatch(addRandomSongToDiscoverHistory(interval)),
+		addRandomSongToPopularHistory: () => dispatch(addRandomSongToPopularHistory()),
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 		loginWithToken: authToken => dispatch(loginWithToken(authToken)),

@@ -10,25 +10,23 @@ var Cookie = require('js-cookie')
 
 var CreateProfile = require('../Profile/CreateProfile.jsx')
 
-import { addSongToHistory as addSongToDiscoverHistoryRedux } from '../../reducers/actions/Discover.js'
-import { addSongToHistory as addSongToPopularHistoryRedux } from '../../reducers/actions/Popular.js'
-
-async function addSongToDiscoverHistory() {
-	const MASAS_songInfoPromise = await fetch('/api/play/')
-	const MASAS_songInfo = await MASAS_songInfoPromise.json()
-	const { SC_ID } = MASAS_songInfo
-}
 /**
- *
+ * pre fetch songs
  */
-async function initHistories() {
-	console.log()
+async function initHistories(addRandomSongToDiscoverHistory, addRandomSongToPopularHistory) {
+    const i_d = [1, 2, 3, 4, 5, 6] // 6 discover times
+	const i_p = [0] // 1 popular
+
+	i_d.forEach(e => addRandomSongToDiscoverHistory(e))
+	i_p.forEach(() => addRandomSongToPopularHistory())
 }
 
 
 var App = React.createClass({
 	propTypes: {
 		MASASuser: React.PropTypes.string,
+		addRandomSongToDiscoverHistory: React.PropTypes.func,
+		addRandomSongToPopularHistory: React.PropTypes.func,
 		children: React.PropTypes.element,
 		closeModal: React.PropTypes.func,
 		finishProcessingAuthCookie: React.PropTypes.func,
@@ -75,6 +73,7 @@ var App = React.createClass({
 		this.props.updateUnsplashArtist()
 
 		// INIT DISCOVER AND POPULAR HISTORIES
+		initHistories(this.props.addRandomSongToDiscoverHistory, this.props.addRandomSongToPopularHistory)
 	},
 
 	componentDidMount: function() {
