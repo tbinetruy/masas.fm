@@ -1,19 +1,19 @@
 import {
 	updatePageTitle,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 import {
 	playRandomSong,
 	toggleSongLike,
-} from "../../../reducers/actions/Player.js"
+} from '../../../reducers/actions/Player.js'
 
-import { POPULAR } from "../../../reducers/actions/Player.js"
+import { POPULAR } from '../../../reducers/actions/Player.js'
 
 import {
-	toogleIsModalOpened,
 	changeModalContent,
+	toogleIsModalOpened,
 	updateSplashScreenLoginMessage,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 var Popular = {}
 
