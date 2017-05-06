@@ -13,6 +13,10 @@ import {
 	updateSplashScreenLoginMessage,
 } from "../../../reducers/actions/App.js"
 
+import {
+	SplashScreen,
+} from "../../App/SplashScreen.jsx"
+
 /**
  * Redux container
  */

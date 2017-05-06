@@ -9,6 +9,12 @@ import {
 
 import { POPULAR } from "../../../reducers/actions/Player.js"
 
+import {
+	toogleIsModalOpened,
+	changeModalContent,
+	updateSplashScreenLoginMessage,
+} from "../../../reducers/actions/App.js"
+
 var Popular = {}
 
 Popular.mapStateToProps = function(state) {
@@ -24,6 +30,9 @@ Popular.mapDispatchToProps = function(dispatch) {
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		playRandomSong: () => dispatch(playRandomSong(POPULAR)),
 		toggleSongLike: (userToken, songId) => dispatch(toggleSongLike(songId)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 	}
 }
 

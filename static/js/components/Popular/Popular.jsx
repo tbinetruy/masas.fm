@@ -1,27 +1,30 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Popular.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/Popular.jsx')
 
 
-var { BlurBackground } = require("../MASAS_mixins.jsx")
+var { BlurBackground } = require('../MASAS_mixins.jsx')
 
-var ArtworkLine = require("../Discover/ArtworkLine.jsx")
-var PopularTimer = require("./PopularTimer.jsx")
+var ArtworkLine = require('../Discover/ArtworkLine.jsx')
+var PopularTimer = require('./PopularTimer.jsx')
+
+import SplashScreen from '../App/SplashScreen.jsx'
 
 
 var Popular = React.createClass({
 	mixins: [ BlurBackground ],
 
 	propTypes: {
-		userPk: React.PropTypes.string,
 		MASASuser: React.PropTypes.string,
-		songPlaying: React.PropTypes.string,
-
-
-		updateTitle: React.PropTypes.func,
 		playRandomSong: React.PropTypes.func,
+		songPlaying: React.PropTypes.string,
 		toggleSongLike: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateLoginMessage: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		userPk: React.PropTypes.string,
 	},
 
 	getInitialState: function() {
@@ -44,25 +47,44 @@ var Popular = React.createClass({
 		const content = (
 				<div className="popular-content--wrapper">
 					<ArtworkLine
-						playFromPopular={ true }/>
+						playFromPopular={ true } />
 				</div>
 			)
 
 		return content
 	},
 
-	render: function() {
+	showLoginModal: function(message) {
+		this.props.updateLoginMessage(message)
+		this.props.updateModalContent(<SplashScreen startPage={1} />, 3)
+		this.props.toogleModal()
+	},
 
+	toggleSongLike: function() {
+        if(this.props.MASASuser === '')
+			this.showLoginModal('Please log-in to Like & Save songs')
+		else
+			this.props.toggleSongLike(this.props.MASASuser, this.props.songPlaying)
+	},
+
+	dislikeSong: function() {
+		if(this.props.MASASuser === '')
+			this.showLoginModal('Please log-in to Downvote songs')
+		else
+			this.props.playRandomSong()
+	},
+
+	render: function() {
 		return (
 			<div className="popular--wrapper">
 				{
 					this.getContent()
 				}
 				<div className="vote--wrapper">
-					<div className="dislike-button" onClick={ this.props.playRandomSong }>
+					<div className="dislike-button" onClick={ this.dislikeSong }>
 						<img src="/static/img/vote/icon_dislike.svg" alt="dislike" />
 					</div>
-					<div className="like-button" onClick={ () => this.props.toggleSongLike(this.props.MASASuser, this.props.songPlaying) }>
+					<div className="like-button" onClick={ this.toggleSongLike }>
 						<img src="/static/img/vote/icon_like.svg" alt="like" />
 					</div>
 				</div>
