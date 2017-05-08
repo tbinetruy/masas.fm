@@ -1,4 +1,6 @@
 
+$artworkWidthDesktop: 40vh
+
 .popular--wrapper
 	display: flex
 	flex-direction: column
@@ -76,6 +78,7 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.popular--wrapper
+
 		display: flex
 		flex-direction: column
 		flex: 1
@@ -84,6 +87,15 @@
 		//flex-direction: column-reverse
 		background-color: rgba(0,0,0,0)
 		justify-content: center
+
+		.popular-content--wrapper
+			.vote--wrapper
+				width: calc(#{$artworkWidthDesktop} + 2px) // account for artwork margins
+				margin-top: -3rem
+				height: 2.2rem
+
+				.like-button
+					margin-left: 1rem
 
 
 
