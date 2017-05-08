@@ -5034,6 +5034,8 @@ input[type=range].MASAS-slider {
   flex-direction: column;
   flex: 1;
   align-items: center;
+  background-color: black;
+  z-index: 1;
   /*h1
    * font-size: 1.5rem
    * letter-spacing: 0.35rem
@@ -5053,7 +5055,7 @@ input[type=range].MASAS-slider {
     width: 100%;
     position: relative; }
     .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
-      transition: opacity .3s ease-in;
+      transition: opacity 0.3s ease-in;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -5077,7 +5079,7 @@ input[type=range].MASAS-slider {
       z-index: 0; }
   .discover--wrapper .time-picker--wrapper {
     display: flex;
-    flex-grow: .25;
+    flex-grow: 0.25;
     align-items: center;
     height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
@@ -5090,12 +5092,15 @@ input[type=range].MASAS-slider {
         bottom: 0; }
 
 @media screen and (min-width: 992px) {
-  .discover--wrapper .multi-page--wrapper .page1 .play-discover--wrapper, .discover--wrapper .multi-page--wrapper .page2 .play-discover--wrapper {
-    height: 12rem; }
-  .discover--wrapper .time-picker--wrapper {
-    height: inherit;
-    height: 10vh;
-    padding-top: 1.5rem; } }
+  .discover--wrapper {
+    background-color: transparent;
+    z-index: inherit; }
+    .discover--wrapper .multi-page--wrapper .page1 .play-discover--wrapper, .discover--wrapper .multi-page--wrapper .page2 .play-discover--wrapper {
+      height: 12rem; }
+    .discover--wrapper .time-picker--wrapper {
+      height: inherit;
+      height: 10vh;
+      padding-top: 1.5rem; } }
 .legals-content--wrapper {
   display: flex;
   flex-direction: column;
