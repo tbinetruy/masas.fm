@@ -5237,7 +5237,8 @@ input[type=range].MASAS-slider {
     @media screen and (min-width: 992px) {
       .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .artwork--wrapper {
         height: 40vh;
-        width: 40vh; }
+        width: 40vh;
+        border: 2px solid black; }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .artwork--wrapper .artwork {
           height: 40vh;
           width: 40vh; }
@@ -5252,7 +5253,7 @@ input[type=range].MASAS-slider {
         flex-direction: row;
         padding: 0.2rem 1.3rem;
         border: 2px solid black;
-        width: calc($artworkWidth - 1.3rem * 2); }
+        width: calc(40vh - 1.3rem * 2); }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info {
           flex: 1; }
           .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title, .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
