@@ -2801,10 +2801,10 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column; }
     .outer-upload-sc--wrapper .header h2 {
-      margin-top: 0.5rem;
+      margin-top: .5rem;
       text-align: center;
       line-height: 1.8rem;
-      letter-spacing: 0.13rem;
+      letter-spacing: .13rem;
       font-size: 1.7rem; }
     .outer-upload-sc--wrapper .header .nav-dots {
       display: flex;
@@ -2887,7 +2887,8 @@ input[type=range].MASAS-slider {
         margin: 2rem 0; }
     .outer-upload-sc--wrapper .content {
       margin-bottom: 2rem;
-      flex: 0.85; } }
+      flex: none;
+      min-height: 27rem; } }
 .navSidebar--wrapper {
   width: 15rem;
   display: flex;
