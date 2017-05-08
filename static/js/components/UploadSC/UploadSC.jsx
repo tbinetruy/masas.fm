@@ -1,14 +1,14 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSC.jsx')
 
-var { Body } = require("../UI/UI.jsx")
-var UploadSCItem = require("./UploadSCItem.jsx")
-var PickTimeUpload = require("./PickTimeUpload.jsx")
-var UploadSCHome = require("./UploadSCHome.jsx")
-var UploadSCSongTable = require("./UploadSCSongTable.jsx")
-var NoSCSongs = require("./NoSCSongs.jsx")
+var { Body } = require('../UI/UI.jsx')
+var UploadSCItem = require('./UploadSCItem.jsx')
+var PickTimeUpload = require('./PickTimeUpload.jsx')
+var UploadSCHome = require('./UploadSCHome.jsx')
+var UploadSCSongTable = require('./UploadSCSongTable.jsx')
+var NoSCSongs = require('./NoSCSongs.jsx')
 
 
 var UploadSC = React.createClass({
@@ -103,7 +103,7 @@ var UploadSC = React.createClass({
 						track={ track }
 						synced={ synced }
 						streamable={ track.streamable }
-						public={ track.sharing === "public" ? true : false } />
+						public={ track.sharing === 'public' ? true : false } />
 			})
 	},
 
@@ -136,15 +136,15 @@ var UploadSC = React.createClass({
 
 	render: function() {
 		let content = <div></div>
-		let title = ""
+		let title = ''
 		let pageNumber = 1
 
 		if(this.props.choosingTime) {
 			content = (
 					<PickTimeUpload
-						logoutSC={ this.logoutSC }/>
+						logoutSC={ this.logoutSC } />
 			)
-			title = "When do you want this sound to play?"
+			title = 'When do you want this sound to play?'
 			pageNumber = 3
 		} else {
 			if(this.props.isConnectedSoundcloud && this.props.userPk) {
@@ -158,27 +158,27 @@ var UploadSC = React.createClass({
 						)
 					} else {
 						content = <UploadSCSongTable />
-						title = "Sync any tracks that you want!"
+						title = 'Sync any tracks that you want!'
 						pageNumber = 2
 					}
 				}
 			} else {
 				content = <UploadSCHome
-					getUserTracks={ this.getUserTracks }/>
-				title = "Get Featured on the Crowdradio!"
+					getUserTracks={ this.getUserTracks } />
+				title = 'Get Featured on the Crowdradio!'
 				pageNumber = 1
 			}
 		}
 
 		return (
-			<Body>
+			<Body wide={ true }>
 				<div className="outer-upload-sc--wrapper">
 					<div className="header">
 						<h2>{ title }</h2>
-						<div className="nav-dots">
-							<div className={ "dot" + (pageNumber === 1 ? " fill" : "") }></div>
-							<div className={ "dot" + (pageNumber === 2 ? " fill" : "") }></div>
-							<div className={ "dot" + (pageNumber === 3 ? " fill" : "") }></div>
+						<div className="nav-dots" style={{ display: (this.props.isConnectedSoundcloud ? 'flex' : 'none') }}>
+							<div className={ 'dot' + (pageNumber === 1 ? ' fill' : '') }></div>
+							<div className={ 'dot' + (pageNumber === 2 ? ' fill' : '') }></div>
+							<div className={ 'dot' + (pageNumber === 3 ? ' fill' : '') }></div>
 						</div>
 					</div>
 					<div className="content">
