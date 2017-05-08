@@ -1,37 +1,30 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayingArtwork.jsx")
+var ReactRedux = require('react-redux')
+var {
+	mapStateToProps,
+	mapDispatchToProps
+} = require('./containers/PlayingArtwork.jsx')
 
-import { Artwork } from "../Discover/dumb/Artwork.jsx"
-
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-// var { browserHistory } = require('react-router')
-
-// var PlayingArtwork = (props) => {
-
-// }
+import { Artwork } from '../Discover/dumb/Artwork.jsx'
 
 var PlayingArtwork = React.createClass({
 	propTypes: {
-		SC_songInfo: React.PropTypes.object,
 		MASAS_songInfo: React.PropTypes.object,
+		SC_songInfo: React.PropTypes.object,
 		isPaused: React.PropTypes.bool,
-
-		play: React.PropTypes.func,
 		pause: React.PropTypes.func,
+		play: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
 	},
 
 	render: function() {
-		let artworkURL = ""
+		let artworkURL = ''
 		if(this.props.SC_songInfo)
 			if(this.props.SC_songInfo.artwork_url)
-				artworkURL = this.props.SC_songInfo.artwork_url.substring(0,this.props.SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+				artworkURL = this.props.SC_songInfo.artwork_url.substring(0,this.props.SC_songInfo.artwork_url.lastIndexOf('-'))+'-t300x300.jpg'
 
 		return (
 			<div className="player-mobile-artwork-playing--wrapper">

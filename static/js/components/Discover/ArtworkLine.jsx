@@ -1,24 +1,24 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
+var ReactRedux = require('react-redux')
 var {
 	mapStateToProps,
 	mapDispatchToProps
-} = require("./containers/ArtworkLine.jsx")
-var ArtworkLineItem = require("./ArtworkLineItem.jsx")
+} = require('./containers/ArtworkLine.jsx')
+var ArtworkLineItem = require('./ArtworkLineItem.jsx')
 
 import {
 	POPULAR
-} from "../../reducers/actions/Player.js"
+} from '../../reducers/actions/Player.js'
 
 import {
 	getDiscoverNumberFromCurrentTime,
 	getTimeIntervalNumberFromUrl,
-} from "../../MASAS_functions.jsx"
+} from '../../MASAS_functions.jsx'
 
 import {
 	EmptyArtwork
-} from "./EmptyArtwork.jsx"
+} from './EmptyArtwork.jsx'
 
 var ArtworkLine = React.createClass({
 	propTypes: {
@@ -78,9 +78,9 @@ var ArtworkLine = React.createClass({
 
 		const artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo, artistInfo }) => {
 			key_ID = key_ID + 1
-			let artworkURL = ""
+			let artworkURL = ''
 			if(SC_songInfo.artwork_url !== null) {
-				artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+				artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf('-'))+'-t300x300.jpg'
 			}
 
 			let isItemPlaying = this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false
@@ -131,7 +131,7 @@ var ArtworkLine = React.createClass({
 			return <EmptyArtwork
 				playRandomSong={ this.playRandomSong }
 				playFromPopular={ this.props.playFromPopular }
-				popularTheme={ !this.props.playFromPopular }/>
+				popularTheme={ !this.props.playFromPopular } />
 		else {
 			const artworkLine = this.getArtworkLine(history)
 
@@ -142,14 +142,14 @@ var ArtworkLine = React.createClass({
 			artworkPlaying = artworkPlaying.SC_songInfo 		// retro compa, needs refactor
 
 			// get bigger artwork
-			let artworkPlayingURL = ""
+			let artworkPlayingURL = ''
 
-			if(typeof(artworkPlaying) !== "undefined")
+			if(typeof(artworkPlaying) !== 'undefined')
 				if(artworkPlaying.artwork_url)
-					artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+					artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf('-'))+'-t300x300.jpg'
 
 			return  (
-				<div className={ "artwork-line--wrapper " + (this.props.playFromPopular ? "popular" : "") }>
+				<div className={ 'artwork-line--wrapper ' + (this.props.playFromPopular ? 'popular' : '') }>
 					<div className="left-side">
 						<div className="artwork-line" ref="artworkLine">
 							<div className="artwork-line2">
@@ -159,14 +159,14 @@ var ArtworkLine = React.createClass({
 						</div>
 					</div>
 					<div
-						className={ "artwork-playing--wrapper" + (this.props.playFromPopular ? " popular" : "") }  >
+						className={ 'artwork-playing--wrapper' + (this.props.playFromPopular ? ' popular' : '') }  >
 
 						<img
 							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber) }
 							className={
-								"pervious-song-button"
-								+ (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? " hidden" : "")
-								+ (this.props.playFromPopular ? " hidden" : "")
+								'pervious-song-button'
+								+ (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? ' hidden' : '')
+								+ (this.props.playFromPopular ? ' hidden' : '')
 							}
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
@@ -193,7 +193,7 @@ var ArtworkLine = React.createClass({
 							alt="next" />
 					</div>
 					<div
-						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }>
+						className={ 'button ' + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }>
 						<img
 							onClick={ () => this.playRandomSong() }
 							className="next-song"

@@ -1,7 +1,7 @@
 import {
-	TOOGLE_IS_FOOTER_OPENED,
 	SET_PLAYER_PROGRESS_BAR,
-} from "./actions/Footer.js"
+	TOOGLE_IS_FOOTER_OPENED,
+} from './actions/Footer.js'
 
 let exportVar = {}
 
@@ -13,7 +13,7 @@ exportVar.defaultState = {
 const { defaultState } = exportVar
 
 exportVar.footerReducer = function(state = defaultState, action) {
-  
+
 	switch(action.type) {
 		case SET_PLAYER_PROGRESS_BAR: // not tested
 			return {

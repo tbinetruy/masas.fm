@@ -60,6 +60,9 @@
 				align-items: center
 				background-color: rgba(0,0,0,0.5)
 
+				&.show
+					display: flex
+
 				img
 					height: 5rem
 					width: 5rem
@@ -111,7 +114,7 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.artwork-line--wrapper
-		$artworkWidth: 35vh
+		$artworkWidth: 40vh
 		$song-info-height: 3rem
 		$font-size: 0.7rem
 		$ratio: $artworkWidth / $song-info-height

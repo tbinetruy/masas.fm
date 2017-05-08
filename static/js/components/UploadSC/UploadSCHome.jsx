@@ -1,14 +1,14 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSCHome.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSCHome.jsx')
 
-var SplashScreen = require("../App/SplashScreen.jsx")
+var SplashScreen = require('../App/SplashScreen.jsx')
 
 
-var { Button, Body, Link } = require("../UI/UI.jsx")
+var { Button, Body, Link } = require('../UI/UI.jsx')
 
-var { getPathList } = require("../../MASAS_functions.jsx")
+var { getPathList } = require('../../MASAS_functions.jsx')
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
 // var { browserHistory } = require('react-router')
@@ -16,6 +16,20 @@ var { getPathList } = require("../../MASAS_functions.jsx")
 // var Template = (props) => {
 
 // }
+
+const BulletPoint = ({ imgSrc, text }) => (
+	<div className='bullet-point--wrapper'>
+		<img src={ imgSrc } alt="image" />
+		<p>
+			{ text}
+		</p>
+	</div>
+)
+
+BulletPoint.propTypes = {
+	imgSrc: React.PropTypes.string.isRequired,	// img source
+	text: React.PropTypes.string.isRequired,	// text to display
+}
 
 var UploadSCHome = React.createClass({
 	propTypes: {
@@ -61,15 +75,22 @@ var UploadSCHome = React.createClass({
 		return (
 					<div className="description">
 
-							<p className="description-paragraph">Your music will first play in <Link to={ getPathList.discover }><span className="discoverBold">Discover</span></Link> - If the community likes it,
-you'll play on the <Link to={ getPathList.popular }><span className="discoverBold">Crowdradio!</span></Link></p>
-
-
-						<div className="img-container">
+                        <div className="bullet-point-list--wrapper">
+							<BulletPoint
+								imgSrc="/static/img/vote/icon_like.svg"
+								text="Expose your sounds to the finest music community and get feedback"
+								/>
+							<BulletPoint
+								imgSrc="/static/img/MASAS_icon_mixer.svg"
+								text="MASAS algorithm will select the best music everyday and feature them"
+								/>
+							<BulletPoint
+								imgSrc="/static/img/MASAS_icon_mixer.svg"
+								text="Get a chance to be featured on our next events and be contacted by independants label"
+								/>
 						</div>
-
 						{
-							this.props.MASASuser !== "" ?
+							this.props.MASASuser !== '' ?
 								<div className="connect-button">
 									<Button
 										onClick={ this.connectToSC }
@@ -81,7 +102,7 @@ you'll play on the <Link to={ getPathList.popular }><span className="discoverBol
 									<Button
 										onClick={ () => {
 											this.props.toogleModal()
-											this.props.updateLoginMessage("Please log-in to upload your music")
+											this.props.updateLoginMessage('Please log-in to upload your music')
 											this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
 										} }
 										isBigButton={ true }>Log-in to Upload</Button>

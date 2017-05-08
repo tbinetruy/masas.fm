@@ -1,7 +1,7 @@
 import {
 	changeSplashScreenPage,
 	closeAndEmptyMainModal,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 var SplashScreen = {}
 
@@ -11,6 +11,7 @@ SplashScreen.mapStateToProps = function(state) {
 		splashScreenPage: state.appReducer.splashScreenPage,
 		MASASuser: state.appReducer.MASASuser,
 		splashScreenLoginMessage: state.appReducer.splashScreenLoginMessage,
+		backgroundURL: state.homeReducer.backgroundURL,
 	}
 }
 

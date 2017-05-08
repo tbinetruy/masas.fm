@@ -4,41 +4,30 @@
 	justify-content: center
 	width: auto
 	margin: 0 auto
-	
+	overflow-y: scroll
 
-	// ol
-	// 	list-style-type: decimal
-	// 	font-family: Lato-Light
-	// 	margin-left: 1rem
-
-	// 	li
-	// 		margin-bottom: 0.5rem
-
-	.description-paragraph
-		margin: auto
-		text-align: center
-		line-height: 1.7rem
-		letter-spacing: 0.03rem
-		font-size: 1.2rem
-		font-family: Lato-Hairline
-	
-	.discoverBold
-		font-family: Lato-Semibold
-		
-
-
-	.img-container
-		margin: 1rem 0
+	.bullet-point-list--wrapper
 		display: flex
+		flex-direction: column
 		flex: 1
-		background-image: url(/static/img/upload/upload-loop.png)
-		background-size: contain
-		background-repeat: no-repeat
-		background-position: center
-		max-width: 70vw
-		align-self: center
-		width: 100%
-		max-height: 60vw
+		overflow-y: scroll
+		padding-top: 2rem
+
+		.bullet-point--wrapper
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			min-height: 10rem
+
+			img
+				height: 2.5rem
+
+			p
+				text-align: center
+				line-height: 1.5rem
+				margin: 1.5rem 0
+
 
 	.connect-button
 		margin-bottom: 0.5rem
@@ -56,15 +45,15 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.description
-		.description-paragraph
-			max-width: 95%
-			font-size: 1.25rem
-			font-family: Lato-Hairline
-			line-height: 1.7rem	
+		.bullet-point-list--wrapper
+			flex-direction: row
 
-		
+			.bullet-point--wrapper
+				margin: 0rem 1rem
+				width: 16rem
 
-		.img-container
+				p
+					min-height: 5rem
 
 	.connect-button
 		width: 20rem

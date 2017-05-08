@@ -16,7 +16,7 @@ var LikesWrapper = React.createClass({
 
 		children: React.PropTypes.node,
 	},
-	
+
 	componentWillMount: function() {
 		// this.props.updateTitle()
 		this.scrollOffset = 70
@@ -53,32 +53,20 @@ var LikesWrapper = React.createClass({
 		return (
 			<div className="app-body body--wrapper" >
 				<div className="row row-display-none-sm no-margin" style={ marginStyle }>
-					<div className="col-md-2">
-						<div className="box"></div>
-					</div>
-					<div className="col-md-8 page-title--wrapper">
+					<div className="col-md-12 page-title--wrapper">
 						<div className="box page-title">{ this.props.title }</div>
 						<hr />
 					</div>
-					<div className="col-md-2">
-						<div className="box"></div>
-					</div>
 				</div>
 				<div className="row no-margin likes-scroll--wrapper">
-					<div className="col-md-2 col-display-none-sm">
-						<div className="box"></div>
-					</div>
-					<div className="col-xs-12 col-md-8 page-content--wrapper">
+					<div className="col-xs-12 col-md-12 page-content--wrapper">
 						<div ref="scroll" className="box page-content" style={{ overflow: 'scroll', justifyContent: 'initial', backgroundColor: 'rgba(0,0,0,0)'}}>
-							<div 
-								className="likes--wrapper" 
+							<div
+								className="likes--wrapper"
 								style={{ minHeight: 'calc(100% + ' + (this.props.userLikes.length ? this.scrollOffset : '0') + 'px)'  }}>
 								{ this.props.children }
 							</div>
 						</div>
-					</div>
-					<div className="col-md-2 col-display-none-sm">
-						<div className="box"></div>
 					</div>
 				</div>
 

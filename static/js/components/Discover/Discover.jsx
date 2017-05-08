@@ -1,16 +1,16 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/Discover.jsx')
 
 var {
 	getTimeIntervalFromURL,
 	getDiscoverNumberFromCurrentTime,
 	discoverHashtagNames
-} = require("../../MASAS_functions.jsx")
+} = require('../../MASAS_functions.jsx')
 
-var ArtworkLine = require("./ArtworkLine.jsx")
-var { TimePicker } = require("../UI/UI.jsx")
+var ArtworkLine = require('./ArtworkLine.jsx')
+var { TimePicker } = require('../UI/UI.jsx')
 
 var Discover = React.createClass({
 	propTypes: {
@@ -71,36 +71,30 @@ var Discover = React.createClass({
 
 		return (
 			<div className="discover--wrapper">
-				<h1
-					style={{
-						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
-					}}>
-					{ discoverHashtagNames()[this.props.discoverNumber - 1] }
-				</h1>
 
 				<div
 					className="multi-page--wrapper">
-					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
+					<div className={ this.props.discoverNumber === 1 ? 'page1' : 'page2' }>
 						<ArtworkLine
 							discoverNumber={ 1 } />
 					</div>
-					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
+					<div className={ this.props.discoverNumber === 2 ? 'page1' : 'page2' }>
 						<ArtworkLine
 							discoverNumber={ 2 } />
 					</div>
-					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
+					<div className={ this.props.discoverNumber === 3 ? 'page1' : 'page2' }>
 						<ArtworkLine
 							discoverNumber={ 3 } />
 					</div>
-					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
+					<div className={ this.props.discoverNumber === 4 ? 'page1' : 'page2' }>
 						<ArtworkLine
 							discoverNumber={ 4 } />
 					</div>
-					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
+					<div className={ this.props.discoverNumber === 5 ? 'page1' : 'page2' }>
 						<ArtworkLine
 							discoverNumber={ 5 } />
 					</div>
-					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
+					<div className={ this.props.discoverNumber === 6 ? 'page1' : 'page2' }>
 						<ArtworkLine
 							discoverNumber={ 6 } />
 					</div>

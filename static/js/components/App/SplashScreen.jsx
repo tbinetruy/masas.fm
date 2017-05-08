@@ -1,23 +1,23 @@
-var React = require("react")
-var Swiper = require("swiper/dist/js/swiper.min.js")
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/SplashScreen.jsx")
+var React = require('react')
+var Swiper = require('swiper/dist/js/swiper.min.js')
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/SplashScreen.jsx')
 
-var { goToURL } = require("../../MASAS_functions.jsx")
-var { Button } = require("../UI/UI.jsx")
-var LoginForm = require("../Login/LoginForm.jsx")
-var Legals = require("../Legals/LegalsHome.jsx")
+var { goToURL } = require('../../MASAS_functions.jsx')
+var { Button } = require('../UI/UI.jsx')
+var LoginForm = require('../Login/LoginForm.jsx')
+var Legals = require('../Legals/LegalsHome.jsx')
 
 
 var SplashScreen = React.createClass({
 	propTypes: {
-		startPage: React.PropTypes.number,
-		splashScreenPage: React.PropTypes.number,
 		MASASuser: React.PropTypes.string,
-		splashScreenLoginMessage: React.PropTypes.string,
-
-		updateSplashScreenPage: React.PropTypes.func,
+        backgroundURL: React.PropTypes.string,
 		closeSplashScreen: React.PropTypes.func,
+		splashScreenLoginMessage: React.PropTypes.string,
+		splashScreenPage: React.PropTypes.number,
+		startPage: React.PropTypes.number,
+		updateSplashScreenPage: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
@@ -32,50 +32,7 @@ var SplashScreen = React.createClass({
 		}
 	},
 
-	changeBackground: function(hashtag) {
-		const test1 = document.getElementsByClassName('test1')[0]
-		const test2 = document.getElementsByClassName('test2')[0]
-
-		if(test1 && test2) {
-			if($('.test1').css("opacity") === "1") {
-				$('.splash-screen--wrapper').css('background-image', 'none')
-				$('.test1').css('opacity', 0)
-				$('.test2').css('opacity', 1)
-				test1.className = "test1"
-				test2.className = "test2 background-" + hashtag
-			} else {
-				$('.test2').css('opacity', 0)
-				$('.test1').css('opacity', 1)
-				test2.className = "test2"
-				test1.className = "test1 background-" + hashtag
-			}
-		}
-	},
-
 	componentDidMount: function() {
-		const { changeBackground } = this
-
-		this.backgroundNumber = 1
-		this.changeBackground = window.setInterval( () => {
-			if(this.props.splashScreenPage === 0)
-				switch(this.backgroundNumber) {
-					case 0:
-						changeBackground(0)
-						break
-					case 1:
-						changeBackground(1)
-						break
-					case 2:
-						changeBackground(2)
-						break
-				}
-
-			if(this.backgroundNumber < 2)
-				this.backgroundNumber = this.backgroundNumber  + 1
-			else
-				this.backgroundNumber = 0
-		}, 6000)
-
 		this.mainSwiper = new Swiper('.main-swiper-container', {
 			noSwiping: true,
 			allowSwipeToPrev: false,
@@ -91,7 +48,6 @@ var SplashScreen = React.createClass({
 	},
 
 	componentWillUnmount: function() {
-		window.clearInterval(this.changeBackground)
 	},
 
 	slideNext: function() {
@@ -102,21 +58,19 @@ var SplashScreen = React.createClass({
 		this.mainSwiper.slidePrev()
 	},
 
-	componentWillReceiveProps: function(nextProps) {
-	},
-
 	render: function() {
-		if(this.mainSwiper && this.props.splashScreenPage === 2)
-			styles = {
-				swiperContainer: {
-					height: '50%',
-				}
+		const styles = {
+			wrapper: {
+				backgroundImage: 'url(' + this.props.backgroundURL + ')',
+				backgroundSize: 'cover'
 			}
+		}
 
 		return (
-				<div className={ "splash-screen--wrapper " + (this.props.splashScreenPage === 1 ? "login" : "") + (this.props.splashScreenPage === 2 ? "legals" : "") }>
+				<div
+					className={ 'splash-screen--wrapper ' + (this.props.splashScreenPage === 1 ? 'login' : '') + (this.props.splashScreenPage === 2 ? 'legals' : '') }>
 					<div
-						className={ "swiper-container main-swiper-container " + (this.props.splashScreenPage === 2 ? "legals-height" : "") } >
+						className={ 'swiper-container main-swiper-container ' + (this.props.splashScreenPage === 2 ? 'legals-height' : '') } >
 						<div className="swiper-wrapper main-swiper-wrapper">
 
 							<div className="swiper-slide first-slide">
@@ -196,12 +150,8 @@ var SplashScreen = React.createClass({
 							</div>
 						</div>
 					</div>
-					<div className="test1 background-0">
-					</div>
-					<div className="test2">
-					</div>
 					<div
-						style={{ opacity: 0, zIndex: -1000, top: "1000%" }}
+						style={ styles.wrapper }
 						className="test1 background-2 preload">
 					</div>
 				</div>

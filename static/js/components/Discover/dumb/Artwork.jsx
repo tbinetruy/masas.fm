@@ -1,4 +1,4 @@
-var React = require("react")
+var React = require('react')
 
 export const Artwork = props => {
 	const PauseButton = () => (
@@ -19,17 +19,17 @@ export const Artwork = props => {
 		PausePlayButton = PauseButton
 
 	return (
-		<div className={ "artwork--wrapper" + (props.allowPlayPause ? " news" : " popular") }>
+		<div className={ 'artwork--wrapper' + (props.allowPlayPause ? ' news' : ' popular') }>
 			{
 				props.artworkURL ?
-					<img src={ props.artworkURL } alt="artwork" className="artwork"/>
+					<img src={ props.artworkURL } alt="artwork" className="artwork" />
 				:
 					<div className="artwork"></div>
 			}
 			{
 				props.allowPlayPause ?
 					<div
-						className={ "player-button" }
+						className={ 'player-button' + (!props.isItemPlaying ? ' show' : '') }
 						onClick={ props.onArtworkClick }>
 						<PausePlayButton />
 					</div>

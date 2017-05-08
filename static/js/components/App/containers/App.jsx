@@ -1,19 +1,27 @@
 import {
-	closeAndEmptyMainModal,
-	toogleIsModalOpened,
-	doneProcessingAuthCookie,
-	setAppFetchingStateTrue,
-	setAppFetchingStateFalse,
 	changeModalContent,
-} from "../../../reducers/actions/App.js"
+	closeAndEmptyMainModal,
+	doneProcessingAuthCookie,
+	setAppFetchingStateFalse,
+	setAppFetchingStateTrue,
+	toogleIsModalOpened,
+} from '../../../reducers/actions/App.js'
 
 import {
 	changeUnsplashArtist,
-} from "../../../reducers/actions/Home.js"
+} from '../../../reducers/actions/Home.js'
 
 import {
 	loginWithToken,
-} from "../../../reducers/actions/login.js"
+} from '../../../reducers/actions/login.js'
+
+import {
+	addRandomSongToHistory as addRandomSongToDiscoverHistory,
+} from '../../../reducers/actions/discover.js'
+
+import {
+	addRandomSongToHistory as addRandomSongToPopularHistory
+} from '../../../reducers/actions/popular.js'
 
 var App = {}
 
@@ -35,6 +43,8 @@ App.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 App.mapDispatchToProps = function(dispatch) {
 	return {
+        addRandomSongToDiscoverHistory: interval => dispatch(addRandomSongToDiscoverHistory(interval)),
+		addRandomSongToPopularHistory: () => dispatch(addRandomSongToPopularHistory()),
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 		loginWithToken: authToken => dispatch(loginWithToken(authToken)),
