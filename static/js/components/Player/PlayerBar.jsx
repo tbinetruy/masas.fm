@@ -14,6 +14,10 @@ import {
 } from './controls/LikeButton.jsx'
 
 import {
+	DislikeButton,
+} from './controls/DislikeButton.jsx'
+
+import {
 	NextButton,
 } from './controls/NextButton.jsx'
 
@@ -156,6 +160,7 @@ var Player = React.createClass({
 		return (
 			<div className={ 'navbar-player--wrapper' + (this.props.isPlayerMobile ? ' player-mobile' : '') }>
                 <LikeButton />
+                <DislikeButton />
 				<div className="song-info--wrapper1">
 					{ this.props.SC_songInfo ?
 						<div className="song-info--wrapper2" >

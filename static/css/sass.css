@@ -4335,8 +4335,7 @@ input[type=range].MASAS-slider {
     padding-right: 1rem; }
   .navbar-player--wrapper .like-icon {
     height: 1.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    padding-right: 0.5rem; }
   .navbar-player--wrapper .song-info--wrapper1 {
     display: flex;
     flex-direction: column;
@@ -4433,8 +4432,12 @@ input[type=range].MASAS-slider {
   .navbar-player--wrapper .tray-icon {
     height: 0.6rem;
     width: 0.6rem; }
-  .navbar-player--wrapper .like-icon {
-    height: 1rem; }
+  .navbar-player--wrapper .like-icon, .navbar-player--wrapper .dislike-icon {
+    display: block;
+    height: 1.2rem;
+    opacity: 0.8; }
+  .navbar-player--wrapper .dislike-icon {
+    margin: 0 2rem; }
   .navbar-player--wrapper .player-controls--wrapper {
     transition: none;
     position: relative;

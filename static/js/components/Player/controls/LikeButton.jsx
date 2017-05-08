@@ -13,9 +13,7 @@ import {
 	updateSplashScreenLoginMessage,
 } from "../../../reducers/actions/App.js"
 
-import {
-	SplashScreen,
-} from "../../App/SplashScreen.jsx"
+import SplashScreen from "../../App/SplashScreen.jsx"
 
 /**
  * Redux container
@@ -71,7 +69,7 @@ class LikeButtonSmart extends React.Component {
 		if(this.props.MASASuser === "")
 			return (
 				<img
-					src="/static/img/MASAS_like_shadow.svg"
+					src="/static/img/vote/icon_like.svg"
 					alt="like icon"
 					className="like-icon"
 					onClick={
@@ -88,10 +86,7 @@ class LikeButtonSmart extends React.Component {
 		else
 			return (
 				<img
-					src={
-						"/static/img/MASAS_like"
-						+ (this.props.isSongPlayingLiked ? "d.svg" : "_shadow.svg")
-					}
+					src="/static/img/vote/icon_like.svg"
 					alt="like icon"
 					className="like-icon"
 					onClick={
