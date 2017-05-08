@@ -71,12 +71,6 @@ var Discover = React.createClass({
 
 		return (
 			<div className="discover--wrapper">
-				<h1
-					style={{
-						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
-					}}>
-					{ discoverHashtagNames()[this.props.discoverNumber - 1] }
-				</h1>
 
 				<div
 					className="multi-page--wrapper">
