@@ -183,9 +183,21 @@ var Player = React.createClass({
 					: '' }
 				</div>
 				<div className="player-controls--wrapper">
+                    {
+						this.props.isPlayerMobile ?
+							<LikeButton />
+						:
+							''
+					}
 					<PreviousButton />
                     <PlayButton />
 					<NextButton />
+                    {
+						this.props.isPlayerMobile ?
+							<DislikeButton />
+						:
+							''
+					}
 				</div>
 			</div>
 		)

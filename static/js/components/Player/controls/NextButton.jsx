@@ -85,7 +85,7 @@ class NextButtonSmart extends React.Component {
 
 	render = () => {
 		return (
-			<div className="play-button-component--wrapper">
+			<div className="next-button-component--wrapper">
                 { this.getNextButton() }
 			</div>
 		)
