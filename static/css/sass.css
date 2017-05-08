@@ -5371,6 +5371,29 @@ input[type=range].MASAS-slider {
       display: flex; }
     .popular--wrapper .hide-desktop {
       display: none; } }
+.manifesto--wrapper {
+  max-width: 80vw;
+  overflow-y: scroll; }
+  .manifesto--wrapper h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem; }
+  .manifesto--wrapper ol {
+    list-style-type: none; }
+    .manifesto--wrapper ol li {
+      font-size: 1.6rem; }
+      .manifesto--wrapper ol li p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        line-height: 1.3rem;
+        font-family: Lato-Light; }
+      .manifesto--wrapper ol li:last-child p {
+        margin-bottom: 0; }
+
+@media screen and (min-width: 992px) {
+  .manifesto--wrapper {
+    max-width: 50vw; } }
 html {
   font-size: 14px;
   color: white;

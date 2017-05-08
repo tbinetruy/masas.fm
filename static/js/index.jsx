@@ -23,8 +23,7 @@ var Likes = require('./components/Likes/Likes.jsx')
 var Discover = require('./components/Discover/Discover.jsx')
 var Legals = require('./components/Legals/LegalsHome.jsx')
 var Popular = require('./components/Popular/Popular.jsx')
-
-
+var { Manifesto } = require('./components/Manifesto/Manifesto.jsx')
 
 ReactDOM.render((
        <ReactRedux.Provider store={store}>
@@ -40,6 +39,7 @@ ReactDOM.render((
                                <Route path="/user/:username" publicProfile={true} component={Profile} />
                                <Route path="sign-up" component={SignUp} />
                                <Route path="upload" component={UploadSC} />
+                               <Route path="manifesto" component={Manifesto} />
                        </Route>
                        <Route path="/sc-callback" component={SoundcloudCallback} />
                        <Route path="/twitter-callback" component={TwitterCallback} />
