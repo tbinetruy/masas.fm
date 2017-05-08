@@ -4176,10 +4176,10 @@ input[type=range].MASAS-slider {
   transform: translateY(100%);
   z-index: 4;
   width: 100%;
-  transition: transform 0.2s linear;
-  flex-direction: column; }
+  transition: transform .2s linear;
+  flex-direction: column;
+  display: flex; }
   .player-mobile--top-wrapper.show {
-    display: flex;
     transform: translateY(0px); }
     .player-mobile--top-wrapper.show .player-mobile-player--wrapper .player-progress-bar--wrapper {
       display: block; }
@@ -4229,10 +4229,10 @@ input[type=range].MASAS-slider {
     align-items: flex-end;
     font-size: 1.3rem;
     font-family: Lato-Semibold;
-    letter-spacing: 0.18rem; }
+    letter-spacing: .18rem; }
   .player-mobile--top-wrapper .player-mobile-discover--wrapper {
     display: flex;
-    flex: 0.7; }
+    flex: .7; }
     .player-mobile--top-wrapper .player-mobile-discover--wrapper .player-mobile-artwork-playing--wrapper {
       display: flex;
       flex: 1;
@@ -4251,7 +4251,7 @@ input[type=range].MASAS-slider {
         opacity: 0;
         position: absolute;
         width: 100%;
-        transition: opacity 0.1s linear;
+        transition: opacity .1s linear;
         justify-content: center;
         align-items: center;
         height: 100%;
@@ -4274,14 +4274,14 @@ input[type=range].MASAS-slider {
         font-family: Lato-Light;
         font-size: 1.25rem; }
       .player-mobile--top-wrapper .player-mobile-discover--wrapper .song-info--wrapper .song-name {
-        margin-bottom: 0.3rem;
-        letter-spacing: 0.05rem; }
+        margin-bottom: .3rem;
+        letter-spacing: .05rem; }
       .player-mobile--top-wrapper .player-mobile-discover--wrapper .song-info--wrapper .artist-name {
-        opacity: 0.7;
-        letter-spacing: 0.1rem; }
+        opacity: .7;
+        letter-spacing: .1rem; }
   .player-mobile--top-wrapper .player-mobile-player--wrapper {
     display: flex;
-    flex: 0.3;
+    flex: .3;
     position: relative; }
     .player-mobile--top-wrapper .player-mobile-player--wrapper .player-progress-bar--wrapper {
       display: none; }
@@ -4290,7 +4290,7 @@ input[type=range].MASAS-slider {
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .like-icon {
         display: none; }
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 {
-        flex: 0.2;
+        flex: .2;
         width: 100%; }
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 .text-info {
           display: none; }
@@ -4303,7 +4303,7 @@ input[type=range].MASAS-slider {
             height: 1.5rem; }
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper {
         position: relative;
-        flex: 0.8;
+        flex: .8;
         justify-content: center;
         width: 100%; }
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
@@ -4346,7 +4346,6 @@ input[type=range].MASAS-slider {
   display: flex;
   flex: 1;
   align-items: center;
-  height: 100%;
   padding: 0;
   margin-left: 2rem; }
   .navbar-player--wrapper.player-mobile {
