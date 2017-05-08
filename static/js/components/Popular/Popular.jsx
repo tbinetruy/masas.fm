@@ -7,10 +7,24 @@ var { mapStateToProps, mapDispatchToProps } = require('./containers/Popular.jsx'
 var { BlurBackground } = require('../MASAS_mixins.jsx')
 
 var ArtworkLine = require('../Discover/ArtworkLine.jsx')
-var PopularTimer = require('./PopularTimer.jsx')
 
 import SplashScreen from '../App/SplashScreen.jsx'
 
+const VoteButtons = ({ dislikeSong, toggleSongLike }) => (
+	<div className="vote--wrapper">
+		<div className="dislike-button" onClick={ dislikeSong }>
+			<img src="/static/img/vote/icon_dislike.svg" alt="dislike" />
+		</div>
+		<div className="like-button" onClick={ toggleSongLike }>
+			<img src="/static/img/vote/icon_like.svg" alt="like" />
+		</div>
+	</div>
+)
+
+VoteButtons.propTypes = {
+	dislikeSong: React.PropTypes.func,
+	toggleSongLike: React.PropTypes.func,
+}
 
 var Popular = React.createClass({
 	mixins: [ BlurBackground ],
@@ -48,6 +62,7 @@ var Popular = React.createClass({
 				<div className="popular-content--wrapper">
 					<ArtworkLine
 						playFromPopular={ true } />
+					<VoteButtons />
 				</div>
 			)
 
@@ -80,14 +95,6 @@ var Popular = React.createClass({
 				{
 					this.getContent()
 				}
-				<div className="vote--wrapper">
-					<div className="dislike-button" onClick={ this.dislikeSong }>
-						<img src="/static/img/vote/icon_dislike.svg" alt="dislike" />
-					</div>
-					<div className="like-button" onClick={ this.toggleSongLike }>
-						<img src="/static/img/vote/icon_like.svg" alt="like" />
-					</div>
-				</div>
 			</div>
 		)
 	}
