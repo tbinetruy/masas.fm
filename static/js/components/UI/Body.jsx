@@ -30,14 +30,6 @@ var Body = React.createClass({
 			maxHeight: marginHeight
 		}
 
-		const wideBodyStyle = {
-			flex: 1,
-			backgroundColor: 'rgba(0,0,0,0.7)',
-			justifyContent: 'flex-start',
-			alignItems: 'center',
-			color: 'white',
-			padding: '3rem 0',
-		}
 
 		if(!this.props.wide)
 			return (
@@ -79,7 +71,7 @@ var Body = React.createClass({
 			)
 		else
 			return (
-				<div className="app-body body--wrapper" style={ wideBodyStyle }>
+				<div className="app-body body--wrapper wide">
 					{ this.props.children }
 				</div>
 			)
