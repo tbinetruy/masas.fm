@@ -4807,11 +4807,11 @@ input[type=range].MASAS-slider {
           height: 4rem; }
     @media screen and (min-width: 992px) {
       .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper {
-        height: 24.5vh;
-        width: 24.5vh; }
+        height: 28vh;
+        width: 28vh; }
         .artwork-line--wrapper .artwork-line-item--wrapper .artwork--wrapper .artwork {
-          height: 24.5vh;
-          width: 24.5vh; } }
+          height: 28vh;
+          width: 28vh; } }
     .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper {
       display: none;
       align-items: center; }
@@ -4840,7 +4840,7 @@ input[type=range].MASAS-slider {
         .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .title, .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .artist {
           position: relative;
           height: 0.49rem;
-          width: calc(24.5vh - 2 * 1rem);
+          width: calc(28vh - 2 * 1rem);
           cursor: pointer; }
           .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .title .MASAS_marquee, .artwork-line--wrapper .artwork-line-item--wrapper .song-info--wrapper .artist .MASAS_marquee {
             font-size: 0.49rem;
@@ -4860,11 +4860,11 @@ input[type=range].MASAS-slider {
       font-family: Lato-Light; }
   @media screen and (min-width: 992px) {
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork--wrapper {
-      height: 35vh;
-      width: 35vh; }
+      height: 40vh;
+      width: 40vh; }
       .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .artwork--wrapper .artwork {
-        height: 35vh;
-        width: 35vh; }
+        height: 40vh;
+        width: 40vh; }
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper {
       font-size: 0.7rem;
       height: 3rem;
@@ -4963,14 +4963,14 @@ input[type=range].MASAS-slider {
 
 @media screen and (min-width: 992px) {
   .artwork-line--wrapper {
-    height: calc(24.5vh + 2.1rem); }
+    height: calc(28vh + 2.1rem); }
     .artwork-line--wrapper .button {
       z-index: 2;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding-left: 70vh;
+      padding-left: 80vh;
       cursor: pointer; }
       .artwork-line--wrapper .button img {
         width: 2rem;
@@ -4987,8 +4987,8 @@ input[type=range].MASAS-slider {
     .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
       visibility: visible; }
     .artwork-line--wrapper .artwork-playing--wrapper {
-      max-width: 35vh;
-      height: calc(35vh + 3rem);
+      max-width: 40vh;
+      height: calc(40vh + 3rem);
       border: 1px solid white; }
       .artwork-line--wrapper .artwork-playing--wrapper.popular {
         border: none; }
@@ -4998,11 +4998,11 @@ input[type=range].MASAS-slider {
         display: none; }
       .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
         background-color: rgba(0, 0, 0, 0.4);
-        height: 35vh;
-        width: 35vh; }
+        height: 40vh;
+        width: 40vh; }
         .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
-          height: 35vh;
-          width: 35vh; }
+          height: 40vh;
+          width: 40vh; }
       .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
         height: 3rem;
         display: flex;
@@ -5022,9 +5022,9 @@ input[type=range].MASAS-slider {
           .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
             position: relative;
             height: 0.7rem;
-            width: calc(35vh - 3 * (1rem + 1.5rem)); }
+            width: calc(40vh - 3 * (1rem + 1.5rem)); }
     .artwork-line--wrapper .left-side {
-      width: calc(50% - 24.5vh / 2.2); }
+      width: calc(50% - 28vh / 2.2); }
       .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
         display: flex; }
       .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
@@ -5053,7 +5053,7 @@ input[type=range].MASAS-slider {
     width: 100%;
     position: relative; }
     .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
-      transition: opacity 0.3s ease-in;
+      transition: opacity .3s ease-in;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -5077,7 +5077,7 @@ input[type=range].MASAS-slider {
       z-index: 0; }
   .discover--wrapper .time-picker--wrapper {
     display: flex;
-    flex-grow: 0.25;
+    flex-grow: .25;
     align-items: center;
     height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
@@ -5094,7 +5094,7 @@ input[type=range].MASAS-slider {
     height: 12rem; }
   .discover--wrapper .time-picker--wrapper {
     height: inherit;
-    height: 12.5vh;
+    height: 10vh;
     padding-top: 1.5rem; } }
 .legals-content--wrapper {
   display: flex;
@@ -5231,11 +5231,11 @@ input[type=range].MASAS-slider {
       position: relative; }
     @media screen and (min-width: 992px) {
       .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .artwork--wrapper {
-        height: 35vh;
-        width: 35vh; }
+        height: 40vh;
+        width: 40vh; }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .artwork--wrapper .artwork {
-          height: 35vh;
-          width: 35vh; }
+          height: 40vh;
+          width: 40vh; }
       .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper {
         font-size: 0.7rem;
         height: 3rem;
@@ -5250,7 +5250,7 @@ input[type=range].MASAS-slider {
           .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title, .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
             position: relative;
             height: 0.7rem;
-            width: calc(35vh - 2 * 1rem); } }
+            width: calc(40vh - 2 * 1rem); } }
     .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing {
       height: 38vh;
       width: 38vh; }
@@ -5265,23 +5265,23 @@ input[type=range].MASAS-slider {
         width: 100%; }
   @media screen and (min-width: 992px) {
     .popular--wrapper .artwork-line--wrapper.popular {
-      margin-bottom: .1rem;
-      height: calc(24.5vh + 2.1rem); }
+      margin-bottom: 0.1rem;
+      height: calc(28vh + 2.1rem); }
       .popular--wrapper .artwork-line--wrapper.popular .button {
-        padding-left: 70vh; }
+        padding-left: 80vh; }
         .popular--wrapper .artwork-line--wrapper.popular .button img {
           margin-right: 5rem; }
       .popular--wrapper .artwork-line--wrapper.popular .toggle-menu {
         display: none; }
       .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper {
-        max-width: 35vh;
-        height: calc(35vh + 3rem); }
+        max-width: 40vh;
+        height: calc(40vh + 3rem); }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing {
-          width: 35vh;
-          height: 35vh; }
+          width: 40vh;
+          height: 40vh; }
           .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing .artwork {
-            width: 35vh;
-            height: 35vh; }
+            width: 40vh;
+            height: 40vh; }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper {
           height: 3rem;
           padding: 0 1rem; }
@@ -5294,17 +5294,17 @@ input[type=range].MASAS-slider {
             padding-right: 1rem; }
             .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper .song-info .title, .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
               height: 0.7rem;
-              width: calc(35vh - 3 * (1rem + 1.5rem)); }
+              width: calc(40vh - 3 * (1rem + 1.5rem)); }
       .popular--wrapper .artwork-line--wrapper.popular .left-side {
-        width: calc(50% - 24.5vh / 2.2); } }
+        width: calc(50% - 28vh / 2.2); } }
   .popular--wrapper .coming-soon {
-    flex: .6;
+    flex: 0.6;
     display: flex;
     align-items: center; }
   .popular--wrapper .title-top, .popular--wrapper .title-bottom {
     align-items: center;
     font-size: 1.9rem;
-    letter-spacing: .35rem;
+    letter-spacing: 0.35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -5313,36 +5313,36 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: .2;
+    flex: 0.2;
     align-items: center; }
   .popular--wrapper .popular-content--wrapper {
     margin-bottom: 2rem;
     margin-top: 3rem;
-    transition: opacity .3s ease-in;
+    transition: opacity 0.3s ease-in;
     display: flex;
-    flex: .7;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
-  .popular--wrapper .vote--wrapper {
-    display: flex;
-    flex: .2;
-    width: 100%;
-    justify-content: center;
-    align-items: center; }
-    .popular--wrapper .vote--wrapper .like-button, .popular--wrapper .vote--wrapper .dislike-button {
+    .popular--wrapper .popular-content--wrapper .vote--wrapper {
       display: flex;
+      width: 100%;
       justify-content: center;
       align-items: center;
-      width: 7rem;
-      height: 2rem;
-      background-color: white;
-      cursor: pointer; }
-      .popular--wrapper .vote--wrapper .like-button img, .popular--wrapper .vote--wrapper .dislike-button img {
-        filter: invert(100%);
-        height: 1rem; }
-    .popular--wrapper .vote--wrapper .like-button {
-      margin-left: 2rem; }
+      height: 2.7rem; }
+      .popular--wrapper .popular-content--wrapper .vote--wrapper .like-button, .popular--wrapper .popular-content--wrapper .vote--wrapper .dislike-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35vw;
+        height: 100%;
+        background-color: white;
+        cursor: pointer; }
+        .popular--wrapper .popular-content--wrapper .vote--wrapper .like-button img, .popular--wrapper .popular-content--wrapper .vote--wrapper .dislike-button img {
+          filter: invert(100%);
+          height: 50%; }
+      .popular--wrapper .popular-content--wrapper .vote--wrapper .like-button {
+        margin-left: 2rem; }
   .popular--wrapper .hide-mobile {
     display: none; }
   .popular--wrapper .hide-desktop {
@@ -5365,7 +5365,7 @@ input[type=range].MASAS-slider {
       .popular--wrapper .title-bottom h1 {
         display: block; }
     .popular--wrapper .title-top {
-      flex: .15;
+      flex: 0.15;
       display: none; }
     .popular--wrapper .hide-mobile {
       display: flex; }

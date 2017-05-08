@@ -10,6 +10,7 @@ var ArtworkLine = require('../Discover/ArtworkLine.jsx')
 
 import SplashScreen from '../App/SplashScreen.jsx'
 
+
 const VoteButtons = ({ dislikeSong, toggleSongLike }) => (
 	<div className="vote--wrapper">
 		<div className="dislike-button" onClick={ dislikeSong }>
@@ -62,7 +63,9 @@ var Popular = React.createClass({
 				<div className="popular-content--wrapper">
 					<ArtworkLine
 						playFromPopular={ true } />
-					<VoteButtons />
+					<VoteButtons
+						dislikeSong={ this.dislikeSong }
+						toggleSongLike={ this.toggleSongLike } />
 				</div>
 			)
 
