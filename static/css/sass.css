@@ -4928,6 +4928,8 @@ input[type=range].MASAS-slider {
         justify-content: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.5); }
+        .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show {
+          display: flex; }
         .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img {
           height: 5rem;
           width: 5rem; }
@@ -5251,7 +5253,7 @@ input[type=range].MASAS-slider {
         align-items: center;
         padding: 0 1rem;
         flex-direction: row;
-        padding: 0.2rem 1.3rem;
+        padding: .2rem 1.3rem;
         border: 2px solid black;
         width: calc(40vh - 1.3rem * 2); }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info {

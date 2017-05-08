@@ -29,7 +29,7 @@ export const Artwork = props => {
 			{
 				props.allowPlayPause ?
 					<div
-						className={ 'player-button' }
+						className={ 'player-button' + (!props.isItemPlaying ? ' show' : '') }
 						onClick={ props.onArtworkClick }>
 						<PausePlayButton />
 					</div>
