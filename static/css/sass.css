@@ -2307,6 +2307,9 @@ input[type=range].MASAS-slider {
       width: 14px; }
     .footer--wrapper .slider--wrapper .visible--wrapper {
       height: 4rem; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .open-footer-icon {
+        transform: rotateZ(90deg);
+        height: .24rem; }
       .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
         display: none;
         align-items: center;
@@ -2396,6 +2399,8 @@ input[type=range].MASAS-slider {
           display: flex; }
         .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
           padding-right: .8rem; }
+          .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper .open-footer-icon {
+            display: none; }
         .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper {
           padding-left: 0; }
         .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
@@ -4317,19 +4322,26 @@ input[type=range].MASAS-slider {
         flex: 0.8;
         justify-content: center;
         width: 100%; }
-        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
-          opacity: 1;
-          pointer-events: inherit;
-          height: 2rem;
-          width: 2rem; }
-        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .player-button {
-          height: 4rem;
-          margin: 0 2rem; }
-        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
-          opacity: 1;
-          pointer-events: inherit;
-          height: 2rem;
-          width: 2rem; }
+        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-button-component--wrapper {
+          display: block; }
+          .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-button-component--wrapper .previous-song-icon {
+            opacity: 1;
+            pointer-events: inherit;
+            height: 2rem;
+            width: 2rem; }
+        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper {
+          display: block;
+          margin-right: 0; }
+          .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper .player-button {
+            height: 4rem;
+            margin: 0 2rem; }
+        .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper {
+          display: block; }
+          .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper .next-song-icon {
+            opacity: 1;
+            pointer-events: inherit;
+            height: 2rem;
+            width: 2rem; }
 
 @media screen and (min-width: 992px) {
   .player-mobile--top-wrapper {
@@ -4439,17 +4451,22 @@ input[type=range].MASAS-slider {
       height: 2rem; }
     .navbar-player--wrapper .player-controls--wrapper .previous-button-component--wrapper {
       width: 28px;
-      margin-left: 2rem; }
+      margin-left: 2rem;
+      display: none; }
       .navbar-player--wrapper .player-controls--wrapper .previous-button-component--wrapper .previous-song-icon {
         transform: rotate(180deg);
         height: 1.5rem;
         opacity: 0;
         transition: opacity 0.3s linear;
         pointer-events: none; }
-    .navbar-player--wrapper .player-controls--wrapper .player-button {
-      height: 3rem; }
+    .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper {
+      display: flex;
+      margin-right: 1rem; }
+      .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper .player-button {
+        height: 3rem; }
     .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper {
-      margin-right: 2rem; }
+      margin-right: 2rem;
+      display: none; }
       .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper .next-song-icon {
         height: 1.5rem;
         opacity: 0;
@@ -4490,23 +4507,28 @@ input[type=range].MASAS-slider {
     position: relative;
     height: inherit;
     top: inherit; }
-    .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper .player-button {
-      height: 2rem;
-      transition: none;
-      margin: 0 0.7rem; }
+    .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper {
+      margin-right: 0; }
+      .navbar-player--wrapper .player-controls--wrapper .play-button-component--wrapper .player-button {
+        height: 2rem;
+        transition: none;
+        margin: 0 0.7rem; }
     .navbar-player--wrapper .player-controls--wrapper .previous-button-component--wrapper {
-      width: auto; }
+      width: auto;
+      display: block; }
       .navbar-player--wrapper .player-controls--wrapper .previous-button-component--wrapper .previous-song-icon {
         display: block;
         opacity: 1;
         height: 1rem;
         pointer-events: inherit;
         margin: 0; }
-    .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper .next-song-icon {
-      display: flex;
-      height: 1rem;
-      opacity: 1;
-      pointer-events: inherit; } }
+    .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper {
+      display: block; }
+      .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper .next-song-icon {
+        display: flex;
+        height: 1rem;
+        opacity: 1;
+        pointer-events: inherit; } }
 .filters-modal--wrapper {
   display: flex;
   flex: 1;

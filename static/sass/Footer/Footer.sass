@@ -72,6 +72,10 @@ $footerHeight: $phone-footer-height
 		.visible--wrapper
 			height: $footerHeight
 
+			.open-footer-icon
+				transform: rotateZ(90deg)
+				height: 0.24rem
+
 			.buffer-info
 				display: none
 				align-items: center
@@ -206,10 +210,14 @@ $footerHeight: $phone-footer-height
 			.visible--wrapper
 				height: $footerHeight
 
+
 				.buffer-info
 					display: flex
 				.player--wrapper
 					padding-right: 0.8rem
+
+					.open-footer-icon
+						display: none
 
 				.extra-controls--wrapper
 					padding-left: 0

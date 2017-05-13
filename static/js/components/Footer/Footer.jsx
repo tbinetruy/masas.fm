@@ -1,15 +1,15 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Footer.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/Footer.jsx')
 
-var FooterModal = require("./FooterModals.jsx")
-var UnsplashControls = require("./UnsplashControls.jsx")
-var MiniProfileWrapper = require("../Profile/MiniProfileWrapper.jsx")
-var { PlayerBar } = require("../Player/PlayerBar.jsx")
+var FooterModal = require('./FooterModals.jsx')
+var UnsplashControls = require('./UnsplashControls.jsx')
+var MiniProfileWrapper = require('../Profile/MiniProfileWrapper.jsx')
+var { PlayerBar } = require('../Player/PlayerBar.jsx')
 const Player = PlayerBar
-var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
-const ProgressBar = require("./ProgressBar.jsx")
+var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
+const ProgressBar = require('./ProgressBar.jsx')
 
 
 var Footer = React.createClass({
@@ -40,7 +40,7 @@ var Footer = React.createClass({
 			//typeof($("#jquery_jplayer_1").data('jPlayer')) !== "undefined"
 			if(this.props.songPlaying !== null && !this.props.isPlayerPaused && this.props.SC_songInfo) {
 				// update progress bar length
-				progressBarWidth = $("#jquery_jplayer_1").data('jPlayer').status.currentTime*1000*100 / this.props.SC_songInfo.duration
+				progressBarWidth = $('#jquery_jplayer_1').data('jPlayer').status.currentTime*1000*100 / this.props.SC_songInfo.duration
 				this.props.updateProgressBar(progressBarWidth)
 			} else {
 				// verify that progress bar isn't already 0
@@ -103,7 +103,7 @@ var Footer = React.createClass({
 				<UnsplashControls />
 
 
-				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
+				<div className={ 'slider--wrapper ' + (this.props.isPlayerBarOpened ? 'opened' : '') }>
 
 					<MiniProfileWrapper />
 
@@ -114,11 +114,16 @@ var Footer = React.createClass({
 							<div className="col-md-2 col-display-none-sm buffer-info">
 								<div className="box">
 									<div className="">
-										{this.props.isBuffering ? " Buffering..." : ""}
+										{this.props.isBuffering ? ' Buffering...' : ''}
 									</div>
 								</div>
 							</div>
 							<div className="col-xs-9 col-md-8 player--wrapper">
+								<img
+									src='/static/img/MASAS_icon_dot.svg'
+									alt='open footer'
+									className='open-footer-icon'
+									/>
 								<Player />
 							</div>
 							<div className="col-xs-3 col-md-2 col-display-none-sm extra-controls--wrapper">

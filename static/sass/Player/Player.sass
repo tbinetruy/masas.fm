@@ -135,6 +135,7 @@
 		.previous-button-component--wrapper
 			width: 28px
 			margin-left: 2rem
+			display: none
 
 			.previous-song-icon
 				transform: rotate(180deg)
@@ -143,11 +144,16 @@
 				transition: opacity 0.3s linear
 				pointer-events: none
 
-		.player-button
-			height: 3rem
+		.play-button-component--wrapper
+			display: flex
+			margin-right: 1rem
+
+			.player-button
+				height: 3rem
 
 		.next-button-component--wrapper
 			margin-right: 2rem
+			display: none
 
 			.next-song-icon
 				height: 1.5rem
@@ -210,6 +216,8 @@
 			top: inherit
 
 			.play-button-component--wrapper
+				margin-right: 0
+
 				.player-button
 					height: 2rem
 					transition: none
@@ -217,6 +225,7 @@
 
 			.previous-button-component--wrapper
 				width: auto
+				display: block
 
 				.previous-song-icon
 					display: block
@@ -226,6 +235,8 @@
 					margin: 0
 
 			.next-button-component--wrapper
+				display: block
+
 				.next-song-icon
 					display: flex
 					height: 1rem

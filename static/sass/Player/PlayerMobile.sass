@@ -174,21 +174,31 @@
 				justify-content: center
 				width: 100%
 
-				.previous-song-icon
-					opacity: 1
-					pointer-events: inherit
-					height: 2rem
-					width: 2rem
+				.previous-button-component--wrapper
+					display: block
 
-				.player-button
-					height: 4rem
-					margin: 0 2rem
+					.previous-song-icon
+						opacity: 1
+						pointer-events: inherit
+						height: 2rem
+						width: 2rem
 
-				.next-song-icon
-					opacity: 1
-					pointer-events: inherit
-					height: 2rem
-					width: 2rem
+				.play-button-component--wrapper
+					display: block
+					margin-right: 0
+
+					.player-button
+						height: 4rem
+						margin: 0 2rem
+
+				.next-button-component--wrapper
+					display: block
+
+					.next-song-icon
+						opacity: 1
+						pointer-events: inherit
+						height: 2rem
+						width: 2rem
 
 @media screen and (min-width: $desktop-min-width)
 	.player-mobile--top-wrapper
