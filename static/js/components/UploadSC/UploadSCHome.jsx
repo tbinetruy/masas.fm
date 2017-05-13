@@ -34,17 +34,16 @@ BulletPoint.propTypes = {
 var UploadSCHome = React.createClass({
 	propTypes: {
 		MASASuser: React.PropTypes.string,
-		userPk: React.PropTypes.string,
-
-		updateModalContent: React.PropTypes.func,
+		getUserTracks: React.PropTypes.func,
 		toogleModal: React.PropTypes.func,
 		updateIsConnectedSC: React.PropTypes.func,
-		updateSCusername: React.PropTypes.func,
-		getUserTracks: React.PropTypes.func,
-		updateMasasUserTracks: React.PropTypes.func,
-		updateSoundcloudUserTracks: React.PropTypes.func,
 		updateLoginMessage: React.PropTypes.func,
+		updateMasasUserTracks: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
 		updateProfilePicture: React.PropTypes.func,
+		updateSCusername: React.PropTypes.func,
+		updateSoundcloudUserTracks: React.PropTypes.func,
+		userPk: React.PropTypes.string,
 	},
 
 	componentWillMount: function() {
@@ -77,15 +76,15 @@ var UploadSCHome = React.createClass({
 
                         <div className="bullet-point-list--wrapper">
 							<BulletPoint
-								imgSrc="/static/img/vote/icon_like.svg"
+								imgSrc="/static/img/upload/icon_upload_1.png"
 								text="Expose your sounds to the finest music community and get feedback"
 								/>
 							<BulletPoint
-								imgSrc="/static/img/MASAS_icon_mixer.svg"
+								imgSrc="/static/img/upload/icon_upload_2.png"
 								text="MASAS algorithm will select the best music everyday and feature them"
 								/>
 							<BulletPoint
-								imgSrc="/static/img/MASAS_icon_mixer.svg"
+								imgSrc="/static/img/upload/icon_upload_3.png"
 								text="Get a chance to be featured on our next events and be contacted by independants label"
 								/>
 						</div>
