@@ -2,5 +2,7 @@
 	"python.linting.pylintEnabled": false,
 	"eslint.options": {
 		"configFile": "/Users/thomasbinetruy/Documents/websites/masas/.eslintrc.json"
-	}
+	},
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false
 }
