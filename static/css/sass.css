@@ -1887,6 +1887,18 @@ input[type=range].MASAS-slider {
     align-items: center;
     justify-content: center;
     z-index: 1; }
+    .header .notification--wrapper1 .tip--wrapper {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      background-color: white;
+      top: 0;
+      position: absolute;
+      height: 2rem;
+      font-size: 0.8rem;
+      font-family: Lato-Light; }
     .header .notification--wrapper1 .notification--wrapper2 {
       height: 2rem;
       width: 100%;
@@ -1956,6 +1968,8 @@ input[type=range].MASAS-slider {
       top: calc(100% + 0.5rem);
       right: 0.5rem;
       justify-content: flex-end; }
+      .header .notification--wrapper1 .tip--wrapper {
+        transform: translate(0.5rem, -0.5rem); }
       .header .notification--wrapper1 .notification--wrapper2 {
         flex: 0;
         width: 30%;

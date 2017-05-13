@@ -24,7 +24,7 @@ function updateNotificationBar(notificationText) {
 function updateTipText(text) {
 	return {
 		type: UPDATE_TIP_TEXT,
-		notificationText: text,
+		tipText: text,
 	}
 }
 

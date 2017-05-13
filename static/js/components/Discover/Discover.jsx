@@ -27,6 +27,7 @@ var Discover = React.createClass({
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		updateModalType: React.PropTypes.func,
+		updateTipBar: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		userData: React.PropTypes.object,
 		userToken: React.PropTypes.string,
@@ -60,6 +61,8 @@ var Discover = React.createClass({
 	},
 
 	componentDidMount: function() {
+		// show crowdradio tip
+		this.props.updateTipBar('fads;kfjasdklfjadslkfj asdflkjasd flkjadsfj')
 	},
 
 	componentWillReceiveProps: function() {

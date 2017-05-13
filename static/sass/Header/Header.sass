@@ -50,6 +50,19 @@ $B: 0
 		justify-content: center
 		z-index: 1
 
+		.tip--wrapper
+			width: 100vw
+			display: flex
+			justify-content: center
+			align-items: center
+			color: black
+			background-color: white
+			top: 0
+			position: absolute
+			height: 2rem
+			font-size: 0.8rem
+			font-family: Lato-Light
+
 		.notification--wrapper2
 			height: 2rem
 			width: 100%
@@ -142,6 +155,9 @@ $B: 0
 			top: calc(100% + 0.5rem)
 			right: 0.5rem
 			justify-content: flex-end
+
+			.tip--wrapper
+				transform: translate(0.5rem, -0.5rem)
 
 
 			.notification--wrapper2
