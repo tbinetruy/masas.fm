@@ -37,9 +37,6 @@ class PreviousButtonSmart extends React.Component {
     }
 
 	getPreviousButton() {
-		if(this.props.playingFromPopular && this.props.isPlayerMobile)
-			return <div className="previous-song-icon"></div>
-
 		// no back button if playing from discover
 		if(!this.props.playingFromPopular && !this.props.isPlaylistPlaying)
 			return
