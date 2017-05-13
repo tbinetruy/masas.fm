@@ -75,8 +75,6 @@ class PreviousButtonSmart extends React.Component {
 }
 
 PreviousButtonSmart.propTypes = {
-    isPlayerMobile: React.PropTypes.bool,
-
     isPlaylistPlaying: React.PropTypes.bool,
     playNewSongFromPlaylist: React.PropTypes.func,
     playPreviousSong: React.PropTypes.func,
