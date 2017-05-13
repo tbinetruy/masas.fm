@@ -20,7 +20,6 @@ Header.mapStateToProps = function(state) {
 		user: state.appReducer.MASASuser,
 		isPlayerBarOpened: state.footerReducer.isOpened,
 		backArrowFunc: state.appReducer.backArrowFunc,
-		notificationText: state.headerReducer.notificationText,
 		isAppFetching: state.appReducer.isAppFetching,
 		songPlaying: state.playerReducer.songPlaying,
 		MASASuser: state.appReducer.MASASuser,

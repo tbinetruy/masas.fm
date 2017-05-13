@@ -1,3 +1,5 @@
+import { Notification } from './Notification.jsx'
+
 var React = require('react')
 
 var ReactRedux = require('react-redux')
@@ -7,27 +9,23 @@ var { getPathList } = require('../../MASAS_functions.jsx')
 var HeaderDropdown = require('./HeaderDropdown.jsx')
 var Link = require('../UI/Link.jsx')
 
+
 var Header = React.createClass({
 	propTypes: {
-		pageType: React.PropTypes.number,
-		pageTitle: React.PropTypes.string,
-		user: React.PropTypes.string,
-		isPlayerBarOpened: React.PropTypes.bool,
-		backArrowFunc: React.PropTypes.func,
-		notificationText: React.PropTypes.string,
-		isAppFetching: React.PropTypes.bool,
-		songPlaying: React.PropTypes.string,
 		MASASuser: React.PropTypes.string,
-		// isModalOpened: React.PropTypes.bool,
-		// toogleModal: React.PropTypes.func,
-		// updateModalContent: React.PropTypes.func,
-		modalType: React.PropTypes.number,
-		isModalOpened: React.PropTypes.bool,
-
-		onSetNavSidebarOpen: React.PropTypes.func,
-		toogleIsOpened: React.PropTypes.func,
-		goToHomepageSlide1: React.PropTypes.func,
+		backArrowFunc: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
+		goToHomepageSlide1: React.PropTypes.func,
+		isAppFetching: React.PropTypes.bool,
+		isModalOpened: React.PropTypes.bool,
+		isPlayerBarOpened: React.PropTypes.bool,
+		modalType: React.PropTypes.number,
+		onSetNavSidebarOpen: React.PropTypes.func,
+		pageTitle: React.PropTypes.string,
+		pageType: React.PropTypes.number,
+		songPlaying: React.PropTypes.string,
+		toogleIsOpened: React.PropTypes.func,
+		user: React.PropTypes.string,
 	},
 
 	render: function() {
@@ -41,18 +39,7 @@ var Header = React.createClass({
 					<div className={ 'ajax-loader' + (this.props.isAppFetching ? ' visible' : '') }>
 					</div>
 				</div>
-				<div className="notification--wrapper1">
-					{
-						this.props.notificationText !== '' ?
-							<div className="notification--wrapper2">
-								<div className="notification-text" id="notification-text">
-									{ this.props.notificationText }
-								</div>
-							</div>
-						:
-							''
-					}
-				</div>
+				<Notification />
 				<div className="top-decoration--top-border">
 				</div>
 				<div className="top-decoration">
