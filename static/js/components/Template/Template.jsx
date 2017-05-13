@@ -1,34 +1,48 @@
-var React = require("react")
+import * as React from 'react'
+import { connect }from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Template.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-// var { browserHistory } = require('react-router')
+/**
+ * Redux container
+ */
 
-// var Template = (props) => {
+const mapStateToProps = function(state) {
+	return {
+	}
+}
 
-// }
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
 
-var Template = React.createClass({
-	propTypes: {
-	},
 
-	componentWillMount: function() {
-		this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
-	},
+/**
+ * Smart component
+ */
+class TemplateSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
-	render: function() {
+	render() {
 		return (
 			<div>
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Template)
+Template.propTypes = {
+}
+
+const Template = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TemplateSmart)
+
+export {
+	Template
+}
+
+
