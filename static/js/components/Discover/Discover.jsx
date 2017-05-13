@@ -6,7 +6,6 @@ var { mapStateToProps, mapDispatchToProps } = require('./containers/Discover.jsx
 var {
 	getTimeIntervalFromURL,
 	getDiscoverNumberFromCurrentTime,
-	discoverHashtagNames
 } = require('../../MASAS_functions.jsx')
 
 var ArtworkLine = require('./ArtworkLine.jsx')
@@ -14,22 +13,23 @@ var { TimePicker } = require('../UI/UI.jsx')
 
 var Discover = React.createClass({
 	propTypes: {
-		userToken: React.PropTypes.string,
-		userData: React.PropTypes.object,
-		modalType: React.PropTypes.number,
-		isModalOpened: React.PropTypes.bool,
-		discoverNumber: React.PropTypes.number,
-		songPlaying: React.PropTypes.string,
 		MASAS_songInfo: React.PropTypes.object,
-		loggedOutUserStep: React.PropTypes.number,
-
-		updateTitle: React.PropTypes.func,
-		toogleModal: React.PropTypes.func,
-		updateModalType: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
+        blackBgFilter: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
+		discoverNumber: React.PropTypes.number,
 		handleTimePickerChange: React.PropTypes.func,
 		incrementLoggedOutUserStep: React.PropTypes.func,
+		isModalOpened: React.PropTypes.bool,
+		loggedOutUserStep: React.PropTypes.number,
+		modalType: React.PropTypes.number,
+		resetBgFilter: React.PropTypes.func,
+		songPlaying: React.PropTypes.string,
+		toogleModal: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		updateModalType: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		userData: React.PropTypes.object,
+		userToken: React.PropTypes.string,
 	},
 
 	getDefaultProps: function() {
@@ -50,9 +50,13 @@ var Discover = React.createClass({
 		if(this.props.MASAS_songInfo)
 			this.props.handleTimePickerChange(getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval))
 
+		// make black bg filter
+		this.props.blackBgFilter()
 	},
 
 	componentWillUnmount: function() {
+		// reset bg filter
+		this.props.resetBgFilter()
 	},
 
 	componentDidMount: function() {

@@ -1,4 +1,5 @@
 import {
+	changeBgState,
 	updatePageTitle,
 } from '../../../reducers/actions/App.js'
 
@@ -33,6 +34,8 @@ Popular.mapDispatchToProps = function(dispatch) {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		blackBgFilter: () => dispatch(changeBgState.black()),
+		resetBgFilter: () => dispatch(changeBgState.reset()),
 	}
 }
 

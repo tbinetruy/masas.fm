@@ -1,5 +1,6 @@
 var Discover = {}
 import {
+	changeBgState,
 	changeModalContent,
 	closeAndEmptyMainModal,
 	incrementLoggedOutUserStep,
@@ -40,6 +41,8 @@ Discover.mapDispatchToProps = function(dispatch) {
 		updateModalContent: (modalContent, modalType, closeModalFunc) => dispatch(changeModalContent(modalContent, modalType, closeModalFunc)),
 		updateModalType: modalType => dispatch(updateModalType(modalType)),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
+		blackBgFilter: () => dispatch(changeBgState.black()),
+		resetBgFilter: () => dispatch(changeBgState.reset()),
 
 		// page state updates
 

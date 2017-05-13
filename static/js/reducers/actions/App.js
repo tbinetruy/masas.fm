@@ -29,6 +29,8 @@ export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
 export const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
 export const UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE = 'UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE'
 export const SHOW_PLAYER_MOBILE = 'SHOW_PLAYER_MOBILE'
+export const RESET_BG = 'RESET_BG'
+export const BLACK_BG = 'BLACK_BG'
 
 export const showPlayerMobile = isPlayerMobileShown => {
 	// $desktop-min-width: 992px
@@ -187,6 +189,19 @@ export function updatePageTitle(title, pageType, backArrowFunc = () => {}) {
 }
 
 export var changeBgState = {}
+
+changeBgState.black = function() {
+	return {
+		type: BLACK_BG,
+	}
+}
+
+changeBgState.reset = function() {
+	return {
+		type: RESET_BG,
+	}
+}
+
 // blur = bool
 changeBgState.blur = function(blur) {
 	var isBlurred = true

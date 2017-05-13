@@ -32,7 +32,9 @@ var Popular = React.createClass({
 
 	propTypes: {
 		MASASuser: React.PropTypes.string,
+        blackBgFilter: React.PropTypes.func,
 		playRandomSong: React.PropTypes.func,
+		resetBgFilter: React.PropTypes.func,
 		songPlaying: React.PropTypes.string,
 		toggleSongLike: React.PropTypes.func,
 		toogleModal: React.PropTypes.func,
@@ -50,12 +52,17 @@ var Popular = React.createClass({
 
 	componentWillMount: function() {
 		this.props.updateTitle('Discover', '0')
+
+		// make black bg filter
+		this.props.blackBgFilter()
 	},
 
 	componentDidMount: function() {
 	},
 
 	componentWillUnmount: function() {
+		// reset bg filter
+		this.props.resetBgFilter()
 	},
 
 	getContent: function() {

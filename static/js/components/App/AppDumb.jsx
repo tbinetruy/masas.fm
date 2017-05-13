@@ -1,17 +1,17 @@
 // Main App layoutvar React = require("react")
 
-var React = require("react")
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/AppDumb.jsx")
+var React = require('react')
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/AppDumb.jsx')
 
 
-var Header = require("../Header/Header.jsx")
-var Footer = require("../Footer/Footer.jsx")
-var Discover = require("../Discover/Discover.jsx")
-var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
-var { Modal } = require("../UI/UI.jsx")
-var PlayerAudioTag = require("../Player/PlayerAudioTag.jsx")
-var PlayerMobile = require("../Player/PlayerMobile.jsx")
+var Header = require('../Header/Header.jsx')
+var Footer = require('../Footer/Footer.jsx')
+var Discover = require('../Discover/Discover.jsx')
+var NavSidebar = require('../NavSidebar/NavSidebar.jsx')
+var { Modal } = require('../UI/UI.jsx')
+var PlayerAudioTag = require('../Player/PlayerAudioTag.jsx')
+var PlayerMobile = require('../Player/PlayerMobile.jsx')
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
@@ -38,7 +38,7 @@ var AppDumb = React.createClass({
 	getDefaultProps: function() {
 		return {
 			hideLoadingModalZIndex: 100,
-			loadingModalAnim: "fadeout-loading-modal 1s linear",
+			loadingModalAnim: 'fadeout-loading-modal 1s linear',
 		}
 	},
 
@@ -68,26 +68,28 @@ var AppDumb = React.createClass({
 				<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
 					<div
 						className={
-							"body--background"
+							'body--background'
 							+
-							( this.props.bgFilter.blurred ? " blurred " : "" )
+							( this.props.bgFilter.blurred ? ' blurred ' : '' )
 							+
-							( this.props.bgFilter.saturated ? " saturated " : "" )
+							( this.props.bgFilter.saturated ? ' saturated ' : '' )
 							+
-							( this.props.bgFilter.mobileBlurred ? " blurred-mobile " : "" )
+							( this.props.bgFilter.mobileBlurred ? ' blurred-mobile ' : '' )
 							+
-							( this.props.bgFilter.mobileSaturated ? " mobileSaturated " : "" )
+							( this.props.bgFilter.mobileSaturated ? ' mobileSaturated ' : '' )
 							+
-							( this.props.bgFilter.modalBlurred ? " modal-blurred " : "" )
+							( this.props.bgFilter.modalBlurred ? ' modal-blurred ' : '' )
 							+
-							( this.props.bgFilter.modalSaturated ? " modal-saturated " : "" )
+							( this.props.bgFilter.modalSaturated ? ' modal-saturated ' : '' )
+							+
+							( this.props.bgFilter.black ? ' black ' : '' )
 						}
 						id="body--background">
 						<div className="bg-image" id="app-bg-image"></div>
 					</div>
 					<Header />
 						<div
-							className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}
+							className={ 'modal-blur--wrapper' + ( this.props.isModalOpened && this.props.modalType !== 2 ? ' blurred' : '' )}
 							style={{
 								opacity: !(this.props.isModalOpened && this.props.modalType === 4) ? 1 : 0,
 							}}>

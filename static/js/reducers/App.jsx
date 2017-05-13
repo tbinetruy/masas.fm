@@ -1,47 +1,49 @@
 var React = require('react')
 
 import {
-	INCREMENT_LOGGED_OUT_USER_STEP,
-	RESET_LOGGED_OUT_USER_STEP,
-	CHANGE_MODAL_CONTENT,
-	UPDATE_MODAL_TYPE,
-	CLOSE_AND_EMPTY_MAIN_MODAL,
-	TOOGLE_IS_MODAL_OPENED,
-	UPDATE_PAGE_TITLE,
+    BLACK_BG,
 	BLUR_BG,
-	SATURATE_BG,
 	BLUR_BG_MOBILE,
-	SATURATE_BG_MOBILE,
+	CHANGE_MODAL_CONTENT,
+	CHANGE_SLASH_SCREEN_PAGE,
+	CLOSE_AND_EMPTY_MAIN_MODAL,
+	DONE_PROCESSING_AUTH_COOKIE,
+	INCREMENT_LOGGED_OUT_USER_STEP,
 	MODAL_BLUR_BG,
 	MODAL_SATURATE_BG,
-	DONE_PROCESSING_AUTH_COOKIE,
-	SET_APP_FETCHING_STATE_TRUE,
+	RESET_BG,
+	RESET_LOGGED_OUT_USER_STEP,
+	SATURATE_BG,
+	SATURATE_BG_MOBILE,
 	SET_APP_FETCHING_STATE_FALSE,
-	CHANGE_SLASH_SCREEN_PAGE,
+	SET_APP_FETCHING_STATE_TRUE,
+	SHOW_PLAYER_MOBILE,
+	TOOGLE_IS_MODAL_OPENED,
+    UPDATE_MINI_PROFILE_CONTENT,
 	UPDATE_MINI_PROFILE_VISIBILITY,
-	UPDATE_MINI_PROFILE_CONTENT,
+	UPDATE_MODAL_TYPE,
+	UPDATE_PAGE_TITLE,
 	UPDATE_SC_SONG_INFO,
 	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
-	SHOW_PLAYER_MOBILE,
 } from './actions/App.js'
 
 let exportVar = {}
 
 exportVar.defaultState = {
-	MASASuser: "", 						// user login token
+	MASASuser: '', 						// user login token
 	MASASuserPk: null,					// (str) user pk from masas api
 	userData: {},						// user data (pk, username, email etc)
 	pageTitle: 'home',
 	pageType: 0,						// 0 = hamburger icon, 1 = arrow icon
 	navSiderbarOpen: false,
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
-	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow
+	backArrowFunc: () => '',			// (func) what happens when user clicks on back arrow
 	isAppFetching: false,				// (bool)
 	isModalOpened: false,				// (bool) is modal opened
 	modalContent: <div></div>, 			// (obj) modal content
 	modalType: 1,						// (int) how the modal looks like. 1 for default
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
-	splashScreenLoginMessage: "",		// (str) login message to show on login modal
+	splashScreenLoginMessage: '',		// (str) login message to show on login modal
 	closeModalFunc: () => {}, 			// (func) function called on closin modal
 	loggedOutUserStep: 0,				// (int) user step used to show tip modals when user logged out
 	bgFilter: {							// (dict of bools) background state
@@ -51,6 +53,7 @@ exportVar.defaultState = {
 		mobileSaturated: false,			// (bool) is app bg saturated only on mobile
 		modalBlurred: false,			// (bool) is app bg blurred *because* of modal
 		modalSaturated: false,			// (bool) is app bg saturated *because* of modal
+		black: false,					// (bool) is app bg black
 	},
 	miniProfile: {						// (obj) containing info relative to mini profile
 		isVisible: false,				// (bool) should mini profile be shown
@@ -65,6 +68,19 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
+		case BLACK_BG:
+			return {
+				...state,
+				bgFilter: {
+					...defaultState.bgFilter,
+					black: true
+				}
+			}
+		case RESET_BG:
+			return {
+				...state,
+				bgFilter: defaultState.bgFilter
+			}
 		case SHOW_PLAYER_MOBILE:
 			return {
 				...state,
@@ -240,14 +256,14 @@ exportVar.appReducer = function(state = defaultState, action) {
 		case UPDATE_PAGE_TITLE:
 			// HANDLE PAGE TYPE
 			let pageType = action.pageType
-			if(typeof(pageType) !== "number")
+			if(typeof(pageType) !== 'number')
 				pageType = 0
 			if(pageType > 1 || pageType < 0)
 				pageType = 0
 
 			// HANDLE BACK ARROW FUNCTION
 			let backArrowFunc = defaultState.backArrowFunc
-			if(typeof(action.backArrowFunc) !== "undefined")
+			if(typeof(action.backArrowFunc) !== 'undefined')
 				backArrowFunc = action.backArrowFunc
 
 			return {
