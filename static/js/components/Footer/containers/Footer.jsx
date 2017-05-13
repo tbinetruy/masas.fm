@@ -1,17 +1,22 @@
 import {
+	changeModalContent,
+	toogleIsModalOpened,
+} from '../../../reducers/actions/App.js'
+
+import {
 	playNewSongFromPlaylist,
 	playRandomSong
-} from "../../../reducers/actions/Player.js"
+} from '../../../reducers/actions/Player.js'
 
 import {
 	setPlayerProgressBar,
 	toogleIsFooterOpened,
-} from "../../../reducers/actions/Footer.js"
-	
+} from '../../../reducers/actions/Footer.js'
+
 import {
-	changeModalContent,
-	toogleIsModalOpened,
-} from "../../../reducers/actions/App.js"
+	showPlayerMobile,
+} from '../../../reducers/actions/App.js'
+
 
 var Footer = {}
 
@@ -41,6 +46,7 @@ Footer.mapDispatchToProps = function(dispatch) {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
 		playNewSongFromPlaylist: playlistPosition => dispatch(playNewSongFromPlaylist(playlistPosition)),
+		showPlayerMobile: choice => dispatch(showPlayerMobile(choice)),
 	}
 }
 

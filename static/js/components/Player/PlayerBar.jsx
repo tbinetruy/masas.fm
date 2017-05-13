@@ -53,7 +53,6 @@ var Player = React.createClass({
 		setIsPlayerBuffering: React.PropTypes.func,
 		showPlayerMobile: React.PropTypes.func,
 		songPlaying: React.PropTypes.string,
-		zzhhhhh: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {

@@ -2289,7 +2289,7 @@ input[type=range].MASAS-slider {
     top: 0;
     left: 0;
     right: 0;
-    transition: .3s linear;
+    transition: 0.3s linear;
     height: calc(17rem + 4rem); }
     .footer--wrapper .slider--wrapper .toogle-open-tray-icon {
       display: none;
@@ -2309,13 +2309,15 @@ input[type=range].MASAS-slider {
       height: 4rem; }
       .footer--wrapper .slider--wrapper .visible--wrapper .open-footer-icon {
         transform: rotateZ(90deg);
-        height: .24rem; }
+        height: 0.24rem; }
+        .footer--wrapper .slider--wrapper .visible--wrapper .open-footer-icon.hidden {
+          display: none; }
       .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
         display: none;
         align-items: center;
         justify-content: center;
         font-family: Lato-Light;
-        font-size: .7rem; }
+        font-size: 0.7rem; }
       .footer--wrapper .slider--wrapper .visible--wrapper img {
         cursor: pointer; }
       .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
@@ -2329,7 +2331,7 @@ input[type=range].MASAS-slider {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding-left: .8rem;
+        padding-left: 0.8rem;
         justify-content: flex-start; }
         .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper .nextSong--wrapper {
           display: none; }
@@ -2348,7 +2350,7 @@ input[type=range].MASAS-slider {
         align-items: flex-start;
         width: 100%;
         padding: 0 calc(14px + 1rem);
-        padding-top: .5rem; }
+        padding-top: 0.5rem; }
         .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper hr {
           width: 100%;
           border: 0;
@@ -2398,7 +2400,7 @@ input[type=range].MASAS-slider {
         .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
           display: flex; }
         .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
-          padding-right: .8rem; }
+          padding-right: 0.8rem; }
           .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper .open-footer-icon {
             display: none; }
         .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper {
@@ -2417,9 +2419,9 @@ input[type=range].MASAS-slider {
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper hr {
             display: none; }
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span {
-            font-size: .8rem; }
+            font-size: 0.8rem; }
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span::before {
-            padding-right: .8rem; } }
+            padding-right: 0.8rem; } }
 .upload-sc-item--wrapper {
   border-width: 1px;
   border-style: solid;

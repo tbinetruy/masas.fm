@@ -1,24 +1,17 @@
 import {
-	playPlayer,
 	pausePlayer,
-	playPreviousSongInHistory,
-	playRandomSong,
-	playNewSongFromPlaylist,
 	playNewSong,
+	playNewSongFromPlaylist,
+	playPlayer,
+	playRandomSong,
 	resumePlayer,
 	setIsPlayerBuffering,
-	toggleSongLike,
-} from "../../../reducers/actions/Player.js"
+} from '../../../reducers/actions/Player.js'
 
 import {
-	updateMiniProfileContent,
-	changeModalContent,
-	updateSplashScreenLoginMessage,
-	toogleIsModalOpened,
 	showPlayerMobile,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
-// var { toggleSongLike } = require("../../../MASAS_functions.jsx")
 
 var Player = {}
 

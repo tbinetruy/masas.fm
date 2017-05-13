@@ -14,12 +14,13 @@ const ProgressBar = require('./ProgressBar.jsx')
 
 var Footer = React.createClass({
 	propTypes: {
-		playlist: React.PropTypes.array,
-		isPlaylistPlaying: React.PropTypes.bool,
 		isPlayerBarOpened: React.PropTypes.bool,
-		playlistPosition: React.PropTypes.number,
-		playRandomSong: React.PropTypes.func,
+		isPlaylistPlaying: React.PropTypes.bool,
 		playNewSongFromPlaylist: React.PropTypes.func,
+		playRandomSong: React.PropTypes.func,
+		playlist: React.PropTypes.array,
+		playlistPosition: React.PropTypes.number,
+		showPlayerMobile: React.PropTypes.func,
 	},
 
 
@@ -122,7 +123,8 @@ var Footer = React.createClass({
 								<img
 									src='/static/img/MASAS_icon_dot.svg'
 									alt='open footer'
-									className='open-footer-icon'
+									className={ 'open-footer-icon' + (this.props.songPlaying ? '' : ' hidden') }
+									onClick={ () => this.props.showPlayerMobile(true) }
 									/>
 								<Player />
 							</div>
