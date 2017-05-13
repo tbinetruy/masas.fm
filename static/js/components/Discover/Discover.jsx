@@ -58,11 +58,14 @@ var Discover = React.createClass({
 	componentWillUnmount: function() {
 		// reset bg filter
 		this.props.resetBgFilter()
+
+		// hide crowdradio tip
+		this.props.updateTipBar('')
 	},
 
 	componentDidMount: function() {
 		// show crowdradio tip
-		this.props.updateTipBar('fads;kfjasdklfjadslkfj asdflkjasd flkjadsfj')
+		this.props.updateTipBar('tip discover', 9)
 	},
 
 	componentWillReceiveProps: function() {

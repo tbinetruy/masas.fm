@@ -8,7 +8,8 @@ let exportVar = {}
 exportVar.defaultState = {
 	username: null,			// username shown in header dropdown
 	notificationText: '',		// (STR) content of notification bar
-	tipText: '',
+	tipText: '',			// (str) content of tip
+	tipNumber: 0,			// (int) tip number to check against usersteps
 }
 const{ defaultState } = exportVar
 
@@ -28,7 +29,8 @@ exportVar.headerReducer = function(state = defaultState, action) {
 		case UPDATE_TIP_TEXT:
 			return {
 				...state,
-				tipText: action.tipText
+				tipText: action.tipText,
+				tipNumber: action.tipNumber,
 			}
 		default:
 			return state

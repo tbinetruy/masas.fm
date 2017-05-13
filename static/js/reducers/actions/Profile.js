@@ -1,10 +1,11 @@
-import "whatwg-fetch"
+import 'whatwg-fetch'
 
 import {
 	updateNotificationBar
-} from "./Header.js"
+} from './Header.js'
 
-// var { isObjectEmpty } = require("../../MASAS_functions.jsx")
+const { getCookie } = require('../../MASAS_functions.jsx')
+
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
 export const UPDATE_USER_SC_SONGS = 'UPDATE_USER_SC_SONGS'
@@ -16,6 +17,28 @@ export const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
 export const RESET_TEXTBOX_VALUES = 'RESET_TEXTBOX_VALUES'
 export const SET_EDITING_PROFILE_VISIBILITY = 'SET_EDITING_PROFILE_VISIBILITY'
 
+export const updateUserStep = step => (disptach, getState) => {
+	const { MASASuser, userData } = getState().appReducer
+
+	const header = 'Bearer ' + MASASuser
+	var csrftoken = getCookie('csrftoken')
+
+	if(MASASuser) {
+		fetch('/api/usersteps/', {
+			method: 'POST',
+			headers: {
+				'Authorization': header,
+				'X-CSRFToken': csrftoken,
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify({
+				user: userData.url,
+				step
+			}),
+		}).then(() => disptach(updateProfileInfo()))
+	}
+}
+
 export const resetTextboxValue = () => {
 	return {
 		type: RESET_TEXTBOX_VALUES,
@@ -24,8 +47,8 @@ export const resetTextboxValue = () => {
 
 // returns url of random default avatar
 export const getRandomDefaultAvatar = () => {
-	const avatarUrlRoot = "/static/img/avatars/"
-	const avatarUrlSuffix = ".svg"
+	const avatarUrlRoot = '/static/img/avatars/'
+	const avatarUrlSuffix = '.svg'
 	const randomAvatar = Math.floor(Math.random() * 6)
 
 	return avatarUrlRoot + randomAvatar + avatarUrlSuffix
@@ -39,18 +62,18 @@ export const updateProfilePicture = (isDefaultPicture, pictureURL) => (dispatch,
 		MASASuser,
 		MASASuserPk,
 	} = state
-	const header = "Bearer " + MASASuser
+	const header = 'Bearer ' + MASASuser
 	let avatar_url = getRandomDefaultAvatar()
 
 	if(!isDefaultPicture)
 		avatar_url = pictureURL
 
 	$.ajax({
-		type: "PATCH",
-		url: "/api/users/" + MASASuserPk + "/",
+		type: 'PATCH',
+		url: '/api/users/' + MASASuserPk + '/',
 		headers: {
-			"Authorization": header,
-			"Content-Type": "application/json"
+			'Authorization': header,
+			'Content-Type': 'application/json'
 		},
 		data: JSON.stringify({
 			avatar_url,
@@ -124,7 +147,7 @@ export function getSCinfo() {
 		else
 			songs = publicProfileInfo.songs
 
-		if(typeof(songs) !== "undefined") {
+		if(typeof(songs) !== 'undefined') {
 			var idString = songs.map( song => song.SC_ID ).join()
 
 			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
@@ -137,7 +160,7 @@ export function getSCinfo() {
 
 // (int) userPk : user pk
 export function getPublicProfileInfo(userPk) {
-	return dispatch => fetch("/api/users/" + userPk + "/")
+	return dispatch => fetch('/api/users/' + userPk + '/')
 			.then( resp => resp.json() )
 			.then( resp => {
 				dispatch( updatePublicProfileInfo(resp) )
@@ -151,7 +174,7 @@ export function updateProfileInfo(callback) {
 		const { MASASuser, userData } = state.appReducer
 
 		var headers = new Headers()
-		headers.append("Authorization", "Bearer " + MASASuser)
+		headers.append('Authorization', 'Bearer ' + MASASuser)
 
 		fetch(userData.url, { headers })
 		.then( r => r.json() )
@@ -165,17 +188,17 @@ export function updateProfileInfo(callback) {
 
 function updateLinks(userData, textboxValues, header, csrftoken) {
 	return dispatch => {
-		const counterTotal = textboxValues.link_set.filter(a => a !== "").length
+		const counterTotal = textboxValues.link_set.filter(a => a !== '').length
 		var counterSuccess = 0
 
 		textboxValues.link_set.map( textboxLink => {
-			if(textboxLink !== "")
-				fetch("/api/links/", {
-					method: "POST",
+			if(textboxLink !== '')
+				fetch('/api/links/', {
+					method: 'POST',
 					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken,
-						"content-type": "application/json",
+						'Authorization': header,
+						'X-CSRFToken': csrftoken,
+						'content-type': 'application/json',
 					},
 					body: JSON.stringify({
 						link: textboxLink,
@@ -189,7 +212,7 @@ function updateLinks(userData, textboxValues, header, csrftoken) {
 						dispatch(updateNotificationBar('Profile updated !'))
 					}
 				}).catch( e => {
-					dispatch(updateNotificationBar("Error updating profile..."))
+					dispatch(updateNotificationBar('Error updating profile...'))
 					// optimistic ui, close profile on save click and show again if problem occurred
 					dispatch(toggleEditingProfile())
 				})
@@ -207,10 +230,10 @@ function deleteLinks(userData, textboxValues, header, csrftoken) {
 		else {
 			userData.link_set.map((userLink) => {
 				fetch(userLink.url, {
-					method: "DELETE",
+					method: 'DELETE',
 					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken
+						'Authorization': header,
+						'X-CSRFToken': csrftoken
 					}
 				}).then( r => {
 					counterSuccess = counterSuccess + 1
@@ -219,7 +242,7 @@ function deleteLinks(userData, textboxValues, header, csrftoken) {
 						dispatch(updateLinks(userData, textboxValues, header, csrftoken))
 					}
 				}).catch( e => {
-					dispatch(updateNotificationBar("Error updating profile..."))
+					dispatch(updateNotificationBar('Error updating profile...'))
 				})
 			})
 		}
@@ -239,19 +262,19 @@ export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError
 		delete textboxValues.link_set
 		// textboxValues.city = textboxValues.city
 
-		const header = "Bearer " + userToken
-		var csrftoken = getCookie("csrftoken")
+		const header = 'Bearer ' + userToken
+		var csrftoken = getCookie('csrftoken')
 
-		if(textboxValues.city === "")
+		if(textboxValues.city === '')
 			textboxValues.city = undefined
 
 		////////// UPDATE PROFILE
 		fetch(userData.url, {
-			method: "PATCH",
+			method: 'PATCH',
 			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken,
-				"content-type": "application/json"
+				'Authorization': header,
+				'X-CSRFToken': csrftoken,
+				'content-type': 'application/json'
 			},
 			body: JSON.stringify(textboxValues),
 		}).then( r => {
@@ -266,7 +289,7 @@ export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError
 			// close edit profile
 			dispatch(toggleEditingProfile())
 		}).catch( e => {
-			dispatch(updateNotificationBar("Error updating profile..."))
+			dispatch(updateNotificationBar('Error updating profile...'))
 
 			callbackError()
 		})

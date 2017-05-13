@@ -157,6 +157,8 @@ class UserStep(models.Model):
         (6, 'Read 2nd UI tip'),
         (7, 'Redirect to Discover on login'),
         (8, 'has created profile'),
+		(9, 'has seen tip popular'),
+		(10, 'has seen tip discover'),
     )
 
     user = models.ForeignKey('User', related_name='usersteps')

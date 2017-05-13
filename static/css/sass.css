@@ -1791,7 +1791,7 @@ input[type=range].MASAS-slider {
   align-items: center;
   min-height: 4.2rem;
   position: relative;
-  z-index: 2;
+  z-index: 5;
   position: absolute;
   right: 7rem; }
   .header .dropdown--wrapper .MASAS-button {
@@ -1886,7 +1886,7 @@ input[type=range].MASAS-slider {
     flex: 1;
     align-items: center;
     justify-content: center;
-    z-index: 1; }
+    z-index: 4; }
     .header .notification--wrapper1 .tip--wrapper {
       width: 100vw;
       display: flex;
@@ -1897,7 +1897,7 @@ input[type=range].MASAS-slider {
       top: 0;
       position: absolute;
       height: 2rem;
-      font-size: 0.8rem;
+      font-size: .8rem;
       font-family: Lato-Light; }
     .header .notification--wrapper1 .notification--wrapper2 {
       height: 2rem;
@@ -1912,6 +1912,25 @@ input[type=range].MASAS-slider {
       position: absolute;
       top: -400px;
       right: 0; }
+  @media screen and (min-width: 992px) {
+    .header .notification--wrapper1 {
+      justify-content: flex-end;
+      top: 100%;
+      right: 0;
+      flex-direction: column; }
+      .header .notification--wrapper1 .tip--wrapper {
+        position: initial;
+        transform: none; }
+      .header .notification--wrapper1 .notification--wrapper2 {
+        flex: 0;
+        width: 30%;
+        animation: fadein 2s linear;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: initial;
+        align-self: flex-end;
+        margin-top: .5rem;
+        margin-right: .5rem; } }
   .header .links--wrapper {
     display: flex; }
   .header .desktop-header {
@@ -1922,10 +1941,10 @@ input[type=range].MASAS-slider {
     margin: 0;
     position: relative; }
   .header .phone-header .header-login-button--wrapper .MASAS-button {
-    height: 0.7rem;
+    height: .7rem;
     width: 13rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.13rem;
+    font-size: .9rem;
+    letter-spacing: .13rem;
     position: absolute;
     top: calc( ( 3rem / 2 - 0.7rem ) / 2 );
     right: 1rem; }
@@ -1964,18 +1983,6 @@ input[type=range].MASAS-slider {
     height: 0.3rem;
     background-color: rgba(0, 0, 0, 0.8); }
   @media screen and (min-width: 992px) {
-    .header .notification--wrapper1 {
-      top: calc(100% + 0.5rem);
-      right: 0.5rem;
-      justify-content: flex-end; }
-      .header .notification--wrapper1 .tip--wrapper {
-        transform: translate(0.5rem, -0.5rem); }
-      .header .notification--wrapper1 .notification--wrapper2 {
-        flex: 0;
-        width: 30%;
-        animation: fadein 2s linear;
-        justify-content: center;
-        background-color: rgba(0, 0, 0, 0.9); }
     .header .desktop-header {
       display: flex;
       background-color: rgba(0, 0, 0, 0.9);
@@ -2004,7 +2011,7 @@ input[type=range].MASAS-slider {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 0.9rem;
+      font-size: .9rem;
       margin-left: 2.5rem; }
       .header .desktop-header .header-link.first {
         margin-left: 0; }

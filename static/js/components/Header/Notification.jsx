@@ -2,6 +2,10 @@ import * as React from 'react'
 
 import { connect }from 'react-redux'
 
+import {
+	updateUserStep,
+} from '../../reducers/actions/Profile.js'
+
 /**
  * Redux container
  */
@@ -10,11 +14,14 @@ const mapStateToProps = function(state) {
 	return {
 		notificationText: state.headerReducer.notificationText,
 		tipText: state.headerReducer.tipText,
+		tipNumber: state.headerReducer.tipNumber,
+		userData: state.appReducer.userData,
 	}
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
+		updateUserStep: step => dispatch(updateUserStep(step)),
 	}
 }
 
@@ -36,26 +43,38 @@ NotificationDiv.propTypes = {
 /**
  * Tip div dumb
  */
-const TipDiv = ({ text }) => (
+const TipDiv = ({ tipText, tipNumber, updateUserStep }) => (
 	<div className="tip--wrapper">
 		<div className="tip-text" id="tip-text">
-			{ text }
+			{ tipText }
+		</div>
+		<div
+			className='tip-control'
+			onClick={ () => updateUserStep(tipNumber) }
+			>
+			close
 		</div>
 	</div>
 )
 
 TipDiv.propTypes = {
-	text: React.PropTypes.string.isRequired,
+	tipNumber: React.PropTypes.number.isRequired,
+	tipText: React.PropTypes.string.isRequired,
+	updateUserStep: React.PropTypes.func.isRequired,
 }
 
 /**
  * Dumb component
  */
-const NotificationSystemDumb = ({ notificationText, tipText }) => (
+const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUserStep }) => (
 	<div className="notification--wrapper1">
 		{
 			tipText !== '' ?
-				<TipDiv text={ tipText } />
+				<TipDiv
+					tipText={ tipText }
+					tipNumber={ tipNumber }
+					updateUserStep={ updateUserStep }
+					/>
 			:
 				''
 		}
@@ -70,7 +89,9 @@ const NotificationSystemDumb = ({ notificationText, tipText }) => (
 
 NotificationSystemDumb.propTypes = {
 	notificationText: React.PropTypes.string,
+	tipNumber: React.PropTypes.number,
 	tipText: React.PropTypes.string,
+	updateUserStep: React.PropTypes.func,
 }
 
 /**
@@ -81,11 +102,27 @@ class NotificationSystemSmart extends React.Component {
 		super(props)
 	}
 
+	getTipText() {
+		let hasUserSeenTip = false
+
+		if(this.props.userData.usersteps)
+			hasUserSeenTip = this.props.userData.usersteps
+				.map(e => e.step === this.props.tipNumber)
+				.reduce((e, acc) => acc + e)
+
+		if(hasUserSeenTip)
+			return ''
+		else
+			return this.props.tipText
+	}
+
 	render() {
 		return (
 			<NotificationSystemDumb
 				notificationText={ this.props.notificationText }
-				tipText={ this.props.tipText }
+				tipText={ this.getTipText() }
+				tipNumber={ this.props.tipNumber }
+				updateUserStep={ this.props.updateUserStep }
 			/>
 		)
 	}
@@ -93,7 +130,10 @@ class NotificationSystemSmart extends React.Component {
 
 NotificationSystemSmart.propTypes = {
 	notificationText: React.PropTypes.string,
+	tipNumber: React.PropTypes.number,
 	tipText: React.PropTypes.string,
+	updateUserStep: React.PropTypes.func,
+	userData: React.PropTypes.object,
 }
 
 const Notification = connect(

@@ -1,0 +1,70 @@
+.notification--wrapper1
+	position: absolute
+	top: 100%
+	left: 0
+	right: 0
+	transition: all 1s ease-in
+	display: flex
+	flex: 1
+	align-items: center
+	justify-content: center
+	z-index: 4
+
+	.tip--wrapper
+		width: 100vw
+		display: flex
+		justify-content: center
+		align-items: center
+		color: black
+		background-color: white
+		top: 0
+		position: absolute
+		height: 2rem
+		font-size: 0.8rem
+		font-family: Lato-Light
+
+	.notification--wrapper2
+		height: 2rem
+		width: 100%
+		animation: fadein 2s linear
+		opacity: 0
+		display: flex
+		flex: 1
+		align-items: center
+		justify-content: center
+		background-color: rgba($R,$G,$B,$opacity)
+		position: absolute
+		top: -400px
+		right: 0
+
+		.notification-text
+
+
+@media screen and (min-width: $desktop-min-width)
+	$opacity: 0.9
+	$R: 0
+	$G: 0
+	$B: 0
+
+	.notification--wrapper1
+		justify-content: flex-end
+		top: 100%
+		right: 0
+		flex-direction: column
+
+		.tip--wrapper
+			position: initial
+			transform: none
+
+		.notification--wrapper2
+			flex: 0
+			width: 30%
+			animation: fadein 2s linear
+			justify-content: center
+			background-color: rgba($R,$G,$B,$opacity)
+			position: initial
+			align-self: flex-end
+			margin-top: 0.5rem
+			margin-right: 0.5rem
+
+			.notification-text

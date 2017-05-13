@@ -21,17 +21,32 @@ function updateNotificationBar(notificationText) {
 /**
  * tip bar
  */
-function updateTipText(text) {
+function updateTipText(tipText, tipNumber) {
 	return {
 		type: UPDATE_TIP_TEXT,
-		tipText: text,
+		tipText,
+		tipNumber,
 	}
 }
 
-function updateTipBar(notificationText) {
-	return dispatch => {
+function updateTipBar(tipText, step) {
+	return (dispatch, getState) => {
 		dispatch(updateTipText(''))
-		window.setTimeout( () => dispatch(updateTipText(notificationText)), 0)
+
+		const { userData, MASASuser } = getState().appReducer
+		let showTip = 1
+
+		if(MASASuser)
+			if(userData.usersteps.length) {
+				const userSteps = userData.usersteps
+				showTip = !userSteps
+					.map(e => e.step === step)
+					.reduce((e, acc) => acc + e)
+
+			}
+
+		if(showTip)
+			window.setTimeout(() => dispatch(updateTipText(tipText, step)), 0)
 	}
 }
 
