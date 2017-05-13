@@ -13,6 +13,7 @@ import {
 const mapStateToProps = function(state) {
 	return {
 		notificationText: state.headerReducer.notificationText,
+		tipCTA: state.headerReducer.tipCTA,
 		tipText: state.headerReducer.tipText,
 		tipNumber: state.headerReducer.tipNumber,
 		userData: state.appReducer.userData,
@@ -44,7 +45,7 @@ NotificationDiv.propTypes = {
 /**
  * Tip div dumb
  */
-const TipDiv = ({ tipText, tipNumber, updateUserStep, className }) => (
+const TipDiv = ({ tipText, tipNumber, updateUserStep, className, tipCTA }) => (
 	<div className={ 'tip--wrapper' + className }>
 		<div className="tip-text" id="tip-text">
 			{ tipText }
@@ -53,13 +54,14 @@ const TipDiv = ({ tipText, tipNumber, updateUserStep, className }) => (
 			className='tip-control'
 			onClick={ () => updateUserStep(tipNumber) }
 			>
-			close
+			{ tipCTA }
 		</div>
 	</div>
 )
 
 TipDiv.propTypes = {
 	className: React.PropTypes.string,
+	tipCTA: React.PropTypes.node,
 	tipNumber: React.PropTypes.number,
 	tipText: React.PropTypes.string.isRequired,
 	updateUserStep: React.PropTypes.func.isRequired,
@@ -68,9 +70,10 @@ TipDiv.propTypes = {
 /**
  * Dumb component
  */
-const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUserStep }) => (
+const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUserStep, tipCTA }) => (
 	<div className="notification--wrapper1">
 		<TipDiv
+			tipCTA={ tipCTA }
 			tipText={ tipText }
 			tipNumber={ tipNumber }
 			updateUserStep={ updateUserStep }
@@ -89,6 +92,7 @@ const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUs
 
 NotificationSystemDumb.propTypes = {
 	notificationText: React.PropTypes.string,
+	tipCTA: React.PropTypes.node,
 	tipNumber: React.PropTypes.number,
 	tipText: React.PropTypes.string,
 	updateUserStep: React.PropTypes.func,
@@ -123,6 +127,7 @@ class NotificationSystemSmart extends React.Component {
 				tipText={ this.getTipText() }
 				tipNumber={ this.props.tipNumber }
 				updateUserStep={ this.props.updateUserStep }
+				tipCTA={ this.props.tipCTA }
 			/>
 		)
 	}
@@ -130,6 +135,7 @@ class NotificationSystemSmart extends React.Component {
 
 NotificationSystemSmart.propTypes = {
 	notificationText: React.PropTypes.string,
+	tipCTA: React.PropTypes.node,
 	tipNumber: React.PropTypes.number,
 	tipText: React.PropTypes.string,
 	updateUserStep: React.PropTypes.func,

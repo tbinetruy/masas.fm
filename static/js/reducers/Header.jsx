@@ -10,6 +10,7 @@ exportVar.defaultState = {
 	notificationText: '',		// (STR) content of notification bar
 	tipText: '',			// (str) content of tip
 	tipNumber: 0,			// (int) tip number to check against usersteps
+	tipCTA: '',				// (str) tip call to aciton
 }
 const{ defaultState } = exportVar
 
@@ -31,6 +32,7 @@ exportVar.headerReducer = function(state = defaultState, action) {
 				...state,
 				tipText: action.tipText,
 				tipNumber: action.tipNumber,
+				tipCTA: action.tipCTA,
 			}
 		default:
 			return state

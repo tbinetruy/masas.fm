@@ -10,6 +10,10 @@ var ArtworkLine = require('../Discover/ArtworkLine.jsx')
 
 import SplashScreen from '../App/SplashScreen.jsx'
 
+import {
+	Link,
+} from '../UI/UI.jsx'
+
 
 const VoteButtons = ({ dislikeSong, toggleSongLike }) => (
 	<div className="vote--wrapper">
@@ -40,6 +44,7 @@ var Popular = React.createClass({
 		toogleModal: React.PropTypes.func,
 		updateLoginMessage: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
+		updateTipBar: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		userPk: React.PropTypes.string,
 	},
@@ -58,11 +63,16 @@ var Popular = React.createClass({
 	},
 
 	componentDidMount: function() {
+		// show crowdradio tip
+		this.props.updateTipBar('You can influence the Crowdradio. Just vote!', 10, <Link to="/upload">I'm an artist</Link>)
 	},
 
 	componentWillUnmount: function() {
 		// reset bg filter
 		this.props.resetBgFilter()
+
+		// hide crowdradio tip
+		this.props.updateTipBar('')
 	},
 
 	getContent: function() {

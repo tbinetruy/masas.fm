@@ -1,3 +1,6 @@
+import {
+	Link,
+} from '../UI/UI.jsx'
 var React = require('react')
 
 var ReactRedux = require('react-redux')
@@ -60,12 +63,12 @@ var Discover = React.createClass({
 		this.props.resetBgFilter()
 
 		// hide crowdradio tip
-		this.props.updateTipBar('', 0)
+		this.props.updateTipBar('')
 	},
 
 	componentDidMount: function() {
 		// show crowdradio tip
-		this.props.updateTipBar('tip discover', 9)
+		this.props.updateTipBar('Welcome to the Crowdradio', 9, <Link to="/manifesto">Lean more</Link>)
 	},
 
 	componentWillReceiveProps: function() {

@@ -4,6 +4,10 @@ import {
 } from '../../../reducers/actions/App.js'
 
 import {
+	updateTipBar,
+} from '../../../reducers/actions/Header.js'
+
+import {
 	playRandomSong,
 	toggleSongLike,
 } from '../../../reducers/actions/Player.js'
@@ -36,6 +40,7 @@ Popular.mapDispatchToProps = function(dispatch) {
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 		blackBgFilter: () => dispatch(changeBgState.black()),
 		resetBgFilter: () => dispatch(changeBgState.reset()),
+		updateTipBar: (text, step, tipCTA) => dispatch(updateTipBar(text, step, tipCTA))
 	}
 }
 

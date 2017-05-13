@@ -53,7 +53,7 @@ Discover.mapDispatchToProps = function(dispatch) {
 		// other state updates
 		handleTimePickerChange: discoverNumber => dispatch(changeDiscoverNumber(discoverNumber)),
 		incrementLoggedOutUserStep: () => dispatch(incrementLoggedOutUserStep()),
-		updateTipBar: (text, step) => dispatch(updateTipBar(text, step))
+		updateTipBar: (text, step, tipCTA) => dispatch(updateTipBar(text, step, tipCTA))
 	}
 }
 

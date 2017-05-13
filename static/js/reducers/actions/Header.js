@@ -21,15 +21,16 @@ function updateNotificationBar(notificationText) {
 /**
  * tip bar
  */
-function updateTipText(tipText, tipNumber) {
+function updateTipText(tipText, tipNumber, tipCTA) {
 	return {
 		type: UPDATE_TIP_TEXT,
 		tipText,
 		tipNumber,
+		tipCTA,
 	}
 }
 
-function updateTipBar(tipText, step) {
+function updateTipBar(tipText, step=0, tipCTA='') {
 	return (dispatch, getState) => {
 		dispatch(updateTipText(''))
 
@@ -46,7 +47,7 @@ function updateTipBar(tipText, step) {
 			}
 
 		if(showTip)
-			window.setTimeout(() => dispatch(updateTipText(tipText, step)), 0)
+			window.setTimeout(() => dispatch(updateTipText(tipText, step, tipCTA)), 0)
 	}
 }
 
