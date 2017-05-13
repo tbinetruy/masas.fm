@@ -29,7 +29,8 @@ const mapDispatchToProps = function(dispatch) {
  * Notification div dumb
  */
 const NotificationDiv = ({ text }) => (
-	<div className="notification--wrapper2">
+	<div
+		className='notification--wrapper2'>
 		<div className="notification-text" id="notification-text">
 			{ text }
 		</div>
@@ -43,8 +44,8 @@ NotificationDiv.propTypes = {
 /**
  * Tip div dumb
  */
-const TipDiv = ({ tipText, tipNumber, updateUserStep }) => (
-	<div className="tip--wrapper">
+const TipDiv = ({ tipText, tipNumber, updateUserStep, className }) => (
+	<div className={ 'tip--wrapper' + className }>
 		<div className="tip-text" id="tip-text">
 			{ tipText }
 		</div>
@@ -58,7 +59,8 @@ const TipDiv = ({ tipText, tipNumber, updateUserStep }) => (
 )
 
 TipDiv.propTypes = {
-	tipNumber: React.PropTypes.number.isRequired,
+	className: React.PropTypes.string,
+	tipNumber: React.PropTypes.number,
 	tipText: React.PropTypes.string.isRequired,
 	updateUserStep: React.PropTypes.func.isRequired,
 }
@@ -68,19 +70,17 @@ TipDiv.propTypes = {
  */
 const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUserStep }) => (
 	<div className="notification--wrapper1">
-		{
-			tipText !== '' ?
-				<TipDiv
-					tipText={ tipText }
-					tipNumber={ tipNumber }
-					updateUserStep={ updateUserStep }
-					/>
-			:
-				''
-		}
+		<TipDiv
+			tipText={ tipText }
+			tipNumber={ tipNumber }
+			updateUserStep={ updateUserStep }
+			className={ tipText === '' ? ' hidden ' : '' }
+			/>
 		{
 			notificationText !== '' ?
-				<NotificationDiv text={ notificationText } />
+				<NotificationDiv
+					text={ notificationText }
+					/>
 			:
 				''
 		}

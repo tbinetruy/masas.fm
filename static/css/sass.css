@@ -1898,7 +1898,12 @@ input[type=range].MASAS-slider {
       position: absolute;
       height: 2rem;
       font-size: .8rem;
-      font-family: Lato-Light; }
+      font-family: Lato-Light;
+      opacity: 1;
+      transition: opacity .2s linear; }
+      .header .notification--wrapper1 .tip--wrapper.hidden {
+        opacity: 0;
+        pointer-events: none; }
     .header .notification--wrapper1 .notification--wrapper2 {
       height: 2rem;
       width: 100%;
@@ -1912,6 +1917,8 @@ input[type=range].MASAS-slider {
       position: absolute;
       top: -400px;
       right: 0; }
+      .header .notification--wrapper1 .notification--wrapper2.hidden {
+        animation: none; }
   @media screen and (min-width: 992px) {
     .header .notification--wrapper1 {
       justify-content: flex-end;

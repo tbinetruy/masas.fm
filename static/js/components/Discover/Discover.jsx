@@ -60,7 +60,7 @@ var Discover = React.createClass({
 		this.props.resetBgFilter()
 
 		// hide crowdradio tip
-		this.props.updateTipBar('')
+		this.props.updateTipBar('', 0)
 	},
 
 	componentDidMount: function() {
