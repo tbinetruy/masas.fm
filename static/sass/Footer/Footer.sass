@@ -16,6 +16,9 @@ $footerHeight: $phone-footer-height
 	position: relative
 	z-index: 4			// for like button on sidebar overlay (for touch open siderbar but doesn't go history(-1) on mobile safari)
 
+	&.black
+		background-color: rgba(0,0,0,1)
+
 	@import "./UnsplashControls"
 
 
@@ -166,6 +169,9 @@ $footerHeight: $phone-footer-height
 
 	.footer--wrapper
 		height: $footerHeight
+
+		&.black
+			background-color: rgba(0,0,0,0)
 
 		// .unsplash-artist
 		// 	display: flex

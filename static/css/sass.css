@@ -2231,6 +2231,8 @@ input[type=range].MASAS-slider {
   height: 4rem;
   position: relative;
   z-index: 4; }
+  .footer--wrapper.black {
+    background-color: black; }
   .footer--wrapper .unsplash-controls {
     display: none;
     justify-content: space-between;
@@ -2371,6 +2373,8 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .footer--wrapper {
     height: 2.6rem; }
+    .footer--wrapper.black {
+      background-color: transparent; }
     .footer--wrapper .slider--wrapper {
       background-color: rgba(0, 0, 0, 0.9); }
     .footer--wrapper .slider--wrapper.opened {
@@ -2654,7 +2658,7 @@ input[type=range].MASAS-slider {
     margin: 1.7rem 0;
     cursor: pointer; }
   .upload-sc--wrapper .logout--wrapper .logout-text {
-    font-size: 0.7rem; }
+    font-size: .7rem; }
   .upload-sc--wrapper .logout--wrapper .logout-text--username {
     font-weight: bold; }
   .upload-sc--wrapper .back-button {
@@ -2667,7 +2671,7 @@ input[type=range].MASAS-slider {
     .upload-sc--wrapper .table-head {
       min-height: 2rem;
       justify-content: space-between;
-      padding-bottom: 0.5rem; }
+      padding-bottom: .5rem; }
     .upload-sc--wrapper .upload-sc-items--wrapper, .upload-sc--wrapper .table-head {
       width: 50rem;
       align-self: center; }
@@ -2690,7 +2694,7 @@ input[type=range].MASAS-slider {
     .upload-sc--wrapper .table-head {
       display: flex;
       font-family: Lato-Semibold;
-      font-size: 0.85rem; }
+      font-size: .85rem; }
     .upload-sc--wrapper .logout--wrapper {
       display: none; }
     .upload-sc--wrapper .back-button {
@@ -2801,10 +2805,10 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column; }
     .outer-upload-sc--wrapper .header h2 {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       text-align: center;
       line-height: 1.8rem;
-      letter-spacing: .13rem;
+      letter-spacing: 0.13rem;
       font-size: 1.7rem; }
     .outer-upload-sc--wrapper .header .nav-dots {
       display: flex;
@@ -2848,15 +2852,15 @@ input[type=range].MASAS-slider {
             line-height: 1.5rem;
             margin: 1.5rem 0; }
       .outer-upload-sc--wrapper .content .description .connect-button {
-        margin-bottom: .5rem; }
+        margin-bottom: 0.5rem; }
         .outer-upload-sc--wrapper .content .description .connect-button .MASAS-button {
           width: auto; }
         .outer-upload-sc--wrapper .content .description .connect-button .button-subtitle {
           display: flex;
           justify-content: center;
-          margin-top: .5rem;
-          opacity: .8;
-          letter-spacing: .04rem;
+          margin-top: 0.5rem;
+          opacity: 0.8;
+          letter-spacing: 0.04rem;
           font-family: Lato-Light; }
     @media screen and (min-width: 992px) {
       .outer-upload-sc--wrapper .content .description .bullet-point-list--wrapper {
@@ -4177,7 +4181,7 @@ input[type=range].MASAS-slider {
   transform: translateY(100%);
   z-index: 4;
   width: 100%;
-  transition: transform .2s linear;
+  transition: transform 0.2s linear;
   flex-direction: column;
   display: flex; }
   .player-mobile--top-wrapper.show {
@@ -4230,10 +4234,10 @@ input[type=range].MASAS-slider {
     align-items: flex-end;
     font-size: 1.3rem;
     font-family: Lato-Semibold;
-    letter-spacing: .18rem; }
+    letter-spacing: 0.18rem; }
   .player-mobile--top-wrapper .player-mobile-discover--wrapper {
     display: flex;
-    flex: .7; }
+    flex: 0.7; }
     .player-mobile--top-wrapper .player-mobile-discover--wrapper .player-mobile-artwork-playing--wrapper {
       display: flex;
       flex: 1;
@@ -4252,7 +4256,7 @@ input[type=range].MASAS-slider {
         opacity: 0;
         position: absolute;
         width: 100%;
-        transition: opacity .1s linear;
+        transition: opacity 0.1s linear;
         justify-content: center;
         align-items: center;
         height: 100%;
@@ -4275,14 +4279,14 @@ input[type=range].MASAS-slider {
         font-family: Lato-Light;
         font-size: 1.25rem; }
       .player-mobile--top-wrapper .player-mobile-discover--wrapper .song-info--wrapper .song-name {
-        margin-bottom: .3rem;
-        letter-spacing: .05rem; }
+        margin-bottom: 0.3rem;
+        letter-spacing: 0.05rem; }
       .player-mobile--top-wrapper .player-mobile-discover--wrapper .song-info--wrapper .artist-name {
-        opacity: .7;
-        letter-spacing: .1rem; }
+        opacity: 0.7;
+        letter-spacing: 0.1rem; }
   .player-mobile--top-wrapper .player-mobile-player--wrapper {
     display: flex;
-    flex: .3;
+    flex: 0.3;
     position: relative; }
     .player-mobile--top-wrapper .player-mobile-player--wrapper .player-progress-bar--wrapper {
       display: none; }
@@ -4291,7 +4295,7 @@ input[type=range].MASAS-slider {
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .like-icon {
         display: none; }
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 {
-        flex: .2;
+        flex: 0.2;
         width: 100%; }
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .song-info--wrapper1 .text-info {
           display: none; }
@@ -4304,7 +4308,7 @@ input[type=range].MASAS-slider {
             height: 1.5rem; }
       .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper {
         position: relative;
-        flex: .8;
+        flex: 0.8;
         justify-content: center;
         width: 100%; }
         .player-mobile--top-wrapper .player-mobile-player--wrapper .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
@@ -4331,8 +4335,8 @@ input[type=range].MASAS-slider {
   right: 50%;
   transform: translateX(50%); }
 .footer--wrapper .slider--wrapper.opened #player-play-button {
-  padding-left: .8rem;
-  padding-right: .8rem; }
+  padding-left: 0.8rem;
+  padding-right: 0.8rem; }
 .footer--wrapper .slider--wrapper.opened .song-info--wrapper2 {
   opacity: 0;
   pointer-events: none; }
@@ -4357,7 +4361,7 @@ input[type=range].MASAS-slider {
     padding-right: 1rem; }
   .navbar-player--wrapper .like-icon {
     height: 1.5rem;
-    padding-right: .5rem;
+    padding-right: 0.5rem;
     display: none; }
   .navbar-player--wrapper .dislike-icon {
     display: none; }
@@ -4373,7 +4377,7 @@ input[type=range].MASAS-slider {
       flex: 1;
       pointer-events: inherit;
       opacity: 1;
-      transition: opacity .3s linear; }
+      transition: opacity 0.3s linear; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .text-info {
         display: flex;
         flex: 1;
@@ -4383,9 +4387,9 @@ input[type=range].MASAS-slider {
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info {
         position: relative;
         width: 100%;
-        font-size: .7rem;
-        height: .7rem;
-        opacity: .4; }
+        font-size: 0.7rem;
+        height: 0.7rem;
+        opacity: 0.4; }
         .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info .time {
           text-transform: uppercase; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name {
@@ -4394,16 +4398,16 @@ input[type=range].MASAS-slider {
           position: relative;
           width: 100%;
           text-transform: uppercase;
-          font-size: .7rem;
+          font-size: 0.7rem;
           font-family: Lato-Semibold;
           width: 10rem;
-          height: .7rem; }
+          height: 0.7rem; }
         .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name .song-title {
           position: relative;
           width: 100%;
-          height: .7rem;
+          height: 0.7rem;
           text-transform: uppercase;
-          font-size: .7rem;
+          font-size: 0.7rem;
           font-family: Lato-Light; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .sc-icon {
         display: flex;
@@ -4417,7 +4421,7 @@ input[type=range].MASAS-slider {
     align-items: center;
     position: absolute;
     right: 0rem;
-    transition: .3s linear;
+    transition: 0.3s linear;
     transform: translateX(0);
     height: 4rem;
     top: 0; }
@@ -4434,7 +4438,7 @@ input[type=range].MASAS-slider {
         transform: rotate(180deg);
         height: 1.5rem;
         opacity: 0;
-        transition: opacity .3s linear;
+        transition: opacity 0.3s linear;
         pointer-events: none; }
     .navbar-player--wrapper .player-controls--wrapper .player-button {
       height: 3rem; }
@@ -4443,7 +4447,7 @@ input[type=range].MASAS-slider {
       .navbar-player--wrapper .player-controls--wrapper .next-button-component--wrapper .next-song-icon {
         height: 1.5rem;
         opacity: 0;
-        transition: opacity .3s linear;
+        transition: opacity 0.3s linear;
         pointer-events: none; }
 
 @media screen and (min-width: 992px) {
@@ -4467,12 +4471,12 @@ input[type=range].MASAS-slider {
     margin-left: inherit; }
 
   .navbar-player--wrapper .tray-icon {
-    height: .6rem;
-    width: .6rem; }
+    height: 0.6rem;
+    width: 0.6rem; }
   .navbar-player--wrapper .like-icon, .navbar-player--wrapper .dislike-icon {
     display: block;
     height: 1.2rem;
-    opacity: .8; }
+    opacity: 0.8; }
   .navbar-player--wrapper .dislike-icon {
     margin: 0 2rem; }
   .navbar-player--wrapper .player-controls--wrapper {
@@ -4486,7 +4490,7 @@ input[type=range].MASAS-slider {
       position: relative;
       right: 0;
       padding-right: 0;
-      padding-left: .8rem; }
+      padding-left: 0.8rem; }
     .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
       display: block;
       opacity: 1;
@@ -4887,7 +4891,7 @@ input[type=range].MASAS-slider {
             height: 0.49rem; } }
     .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title {
       margin-top: 1.5rem;
-      margin-bottom: 0.3rem; }
+      margin-bottom: .3rem; }
       .artwork-line--wrapper .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info .title .MASAS_marquee {
         height: 1.35rem;
         font-size: 1.25rem;
@@ -5021,7 +5025,7 @@ input[type=range].MASAS-slider {
       .artwork-line--wrapper .button img.small {
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: .5rem; }
+        margin-right: 0.5rem; }
     .artwork-line--wrapper .button.show {
       display: flex;
       flex-direction: row-reverse;
@@ -5293,7 +5297,7 @@ input[type=range].MASAS-slider {
         align-items: center;
         padding: 0 1rem;
         flex-direction: row;
-        padding: .2rem 1.3rem;
+        padding: 0.2rem 1.3rem;
         border: 2px solid black;
         width: calc(40vh - 1.3rem * 2); }
         .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper.artwork-playing .song-info--wrapper .song-info {
@@ -5349,13 +5353,13 @@ input[type=range].MASAS-slider {
       .popular--wrapper .artwork-line--wrapper.popular .left-side {
         width: calc(50% - 28vh / 2.2); } }
   .popular--wrapper .coming-soon {
-    flex: 0.6;
+    flex: .6;
     display: flex;
     align-items: center; }
   .popular--wrapper .title-top, .popular--wrapper .title-bottom {
     align-items: center;
     font-size: 1.9rem;
-    letter-spacing: 0.35rem;
+    letter-spacing: .35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -5364,12 +5368,12 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: 0.2;
+    flex: .2;
     align-items: center; }
   .popular--wrapper .popular-content--wrapper {
     margin-bottom: 2rem;
     margin-top: 3rem;
-    transition: opacity 0.3s ease-in;
+    transition: opacity .3s ease-in;
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -5422,7 +5426,7 @@ input[type=range].MASAS-slider {
       .popular--wrapper .title-bottom h1 {
         display: block; }
     .popular--wrapper .title-top {
-      flex: 0.15;
+      flex: .15;
       display: none; }
     .popular--wrapper .hide-mobile {
       display: flex; }
@@ -5459,7 +5463,7 @@ html {
   font-family: Lato-Regular; }
 
 h1 {
-  margin: .5rem;
+  margin: 0.5rem;
   color: white; }
 
 #content {
@@ -5493,7 +5497,7 @@ h1 {
     color: white;
     font-family: Lato-Light;
     padding-left: 1rem;
-    margin-top: .5rem; } }
+    margin-top: 0.5rem; } }
 
 .txt-align-center {
   text-align: center; }
