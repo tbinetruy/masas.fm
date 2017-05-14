@@ -5336,7 +5336,8 @@ input[type=range].MASAS-slider {
   .popular--wrapper .popular-timer--wrapper .time {
     text-align: center; }
   .popular--wrapper .artwork-line--wrapper.popular {
-    margin-bottom: 3rem; }
+    margin-bottom: 3rem;
+    flex: 1; }
     .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper {
       background-color: black;
       position: relative; }
@@ -5381,6 +5382,7 @@ input[type=range].MASAS-slider {
   @media screen and (min-width: 992px) {
     .popular--wrapper .artwork-line--wrapper.popular {
       margin-bottom: .1rem;
+      flex: inherit;
       height: calc(28vh + 2.1rem); }
       .popular--wrapper .artwork-line--wrapper.popular .button {
         padding-left: 80vh; }
@@ -5412,6 +5414,45 @@ input[type=range].MASAS-slider {
               width: calc(40vh - 3 * (1rem + 1.5rem)); }
       .popular--wrapper .artwork-line--wrapper.popular .left-side {
         width: calc(50% - 28vh / 2.2); } }
+  .popular--wrapper .genres-autocomplete--wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%; }
+    .popular--wrapper .genres-autocomplete--wrapper input {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 0;
+      height: 2rem;
+      width: 100%; }
+    .popular--wrapper .genres-autocomplete--wrapper .item, .popular--wrapper .genres-autocomplete--wrapper .highlighted-item {
+      padding: 2px 6px;
+      cursor: default;
+      color: white;
+      height: 2rem;
+      display: flex;
+      align-items: center; }
+    .popular--wrapper .genres-autocomplete--wrapper .highlighted-item {
+      color: black;
+      background: rgba(255, 255, 255, 0.9); }
+    .popular--wrapper .genres-autocomplete--wrapper .menu {
+      border: solid 1px #ccc; }
+    .popular--wrapper .genres-autocomplete--wrapper .menu-style {
+      borderRadius: 3px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.9);
+      padding: 2px 0;
+      font-size: 90%;
+      position: relative;
+      overflow: auto;
+      max-height: 200px;
+      top: 100%;
+      left: 0;
+      width: 90%;
+      z-index: 10; }
+    .popular--wrapper .genres-autocomplete--wrapper .wrapper-style {
+      display: flex; }
+    .popular--wrapper .genres-autocomplete--wrapper #genre {
+      padding-left: 0;
+      width: 98%; }
   .popular--wrapper .coming-soon {
     flex: .6;
     display: flex;

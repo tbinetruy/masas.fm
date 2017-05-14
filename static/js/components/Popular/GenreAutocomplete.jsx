@@ -82,12 +82,12 @@ class GenreAutocompleteSmart extends React.Component {
 					return <div className="menu-style">{ items }</div>
 				}}
 				inputProps={{
-					className: 'MASAS-text-input',
-					id: 'city',
+					className: 'MASAS-text-input item',
+					id: 'genre',
 					name: 'cities'
 				}}
 				wrapperProps={{
-					className: 'MASAS-textbox--wrapper wrapper-style'
+					className: 'MASAS-textbox--wrapper wrapper-style genres-autocomplete--wrapper'
 				}}
 				onSelect={ (value, item) => {
 					this.props.updateSelectedGenre(item.name)
