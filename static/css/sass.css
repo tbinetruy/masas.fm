@@ -2877,7 +2877,8 @@ input[type=range].MASAS-slider {
       justify-content: center;
       width: auto;
       margin: 0 auto;
-      overflow-y: scroll; }
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch; }
       .outer-upload-sc--wrapper .content .description .bullet-point-list--wrapper {
         display: flex;
         flex-direction: column;
@@ -5495,7 +5496,8 @@ input[type=range].MASAS-slider {
   max-width: 80vw;
   overflow-y: scroll;
   padding-top: 1rem;
-  margin-top: 1.5rem; }
+  margin-top: 1.5rem;
+  -webkit-overflow-scrolling: touch; }
   .manifesto--wrapper h1 {
     font-size: 2.5rem;
     text-align: center;
