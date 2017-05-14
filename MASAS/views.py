@@ -145,8 +145,20 @@ class TimeIntervalViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 class PlayView(APIView):
     serializer_class = SongSerializer
 
+    def filter_genre(self, songs, genre):
+        filtered_songs = songs.exclude(genre=None).filter(genre__name=genre)
+        # pre_filtered_list = [song for song in songs if song.genre]
+        # filtered_list = [song for song in pre_filtered_list if genre in song.genre.name]
+        import ipdb; ipdb.set_trace()
+
+        if len(filtered_songs):
+            return filtered_songs
+        else:
+            return songs
+
     def _get_song(self, request):
         songs = Song.objects.filter(deleted=None)
+
 
         time_interval_id = request.GET.get('time_interval_id', None)
         if time_interval_id:
@@ -165,6 +177,13 @@ class PlayView(APIView):
             songs = songs.exclude(
                 genre__pk__in=[int(i) for i in exclude_genres.split(',')]
             )
+
+        print songs.count()
+        # filter by genre if genre specified in request
+        if request.GET.get('genre'):
+            genre = request.GET.get('genre')
+            songs = self.filter_genre(songs, genre)
+        print songs.count()
 
         song_key = 'radio_song_history_%s' % radio
         song_history = request.session.get(song_key, [])
@@ -269,9 +288,9 @@ class SPAView(generic.TemplateView):
             'FB': {
                 'KEY': settings.SOCIAL_AUTH_FACEBOOK_KEY,
             },
-			'GOOGLE': {
-				'KEY': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
-			}
+            'GOOGLE': {
+                'KEY': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+            }
         }
 
         return c
@@ -356,9 +375,9 @@ def twitter_authenticated(request):
     oauth_token_secret=access_token['oauth_token_secret']
 
     return HttpResponseRedirect('/twitter-callback?'
-		+ 'oauth_token='
-		+ oauth_token
-		+ '&'		# encoded &
-		+ 'oauth_token_secret='
-		+ oauth_token_secret
-	)
+        + 'oauth_token='
+        + oauth_token
+        + '&'		# encoded &
+        + 'oauth_token_secret='
+        + oauth_token_secret
+    )
