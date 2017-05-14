@@ -71,6 +71,10 @@ var Player = React.createClass({
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			this.props.resumePlaying()
 
+		// dont attach events on player mobile
+		if(this.props.isPlayerMobile)
+			return
+
 		// add event listener to play new song at end of current song
 		$('#jquery_jplayer_1').bind($.jPlayer.event.ended, () => {
 			// get state from reducer because "this" object doesn't have access to state mutations

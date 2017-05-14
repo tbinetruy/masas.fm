@@ -1,7 +1,7 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ProgressBar.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/ProgressBar.jsx')
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
@@ -21,7 +21,7 @@ var ProgressBar = React.createClass({
 	},
 
 	onSliderChange: function(e) {
-		$("#jquery_jplayer_1").jPlayer('play', e.target.value / 100 * this.props.SC_songInfo.duration/1000)
+		$('#jquery_jplayer_1').jPlayer('play', e.target.value / 100 * this.props.SC_songInfo.duration/1000)
 		this.props.updateProgressBar(parseFloat(e.target.value))
 	},
 
@@ -39,7 +39,7 @@ var ProgressBar = React.createClass({
 						<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
 						</div>
 						<div className="bufferingBar--wrapper">
-							<div className={ "bufferingBar" + (this.props.isBuffering ? " buffering" : "")}>
+							<div className={ 'bufferingBar' + (this.props.isBuffering ? ' buffering' : '')}>
 							</div>
 						</div>
 					</div>
