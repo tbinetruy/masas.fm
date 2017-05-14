@@ -118,7 +118,6 @@ class GenreViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
-
 class UserStepViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = UserStep.objects.all()
     serializer_class = UserStepSerializer

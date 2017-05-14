@@ -14,6 +14,8 @@ import {
 	Link,
 } from '../UI/UI.jsx'
 
+import { GenreAutocomplete } from './GenreAutocomplete.jsx'
+
 
 const VoteButtons = ({ dislikeSong, toggleSongLike }) => (
 	<div className="vote--wrapper">
@@ -78,6 +80,7 @@ var Popular = React.createClass({
 	getContent: function() {
 		const content = (
 				<div className="popular-content--wrapper">
+					<GenreAutocomplete />
 					<ArtworkLine
 						playFromPopular={ true } />
 					<VoteButtons

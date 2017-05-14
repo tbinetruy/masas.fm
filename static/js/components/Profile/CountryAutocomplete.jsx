@@ -1,7 +1,7 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/CountryAutocomplete.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/CountryAutocomplete.jsx')
 
 var Autocomplete = require('react-autocomplete')
 
@@ -54,7 +54,7 @@ var CountryAutocomplete = React.createClass({
 			if(counter === this.counter) {
 				this.setState({ loading: true })
 				this.getCities()
-				this.props.onChange("")
+				this.props.onChange('')
 			}
 		}, 500)
 	},
@@ -73,12 +73,12 @@ var CountryAutocomplete = React.createClass({
 						return <div className="menu-style">{ items }</div>
 					}}
 					inputProps={{
-						className: "MASAS-text-input",
-						id: "city",
+						className: 'MASAS-text-input',
+						id: 'city',
 						name: 'cities'
 					}}
 					wrapperProps={{
-						className: "MASAS-textbox--wrapper wrapper-style"
+						className: 'MASAS-textbox--wrapper wrapper-style'
 					}}
 					// wrapperStyle={ styles.wrapperStyle }
 					onSelect={ (value, item) => {
@@ -88,7 +88,7 @@ var CountryAutocomplete = React.createClass({
 					onChange={ this.onChange }
 					renderItem={ (item, isHighlighted) => (
 						<div
-							className={isHighlighted ? "highlighted-item" : 'item'}
+							className={isHighlighted ? 'highlighted-item' : 'item'}
 							key={item.geoname_id}
 							id={item.geoname_id}>
 							{item.display_name}
