@@ -1,43 +1,43 @@
-import "whatwg-fetch"
+import 'whatwg-fetch'
 
 import {
 	addSongToHistory as addSongToDiscoverHistory,
 	removeSongFromHistory
-} from "./Discover.js"
+} from './Discover.js'
 
 import {
-	popSongFromHistory,
 	addSongToHistory as addSongToPopularHistory,
-} from "./Popular.js"
+	popSongFromHistory,
+} from './Popular.js'
 
 import {
 	updateNotificationBar,
 	updateNotificationText,
-} from "./Header.js"
+} from './Header.js'
 
 import {
 	updateProfileInfo,
-} from "./Profile.js"
+} from './Profile.js'
 
 var {
 	getTimeIntervalNumberFromUrl
-} = require("./MASAS_functions.js")
+} = require('./MASAS_functions.js')
 
 import {
 	getDiscoverNumberFromCurrentTime,
-} from "../../MASAS_functions.jsx"
+} from '../../MASAS_functions.jsx'
 
 export const POPULAR = -1
 
 ///// TO DELETE
 const getCookie = (name) => {
 	var cookieValue = null
-	if (document.cookie && document.cookie != "") {
-		var cookies = document.cookie.split(";")
+	if (document.cookie && document.cookie != '') {
+		var cookies = document.cookie.split(';')
 		for (var i = 0; i < cookies.length; i++) {
 			var cookie = $.trim(cookies[i])
 			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) == (name + "=")) {
+			if (cookie.substring(0, name.length + 1) == (name + '=')) {
 				cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
 				break
 			}
@@ -46,23 +46,23 @@ const getCookie = (name) => {
 	return cookieValue
 }
 
-export const SET_SONG_IS_FETCHING_TRUE = "SET_SONG_IS_FETCHING_TRUE"
-export const UPDATE_MASAS_SONG_INFO = "UPDATE_MASAS_SONG_INFO"
-export const UPDATE_SC_SONG_INFO = "UPDATE_SC_SONG_INFO"
-export const UPDATE_ARTIST_INFO = "UPDATE_ARTIST_INFO"
-export const SET_SONG_IS_FETCHING_FALSE = "SET_SONG_IS_FETCHING_FALSE"
-export const LIKE_SONG = "LIKE_SONG"
-export const UNLIKE_SONG = "UNLIKE_SONG"
-export const STOP = "STOP"
-export const PLAY = "PLAY"
-export const PAUSE = "PAUSE"
-export const PLAY_NEW_SONG = "PLAY_NEW_SONG"
-export const PLAY_NEW_SONG_FROM_PLAYLIST = "PLAY_NEW_SONG_FROM_PLAYLIST"
-export const SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE"
-export const SET_IS_BUFFERING_FALSE = "SET_IS_BUFFERING_FALSE"
-export const TOOGLE_SONG_LIKE = "TOGGLE_SONG_LIKE"
-export const LOAD_PLAYLIST = "LOAD_PLAYLIST"
-export const SET_PLAYING_FROM_POPULAR = "SET_PLAYING_FROM_POPULAR"
+export const SET_SONG_IS_FETCHING_TRUE = 'SET_SONG_IS_FETCHING_TRUE'
+export const UPDATE_MASAS_SONG_INFO = 'UPDATE_MASAS_SONG_INFO'
+export const UPDATE_SC_SONG_INFO = 'UPDATE_SC_SONG_INFO'
+export const UPDATE_ARTIST_INFO = 'UPDATE_ARTIST_INFO'
+export const SET_SONG_IS_FETCHING_FALSE = 'SET_SONG_IS_FETCHING_FALSE'
+export const LIKE_SONG = 'LIKE_SONG'
+export const UNLIKE_SONG = 'UNLIKE_SONG'
+export const STOP = 'STOP'
+export const PLAY = 'PLAY'
+export const PAUSE = 'PAUSE'
+export const PLAY_NEW_SONG = 'PLAY_NEW_SONG'
+export const PLAY_NEW_SONG_FROM_PLAYLIST = 'PLAY_NEW_SONG_FROM_PLAYLIST'
+export const SET_IS_BUFFERING_TRUE = 'SET_IS_BUFFERING_TRUE'
+export const SET_IS_BUFFERING_FALSE = 'SET_IS_BUFFERING_FALSE'
+export const TOOGLE_SONG_LIKE = 'TOGGLE_SONG_LIKE'
+export const LOAD_PLAYLIST = 'LOAD_PLAYLIST'
+export const SET_PLAYING_FROM_POPULAR = 'SET_PLAYING_FROM_POPULAR'
 
 export function loadPlaylist(playlist) {
 	return {
@@ -83,8 +83,8 @@ export function toggleSongLike(songId) {
 		// NO ACTION IF NO SONG IS PROVIDED
 		if(!songId) {
 			window.setTimeout( () => {
-				dispatch(updateNotificationText(""))
-				dispatch(updateNotificationText("No song is playing!"))
+				dispatch(updateNotificationText(''))
+				dispatch(updateNotificationText('No song is playing!'))
 
 				// remove optimistic UI
 				dispatch({ type: TOOGLE_SONG_LIKE })
@@ -96,8 +96,8 @@ export function toggleSongLike(songId) {
 		// NO ACTION IF USER IS NOT LOGGED IN
 		if(!userToken) {
 			window.setTimeout( () => {
-				dispatch(updateNotificationText(""))
-				dispatch(updateNotificationText("Login to like music!"))
+				dispatch(updateNotificationText(''))
+				dispatch(updateNotificationText('Login to like music!'))
 
 				// remove optimistic UI
 				dispatch({ type: TOOGLE_SONG_LIKE })
@@ -108,18 +108,18 @@ export function toggleSongLike(songId) {
 
 
 		// server check and UI update if necessary
-		var header = "Bearer " + userToken
-		var csrftoken = getCookie("csrftoken")
+		var header = 'Bearer ' + userToken
+		var csrftoken = getCookie('csrftoken')
 
 		const headers = {
-			"Authorization": header,
-			"X-CSRFToken": csrftoken
+			'Authorization': header,
+			'X-CSRFToken': csrftoken
 		}
 
 		fetch(
-			"/api/users/" + MASASuserPk + "/",
+			'/api/users/' + MASASuserPk + '/',
 			{
-				credentials: "include",
+				credentials: 'include',
 				headers
 			}
 		)
@@ -133,9 +133,9 @@ export function toggleSongLike(songId) {
 
 			// song not liked yet
 			if(isSongLiked.length === 0) {
-				fetch("/api/statuses/", {
-					method: "POST",
-					headers: { ...headers, "content-type": "application/json" },
+				fetch('/api/statuses/', {
+					method: 'POST',
+					headers: { ...headers, 'content-type': 'application/json' },
 					body: JSON.stringify({
 						user: user.url,
 						song: songId,
@@ -145,8 +145,8 @@ export function toggleSongLike(songId) {
 					// update UI
 					dispatch({ type: LIKE_SONG })
 
-					dispatch(updateNotificationText(""))
-					dispatch(updateNotificationText("song liked"))
+					dispatch(updateNotificationText(''))
+					dispatch(updateNotificationText('song liked'))
 
 					// update user profile data
 					dispatch(updateProfileInfo())
@@ -160,13 +160,13 @@ export function toggleSongLike(songId) {
 					songLiked = isSongLiked[0]
 
 					fetch(songLiked.url, {
-						method: "DELETE",
+						method: 'DELETE',
 						headers
 					}).then( () => {
 						dispatch({ type: UNLIKE_SONG })
 
-						dispatch(updateNotificationText(""))
-						dispatch(updateNotificationText("song unliked"))
+						dispatch(updateNotificationText(''))
+						dispatch(updateNotificationText('song unliked'))
 
 						// update user profile data
 						dispatch(updateProfileInfo())
@@ -176,8 +176,8 @@ export function toggleSongLike(songId) {
 			}
 		})
 		.catch( () => {
-			dispatch(updateNotificationText(""))
-			dispatch(updateNotificationText("Login to like songs!"))
+			dispatch(updateNotificationText(''))
+			dispatch(updateNotificationText('Login to like songs!'))
 
 			// remove optimistic UI
 			dispatch({ type: TOOGLE_SONG_LIKE })
@@ -219,7 +219,7 @@ export function updateLikeButton(MASAS_songInfo) {
 		} = state.appReducer
 
 		var headers = new Headers()
-		headers.append("Authorization", "Bearer " + MASASuser)
+		headers.append('Authorization', 'Bearer ' + MASASuser)
 
 		if(MASASuserPk)
 			fetch( '/api/users/' + MASASuserPk + '/', { headers })
@@ -269,7 +269,7 @@ export function playPlayer() {
 // playingFromPopular: (bool) are we resuming popular player
 export function resumePlayer(playingFromPopular = false) {
 	// resume jPlayer
-	$('#jquery_jplayer_1').jPlayer("play")
+	$('#jquery_jplayer_1').jPlayer('play')
 
 	// update UI state
 	return {
@@ -282,22 +282,22 @@ export function resumePlayer(playingFromPopular = false) {
 export function pausePlayer() {
 	return dispatch => {
 		// pause player
-		$("#jquery_jplayer_1").jPlayer("pause")
+		$('#jquery_jplayer_1').jPlayer('pause')
 
 		// get time to start playing at this time when unpausing and update app state
-		var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
+		var pausingAtTime = Math.round($('#jquery_jplayer_1').data('jPlayer').status.currentTime)
 		dispatch({ type: PAUSE, pausingAtTime: pausingAtTime })
 	}
 }
 
 function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
-	var streamURL = SC_songInfo.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3"
+	var streamURL = SC_songInfo.stream_url + '?client_id=e5d965905a85b11e108d064bc04430a3'
 
 	// If jPlayer hasn't being instanciated yet, instanciate it with song URL to play
-	if($("#jquery_jplayer_1").data("jPlayer") === undefined) {
-		$("#jquery_jplayer_1").jPlayer({
+	if($('#jquery_jplayer_1').data('jPlayer') === undefined) {
+		$('#jquery_jplayer_1').jPlayer({
 			ready: function(	) {
-				$(this).jPlayer("setMedia", {
+				$(this).jPlayer('setMedia', {
 					mp3: streamURL,
 					m4a: streamURL,
 					oga: streamURL
@@ -318,9 +318,9 @@ function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
 				}
 			},
 
-			swfPath: "http://jplayer.org/latest/dist/jplayer",
-			supplied: "mp3, oga",
-			wmode: "window",
+			swfPath: 'http://jplayer.org/latest/dist/jplayer',
+			supplied: 'mp3, oga',
+			wmode: 'window',
 			useStateClassSkin: true,
 			autoBlur: false,
 			smoothPlayBar: true,
@@ -330,8 +330,8 @@ function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
 		})
 	// if jPlayer has already been instanciated, update the URL to play
 	} else {
-		$("#jquery_jplayer_1").jPlayer( "clearMedia" )
-		$("#jquery_jplayer_1").jPlayer("setMedia", {
+		$('#jquery_jplayer_1').jPlayer( 'clearMedia' )
+		$('#jquery_jplayer_1').jPlayer('setMedia', {
 			mp3: streamURL,
 			m4a: streamURL,
 			oga: streamURL
@@ -340,7 +340,7 @@ function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
 
 	// play jPlayer
 	if(playAfterUpdateState)
-		$("#jquery_jplayer_1").jPlayer('play')
+		$('#jquery_jplayer_1').jPlayer('play')
 }
 
 // resets player state
@@ -503,13 +503,13 @@ export function playRandomSong(timeInterval = 0) {
 		const state = getState()
 		const { MASASuser } = state.appReducer
 
-		var URL = document.playUrl === undefined ? "/api/play/" : document.playUrl
+		var URL = document.playUrl === undefined ? '/api/play/' : document.playUrl
 		if (URL.indexOf('?') < 0)
 			URL = URL + '?'
 
         // switch popular and dicover for testing
 		if(timeInterval && timeInterval !== POPULAR)
-			URL = URL + "&time_interval_id=" + timeInterval + "&radio=popular"
+			URL = URL + '&time_interval_id=' + timeInterval + '&radio=popular'
 
 		else if(timeInterval && timeInterval === POPULAR) {
             // no time interval for discover for this test
@@ -518,14 +518,14 @@ export function playRandomSong(timeInterval = 0) {
 		}
 
 		var headers = {}
-		var method = "GET"
+		var method = 'GET'
 
 		// make post request if unauth
-		if(MASASuser !== "") {
-			const header = "Bearer " + MASASuser
+		if(MASASuser !== '') {
+			const header = 'Bearer ' + MASASuser
 
 			headers = {
-				"Authorization": header,
+				'Authorization': header,
 			}
 		}
 
@@ -552,7 +552,7 @@ export function playRandomSong(timeInterval = 0) {
 			resetPlayer()
 
 			if(e.status === 401)
-				dispatch(updateNotificationBar("Login to play music !"))
+				dispatch(updateNotificationBar('Login to play music !'))
 		})
 	}
 }

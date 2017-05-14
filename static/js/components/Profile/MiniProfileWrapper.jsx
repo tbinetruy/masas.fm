@@ -1,16 +1,16 @@
 // NOTE !!
 // this component behaves differently on mobile and desktop
 
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/MiniProfileWrapper.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/MiniProfileWrapper.jsx')
 
 var { browserHistory } = require('react-router')
 
-var { getUserPkFromURL } = require("../../MASAS_functions.jsx")
-var MiniProfile = require("./MiniProfileAlternative.jsx")
-var ProfileTrackList = require("./ProfileTrackList.jsx")
+var { getUserPkFromURL } = require('../../MASAS_functions.jsx')
+var MiniProfile = require('./MiniProfileAlternative.jsx')
+var ProfileTrackList = require('./ProfileTrackList.jsx')
 
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
@@ -28,14 +28,14 @@ var MiniProfileWrapper = React.createClass({
 	},
 
 	componentDidMount: function() {
-		window.addEventListener("resize", () => {
+		window.addEventListener('resize', () => {
 			if(this.props.miniProfile.isVisible && window.innerWidth < 993)
 				this.redirectToProfile()
 		})
 	},
 
 	componentWillUnmount: function() {
-		window.removeEventListener("resize")
+		window.removeEventListener('resize')
 	},
 
 	componentWillReceiveProps: function(nextProps) {
@@ -43,7 +43,7 @@ var MiniProfileWrapper = React.createClass({
 			this.props.miniProfile.isVisible !== nextProps.miniProfile.isVisible
 			&& nextProps.miniProfile.isVisible === true
 			&& window.innerWidth < 993
-		) {	
+		) {
 			this.redirectToProfile()
 		}
 
@@ -64,18 +64,18 @@ var MiniProfileWrapper = React.createClass({
 	},
 
 	render: function() {
-		var pageContent = "loading"
+		var pageContent = 'loading'
 		if(this.props.miniProfile.userData.username) {
 			pageContent = (
 				<div className="main-mini-profile--wrapper2">
-					<img 
+					<img
 						src="/static/img/MASAS_close_icon.svg"
 						className="close-mini-profile-icon"
 						alt="close profile"
 						onClick={ () => this.props.updateMiniProfileVisibility(false) } />
 
 						<div className="user-info--wrapper">
-							<MiniProfile 
+							<MiniProfile
 								userInfo={ this.props.miniProfile.userData }
 								isMiniProfileBig={ false }
 								callback={ () => this.props.updateMiniProfileVisibility(false) }
@@ -85,26 +85,26 @@ var MiniProfileWrapper = React.createClass({
 						<div className="user-songs--wrapper">
 							{
 								this.props.miniProfile.SC_songInfo.length > 0 ?
-									<ProfileTrackList 
+									<ProfileTrackList
 										songs={ this.props.miniProfile.userData.songs }
 										isPublicProfile={ true }
 										userData={ this.props.miniProfile.userData }
 										userSCSongs={ this.props.miniProfile.SC_songInfo }
 										isMiniProfile={ true } />
 								:
-									"No Song comp goes here"
+									'No Song comp goes here'
 							}
 						</div>
 				</div>
 			)
 		}
-		
+
 		return (
-			<div 
-				className={ 
-					"main-mini-profile--wrapper" 
+			<div
+				className={
+					'main-mini-profile--wrapper'
 					+
-					(!this.props.miniProfile.isVisible || this.props.isModalOpened ? " hidden" : "")
+					(!this.props.miniProfile.isVisible || this.props.isModalOpened ? ' hidden' : '')
 				}>
 				{ pageContent }
 			</div>

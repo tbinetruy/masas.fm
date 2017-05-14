@@ -5,18 +5,35 @@ var { mapStateToProps, mapDispatchToProps } = require('./containers/PlayerMobile
 
 var { PlayerBar } = require('./PlayerBar.jsx')
 
+var { browserHistory } = require('react-router')
+
+var { getUserPkFromURL } = require('../../MASAS_functions.jsx')
+
 import ProgressBar from '../Footer/ProgressBar.jsx'
 import PlayingArtwork from './PlayingArtwork.jsx'
 
 
 const PlayerMobile = React.createClass({
 	propTypes: {
+		MASAS_songInfo: React.PropTypes.object,
 		isPlayerMobileShown: React.PropTypes.bool,
-
 		showPlayerMobile: React.PropTypes.func,
+		updateProfileBackArrowFunc: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
+	},
+
+	redirectToProfile: function() {
+		// push client to user page
+		if(this.props.MASAS_songInfo)
+			browserHistory.push('/user/' + getUserPkFromURL(this.props.MASAS_songInfo.trackArtist))
+
+		// update back arrow function on Profile page so user can come back
+		this.props.updateProfileBackArrowFunc( () => { browserHistory.goBack() } )
+
+		// close player mobile
+		this.props.showPlayerMobile(false)
 	},
 
 	render: function() {
@@ -31,12 +48,12 @@ const PlayerMobile = React.createClass({
 					MASAS Player
 				</div>
 				<div className='player-mobile-discover--wrapper'>
-					<PlayingArtwork />
+					<PlayingArtwork onArtistClick={ this.redirectToProfile }/>
 				</div>
                 <div className='player-mobile-player--wrapper'>
 					<ProgressBar />
 					<PlayerBar
-						isPlayerMobile={ true }/>
+						isPlayerMobile={ true } />
 				</div>
 			</div>
 		)

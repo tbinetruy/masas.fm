@@ -13,6 +13,7 @@ var PlayingArtwork = React.createClass({
 		MASAS_songInfo: React.PropTypes.object,
 		SC_songInfo: React.PropTypes.object,
 		isPaused: React.PropTypes.bool,
+		onArtistClick: React.PropTypes.func,
 		pause: React.PropTypes.func,
 		play: React.PropTypes.func,
 	},
@@ -40,7 +41,7 @@ var PlayingArtwork = React.createClass({
 							<div className="song-name">
 								{ this.props.MASAS_songInfo.trackTitle }
 							</div>
-							<div className="artist-name">
+							<div className="artist-name" onClick={ this.props.onArtistClick }>
 								{ this.props.SC_songInfo.user.username }
 							</div>
 						</div>

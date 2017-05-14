@@ -1,13 +1,13 @@
 import {
-	updatePageTitle,
 	updateMiniProfileContent,
+	updateMiniProfileSCsongInfo,
 	updateMiniProfileVisibility,
-	updateMiniProfileSCsongInfo
-} from "../../../reducers/actions/App.js"
+	updatePageTitle
+} from '../../../reducers/actions/App.js'
 
 import {
 	updateProfileBackArrowFunc,
-} from "../../../reducers/actions/Profile.js"
+} from '../../../reducers/actions/Profile.js'
 
 var MiniProfileWrapper = {}
 
