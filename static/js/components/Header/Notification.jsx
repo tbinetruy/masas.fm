@@ -29,9 +29,9 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Notification div dumb
  */
-const NotificationDiv = ({ text }) => (
+const NotificationDiv = ({ text, translateUp }) => (
 	<div
-		className='notification--wrapper2'>
+		className={ 'notification--wrapper2' + (translateUp ? ' translate-up ' : '') }>
 		<div className="notification-text" id="notification-text">
 			{ text }
 		</div>
@@ -40,6 +40,7 @@ const NotificationDiv = ({ text }) => (
 
 NotificationDiv.propTypes = {
 	text: React.PropTypes.string.isRequired,
+	translateUp: React.PropTypes.bool,
 }
 
 /**
@@ -83,6 +84,7 @@ const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUs
 			notificationText !== '' ?
 				<NotificationDiv
 					text={ notificationText }
+					translateUp={ tipText === '' ? true : false }
 					/>
 			:
 				''

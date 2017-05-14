@@ -1897,10 +1897,10 @@ input[type=range].MASAS-slider {
       top: 0;
       position: absolute;
       height: 2rem;
-      font-size: .8rem;
+      font-size: 0.8rem;
       font-family: Lato-Light;
       opacity: 1;
-      transition: opacity .2s linear; }
+      transition: opacity 0.2s linear; }
       .header .notification--wrapper1 .tip--wrapper.hidden {
         opacity: 0;
         pointer-events: none; }
@@ -1910,7 +1910,7 @@ input[type=range].MASAS-slider {
     .header .notification--wrapper1 .notification--wrapper2 {
       height: 2rem;
       width: 100%;
-      animation: fadein 2s linear;
+      animation: fadein, transform 2s linear;
       opacity: 0;
       display: flex;
       flex: 1;
@@ -1919,9 +1919,10 @@ input[type=range].MASAS-slider {
       background-color: rgba(0, 0, 0, 0.8);
       position: absolute;
       top: -400px;
-      right: 0; }
-      .header .notification--wrapper1 .notification--wrapper2.hidden {
-        animation: none; }
+      right: 0;
+      transform: translateY(0); }
+      .header .notification--wrapper1 .notification--wrapper2.translate-up {
+        transform: translateY(-2rem); }
   @media screen and (min-width: 992px) {
     .header .notification--wrapper1 {
       justify-content: flex-end;
@@ -1939,8 +1940,8 @@ input[type=range].MASAS-slider {
         background-color: rgba(0, 0, 0, 0.9);
         position: initial;
         align-self: flex-end;
-        margin-top: .5rem;
-        margin-right: .5rem; } }
+        margin-top: 0.5rem;
+        margin-right: 0.5rem; } }
   .header .links--wrapper {
     display: flex; }
   .header .desktop-header {
