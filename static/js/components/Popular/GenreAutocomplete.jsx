@@ -3,6 +3,11 @@ import { connect }from 'react-redux'
 
 const Autocomplete = require('react-autocomplete')
 
+import {
+	updateApiGenres,
+	updateSelectedGenre,
+	updateTextboxValue,
+} from '../../reducers/actions/Popular.js'
 
 /**
  * Redux container
@@ -10,11 +15,17 @@ const Autocomplete = require('react-autocomplete')
 
 const mapStateToProps = function(state) {
 	return {
+		genres: state.popularReducer.genre.apiGenres,
+		selectedGenre: state.popularReducer.genre.selectedGenre,
+		value: state.popularReducer.genre.textboxValue,
 	}
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
+		updateGenres: genres => dispatch(updateApiGenres(genres)),
+		updateValue: value => dispatch(updateTextboxValue(value)),
+		updateSelectedGenre: genre => dispatch(updateSelectedGenre(genre)),
 	}
 }
 
@@ -25,12 +36,6 @@ const mapDispatchToProps = function(dispatch) {
 class GenreAutocompleteSmart extends React.Component {
     constructor(props) {
         super(props)
-
-		this.state = {
-			value: '',
-			loading: false,
-			genres: [],
-		}
 
 		this.genres = []
 
@@ -48,22 +53,30 @@ class GenreAutocompleteSmart extends React.Component {
 		const { results } = genresJSON
 		const nextUrl = genresJSON.next
 
-		this.setState({ genres: this.state.genres.concat(results) })
+		this.props.updateGenres(this.props.genres.concat(results))
 
 		if(nextUrl)
 			this.getAllGenres(nextUrl)
 	}
 
 	onChange(value) {
-		this.setState({ value })
+		this.props.updateValue(value)
 	}
 
 	render() {
 		return (
 			<Autocomplete
 				ref="autocomplete"
-				value={ this.state.value }
-				items={ this.state.genres.filter(e => e.name.includes(this.state.value)).slice(0, 4) }
+				value={ this.props.value }
+				items={
+					this.props.genres.filter(e =>
+						e.name
+						.toLowerCase()
+						.includes(
+							this.props.value.toLowerCase()
+						)
+					).slice(0, 4)
+				}
 				getItemValue={ item => item.name }
 				renderMenu={ items => {
 					return <div className="menu-style">{ items }</div>
@@ -77,8 +90,8 @@ class GenreAutocompleteSmart extends React.Component {
 					className: 'MASAS-textbox--wrapper wrapper-style'
 				}}
 				onSelect={ (value, item) => {
-					this.setState({ value: item.name, genres: [ item ]})
-					this.props.onChange(item.name)
+					this.props.updateSelectedGenre(item.name)
+					this.onChange(item.name)
 				}}
 				onChange={ (e, value) => this.onChange(value) }
 				renderItem={ (item, isHighlighted) => (
@@ -95,7 +108,12 @@ class GenreAutocompleteSmart extends React.Component {
 }
 
 GenreAutocompleteSmart.propTypes = {
-	onChange: React.PropTypes.func,
+	genres: React.PropTypes.array,
+	selectedGenre: React.PropTypes.string,
+	updateGenres: React.PropTypes.func,
+	updateSelectedGenre: React.PropTypes.func,
+	updateValue: React.PropTypes.func,
+	value: React.PropTypes.string,
 }
 
 const GenreAutocomplete = connect(
