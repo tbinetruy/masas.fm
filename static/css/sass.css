@@ -5160,7 +5160,7 @@ input[type=range].MASAS-slider {
     width: 100%;
     position: relative; }
     .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
-      transition: opacity 0.3s ease-in;
+      transition: opacity .3s ease-in;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -5184,7 +5184,7 @@ input[type=range].MASAS-slider {
       z-index: 0; }
   .discover--wrapper .time-picker--wrapper {
     display: flex;
-    flex-grow: 0.25;
+    flex-grow: .25;
     align-items: center;
     height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
@@ -5206,7 +5206,7 @@ input[type=range].MASAS-slider {
       height: inherit;
       height: 10vh;
       transform: translateY(-1rem);
-      flex-grow: 0.2; } }
+      flex-grow: .2; } }
 .legals-content--wrapper {
   display: flex;
   flex-direction: column;
