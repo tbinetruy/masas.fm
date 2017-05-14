@@ -146,10 +146,7 @@ class PlayView(APIView):
     serializer_class = SongSerializer
 
     def filter_genre(self, songs, genre):
-        filtered_songs = songs.exclude(genre=None).filter(genre__name=genre)
-        # pre_filtered_list = [song for song in songs if song.genre]
-        # filtered_list = [song for song in pre_filtered_list if genre in song.genre.name]
-        import ipdb; ipdb.set_trace()
+        filtered_songs = songs.exclude(genre=None).filter(genre__name__contains=genre)
 
         if len(filtered_songs):
             return filtered_songs
