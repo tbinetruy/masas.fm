@@ -89,7 +89,7 @@ class GenreAutocompleteSmart extends React.Component {
 				wrapperProps={{
 					className: 'MASAS-textbox--wrapper wrapper-style genres-autocomplete--wrapper'
 				}}
-				wrapperStyle={{ display: 'flex' }}
+				wrapperStyle={{ display: 'flex', position: 'relative' }}
 				onSelect={ (value, item) => {
 					this.props.updateSelectedGenre(item.name)
 					this.onChange(item.name)

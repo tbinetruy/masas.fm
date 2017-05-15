@@ -5462,13 +5462,14 @@ input[type=range].MASAS-slider {
       background: rgba(0, 0, 0, 0.9);
       padding: 2px 0;
       font-size: 90%;
-      position: relative;
+      position: absolute;
       overflow: auto;
       max-height: 200px;
       top: 100%;
       left: 0;
       width: 90%;
-      z-index: 10; }
+      z-index: 10;
+      width: 100%; }
     .popular--wrapper .genres-autocomplete--wrapper .wrapper-style {
       display: flex; }
     .popular--wrapper .genres-autocomplete--wrapper #genre {
@@ -5476,7 +5477,8 @@ input[type=range].MASAS-slider {
       width: 98%; }
   @media screen and (min-width: 992px) {
     .popular--wrapper .genres-autocomplete--wrapper {
-      display: flex; }
+      display: flex;
+      width: auto; }
       .popular--wrapper .genres-autocomplete--wrapper #genre {
         width: 40vh;
         align-self: center; } }
