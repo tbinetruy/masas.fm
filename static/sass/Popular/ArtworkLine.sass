@@ -3,7 +3,10 @@
 .artwork-line--wrapper.popular
 	@import "./ArtworkLineItem"
 	margin-bottom: 3rem
-	flex: 1
+	margin: 0
+	flex: initial
+	position: relative
+	width: 100%
 
 	.button
 
@@ -12,6 +15,8 @@
 	.artwork-playing--wrapper.hide-content
 
 	.artwork-playing--wrapper
+		top: 0
+		position: absolute
 
 
 		.next-song-button
@@ -48,8 +53,13 @@
 	.left-side, .right-side
 
 	.left-side
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		align-items: flex-end
 
 		.artwork-line
+			transform: none
 
 			$artworkWidth: 12rem
 			.artwork-line2
@@ -69,7 +79,6 @@
 		$sidePadding: 1rem
 		$like-icon-width: 1.5rem
 		margin-bottom: 0.1rem
-		flex: inherit
 
 		.button
 			padding-left: 2*$artworkWidth

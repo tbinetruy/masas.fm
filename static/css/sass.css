@@ -4875,6 +4875,15 @@ input[type=range].MASAS-slider {
     left: 234px; }
     .teach-modal--wrapper.like-UI-info .MASAS-button {
       margin-bottom: inherit; } }
+.popular--wrapper .artwork-line--wrapper.popular {
+  min-height: calc(38vh + 5rem); }
+  .popular--wrapper .artwork-line--wrapper.popular .left-side {
+    top: 2rem !important;
+    transform: none !important; }
+.popular--wrapper .artwork-line--wrapper .artwork-playing--wrapper {
+  top: 0;
+  transform: translate(-50%, 0%); }
+
 .artwork-line--wrapper {
   display: flex;
   align-self: flex-start;
@@ -5337,7 +5346,10 @@ input[type=range].MASAS-slider {
     text-align: center; }
   .popular--wrapper .artwork-line--wrapper.popular {
     margin-bottom: 3rem;
-    flex: 1; }
+    margin: 0;
+    flex: initial;
+    position: relative;
+    width: 100%; }
     .popular--wrapper .artwork-line--wrapper.popular .artwork-line-item--wrapper {
       background-color: black;
       position: relative; }
@@ -5367,22 +5379,31 @@ input[type=range].MASAS-slider {
             position: relative;
             height: 0.7rem;
             width: calc(40vh - 2 * 1rem); } }
-    .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing {
-      height: 38vh;
-      width: 38vh; }
-      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing .artwork {
+    .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper {
+      top: 0;
+      position: absolute; }
+      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing {
         height: 38vh;
         width: 38vh; }
-    .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular {
-      display: flex; }
-      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .like-icon {
-        display: none; }
-      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .song-info {
-        width: 100%; }
+        .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .artwork-playing .artwork {
+          height: 38vh;
+          width: 38vh; }
+      .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular {
+        display: flex; }
+        .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .like-icon {
+          display: none; }
+        .popular--wrapper .artwork-line--wrapper.popular .artwork-playing--wrapper .song-info--wrapper.popular .song-info {
+          width: 100%; }
+    .popular--wrapper .artwork-line--wrapper.popular .left-side {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      align-items: flex-end; }
+      .popular--wrapper .artwork-line--wrapper.popular .left-side .artwork-line {
+        transform: none; }
   @media screen and (min-width: 992px) {
     .popular--wrapper .artwork-line--wrapper.popular {
       margin-bottom: .1rem;
-      flex: inherit;
       height: calc(28vh + 2.1rem); }
       .popular--wrapper .artwork-line--wrapper.popular .button {
         padding-left: 80vh; }
@@ -5473,13 +5494,14 @@ input[type=range].MASAS-slider {
     align-items: center; }
   .popular--wrapper .popular-content--wrapper {
     margin-bottom: 2rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     transition: opacity .3s ease-in;
     display: flex;
     flex: 1;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around; }
+    justify-content: space-around;
+    width: 100%; }
     .popular--wrapper .popular-content--wrapper .vote--wrapper {
       display: flex;
       width: 100%;

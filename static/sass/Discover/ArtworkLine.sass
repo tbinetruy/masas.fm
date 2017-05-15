@@ -1,10 +1,26 @@
+$artwork-height: 38vh
+
+.popular--wrapper .artwork-line--wrapper
+	&.popular
+		min-height: calc(#{$artwork-height} + 5rem)
+
+		.left-side
+			top: 2rem!important
+			transform: none!important
+
+	.artwork-playing--wrapper
+		top: 0
+		transform: translate(-50%, 0%)
+
 .artwork-line--wrapper
 	@import "./ArtworkLineItem"
+
 
 	display: flex
 	align-self: flex-start
 	width: 100%
 	position: relative
+
 
 	.button
 		display: none
@@ -42,7 +58,6 @@
 			&.hidden
 				display: none
 
-		$artwork-height: 38vh
 		.artwork-playing
 			background-color: rgba(0,0,0,0.5)
 			$artworkWidth: 13rem
