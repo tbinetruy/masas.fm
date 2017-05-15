@@ -34,8 +34,6 @@ VoteButtons.propTypes = {
 }
 
 var Popular = React.createClass({
-	mixins: [ BlurBackground ],
-
 	propTypes: {
 		MASASuser: React.PropTypes.string,
         blackBgFilter: React.PropTypes.func,
