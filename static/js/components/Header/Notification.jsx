@@ -72,7 +72,9 @@ TipDiv.propTypes = {
  * Dumb component
  */
 const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUserStep, tipCTA }) => (
-	<div className="notification--wrapper1">
+	<div
+		className="notification--wrapper1"
+		style={{ pointerEvents: (tipText === '' ? 'none' : 'initial') }}>
 		<TipDiv
 			tipCTA={ tipCTA }
 			tipText={ tipText }
