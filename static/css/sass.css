@@ -5084,7 +5084,7 @@ input[type=range].MASAS-slider {
       .artwork-line--wrapper .button img.small {
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: 0.5rem; }
+        margin-right: .5rem; }
     .artwork-line--wrapper .button.show {
       display: flex;
       flex-direction: row-reverse;
@@ -5514,6 +5514,21 @@ input[type=range].MASAS-slider {
         font-family: Lato-Light; }
       .manifesto--wrapper ol li:last-child p {
         margin-bottom: 0; }
+  .manifesto--wrapper .appendix h2 {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem; }
+  .manifesto--wrapper .appendix p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    line-height: 1.3rem;
+    font-family: Lato-Light; }
+  .manifesto--wrapper .signature {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+    margin-bottom: 2rem; }
 
 @media screen and (min-width: 992px) {
   .manifesto--wrapper {
