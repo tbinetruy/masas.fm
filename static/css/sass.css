@@ -1905,8 +1905,9 @@ input[type=range].MASAS-slider {
         opacity: 0;
         pointer-events: none; }
       .header .notification--wrapper1 .tip--wrapper .tip-control {
-        position: absolute;
-        right: 2rem; }
+        margin-left: 0.5rem; }
+        .header .notification--wrapper1 .tip--wrapper .tip-control .MASAS-link {
+          font-family: Lato-Semibold; }
     .header .notification--wrapper1 .notification--wrapper2 {
       height: 2rem;
       width: 100%;
