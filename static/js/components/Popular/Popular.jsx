@@ -62,7 +62,7 @@ var Popular = React.createClass({
 
 	componentDidMount: function() {
 		// show crowdradio tip
-		this.props.updateTipBar('You can influence the Crowdradio. Just vote!', 10, <Link to="/upload">I'm an artist</Link>)
+		this.props.updateTipBar('You can influence the Crowdradio. Just vote!', 10, <Link to="/upload">or Upload</Link>)
 	},
 
 	componentWillUnmount: function() {

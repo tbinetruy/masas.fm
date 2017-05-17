@@ -91,7 +91,7 @@ class ManifestoSmart extends React.Component {
 
 	componentDidMount() {
 		// show crowdradio tip
-		this.props.updateTipBar('Music Discovery Made Easy', 11, <Link to="/discover">Vote</Link>)
+		this.props.updateTipBar('A New Concept of Radio', 11, <Link to="/discover">Participate</Link>)
 	}
 
 	render() {
