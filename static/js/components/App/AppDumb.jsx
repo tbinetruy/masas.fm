@@ -151,5 +151,5 @@ const AppDumb = connect(
 )(AppDumbClass)
 
 export {
-	AppDumb
+	AppDumb,
 }
