@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { AppDumb } from './AppDumb.jsx'
@@ -26,7 +26,10 @@ import {
 } from '../../reducers/actions/popular.js'
 
 
-// Which part of the Redux global state does our component want to receive as props?
+/**
+ * Redux container
+ */
+
 const mapStateToProps = function(state) {
 	return {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
@@ -41,7 +44,6 @@ const mapStateToProps = function(state) {
 	}
 }
 
-// Which action creators does it want to receive by props?
 const mapDispatchToProps = function(dispatch) {
 	return {
         addRandomSongToDiscoverHistory: interval => dispatch(addRandomSongToDiscoverHistory(interval)),
@@ -69,6 +71,27 @@ function initHistories(addRandomSongToDiscoverHistory, addRandomSongToPopularHis
 	i_p.forEach(() => addRandomSongToPopularHistory())
 }
 
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	MASASuser: PropTypes.string,
+	addRandomSongToDiscoverHistory: PropTypes.func,
+	addRandomSongToPopularHistory: PropTypes.func,
+	children: PropTypes.element,
+	closeModal: PropTypes.func,
+	forceRender: PropTypes.func,
+	hideAppFetchingBar: PropTypes.func,
+	location: PropTypes.object,
+	loginWithToken: PropTypes.func,
+	processingAuthCookie: PropTypes.bool,
+	showAppFetchingBar: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateUnsplashArtist: PropTypes.func,
+	userData: PropTypes.object,
+}
 
 class AppSmart extends React.Component {
 	componentWillMount() {
@@ -169,25 +192,7 @@ class AppSmart extends React.Component {
 }
 
 
-AppSmart.propTypes = {
-	MASASuser: React.PropTypes.string,
-	addRandomSongToDiscoverHistory: React.PropTypes.func,
-	addRandomSongToPopularHistory: React.PropTypes.func,
-	children: React.PropTypes.element,
-	closeModal: React.PropTypes.func,
-	finishProcessingAuthCookie: React.PropTypes.func,
-	forceRender: React.PropTypes.func,
-	hideAppFetchingBar: React.PropTypes.func,
-	location: React.PropTypes.object,
-	loginWithToken: React.PropTypes.func,
-	modalContent: React.PropTypes.element,
-	processingAuthCookie: React.PropTypes.bool,
-	showAppFetchingBar: React.PropTypes.func,
-	toogleModal: React.PropTypes.func,
-	updateModalContent: React.PropTypes.func,
-	updateUnsplashArtist: React.PropTypes.func,
-	userData: React.PropTypes.object,
-}
+AppSmart.propTypes = smartPropTypes
 
 const App = connect(
     mapStateToProps,
