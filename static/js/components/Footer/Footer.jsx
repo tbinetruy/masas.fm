@@ -1,7 +1,5 @@
-var React = require('react')
-
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/Footer.jsx')
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
 var FooterModal = require('./FooterModals.jsx')
 var UnsplashControls = require('./UnsplashControls.jsx')
@@ -11,21 +9,102 @@ const Player = PlayerBar
 var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
 const ProgressBar = require('./ProgressBar.jsx')
 
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+} from '../../reducers/actions/App.js'
 
-var Footer = React.createClass({
-	propTypes: {
-		isPlayerBarOpened: React.PropTypes.bool,
-		isPlaylistPlaying: React.PropTypes.bool,
-		playNewSongFromPlaylist: React.PropTypes.func,
-		playRandomSong: React.PropTypes.func,
-		playlist: React.PropTypes.array,
-		playlistPosition: React.PropTypes.number,
-		showPlayerMobile: React.PropTypes.func,
-	},
+import {
+	playNewSongFromPlaylist,
+	playRandomSong
+} from '../../reducers/actions/Player.js'
 
+import {
+	setPlayerProgressBar,
+	toogleIsFooterOpened,
+} from '../../reducers/actions/Footer.js'
 
-	componentWillMount: function() {
+import { showPlayerMobile } from '../../reducers/actions/App.js'
 
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	MASAS_songInfo: PropTypes.object,
+	SC_songInfo: PropTypes.object,
+	isBuffering: PropTypes.bool,
+	isModalOpened: PropTypes.bool,
+	isPlayerBarOpened: PropTypes.bool,
+	isPlayerPaused: PropTypes.bool,
+	isPlaylistPlaying: React.PropTypes.bool,
+	playlist: React.PropTypes.array,
+	playlistPosition: React.PropTypes.number,
+	progressBarWidth: PropTypes.number,
+	songPlaying: PropTypes.string,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		SC_songInfo: state.playerReducer.SC_songInfo,
+		progressBarWidth: state.footerReducer.progressBar,
+		isPlayerBarOpened: state.footerReducer.isOpened,
+		isBuffering: state.playerReducer.isBuffering,
+		songPlaying: state.playerReducer.songPlaying,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		isPlayerPaused: state.playerReducer.isPaused,
+		isModalOpened: state.appReducer.isModalOpened,
+		playlist: state.playerReducer.playlist,
+		playlistPosition: state.playerReducer.playlistPosition,
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
+	}
+}
+
+const reduxDispatchPropTypes = {
+	playNewSongFromPlaylist: PropTypes.func,
+	playRandomSong: PropTypes.func,
+	showPlayerMobile: React.PropTypes.func,
+	toogleIsOpened:  PropTypes.func,
+	toogleModal:  PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateProgressBar: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		playRandomSong: timeInterval => dispatch(playRandomSong(timeInterval)),
+		updateProgressBar: progress => dispatch(setPlayerProgressBar(progress)),
+		toogleIsOpened: () => dispatch(toogleIsFooterOpened()),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		playNewSongFromPlaylist: playlistPosition => dispatch(playNewSongFromPlaylist(playlistPosition)),
+		showPlayerMobile: choice => dispatch(showPlayerMobile(choice)),
+	}
+}
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class FooterSmart extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.playRandomSong = this.playRandomSong.bind(this)
+		this.toogleMenu = this.toogleMenu.bind(this)
+		this.openModal = this.openModal.bind(this)
+		this.getNextSongIcon = this.getNextSongIcon.bind(this)
+	}
+
+	componentWillMount() {
         // Keeping track of progress bar here with a timer
 		// allows us to reuse the progressBar component many times
 		// without having to use multiple timers
@@ -49,25 +128,25 @@ var Footer = React.createClass({
 					this.props.updateProgressBar(0)	// reset progress bar
 			}
 		}, 250)
-	},
+	}
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		clearInterval(this.interval)
-	},
+	}
 
-	playRandomSong: function () {
+	playRandomSong() {
 		const timeInterval = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
 
 		this.props.playRandomSong(timeInterval)
-	},
+	}
 
-	toogleMenu: function() {
+	toogleMenu() {
 		if(!this.props.isModalOpened)
 			this.props.toogleIsOpened()
-	},
+	}
 
 
-	openModal: function(modalType) {
+	openModal(modalType) {
 		this.toogleMenu()
 
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
@@ -80,9 +159,9 @@ var Footer = React.createClass({
 				/>
 			)
 		this.props.toogleModal()
-	},
+	}
 
-	getNextSongIcon: function() {
+	getNextSongIcon() {
 		if(this.props.songPlaying) {
 			if(this.props.isPlaylistPlaying) {
 				if(this.props.playlistPosition < this.props.playlist.length - 1)
@@ -95,9 +174,9 @@ var Footer = React.createClass({
 		} else {
 			return
 		}
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="footer--wrapper">
 
@@ -160,9 +239,17 @@ var Footer = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Footer)
+FooterSmart.propTypes = smartPropTypes
+FooterSmart.defaultState = smartDefaultProps
+
+
+const Footer= connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FooterSmart)
+
+export {
+	Footer,
+}

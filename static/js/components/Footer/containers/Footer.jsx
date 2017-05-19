@@ -1,21 +1,3 @@
-import {
-	changeModalContent,
-	toogleIsModalOpened,
-} from '../../../reducers/actions/App.js'
-
-import {
-	playNewSongFromPlaylist,
-	playRandomSong
-} from '../../../reducers/actions/Player.js'
-
-import {
-	setPlayerProgressBar,
-	toogleIsFooterOpened,
-} from '../../../reducers/actions/Footer.js'
-
-import {
-	showPlayerMobile,
-} from '../../../reducers/actions/App.js'
 
 
 var Footer = {}

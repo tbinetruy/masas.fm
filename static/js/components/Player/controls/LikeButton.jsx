@@ -1,23 +1,27 @@
-import * as React from "react"
+import * as React from 'react'
 
-import { connect }from "react-redux"
+import { connect }from 'react-redux'
 
 
 import {
 	toggleSongLike,
-} from "../../../reducers/actions/Player.js"
+} from '../../../reducers/actions/Player.js'
 
 import {
-	toogleIsModalOpened,
 	changeModalContent,
+	toogleIsModalOpened,
 	updateSplashScreenLoginMessage,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
-import SplashScreen from "../../App/SplashScreen.jsx"
+import { SplashScreen } from '../../App/SplashScreen.jsx'
 
 /**
  * Redux container
  */
+
+const reduxStatePropTypes = {
+
+}
 
 const mapStateToProps = function(state) {
 	return {
@@ -28,6 +32,10 @@ const mapStateToProps = function(state) {
 		MASASuser: state.appReducer.MASASuser,
 		songPlaying: state.playerReducer.songPlaying,
 	}
+}
+
+const reduxDispatchPropTypes = {
+
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -43,12 +51,30 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+    MASASuser: React.PropTypes.string,
+    isModalOpened: React.PropTypes.bool,
+    isSongPlayingLiked: React.PropTypes.bool,
+    modalType: React.PropTypes.number,
+    songPlaying: React.PropTypes.string,
+    toggleSongLike: React.PropTypes.func,
+    toogleModal: React.PropTypes.func,
+    updateLoginMessage: React.PropTypes.func,
+    updateModalContent: React.PropTypes.func,
+    userData: React.PropTypes.object,
+}
+
 class LikeButtonSmart extends React.Component {
     constructor(props) {
         super(props)
+
+		this.getLikeButton = this.getLikeButton.bind(this)
     }
 
-	getLikeButton = () => {
+	getLikeButton() {
 		if(this.props.isModalOpened && this.props.modalType === 2) {
 			if(isObjectNotEmpty(this.props.userData)) {
 				// if user has not dismissed tips yet
@@ -60,13 +86,13 @@ class LikeButtonSmart extends React.Component {
 							alt="like icon"
 							className="like-icon"
 							onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}
-							style={{ height: '1.8rem' }}/>
+							style={{ height: '1.8rem' }} />
 
 			}
 		}
 
 		// user not logged in => return login modal with message
-		if(this.props.MASASuser === "")
+		if(this.props.MASASuser === '')
 			return (
 				<img
 					src="/static/img/vote/icon_like.svg"
@@ -75,7 +101,7 @@ class LikeButtonSmart extends React.Component {
 					onClick={
 						() => {
 							this.props.updateLoginMessage(
-								"Please log-in to Like & Save songs"
+								'Please log-in to Like & Save songs'
 							)
 							this.props.updateModalContent(<SplashScreen startPage={1} />, 3)
 							this.props.toogleModal()
@@ -95,7 +121,7 @@ class LikeButtonSmart extends React.Component {
 			)
 	}
 
-	render = () => {
+	render() {
 		return (
 			<div className="like-button-component--wrapper">
                 { this.getLikeButton() }
@@ -104,19 +130,7 @@ class LikeButtonSmart extends React.Component {
 	}
 }
 
-LikeButtonSmart.propTypes = {
-    isModalOpened: React.PropTypes.bool,
-    modalType: React.PropTypes.number,
-    userData: React.PropTypes.object,
-    isSongPlayingLiked: React.PropTypes.bool,
-    MASASuser: React.PropTypes.string,
-    songPlaying: React.PropTypes.string,
-
-    toogleModal: React.PropTypes.func,
-    toggleSongLike: React.PropTypes.func,
-    updateModalContent: React.PropTypes.func,
-    updateLoginMessage: React.PropTypes.func,
-}
+LikeButtonSmart.propTypes = smartPropTypes
 
 const LikeButton = connect(
     mapStateToProps,
