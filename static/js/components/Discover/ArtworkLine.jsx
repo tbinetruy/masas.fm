@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
 var ArtworkLineItem = require('./ArtworkLineItem.jsx')
@@ -60,15 +60,32 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
-class ArtworkLineSmart extends React.Component {
-	getDefaultProps() {
-		return {
-			renderForUITip: false,
-			playFromPopular: false,
-			discoverNumber: 1,
-		}
-	}
 
+const smartPropTypes = {
+	discoverNumber: PropTypes.number,							// artwork shown from discover
+	history: PropTypes.object,
+	isPlayerPaused: PropTypes.bool,
+	isSongPlayingLiked: PropTypes.bool,
+	lastSongInDiscoverHistory: PropTypes.func,
+	pause: PropTypes.func,
+	playAndSaveHistory: PropTypes.func,
+	playFromPopular: PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
+	playPreviousSongInDiscover: PropTypes.func,
+	playRandomSong: PropTypes.func,
+	popularHistory: PropTypes.array,
+	songPlaying: PropTypes.string,
+	songPlayingArtistInfo: PropTypes.object,
+	toggleSongLike: PropTypes.func,
+	userToken: PropTypes.string,
+}
+
+const smartDefaultProps = {
+	renderForUITip: false,
+	playFromPopular: false,
+	discoverNumber: 1,
+}
+
+class ArtworkLineSmart extends React.Component {
 	componentDidMount() {
 		this.scrollToEnd()
 	}
@@ -222,23 +239,8 @@ class ArtworkLineSmart extends React.Component {
 	}
 }
 
-ArtworkLineSmart.propTypes = {
-	discoverNumber: React.PropTypes.number,							// artwork shown from discover
-	history: React.PropTypes.object,
-	isPlayerPaused: React.PropTypes.bool,
-	isSongPlayingLiked: React.PropTypes.bool,
-	lastSongInDiscoverHistory: React.PropTypes.func,
-	pause: React.PropTypes.func,
-	playAndSaveHistory: React.PropTypes.func,
-	playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
-	playPreviousSongInDiscover: React.PropTypes.func,
-	playRandomSong: React.PropTypes.func,
-	popularHistory: React.PropTypes.array,
-	songPlaying: React.PropTypes.string,
-	songPlayingArtistInfo: React.PropTypes.object,
-	toggleSongLike: React.PropTypes.func,
-	userToken: React.PropTypes.string,
-}
+ArtworkLineSmart.propTypes = smartPropTypes
+ArtworkLineSmart.defaultProps = smartDefaultProps
 
 const ArtworkLine = connect(
     mapStateToProps,

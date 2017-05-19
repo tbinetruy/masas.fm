@@ -6,7 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require('./containers/Popular.jsx'
 
 var { BlurBackground } = require('../MASAS_mixins.jsx')
 
-var ArtworkLine = require('../Discover/ArtworkLine.jsx')
+import { ArtworkLine } from '../Discover/ArtworkLine.jsx'
 
 import SplashScreen from '../App/SplashScreen.jsx'
 
