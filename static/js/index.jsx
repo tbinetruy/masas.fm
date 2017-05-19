@@ -13,7 +13,7 @@ var browserHistory = require('react-router').browserHistory
 var SoundcloudCallback = require('./SoundcloudCallback.jsx')
 var TwitterCallback = require('./TwitterCallback.jsx')
 
-var App = require('./components/App/App.jsx')
+import { App } from './components/App/App.jsx'
 var Login = require('./components/Login/LoginForm.jsx')
 var InvitationPending = require('./components/Login/InvitationPending.jsx')
 var SignUp = require('./components/Login/SignUp.jsx')
