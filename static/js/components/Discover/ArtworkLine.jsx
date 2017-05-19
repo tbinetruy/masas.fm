@@ -1,79 +1,93 @@
-var React = require('react')
+import * as React from 'react'
+import { connect }from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var {
-	mapStateToProps,
-	mapDispatchToProps
-} = require('./containers/ArtworkLine.jsx')
 var ArtworkLineItem = require('./ArtworkLineItem.jsx')
 
+import { POPULAR } from '../../reducers/actions/Player.js'
+
+import { getTimeIntervalNumberFromUrl } from '../../MASAS_functions.jsx'
+
+import { EmptyArtwork } from './EmptyArtwork.jsx'
+
 import {
-	POPULAR
+	lastSongInDiscoverHistory,
+	pausePlayer,
+	playPreviousSongInDiscover,
+	playRandomSong,
+	playSong,
+	toggleSongLike
 } from '../../reducers/actions/Player.js'
 
-import {
-	getDiscoverNumberFromCurrentTime,
-	getTimeIntervalNumberFromUrl,
-} from '../../MASAS_functions.jsx'
+import { toogleIsFooterOpened } from '../../reducers/actions/Footer.js'
 
-import {
-	EmptyArtwork
-} from './EmptyArtwork.jsx'
 
-var ArtworkLine = React.createClass({
-	propTypes: {
-		playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
-		discoverNumber: React.PropTypes.number,							// artwork shown from discover
-		isFooterOpened: React.PropTypes.bool,
-		renderForUITip: React.PropTypes.bool,
-		isModalOpened: React.PropTypes.bool,
-		modalType: React.PropTypes.number,
-		history: React.PropTypes.object,
-		popularHistory: React.PropTypes.array,
-		MASASuser: React.PropTypes.string,
-		songPlaying: React.PropTypes.string,
-		isPlayerPaused: React.PropTypes.bool,
-		isSongPlayingLiked: React.PropTypes.bool,
-		userToken: React.PropTypes.string,
-		songPlayingArtistInfo: React.PropTypes.object,
+/**
+ * Redux container
+ */
 
-		playPreviousSongInDiscover: React.PropTypes.func,
-		lastSongInDiscoverHistory: React.PropTypes.func,
-		playRandomSong: React.PropTypes.func,
-		toggleIsFooterOpened: React.PropTypes.func,
-		pause: React.PropTypes.func,
-		play: React.PropTypes.func,
-		toggleSongLike: React.PropTypes.func,
-		playAndSaveHistory: React.PropTypes.func,
-	},
+const mapStateToProps = function(state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		discoverNumber: state.discoverReducer.discoverNumber,
+		history: state.discoverReducer.history,
+		popularHistory: state.popularReducer.history,
+		songPlaying: state.playerReducer.songPlaying,
+		isPlayerPaused: state.playerReducer.isPaused,
+		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
+		userToken: state.appReducer.MASASuser,
+		isFooterOpened: state.footerReducer.isOpened,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
+		songPlayingArtistInfo: state.playerReducer.artistInfo,
+	}
+}
 
-	getDefaultProps: function() {
+const mapDispatchToProps = function(dispatch) {
+	return {
+		toggleSongLike: (userToken, songId) => dispatch(toggleSongLike(songId)),
+		playAndSaveHistory: (songToPlay, playingFromPopular) => dispatch(playSong(songToPlay, playingFromPopular)),
+		playRandomSong: (timeInterval) => dispatch(playRandomSong(timeInterval)),
+		pause: () => dispatch(pausePlayer()),
+		toggleIsFooterOpened: () => dispatch(toogleIsFooterOpened()),
+		playPreviousSongInDiscover: discoverNum => dispatch(playPreviousSongInDiscover(discoverNum)),
+
+		// not dispatch functions
+		lastSongInDiscoverHistory: (history, discoverNum) => lastSongInDiscoverHistory(history, discoverNum)
+	}
+}
+
+/**
+ * Smart component
+ */
+class ArtworkLineSmart extends React.Component {
+	getDefaultProps() {
 		return {
 			renderForUITip: false,
 			playFromPopular: false,
 			discoverNumber: 1,
 		}
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		this.scrollToEnd()
-	},
+	}
 
-	componentDidUpdate: function() {
+	componentDidUpdate() {
 		this.scrollToEnd()
-	},
+	}
 
-	scrollToEnd: function() {
+	scrollToEnd() {
 		const history = this.getHistory()
 		if(history.length > 0)
 			this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
-	},
+	}
 
-	playRandomSong: function() {
+	playRandomSong() {
 		this.props.playRandomSong(this.props.playFromPopular ? POPULAR : this.props.discoverNumber)
-	},
+	}
 
-	getArtworkLine: function(history) {
+	getArtworkLine(history) {
 		let key_ID = 0
 
 		const artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo, artistInfo }) => {
@@ -104,9 +118,9 @@ var ArtworkLine = React.createClass({
 		artworkLine.pop()
 
 		return artworkLine
-	},
+	}
 
-	getHistory: function() {
+	getHistory() {
 		// get discover history
 		let history = this.props.history.all.filter( ({ MASAS_songInfo }) =>
 			parseInt(getTimeIntervalNumberFromUrl(MASAS_songInfo.timeInterval)) === this.props.discoverNumber
@@ -121,9 +135,9 @@ var ArtworkLine = React.createClass({
 			history = history.slice(history.length - 10, history.length)
 
 		return history
-	},
+	}
 
-	render: function() {
+	render() {
 		const history = this.getHistory()
 
 		// if nothing is playing
@@ -206,9 +220,31 @@ var ArtworkLine = React.createClass({
 			)
 		}
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ArtworkLine)
+ArtworkLineSmart.propTypes = {
+	discoverNumber: React.PropTypes.number,							// artwork shown from discover
+	history: React.PropTypes.object,
+	isPlayerPaused: React.PropTypes.bool,
+	isSongPlayingLiked: React.PropTypes.bool,
+	lastSongInDiscoverHistory: React.PropTypes.func,
+	pause: React.PropTypes.func,
+	playAndSaveHistory: React.PropTypes.func,
+	playFromPopular: React.PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
+	playPreviousSongInDiscover: React.PropTypes.func,
+	playRandomSong: React.PropTypes.func,
+	popularHistory: React.PropTypes.array,
+	songPlaying: React.PropTypes.string,
+	songPlayingArtistInfo: React.PropTypes.object,
+	toggleSongLike: React.PropTypes.func,
+	userToken: React.PropTypes.string,
+}
+
+const ArtworkLine = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ArtworkLineSmart)
+
+export {
+	ArtworkLine
+}

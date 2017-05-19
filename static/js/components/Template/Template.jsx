@@ -1,6 +1,23 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
+/**
+ * Dumb component
+ */
+
+const dumbPropTypes = {
+}
+
+const dumbDefaultProps = {
+}
+
+const TemplateDumb = props => (
+	<div>
+	</div>
+)
+
+TemplateDumb.propTypes = dumbPropTypes
+TemplateDumb.defaultProps = dumbDefaultProps
 
 /**
  * Redux container
@@ -20,6 +37,15 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
+
+const smartPropTypes = {
+	...dumbPropTypes,
+}
+
+const smartDefaultProps = {
+	...dumbDefaultProps,
+}
+
 class TemplateSmart extends React.Component {
     constructor(props) {
         super(props)
@@ -27,14 +53,13 @@ class TemplateSmart extends React.Component {
 
 	render() {
 		return (
-			<div>
-			</div>
+			<TemplateDumb />
 		)
 	}
 }
 
-Template.propTypes = {
-}
+TemplateSmart.propTypes = smartPropTypes
+TemplateSmart.defaultProps = smartDefaultProps
 
 const Template = connect(
     mapStateToProps,
@@ -42,7 +67,7 @@ const Template = connect(
 )(TemplateSmart)
 
 export {
-	Template
+	Template,
 }
 
 

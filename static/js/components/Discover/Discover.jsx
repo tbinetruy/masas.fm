@@ -11,7 +11,8 @@ var {
 	getDiscoverNumberFromCurrentTime,
 } = require('../../MASAS_functions.jsx')
 
-var ArtworkLine = require('./ArtworkLine.jsx')
+import { ArtworkLine } from './ArtworkLine.jsx'
+
 var { TimePicker } = require('../UI/UI.jsx')
 
 var Discover = React.createClass({
