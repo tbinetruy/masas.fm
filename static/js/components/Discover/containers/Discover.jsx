@@ -1,21 +1,4 @@
 var Discover = {}
-import {
-	changeBgState,
-	changeModalContent,
-	closeAndEmptyMainModal,
-	incrementLoggedOutUserStep,
-	toogleIsModalOpened,
-	updateModalType,
-	updatePageTitle,
-} from '../../../reducers/actions/App.js'
-
-import {
-	changeDiscoverNumber,
-} from '../../../reducers/actions/Discover.js'
-
-import {
-	updateTipBar,
-} from '../../../reducers/actions/Header.js'
 
 // Which part of the Redux global state does our component want to receive as props?
 Discover.mapStateToProps = function(state) {

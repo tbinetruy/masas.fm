@@ -5,7 +5,7 @@ import { closeAndEmptyMainModal } from '../../reducers/actions/App.js'
 
 var Header = require('../Header/Header.jsx')
 var Footer = require('../Footer/Footer.jsx')
-var Discover = require('../Discover/Discover.jsx')
+import { Discover } from '../Discover/Discover.jsx'
 var NavSidebar = require('../NavSidebar/NavSidebar.jsx')
 var { Modal } = require('../UI/UI.jsx')
 var PlayerAudioTag = require('../Player/PlayerAudioTag.jsx')
@@ -15,6 +15,13 @@ var PlayerMobile = require('../Player/PlayerMobile.jsx')
  * Redux container
  */
 
+const reduxStatePropTypes = {
+	bgFilter: PropTypes.object,
+	isModalOpened: PropTypes.bool,
+	modalContent: PropTypes.element,
+	modalType: PropTypes.number,
+}
+
 const mapStateToProps = function(state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
@@ -22,6 +29,10 @@ const mapStateToProps = function(state) {
 		isModalOpened: state.appReducer.isModalOpened,
 		modalContent: state.appReducer.modalContent,
 	}
+}
+
+const reduxDispatchPropTypes = {
+	closeModal: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -36,14 +47,12 @@ const mapDispatchToProps = function(dispatch) {
  */
 
 const smartPropTypes = {
-	bgFilter: PropTypes.object,
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
 	children: PropTypes.element,
-	closeModal: PropTypes.func,
 	hideLoadingModalZIndex: PropTypes.number,			// loading modal z-index
-	isModalOpened: PropTypes.bool,
 	loadingModalAnim: PropTypes.string,				// loading modal animation
-	modalContent: PropTypes.element,
-	modalType: PropTypes.number,
 }
 
 const smartDefaultProps = {

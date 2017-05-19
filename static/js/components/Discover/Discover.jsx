@@ -1,10 +1,9 @@
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
+
 import {
 	Link,
 } from '../UI/UI.jsx'
-var React = require('react')
-
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/Discover.jsx')
 
 var {
 	getTimeIntervalFromURL,
@@ -15,40 +14,97 @@ import { ArtworkLine } from './ArtworkLine.jsx'
 
 var { TimePicker } = require('../UI/UI.jsx')
 
-var Discover = React.createClass({
-	propTypes: {
-		MASAS_songInfo: React.PropTypes.object,
-        blackBgFilter: React.PropTypes.func,
-		closeModal: React.PropTypes.func,
-		discoverNumber: React.PropTypes.number,
-		handleTimePickerChange: React.PropTypes.func,
-		incrementLoggedOutUserStep: React.PropTypes.func,
-		isModalOpened: React.PropTypes.bool,
-		loggedOutUserStep: React.PropTypes.number,
-		modalType: React.PropTypes.number,
-		resetBgFilter: React.PropTypes.func,
-		songPlaying: React.PropTypes.string,
-		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		updateModalType: React.PropTypes.func,
-		updateTipBar: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-		userData: React.PropTypes.object,
-		userToken: React.PropTypes.string,
-	},
+import {
+	changeBgState,
+	changeModalContent,
+	closeAndEmptyMainModal,
+	incrementLoggedOutUserStep,
+	toogleIsModalOpened,
+	updateModalType,
+	updatePageTitle,
+} from '../../reducers/actions/App.js'
 
-	getDefaultProps: function() {
-		return {
-		}
-	},
+import { changeDiscoverNumber } from '../../reducers/actions/Discover.js'
+import { updateTipBar } from '../../reducers/actions/Header.js'
 
-	getInitialState: function() {
-		return {
+
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	MASAS_songInfo: React.PropTypes.object,
+	discoverNumber: React.PropTypes.number,
+	isModalOpened: React.PropTypes.bool,
+	loggedOutUserStep: React.PropTypes.number,
+	modalType: React.PropTypes.number,
+	songPlaying: React.PropTypes.string,
+	userData: React.PropTypes.object,
+	userToken: React.PropTypes.string,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		userToken: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened,
+		discoverNumber: state.discoverReducer.discoverNumber,
+		songPlaying: state.playerReducer.songPlaying,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		loggedOutUserStep: state.appReducer.loggedOutUserStep,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	blackBgFilter: React.PropTypes.func,
+	closeModal: React.PropTypes.func,
+	handleTimePickerChange: React.PropTypes.func,
+	incrementLoggedOutUserStep: React.PropTypes.func,
+	resetBgFilter: React.PropTypes.func,
+	toogleModal: React.PropTypes.func,
+	updateModalContent: React.PropTypes.func,
+	updateModalType: React.PropTypes.func,
+	updateTipBar: React.PropTypes.func,
+	updateTitle: React.PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: (modalContent, modalType, closeModalFunc) => dispatch(changeModalContent(modalContent, modalType, closeModalFunc)),
+		updateModalType: modalType => dispatch(updateModalType(modalType)),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
+		blackBgFilter: () => dispatch(changeBgState.black()),
+		resetBgFilter: () => dispatch(changeBgState.reset()),
+		handleTimePickerChange: discoverNumber => dispatch(changeDiscoverNumber(discoverNumber)),
+		incrementLoggedOutUserStep: () => dispatch(incrementLoggedOutUserStep()),
+		updateTipBar: (text, step, tipCTA) => dispatch(updateTipBar(text, step, tipCTA))
+	}
+}
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class DiscoverSmart extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			sliderValue: -1,
 		}
-	},
-
-	componentWillMount: function() {
+	}
+	componentWillMount() {
 		this.props.updateTitle('Crowdradio', '0')		// 0 = menu icon; 1 = arrow back
 
 		// check what discover is playing
@@ -57,25 +113,25 @@ var Discover = React.createClass({
 
 		// make black bg filter
 		this.props.blackBgFilter()
-	},
+	}
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		// reset bg filter
 		this.props.resetBgFilter()
 
 		// hide crowdradio tip
 		this.props.updateTipBar('')
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		// show crowdradio tip
 		this.props.updateTipBar('Welcome to the Crowdradio!', 9, <Link to="/manifesto">Learn more</Link>)
-	},
+	}
 
-	componentWillReceiveProps: function() {
-	},
+	componentWillReceiveProps() {
+	}
 
-	render: function() {
+	render() {
 		// init slider position
 		var sliderInitDiscover = null
 		if(this.props.MASAS_songInfo && this.props.songPlaying)
@@ -129,9 +185,16 @@ var Discover = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Discover)
+DiscoverSmart.propTypes = smartPropTypes
+DiscoverSmart.defaultProps = smartDefaultProps
+
+const Discover = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DiscoverSmart)
+
+export {
+	Discover,
+}

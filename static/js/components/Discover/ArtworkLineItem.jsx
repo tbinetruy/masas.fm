@@ -34,7 +34,7 @@ const reduxDispatchPropTypes = {
 	updateLoginMessage: PropTypes.func,
 	updateMiniProfileContent: PropTypes.func,
 	updateModalContent: PropTypes.func,
-	updateTitle: PropTypes.fun,
+	updateTitle: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -77,13 +77,12 @@ const smartDefaultProps = {
 }
 
 class ArtworkLineItemSmart extends React.Component {
-	componentWillMount() {
-	}
+	constructor(props) {
+		super(props)
 
-	componentDidMount() {
-	}
-
-	componentWillUnmount() {
+		this.toggleShowProfile = this.toggleShowProfile.bind(this)
+		this.toggleSongLike = this.toggleSongLike.bind(this)
+		this.onArtworkClick = this.onArtworkClick.bind(this)
 	}
 
 	toggleShowProfile() {

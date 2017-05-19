@@ -30,25 +30,36 @@ import {
  * Redux container
  */
 
+const reduxStatePropTypes = {
+	MASASuser: PropTypes.string,
+	processingAuthCookie: PropTypes.bool,
+	userData: PropTypes.object,
+}
+
 const mapStateToProps = function(state) {
 	return {
-		navSiderbarOpen: state.appReducer.navSiderbarOpen,
 		processingAuthCookie: state.appReducer.processingAuthCookie,
 		MASASuser: state.appReducer.MASASuser,
 		userData: state.appReducer.userData,
-
-		bgFilter: state.appReducer.bgFilter,
-		modalType: state.appReducer.modalType,
-		isModalOpened: state.appReducer.isModalOpened,
-		modalContent: state.appReducer.modalContent,
 	}
+}
+
+const reduxDispatchPropTypes = {
+	addRandomSongToDiscoverHistory: PropTypes.func,
+	addRandomSongToPopularHistory: PropTypes.func,
+	closeModal: PropTypes.func,
+	forceRender: PropTypes.func,
+	hideAppFetchingBar: PropTypes.func,
+	loginWithToken: PropTypes.func,
+	showAppFetchingBar: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateUnsplashArtist: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
         addRandomSongToDiscoverHistory: interval => dispatch(addRandomSongToDiscoverHistory(interval)),
 		addRandomSongToPopularHistory: () => dispatch(addRandomSongToPopularHistory()),
-		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 		loginWithToken: authToken => dispatch(loginWithToken(authToken)),
 		forceRender: () => dispatch(doneProcessingAuthCookie()),
@@ -77,23 +88,22 @@ function initHistories(addRandomSongToDiscoverHistory, addRandomSongToPopularHis
  */
 
 const smartPropTypes = {
-	MASASuser: PropTypes.string,
-	addRandomSongToDiscoverHistory: PropTypes.func,
-	addRandomSongToPopularHistory: PropTypes.func,
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
 	children: PropTypes.element,
-	closeModal: PropTypes.func,
-	forceRender: PropTypes.func,
-	hideAppFetchingBar: PropTypes.func,
 	location: PropTypes.object,
-	loginWithToken: PropTypes.func,
-	processingAuthCookie: PropTypes.bool,
-	showAppFetchingBar: PropTypes.func,
-	updateModalContent: PropTypes.func,
-	updateUnsplashArtist: PropTypes.func,
-	userData: PropTypes.object,
 }
 
+
 class AppSmart extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.showSplashScreen = this.showSplashScreen.bind(this)
+		this.getUserTokenFromCookie = this.getUserTokenFromCookie.bind(this)
+	}
+
 	componentWillMount() {
 		// BIND EVENTS TO AJAX REQUESTS
 		// http://api.jquery.com/Ajax_Events/
@@ -150,13 +160,6 @@ class AppSmart extends React.Component {
 			this.showSplashScreen()
 	}
 
-	showSplashScreen() {
-	}
-
-	getUserTokenFromCookie() {
-		return Cookie.get('MASAS_authToken')
-	}
-
 	componentDidUpdate(prevProps) {
 		// check if user has logged in
 		if(this.props.MASASuser !== prevProps.MASASuser) {
@@ -175,6 +178,13 @@ class AppSmart extends React.Component {
 			// otherwise, close modal
 
 		}
+	}
+
+	showSplashScreen() {
+	}
+
+	getUserTokenFromCookie() {
+		return Cookie.get('MASAS_authToken')
 	}
 
 	render() {

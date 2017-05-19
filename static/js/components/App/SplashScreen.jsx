@@ -17,16 +17,26 @@ import {
 /**
  * Redux container
  */
+
+const reduxStatePropTypes = {
+	backgroundURL: PropTypes.string,
+	splashScreenLoginMessage: PropTypes.string,
+	splashScreenPage: PropTypes.number,
+}
+
 const mapStateToProps = function(state) {
 	return {
 		splashScreenPage: state.appReducer.splashScreenPage,
-		MASASuser: state.appReducer.MASASuser,
 		splashScreenLoginMessage: state.appReducer.splashScreenLoginMessage,
 		backgroundURL: state.homeReducer.backgroundURL,
 	}
 }
 
-// Which action creators does it want to receive by props?
+const reduxDispatchPropTypes = {
+	closeSplashScreen: PropTypes.func,
+	updateSplashScreenPage: PropTypes.func,
+}
+
 const mapDispatchToProps = function(dispatch) {
 	return {
 		updateSplashScreenPage: (splashScreenPage) => dispatch(changeSplashScreenPage(splashScreenPage)),
@@ -40,26 +50,26 @@ const mapDispatchToProps = function(dispatch) {
  */
 
 const smartPropTypes = {
-	backgroundURL: PropTypes.string,
-	closeSplashScreen: PropTypes.func,
-	splashScreenLoginMessage: PropTypes.string,
-	splashScreenPage: PropTypes.number,
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
 	startPage: PropTypes.number,
-	updateSplashScreenPage: PropTypes.func,
+}
+
+const smartDefaultProps = {
+	startPage: 0,
 }
 
 class SplashScreenSmart extends React.Component {
+	constructor(props) {
+		super(props)
 
-	getDefaultProps() {
-		return {
-			startPage: 0,
-		};
-	}
-
-	getInitialState() {
-		return {
+		this.state = {
 			login: false
 		}
+
+		this.slideNext = this.slideNext.bind(this)
+		this.slidePrev = this.slidePrev.bind(this)
 	}
 
 	componentDidMount() {
@@ -190,6 +200,7 @@ class SplashScreenSmart extends React.Component {
 }
 
 SplashScreenSmart.propTypes = smartPropTypes
+SplashScreenSmart.defaultProps = smartDefaultProps
 
 const SplashScreen = connect(
     mapStateToProps,

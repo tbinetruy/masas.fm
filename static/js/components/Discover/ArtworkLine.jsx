@@ -25,10 +25,19 @@ import { toogleIsFooterOpened } from '../../reducers/actions/Footer.js'
  * Redux container
  */
 
+const reduxStatePropTypes = {
+	discoverNumber: PropTypes.number,							// artwork shown from discover
+	history: PropTypes.object,
+	isPlayerPaused: PropTypes.bool,
+	isSongPlayingLiked: PropTypes.bool,
+	popularHistory: PropTypes.array,
+	songPlaying: PropTypes.string,
+	songPlayingArtistInfo: PropTypes.object,
+	userToken: PropTypes.string,
+}
+
 const mapStateToProps = function(state) {
 	return {
-		MASASuser: state.appReducer.MASASuser,
-		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		discoverNumber: state.discoverReducer.discoverNumber,
 		history: state.discoverReducer.history,
 		popularHistory: state.popularReducer.history,
@@ -36,11 +45,17 @@ const mapStateToProps = function(state) {
 		isPlayerPaused: state.playerReducer.isPaused,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userToken: state.appReducer.MASASuser,
-		isFooterOpened: state.footerReducer.isOpened,
-		isModalOpened: state.appReducer.isModalOpened,
-		modalType: state.appReducer.modalType,
 		songPlayingArtistInfo: state.playerReducer.artistInfo,
 	}
+}
+
+const reduxDispatchPropTypes = {
+	lastSongInDiscoverHistory: PropTypes.func,
+	pause: PropTypes.func,
+	playAndSaveHistory: PropTypes.func,
+	playPreviousSongInDiscover: PropTypes.func,
+	playRandomSong: PropTypes.func,
+	toggleSongLike: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -62,21 +77,10 @@ const mapDispatchToProps = function(dispatch) {
  */
 
 const smartPropTypes = {
-	discoverNumber: PropTypes.number,							// artwork shown from discover
-	history: PropTypes.object,
-	isPlayerPaused: PropTypes.bool,
-	isSongPlayingLiked: PropTypes.bool,
-	lastSongInDiscoverHistory: PropTypes.func,
-	pause: PropTypes.func,
-	playAndSaveHistory: PropTypes.func,
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
 	playFromPopular: PropTypes.bool, 							// if true, isgnore discoverNumber and play from popular
-	playPreviousSongInDiscover: PropTypes.func,
-	playRandomSong: PropTypes.func,
-	popularHistory: PropTypes.array,
-	songPlaying: PropTypes.string,
-	songPlayingArtistInfo: PropTypes.object,
-	toggleSongLike: PropTypes.func,
-	userToken: PropTypes.string,
 }
 
 const smartDefaultProps = {
@@ -86,6 +90,15 @@ const smartDefaultProps = {
 }
 
 class ArtworkLineSmart extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.scrollToEnd = this.scrollToEnd.bind(this)
+		this.playRandomSong = this.playRandomSong.bind(this)
+		this.getArtworkLine = this.getArtworkLine.bind(this)
+		this.getHistory = this.getHistory.bind(this)
+	}
+
 	componentDidMount() {
 		this.scrollToEnd()
 	}

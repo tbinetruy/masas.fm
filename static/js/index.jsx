@@ -20,7 +20,7 @@ var SignUp = require('./components/Login/SignUp.jsx')
 var UploadSC = require('./components/UploadSC/UploadSC.jsx')
 var Profile = require('./components/Profile/Profile.jsx')
 var Likes = require('./components/Likes/Likes.jsx')
-var Discover = require('./components/Discover/Discover.jsx')
+import { Discover } from './components/Discover/Discover.jsx'
 var Legals = require('./components/Legals/LegalsHome.jsx')
 var Popular = require('./components/Popular/Popular.jsx')
 var { Manifesto } = require('./components/Manifesto/Manifesto.jsx')
