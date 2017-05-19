@@ -1,14 +1,62 @@
-var React = require('react')
+import * as React from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/App.jsx')
-
-var AppDumb = require('./AppDumb.jsx')
+import { AppDumb } from './AppDumb.jsx'
 
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
 var CreateProfile = require('../Profile/CreateProfile.jsx')
+
+import {
+	changeModalContent,
+	closeAndEmptyMainModal,
+	doneProcessingAuthCookie,
+	setAppFetchingStateFalse,
+	setAppFetchingStateTrue,
+	toogleIsModalOpened,
+} from '../../reducers/actions/App.js'
+
+import { changeUnsplashArtist } from '../../reducers/actions/Home.js'
+import { loginWithToken } from '../../reducers/actions/login.js'
+import { addRandomSongToHistory as addRandomSongToDiscoverHistory } from '../../reducers/actions/discover.js'
+
+import {
+	addRandomSongToHistory as addRandomSongToPopularHistory
+} from '../../reducers/actions/popular.js'
+
+
+// Which part of the Redux global state does our component want to receive as props?
+const mapStateToProps = function(state) {
+	return {
+		navSiderbarOpen: state.appReducer.navSiderbarOpen,
+		processingAuthCookie: state.appReducer.processingAuthCookie,
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+
+		bgFilter: state.appReducer.bgFilter,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalContent: state.appReducer.modalContent,
+	}
+}
+
+// Which action creators does it want to receive by props?
+const mapDispatchToProps = function(dispatch) {
+	return {
+        addRandomSongToDiscoverHistory: interval => dispatch(addRandomSongToDiscoverHistory(interval)),
+		addRandomSongToPopularHistory: () => dispatch(addRandomSongToPopularHistory()),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
+		loginWithToken: authToken => dispatch(loginWithToken(authToken)),
+		forceRender: () => dispatch(doneProcessingAuthCookie()),
+		showAppFetchingBar: () => dispatch(setAppFetchingStateTrue()),
+		hideAppFetchingBar: () => dispatch(setAppFetchingStateFalse()),
+		updateUnsplashArtist: () => dispatch(changeUnsplashArtist()),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+	}
+}
+
 
 /**
  * pre fetch songs
@@ -22,28 +70,8 @@ function initHistories(addRandomSongToDiscoverHistory, addRandomSongToPopularHis
 }
 
 
-var App = React.createClass({
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-		addRandomSongToDiscoverHistory: React.PropTypes.func,
-		addRandomSongToPopularHistory: React.PropTypes.func,
-		children: React.PropTypes.element,
-		closeModal: React.PropTypes.func,
-		finishProcessingAuthCookie: React.PropTypes.func,
-		forceRender: React.PropTypes.func,
-		hideAppFetchingBar: React.PropTypes.func,
-		location: React.PropTypes.object,
-		loginWithToken: React.PropTypes.func,
-		modalContent: React.PropTypes.element,
-		processingAuthCookie: React.PropTypes.bool,
-		showAppFetchingBar: React.PropTypes.func,
-		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		updateUnsplashArtist: React.PropTypes.func,
-		userData: React.PropTypes.object,
-	},
-
-	componentWillMount: function() {
+class AppSmart extends React.Component {
+	componentWillMount() {
 		// BIND EVENTS TO AJAX REQUESTS
 		// http://api.jquery.com/Ajax_Events/
 		$(document).bind('ajaxStart', () => {
@@ -74,9 +102,9 @@ var App = React.createClass({
 
 		// INIT DISCOVER AND POPULAR HISTORIES
 		initHistories(this.props.addRandomSongToDiscoverHistory, this.props.addRandomSongToPopularHistory)
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		document.getElementsByTagName('body')[0].style.height = window.innerHeight + 'px'
 		document.getElementById('content').style.height = window.innerHeight + 'px'
 		document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
@@ -97,16 +125,16 @@ var App = React.createClass({
 		// only show splashscreen on site root
 		if(this.props.location.pathname === '/')
 			this.showSplashScreen()
-	},
+	}
 
-	showSplashScreen: function() {
-	},
+	showSplashScreen() {
+	}
 
-	getUserTokenFromCookie: function() {
+	getUserTokenFromCookie() {
 		return Cookie.get('MASAS_authToken')
-	},
+	}
 
-	componentDidUpdate: function(prevProps) {
+	componentDidUpdate(prevProps) {
 		// check if user has logged in
 		if(this.props.MASASuser !== prevProps.MASASuser) {
 			// check if userData is not empty array.
@@ -124,9 +152,9 @@ var App = React.createClass({
 			// otherwise, close modal
 
 		}
-	},
+	}
 
-	render: function() {
+	render() {
 		let hideLoadingModalZIndex = 1000
 		let loadingModalAnim = 'none'
 		if(!this.props.processingAuthCookie) {
@@ -138,9 +166,36 @@ var App = React.createClass({
 				hideLoadingModalZIndex={ hideLoadingModalZIndex }
 				loadingModalAnim={ loadingModalAnim }>{ this.props.children }</AppDumb>
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(App)
+
+AppSmart.propTypes = {
+	MASASuser: React.PropTypes.string,
+	addRandomSongToDiscoverHistory: React.PropTypes.func,
+	addRandomSongToPopularHistory: React.PropTypes.func,
+	children: React.PropTypes.element,
+	closeModal: React.PropTypes.func,
+	finishProcessingAuthCookie: React.PropTypes.func,
+	forceRender: React.PropTypes.func,
+	hideAppFetchingBar: React.PropTypes.func,
+	location: React.PropTypes.object,
+	loginWithToken: React.PropTypes.func,
+	modalContent: React.PropTypes.element,
+	processingAuthCookie: React.PropTypes.bool,
+	showAppFetchingBar: React.PropTypes.func,
+	toogleModal: React.PropTypes.func,
+	updateModalContent: React.PropTypes.func,
+	updateUnsplashArtist: React.PropTypes.func,
+	userData: React.PropTypes.object,
+}
+
+const App = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AppSmart)
+
+export {
+	App,
+}
+
+

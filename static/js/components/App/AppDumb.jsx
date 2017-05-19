@@ -1,9 +1,7 @@
-// Main App layoutvar React = require("react")
+import * as React from 'react'
+import { connect }from 'react-redux'
 
-var React = require('react')
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/AppDumb.jsx')
-
+import { closeAndEmptyMainModal } from '../../reducers/actions/App.js'
 
 var Header = require('../Header/Header.jsx')
 var Footer = require('../Footer/Footer.jsx')
@@ -13,39 +11,42 @@ var { Modal } = require('../UI/UI.jsx')
 var PlayerAudioTag = require('../Player/PlayerAudioTag.jsx')
 var PlayerMobile = require('../Player/PlayerMobile.jsx')
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
+/**
+ * Redux container
+ */
 
-// var Template = (props) => {
 
-// }
+const mapStateToProps = function(state) {
+	return {
+		bgFilter: state.appReducer.bgFilter,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalContent: state.appReducer.modalContent,
+	}
+}
 
-var AppDumb = React.createClass({
-	propTypes: {
-		children: React.PropTypes.element,
-		bgFilter: React.PropTypes.object,
-		isModalOpened: React.PropTypes.bool,
-		modalType: React.PropTypes.number,
-		modalContent: React.PropTypes.element,
+const mapDispatchToProps = function(dispatch) {
+	return {
+		closeModal: () => dispatch(closeAndEmptyMainModal())
+	}
+}
 
-		closeModal: React.PropTypes.func,
 
-		hideLoadingModalZIndex: React.PropTypes.number,			// loading modal z-index
-		loadingModalAnim: React.PropTypes.string,				// loading modal animation
-	},
-
-	getDefaultProps: function() {
+/**
+ * Smart component
+ */
+class AppDumbClass extends React.Component {
+	getDefaultProps() {
 		return {
 			hideLoadingModalZIndex: 100,
 			loadingModalAnim: 'fadeout-loading-modal 1s linear',
 		}
-	},
+	}
 
-	componentWillMount: function() {
-	},
+	componentWillMount() {
+	}
 
-	render: function() {
+	render() {
 		const authCookieFrontgroundStyle = {
 			position: 'fixed',
 			top: 0,
@@ -57,7 +58,6 @@ var AppDumb = React.createClass({
 			alignItems: 'center',
 			backgroundColor: 'black',
 			color: 'white',
-			// zIndex: this.props.hideLoadingModalZIndex,
 			opacity: this.props.hideLoadingModalZIndex ? 0 : 1,
 			animation: this.props.loadingModalAnim,
 			pointerEvents: this.props.hideLoadingModalZIndex > 0 ? 'default' : 'none'
@@ -125,9 +125,21 @@ var AppDumb = React.createClass({
 			</NavSidebar>
 		)
 	}
-})
+}
 
-var styles = {
+AppDumbClass.propTypes = {
+	bgFilter: React.PropTypes.object,
+	children: React.PropTypes.element,
+	closeModal: React.PropTypes.func,
+	hideLoadingModalZIndex: React.PropTypes.number,			// loading modal z-index
+	isModalOpened: React.PropTypes.bool,
+	loadingModalAnim: React.PropTypes.string,				// loading modal animation
+	modalContent: React.PropTypes.element,
+	modalType: React.PropTypes.number,
+}
+
+
+const styles = {
 	container: {
 		height: window.innerHeight + 'px',
 		display: 'flex',
@@ -136,7 +148,11 @@ var styles = {
 	}
 }
 
-module.exports = ReactRedux.connect(
+const AppDumb = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(AppDumb)
+)(AppDumbClass)
+
+export {
+	AppDumb
+}

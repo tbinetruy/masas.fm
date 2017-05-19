@@ -1,38 +1,58 @@
-var React = require('react')
+import * as React from 'react'
+import { connect }from 'react-redux'
+
 var Swiper = require('swiper/dist/js/swiper.min.js')
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/SplashScreen.jsx')
 
 var { goToURL } = require('../../MASAS_functions.jsx')
 var { Button } = require('../UI/UI.jsx')
 var LoginForm = require('../Login/LoginForm.jsx')
 var Legals = require('../Legals/LegalsHome.jsx')
 
+import {
+	changeSplashScreenPage,
+	closeAndEmptyMainModal,
+} from '../../reducers/actions/App.js'
 
-var SplashScreen = React.createClass({
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-        backgroundURL: React.PropTypes.string,
-		closeSplashScreen: React.PropTypes.func,
-		splashScreenLoginMessage: React.PropTypes.string,
-		splashScreenPage: React.PropTypes.number,
-		startPage: React.PropTypes.number,
-		updateSplashScreenPage: React.PropTypes.func,
-	},
 
-	getDefaultProps: function() {
+/**
+ * Redux container
+ */
+const mapStateToProps = function(state) {
+	return {
+		splashScreenPage: state.appReducer.splashScreenPage,
+		MASASuser: state.appReducer.MASASuser,
+		splashScreenLoginMessage: state.appReducer.splashScreenLoginMessage,
+		backgroundURL: state.homeReducer.backgroundURL,
+	}
+}
+
+// Which action creators does it want to receive by props?
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateSplashScreenPage: (splashScreenPage) => dispatch(changeSplashScreenPage(splashScreenPage)),
+		closeSplashScreen: () => dispatch(closeAndEmptyMainModal()),
+
+	}
+}
+
+/**
+ * Smart component
+ */
+class SplashScreenSmart extends React.Component {
+
+	getDefaultProps() {
 		return {
 			startPage: 0,
 		};
-	},
+	}
 
-	getInitialState: function() {
+	getInitialState() {
 		return {
 			login: false
 		}
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		this.mainSwiper = new Swiper('.main-swiper-container', {
 			noSwiping: true,
 			allowSwipeToPrev: false,
@@ -45,20 +65,20 @@ var SplashScreen = React.createClass({
 		// init starting page (home splash screen or login)
 		this.props.updateSplashScreenPage(this.props.startPage)
 		this.mainSwiper.slideTo(this.props.startPage, 0)
-	},
+	}
 
-	componentWillUnmount: function() {
-	},
+	componentWillUnmount() {
+	}
 
-	slideNext: function() {
+	slideNext() {
 		this.mainSwiper.slideNext()
-	},
+	}
 
-	slidePrev: function() {
+	slidePrev() {
 		this.mainSwiper.slidePrev()
-	},
+	}
 
-	render: function() {
+	render() {
 		const styles = {
 			wrapper: {
 				backgroundImage: 'url(' + this.props.backgroundURL + ')',
@@ -157,9 +177,23 @@ var SplashScreen = React.createClass({
 				</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SplashScreen)
+SplashScreenSmart.propTypes = {
+	MASASuser: React.PropTypes.string,
+	backgroundURL: React.PropTypes.string,
+	closeSplashScreen: React.PropTypes.func,
+	splashScreenLoginMessage: React.PropTypes.string,
+	splashScreenPage: React.PropTypes.number,
+	startPage: React.PropTypes.number,
+	updateSplashScreenPage: React.PropTypes.func,
+}
+
+const SplashScreen = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SplashScreenSmart)
+
+export {
+	SplashScreen,
+}
