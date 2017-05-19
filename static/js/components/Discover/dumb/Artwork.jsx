@@ -1,6 +1,6 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
 
-export const Artwork = props => {
+const Artwork = props => {
 	const PauseButton = () => (
 		<img
 			src="/static/img/MASAS_player_pause.svg"
@@ -41,12 +41,16 @@ export const Artwork = props => {
 }
 
 Artwork.propTypes = {
-	artworkURL: React.PropTypes.string.isRequired,				// artwork url as a string
-	onArtworkClick: React.PropTypes.func.isRequired,			// callback called when clicking on artwork
-	isItemPlaying: React.PropTypes.bool.isRequired,				// is song on artwork currently playing
-	allowPlayPause: React.PropTypes.bool,						// can user play pause song from artwork
+	allowPlayPause: PropTypes.bool,						// can user play pause song from artwork
+	artworkURL: PropTypes.string.isRequired,				// artwork url as a string
+	isItemPlaying: PropTypes.bool.isRequired,				// is song on artwork currently playing
+	onArtworkClick: PropTypes.func.isRequired,			// callback called when clicking on artwork
 }
 
 Artwork.defaultProps = {
 	allowPlayPause: true,
+}
+
+export {
+	Artwork,
 }

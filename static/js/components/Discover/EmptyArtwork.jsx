@@ -1,21 +1,13 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
 
-export const EmptyArtwork = React.createClass({
-	propTypes: {
-		playRandomSong: React.PropTypes.func.isRequired,		// callback to execute when clicking on EmptyArtwork
-		popularTheme: React.PropTypes.bool,						// should comp be styled for popular theme
-		playFromPopular: React.PropTypes.bool,
-	},
+class EmptyArtwork extends React.Component {
+	constructor(props) {
+		super(props)
+	}
 
-	getDefaultProps: function() {
-		return {
-			popularTheme: false
-		}
-	},
-
-	render: function() {
+	render() {
 		return (
-			<div className={ "artwork-line--wrapper " + (this.props.playFromPopular ? "popular" : "") }>
+			<div className={ 'artwork-line--wrapper ' + (this.props.playFromPopular ? 'popular' : '') }>
 				<div
 					className="left-side">
 					<div className="artwork-line" ref="artworkLine">
@@ -29,10 +21,10 @@ export const EmptyArtwork = React.createClass({
 							onClick={ this.props.playRandomSong }
 							className="player-button"
 							style={{ display: 'flex' }}>
-							<img src="/static/img/MASAS_player_play.svg" alt="play"/>
+							<img src="/static/img/MASAS_player_play.svg" alt="play" />
 						</div>
 					</div>
-					<div className={ "song-info--wrapper" + (this.props.popularTheme ? " popular" : "") }>
+					<div className={ 'song-info--wrapper' + (this.props.popularTheme ? ' popular' : '') }>
 						<div className="like-icon">
 							<img src="/static/img/MASAS_like_shadow.svg" style={{ pointer: 'default' }} alt="like" />
 						</div>
@@ -47,4 +39,18 @@ export const EmptyArtwork = React.createClass({
 			</div>
 		)
 	}
-})
+}
+
+EmptyArtwork.propTypes = {
+	playFromPopular: PropTypes.bool,
+	playRandomSong: PropTypes.func.isRequired,		// callback to execute when clicking on EmptyArtwork
+	popularTheme: PropTypes.bool,						// should comp be styled for popular theme
+}
+
+EmptyArtwork.defaultProps = {
+	popularTheme: false
+}
+
+export {
+	EmptyArtwork,
+}

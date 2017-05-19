@@ -1,24 +1,25 @@
-var React = require("react")
-var { Marquee } = require("../../UI/UI.jsx")
+import React, { PropTypes } from 'react'
 
-export const SongInfo = props => {
+var { Marquee } = require('../../UI/UI.jsx')
+
+const SongInfo = props => {
 	if(props.small)
 		return (
 			<div
 				onClick={ props.toggleShowProfile }
-				className={"song-info--wrapper" + (props.popularTheme ? " popular" : "" )} >
+				className={'song-info--wrapper' + (props.popularTheme ? ' popular' : '' )} >
 				<Marquee className="title">{ props.SC_songInfo.title }</Marquee>
 				<Marquee className="artist">{ props.SC_songInfo.user.username }</Marquee>
 			</div>
 		)
 	else
 			return (
-				<div className={"song-info--wrapper" + (props.popularTheme ? " popular" : "" ) }>
+				<div className={'song-info--wrapper' + (props.popularTheme ? ' popular' : '' ) }>
 					<div
-						className={ "like-icon " + (props.songPlaying === props.MASAS_songInfo.url ? 'show' : 'hide') }
+						className={ 'like-icon ' + (props.songPlaying === props.MASAS_songInfo.url ? 'show' : 'hide') }
 						onClick={ () => props.toggleSongLike() }>
 						{
-							props.isSongPlayingLiked && props.MASASuser !== "" ?
+							props.isSongPlayingLiked && props.MASASuser !== '' ?
 								<img src="/static/img/MASAS_liked.svg" alt="unlike" />
 							:
 								<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
@@ -35,18 +36,22 @@ export const SongInfo = props => {
 }
 
 SongInfo.propTypes = {
-	small: React.PropTypes.bool,								// should show small version of component
-	MASASuser: React.PropTypes.string,							// user login token
-	songPlaying: React.PropTypes.string,						// MASAS api url of currently playing song
-	toggleShowProfile: React.PropTypes.func.isRequired,			// callback called when clicking on component
-	toggleSongLike: React.PropTypes.func,						// callback called when song is liked from component
-	SC_songInfo: React.PropTypes.object.isRequired,				// dict containing song info from SC api
-	isSongPlayingLiked: React.PropTypes.bool.isRequired,		// is song liked
-	MASAS_songInfo: React.PropTypes.object.isRequired,          // dict containing song info from MASAS api
-	popularTheme: React.PropTypes.bool,							// should song info be themed for discover page
+	MASAS_songInfo: PropTypes.object.isRequired,          // dict containing song info from MASAS api
+	MASASuser: PropTypes.string,							// user login token
+	SC_songInfo: PropTypes.object.isRequired,				// dict containing song info from SC api
+	isSongPlayingLiked: PropTypes.bool.isRequired,		// is song liked
+	popularTheme: PropTypes.bool,							// should song info be themed for discover page
+	small: PropTypes.bool,								// should show small version of component
+	songPlaying: PropTypes.string,						// MASAS api url of currently playing song
+	toggleShowProfile: PropTypes.func.isRequired,			// callback called when clicking on component
+	toggleSongLike: PropTypes.func,						// callback called when song is liked from component
 }
 
 SongInfo.defaultProps = {
 	isSongPlayingLiked: false,
 	popularTheme: false,
+}
+
+export {
+	SongInfo,
 }

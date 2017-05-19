@@ -33,14 +33,14 @@ import { updateTipBar } from '../../reducers/actions/Header.js'
  */
 
 const reduxStatePropTypes = {
-	MASAS_songInfo: React.PropTypes.object,
-	discoverNumber: React.PropTypes.number,
-	isModalOpened: React.PropTypes.bool,
-	loggedOutUserStep: React.PropTypes.number,
-	modalType: React.PropTypes.number,
-	songPlaying: React.PropTypes.string,
-	userData: React.PropTypes.object,
-	userToken: React.PropTypes.string,
+	MASAS_songInfo: PropTypes.object,
+	discoverNumber: PropTypes.number,
+	isModalOpened: PropTypes.bool,
+	loggedOutUserStep: PropTypes.number,
+	modalType: PropTypes.number,
+	songPlaying: PropTypes.string,
+	userData: PropTypes.object,
+	userToken: PropTypes.string,
 }
 
 const mapStateToProps = function(state) {
@@ -57,16 +57,16 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	blackBgFilter: React.PropTypes.func,
-	closeModal: React.PropTypes.func,
-	handleTimePickerChange: React.PropTypes.func,
-	incrementLoggedOutUserStep: React.PropTypes.func,
-	resetBgFilter: React.PropTypes.func,
-	toogleModal: React.PropTypes.func,
-	updateModalContent: React.PropTypes.func,
-	updateModalType: React.PropTypes.func,
-	updateTipBar: React.PropTypes.func,
-	updateTitle: React.PropTypes.func,
+	blackBgFilter: PropTypes.func,
+	closeModal: PropTypes.func,
+	handleTimePickerChange: PropTypes.func,
+	incrementLoggedOutUserStep: PropTypes.func,
+	resetBgFilter: PropTypes.func,
+	toogleModal: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateModalType: PropTypes.func,
+	updateTipBar: PropTypes.func,
+	updateTitle: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
