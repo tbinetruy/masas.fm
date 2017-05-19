@@ -6,7 +6,27 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Body.jsx")
 
 var Home = require("../Home/Home.jsx")
 
-var Body = React.createClass({
+
+/**
+ * Redux container
+ */
+const mapStateToProps = function(state) {
+	return {
+		title: state.appReducer.pageTitle
+	}
+}
+
+// Which action creators does it want to receive by props?
+const mapDispatchToProps = function(dispatch) {
+	return {
+
+	}
+}
+
+/**
+ * Smart component
+ */
+class BodySmart extends React.Component {
 	render: function() {
 		return (
 			<div style={styles.outerDiv}>
