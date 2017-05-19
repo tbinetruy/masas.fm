@@ -1,64 +1,96 @@
-var React = require('react')
-
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/ArtworkLineItem.jsx')
-
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
 import { Artwork } from './dumb/Artwork.jsx'
 import { SongInfo } from './dumb/SongInfo.jsx'
-var SplashScreen = require('../App/SplashScreen.jsx')
+import { SplashScreen } from '../App/SplashScreen.jsx'
+import { resumePlayer } from '../../reducers/actions/Player.js'
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+	updateMiniProfileContent,
+	updatePageTitle,
+	updateSplashScreenLoginMessage,
+} from '../../reducers/actions/App.js'
 
 
-var ArtworkLineItem = React.createClass({
-	propTypes: {
-		isModalOpened: React.PropTypes.bool,
-		modalType: React.PropTypes.number,
+/**
+ * Redux container
+ */
 
-		key_ID: React.PropTypes.number,
-		artworkURL: React.PropTypes.string,
-		SC_songInfo: React.PropTypes.object,
-		MASAS_songInfo: React.PropTypes.object,
-		isItemPlaying: React.PropTypes.bool,
-		isArtworkLarge: React.PropTypes.bool,					// larger ArtworkLineItem
-		songPlaying: React.PropTypes.string,
-		isSongPlayingLiked: React.PropTypes.bool,
-		userToken: React.PropTypes.string,
-		artistInfo: React.PropTypes.object,						// artist info
-		allowPlayPause: React.PropTypes.bool,					// can use click on artwork to play pause
-		popularTheme: React.PropTypes.bool,						// should comp be themed for popular page
-		MASASuser: React.PropTypes.string.isRequired,
+const reduxStatePropTypes = {
+	MASASuser: PropTypes.string.isRequired,
+}
 
-		updateMiniProfileContent: React.PropTypes.func,
-		pause: React.PropTypes.func,
-		playAndSaveHistory: React.PropTypes.func,
-		resumePlayer: React.PropTypes.func,
-		toggleSongLike: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		updateLoginMessage: React.PropTypes.func,
-		toggleModal: React.PropTypes.func,
-	},
+const mapStateToProps = function(state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+	}
+}
 
-	getDefaultProps: function() {
-		return {
-			isArtworkLarge: false,
-			allowPlayPauseOnClick: true,
-		}
-	},
+const reduxDispatchPropTypes = {
+	toggleModal: PropTypes.func,
+	resumePlayer: PropTypes.func,
+	updateLoginMessage: PropTypes.func,
+	updateMiniProfileContent: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateTitle: PropTypes.fun,
+}
 
-	componentWillMount: function() {
-	},
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		toggleModal: () => dispatch(toogleIsModalOpened()),
+		resumePlayer: () => dispatch(resumePlayer()),
+		updateMiniProfileContent: userApiURL => dispatch(updateMiniProfileContent(userApiURL))
+	}
+}
 
-	componentDidMount: function() {
-	},
+/**
+ * Smart component
+ */
 
-	componentWillUnmount: function() {
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
 
-	toggleShowProfile: function() {
+	MASAS_songInfo: PropTypes.object,
+	SC_songInfo: PropTypes.object,
+	allowPlayPause: PropTypes.bool,					// can use click on artwork to play pause
+	artworkURL: PropTypes.string,
+	isArtworkLarge: PropTypes.bool,					// larger ArtworkLineItem
+	isItemPlaying: PropTypes.bool,
+	isSongPlayingLiked: PropTypes.bool,
+	key_ID: PropTypes.number,
+	pause: PropTypes.func,
+	playAndSaveHistory: PropTypes.func,
+	popularTheme: PropTypes.bool,						// should comp be themed for popular page
+	songPlaying: PropTypes.string,
+	toggleSongLike: PropTypes.func,
+}
+
+const smartDefaultProps = {
+	isArtworkLarge: false,
+	allowPlayPauseOnClick: true,
+}
+
+class ArtworkLineItemSmart extends React.Component {
+	componentWillMount() {
+	}
+
+	componentDidMount() {
+	}
+
+	componentWillUnmount() {
+	}
+
+	toggleShowProfile() {
 		this.props.updateMiniProfileContent(this.props.MASAS_songInfo.trackArtist)
-	},
+	}
 
-	toggleSongLike: function() {
+	toggleSongLike() {
 		// show login modal if user not logged in
 		if(this.props.MASASuser === '') {
 			this.props.updateLoginMessage('Please log-in to Like & Save songs')
@@ -67,18 +99,18 @@ var ArtworkLineItem = React.createClass({
 		} else {
 			this.props.toggleSongLike(this.props.MASASuser, this.props.songPlaying)
 		}
-	},
+	}
 
-	onArtworkClick: function() {
+	onArtworkClick() {
 		if(this.props.isItemPlaying)
 			this.props.pause()
 		else if(this.props.songPlaying === this.props.MASAS_songInfo.url)
 			this.props.resumePlayer(this.props.popularTheme)
 		else
 			this.props.playAndSaveHistory(this.props.MASAS_songInfo.url, this.props.popularTheme)
-	},
+	}
 
-	render: function() {
+	render() {
 		let {
 			key_ID,
 			artworkURL,
@@ -118,9 +150,16 @@ var ArtworkLineItem = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ArtworkLineItem)
+ArtworkLineItemSmart.propTypes = smartPropTypes
+ArtworkLineItemSmart.defaultProps = smartDefaultProps
+
+const ArtworkLineItem = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ArtworkLineItemSmart)
+
+export {
+	ArtworkLineItem,
+}

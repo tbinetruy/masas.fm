@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-var ArtworkLineItem = require('./ArtworkLineItem.jsx')
+import { ArtworkLineItem } from './ArtworkLineItem.jsx'
 
 import { POPULAR } from '../../reducers/actions/Player.js'
 

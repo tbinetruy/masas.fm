@@ -23,9 +23,17 @@ TemplateDumb.defaultProps = dumbDefaultProps
  * Redux container
  */
 
+const reduxStatePropTypes = {
+
+}
+
 const mapStateToProps = function(state) {
 	return {
 	}
+}
+
+const reduxDispatchPropTypes = {
+
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -40,6 +48,8 @@ const mapDispatchToProps = function(dispatch) {
 
 const smartPropTypes = {
 	...dumbPropTypes,
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
 }
 
 const smartDefaultProps = {
