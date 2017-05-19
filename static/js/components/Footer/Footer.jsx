@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-var FooterModal = require('./FooterModals.jsx')
-var UnsplashControls = require('./UnsplashControls.jsx')
+import { UnsplashControls } from './UnsplashControls.jsx'
 var MiniProfileWrapper = require('../Profile/MiniProfileWrapper.jsx')
 var { PlayerBar } = require('../Player/PlayerBar.jsx')
 const Player = PlayerBar
 var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
-const ProgressBar = require('./ProgressBar.jsx')
+import { ProgressBar } from './ProgressBar.jsx'
 
 import {
 	changeModalContent,
@@ -147,18 +146,6 @@ class FooterSmart extends React.Component {
 
 
 	openModal(modalType) {
-		this.toogleMenu()
-
-		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
-		var that = this
-		this.props.updateModalContent(
-			<FooterModal
-				isSpamModal={ modalType === 1}
-				isCopyrightModal={ modalType === 2 ? true : false}
-				isSuggestTimeModal={ modalType === 3 ? true : false}
-				/>
-			)
-		this.props.toogleModal()
 	}
 
 	getNextSongIcon() {

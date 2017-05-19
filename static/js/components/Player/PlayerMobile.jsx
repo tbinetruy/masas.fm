@@ -9,7 +9,7 @@ var { browserHistory } = require('react-router')
 
 var { getUserPkFromURL } = require('../../MASAS_functions.jsx')
 
-import ProgressBar from '../Footer/ProgressBar.jsx'
+import { ProgressBar } from '../Footer/ProgressBar.jsx'
 import PlayingArtwork from './PlayingArtwork.jsx'
 
 

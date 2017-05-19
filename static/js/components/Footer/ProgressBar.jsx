@@ -1,31 +1,62 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/ProgressBar.jsx')
+import {
+	setPlayerProgressBar,
+} from '../../reducers/actions/Footer.js'
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-// var { browserHistory } = require('react-router')
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	SC_songInfo: React.PropTypes.object,
+	progressBarWidth: React.PropTypes.number,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		progressBarWidth: state.footerReducer.progressBar,
+		SC_songInfo: state.playerReducer.SC_songInfo,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updateProgressBar: React.PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateProgressBar: progress => dispatch(setPlayerProgressBar(progress)),
+	}
+}
 
 
-var ProgressBar = React.createClass({
-	propTypes: {
-		SC_songInfo: React.PropTypes.object,
-		progressBarWidth: React.PropTypes.number,
+/**
+ * Smart component
+ */
 
-		updateProgressBar: React.PropTypes.func,
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
 
-	componentWillMount: function() {
-	},
+const smartDefaultProps = {
+}
 
-	onSliderChange: function(e) {
+class ProgressBarSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.onSliderChange = this.onSliderChange.bind(this)
+    }
+
+	onSliderChange(e) {
 		$('#jquery_jplayer_1').jPlayer('play', e.target.value / 100 * this.props.SC_songInfo.duration/1000)
 		this.props.updateProgressBar(parseFloat(e.target.value))
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="player-progress-bar--wrapper">
 					<div className="select-range">
@@ -46,9 +77,16 @@ var ProgressBar = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ProgressBar)
+ProgressBarSmart.propTypes = smartPropTypes
+ProgressBarSmart.defaultProps = smartDefaultProps
+
+const ProgressBar = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProgressBarSmart)
+
+export {
+	ProgressBar,
+}

@@ -1,52 +1,95 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/UnsplashControls.jsx")
+import {
+	changeUnsplashArtist,
+	getNewBackground,
+} from '../../reducers/actions/Home.js'
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
+/**
+ * Redux container
+ */
 
-// var Template = (props) => {
+const reduxStatePropTypes = {
+	backgroundURL: React.PropTypes.string,
+	isModalOpened: React.PropTypes.bool,
+	modalType: React.PropTypes.number,
+	unsplashArtistName: React.PropTypes.string,
+	unsplashArtistUsername: React.PropTypes.string,
+}
 
-// }
+const mapStateToProps = function(state) {
+	return {
+		unsplashArtistUsername: state.homeReducer.unsplashArtistUsername,
+		unsplashArtistName: state.homeReducer.unsplashArtistName,
+		backgroundURL: state.homeReducer.backgroundURL,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
+	}
+}
 
-var UnsplashControls = React.createClass({
-	propTypes: {
-		unsplashArtistName: React.PropTypes.string,
-		unsplashArtistUsername: React.PropTypes.string,
-		backgroundURL: React.PropTypes.string,
-		modalType: React.PropTypes.number,
-		isModalOpened: React.PropTypes.bool,
+const reduxDispatchPropTypes = {
+	updateBackgroundURL: React.PropTypes.func,
+	updateUnsplashArtist: React.PropTypes.func,
+}
 
-		updateUnsplashArtist: React.PropTypes.func,
-		updateBackgroundURL: React.PropTypes.func,
-	},
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateUnsplashArtist: () => dispatch(changeUnsplashArtist()),
+		updateBackgroundURL: () => dispatch(getNewBackground()),
+	}
+}
 
-	componentDidUpdate: function() {
-		if(document.getElementById("app-bg-image"))
-			document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")"	
-	},
 
-	render: function() {
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class UnsplashControlsSmart extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
+	componentDidUpdate() {
+		if(document.getElementById('app-bg-image'))
+			document.getElementById('app-bg-image').style.backgroundImage = 'url(' + this.props.backgroundURL + ')'
+	}
+
+	render() {
 		return (
-			<div className={ "unsplash-controls " + (this.props.modalType === 2 && this.props.isModalOpened ? "hidden" : "") }>
+			<div className={ 'unsplash-controls ' + (this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : '') }>
 				<div className="artist-controls">
 					<a onClick={ this.props.updateUnsplashArtist }>
-						<img src="/static/img/MASAS_icon_change_photograph.svg" alt="random-artist"/>
+						<img src="/static/img/MASAS_icon_change_photograph.svg" alt="random-artist" />
 					</a>
-					<a href={ "https://unsplash.com/" + this.props.unsplashArtistName } target="_blank">{ this.props.unsplashArtistName }</a>
+					<a href={ 'https://unsplash.com/' + this.props.unsplashArtistName } target="_blank">{ this.props.unsplashArtistName }</a>
 				</div>
 				<div className="background-controls">
 					<a onClick={ this.props.updateBackgroundURL }>
-						<img src="/static/img/MASAS_icon_change_unsplash_user.svg" alt="random-background"/>
+						<img src="/static/img/MASAS_icon_change_unsplash_user.svg" alt="random-background" />
 					</a>
 				</div>
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(UnsplashControls)
+UnsplashControlsSmart.propTypes = smartPropTypes
+UnsplashControlsSmart.defaultProps = smartDefaultProps
+
+const UnsplashControls = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UnsplashControlsSmart)
+
+export {
+	UnsplashControls,
+}
