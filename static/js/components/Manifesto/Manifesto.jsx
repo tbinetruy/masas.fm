@@ -60,6 +60,21 @@ const ManifestoDumb = props => (
 					</p>
 				</li>
 			</ol>
+			<div className='appendix'>
+				<h2>So what’s the Crowdradio?</h2>
+				<p>
+					It’s a radio that is entirely powered by its community. Artists share
+					their music - The community votes - And everyone can help make it better!
+				</p>
+			</div>
+			<div className='signature'>
+				<p>
+					MASAS - "Make A Sound And Share"
+				</p>
+				<p>
+					<a href="https://github.com/MASASFM/MASAS" target="_blank">#OpenSource</a>
+				</p>
+			</div>
 		</div>
 	</Body>
 )
@@ -76,7 +91,7 @@ class ManifestoSmart extends React.Component {
 
 	componentDidMount() {
 		// show crowdradio tip
-		this.props.updateTipBar('Music Discovery Made Easy', 11, <Link to="/discover">Vote</Link>)
+		this.props.updateTipBar('A New Concept of Radio', 11, <Link to="/discover">Participate</Link>)
 	}
 
 	render() {

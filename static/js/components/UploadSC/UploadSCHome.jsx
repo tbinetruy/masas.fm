@@ -81,11 +81,11 @@ var UploadSCHome = React.createClass({
 								/>
 							<BulletPoint
 								imgSrc="/static/img/upload/icon_upload_2.png"
-								text="MASAS algorithm will select the best music everyday and feature them"
+								text="Everyday, favorites from the community will be featured on the Crowdradio"
 								/>
 							<BulletPoint
 								imgSrc="/static/img/upload/icon_upload_3.png"
-								text="Get a chance to be featured on our next events and be contacted by independants label"
+								text="Get a chance to be featured on our next events and be contacted by independent labels"
 								/>
 						</div>
 						{

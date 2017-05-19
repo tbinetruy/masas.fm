@@ -1,16 +1,16 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/HeaderDropdown.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/HeaderDropdown.jsx')
 
-var { Button, Link } = require("../UI/UI.jsx")
+var { Button, Link } = require('../UI/UI.jsx')
 var { browserHistory } = require('react-router')
-var SplashScreen = require("../App/SplashScreen.jsx")
+var SplashScreen = require('../App/SplashScreen.jsx')
 
 var MenuLink = (props) => {
 	return (
 		<div className="menu-link">
-			<img src={props.src} alt="profile pic"/>
+			<img src={props.src} alt="profile pic" />
 			<Link to={props.URL} onClick={props.onClick}>{props.children}</Link>
 		</div>
 	)
@@ -26,15 +26,14 @@ MenuLink.PropTypes = {
 var HeaderDropdown = React.createClass({
 	propTypes: {
 		MASASuser: React.PropTypes.string,
-		userData: React.PropTypes.object,
-		isModalOpened: React.PropTypes.bool,
-
+		closeModal: React.PropTypes.func,
 		dispatch: React.PropTypes.func,
+		isModalOpened: React.PropTypes.bool,
 		logout: React.PropTypes.func,
 		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		closeModal: React.PropTypes.func,
 		updateLoginMessage: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		userData: React.PropTypes.object,
 	},
 
 	componentWillReceiveProps: function() {
@@ -45,13 +44,13 @@ var HeaderDropdown = React.createClass({
 	},
 
 	render: function() {
-		if (this.props.MASASuser !== "") {
+		if (this.props.MASASuser !== '') {
 			return (
 				<div className="dropdown--wrapper">
 					<div
-						onClick={ () => { this.props.closeModal(); browserHistory.push("/profile") } }
+						onClick={ () => { this.props.closeModal(); browserHistory.push('/profile') } }
 						className="username--wrapper">
-						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture"/>
+						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture" />
 						<span className="username" id="username-header"> {this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
 					</div>
 					<div className="dropdown-content">
@@ -59,7 +58,7 @@ var HeaderDropdown = React.createClass({
 						<hr />
 						<MenuLink onClick={ this.props.closeModal }  src='/static/img/MASAS_logo_world.svg' URL="/legals">Legals</MenuLink>
 						<hr />
-						<MenuLink onClick={ this.props.closeModal }  src='/static/img/MASAS_settings.svg' URL="/">Account Settings</MenuLink>
+						<MenuLink onClick={ this.props.closeModal }  src='/static/img/MASAS_settings.svg' URL="/manifesto">About Us</MenuLink>
 						<hr />
 						<MenuLink onClick={ () => { this.props.closeModal(); this.logout() } }  src='/static/img/MASAS_icon_log_out.svg' URL="/">Sign out</MenuLink>
 					</div>
@@ -73,13 +72,13 @@ var HeaderDropdown = React.createClass({
 						isSecondaryAction={ true }
 						onClick={ () => {
 							!this.props.isModalOpened ? this.props.toogleModal() : 0
-							this.props.updateLoginMessage("")
+							this.props.updateLoginMessage('')
 							this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
 						} }>
-						Log-in
+							Log-in
 					</Button>
 				</div>
-				)
+			)
 	}
 })
 
