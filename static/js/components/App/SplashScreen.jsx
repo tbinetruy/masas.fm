@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
 var Swiper = require('swiper/dist/js/swiper.min.js')
@@ -38,6 +38,16 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
+
+const smartPropTypes = {
+	backgroundURL: PropTypes.string,
+	closeSplashScreen: PropTypes.func,
+	splashScreenLoginMessage: PropTypes.string,
+	splashScreenPage: PropTypes.number,
+	startPage: PropTypes.number,
+	updateSplashScreenPage: PropTypes.func,
+}
+
 class SplashScreenSmart extends React.Component {
 
 	getDefaultProps() {
@@ -179,15 +189,7 @@ class SplashScreenSmart extends React.Component {
 	}
 }
 
-SplashScreenSmart.propTypes = {
-	MASASuser: React.PropTypes.string,
-	backgroundURL: React.PropTypes.string,
-	closeSplashScreen: React.PropTypes.func,
-	splashScreenLoginMessage: React.PropTypes.string,
-	splashScreenPage: React.PropTypes.number,
-	startPage: React.PropTypes.number,
-	updateSplashScreenPage: React.PropTypes.func,
-}
+SplashScreenSmart.propTypes = smartPropTypes
 
 const SplashScreen = connect(
     mapStateToProps,

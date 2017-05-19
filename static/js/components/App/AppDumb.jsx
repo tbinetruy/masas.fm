@@ -15,7 +15,6 @@ var PlayerMobile = require('../Player/PlayerMobile.jsx')
  * Redux container
  */
 
-
 const mapStateToProps = function(state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
