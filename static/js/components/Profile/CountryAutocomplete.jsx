@@ -1,36 +1,74 @@
-var React = require('react')
+/**
+ * Need to remove jquery dependency
+ */
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/CountryAutocomplete.jsx')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var Autocomplete = require('react-autocomplete')
+const Autocomplete = require('react-autocomplete')
 
-var CountryAutocomplete = React.createClass({
-	counter: 0,
+/**
+ * Redux container
+ */
 
-	propTypes: {
-		onChange: React.PropTypes.func,
-		userCity: React.PropTypes.object,
-	},
+const reduxStatePropTypes = {
+	userCity: PropTypes.object,
+}
 
-	getInitialState: function() {
-		var city = []
+const mapStateToProps = function(state) {
+	return {
+		userCity: state.appReducer.userData.city
+	}
+}
 
-		return {
+const reduxDispatchPropTypes = {
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	onChange: PropTypes.func,
+}
+
+const smartDefaultProps = {
+}
+
+class CountryAutocompleteSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.counter = 0
+
+		this.state = {
 			value: '',
-			cities: city,
-			loading: false
+			cities: [],
+			loading: false,
 		}
-	},
 
-	componentDidMount: function() {
+		this.getCities = this.getCities.bind(this)
+		this.onChange = this.onChange.bind(this)
+    }
+
+	componentDidMount() {
 		this.getCities()
 
 		if(this.props.userCity !== null)
 			this.setState({ value: this.props.userCity.display_name})
-	},
+	}
 
-	getCities: function() {
+	getCities() {
 		$.ajax({
 			type: 'GET',
 			url: '/api/cities/?q=' + this.state.value,
@@ -42,9 +80,9 @@ var CountryAutocomplete = React.createClass({
 			error: () => {
 			}
 		})
-	},
+	}
 
-	onChange: function(event, value) {
+	onChange(event, value) {
 		this.counter = this.counter + 1
 		var { counter } = this
 
@@ -57,9 +95,9 @@ var CountryAutocomplete = React.createClass({
 				this.props.onChange('')
 			}
 		}, 500)
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="MASAS-textbox country-autocomplete--wrapper" style={{ position: 'relative' }}>
 				<label htmlFor="cities-autocomplete" className="MASAS-label">City</label>
@@ -68,7 +106,6 @@ var CountryAutocomplete = React.createClass({
 					value={ this.state.value }
 					items={ this.state.cities }
 					getItemValue={ (item) => item.name_ascii }
-					// menuStyle={ styles.menuStyle }
 					renderMenu={ (items) => {
 						return <div className="menu-style">{ items }</div>
 					}}
@@ -80,7 +117,6 @@ var CountryAutocomplete = React.createClass({
 					wrapperProps={{
 						className: 'MASAS-textbox--wrapper wrapper-style'
 					}}
-					// wrapperStyle={ styles.wrapperStyle }
 					onSelect={ (value, item) => {
 						this.setState({ value: item.display_name, cities: [ item ]})
 						this.props.onChange(item.url)
@@ -98,9 +134,17 @@ var CountryAutocomplete = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CountryAutocomplete)
+CountryAutocompleteSmart.propTypes = smartPropTypes
+CountryAutocompleteSmart.defaultProps = smartDefaultProps
+
+const CountryAutocomplete = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CountryAutocompleteSmart)
+
+export {
+	CountryAutocomplete,
+}
+

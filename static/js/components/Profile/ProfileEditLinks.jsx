@@ -1,63 +1,105 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEditLinks.jsx")
+import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'
+var { Textbox } = require('../UI/UI.jsx')
 
-var { Textbox } = require("../UI/UI.jsx")
+/**
+ * Redux container
+ */
 
-var ProfileEditLinks = React.createClass({
-	propTypes: {
-		textboxValues: React.PropTypes.object,
-		updateTextboxValues: React.PropTypes.func,
-		show: React.PropTypes.bool.isRequired,		// should comp be shown
-	},
+const reduxStatePropTypes = {
+	textboxValues: PropTypes.object,
+	userData: PropTypes.object,
+}
 
-	componentWillMount: function() {
+const mapStateToProps = function(state) {
+	return {
+		textboxValues: state.profileReducer.textboxValues,
+		userData: state.appReducer.userData,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updateTextboxValues: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTextboxValues: textboxValues => dispatch(updateEditProfileTextboxValues(textboxValues)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	show: PropTypes.bool.isRequired,		// should comp be shown
+}
+
+const smartDefaultProps = {
+}
+
+class ProfileEditLinksSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.updateLink1 = this.updateLink1.bind(this)
+		this.updateLink2 = this.updateLink2.bind(this)
+		this.updateLink3 = this.updateLink3.bind(this)
+		this.updateLink4 = this.updateLink4.bind(this)
+    }
+
+	componentWillMount() {
 		if(this.props.show)
 			this.props.userData.link_set.map(({ link }) => {
 				// using set timeout to give time to update app state after each map iteration
 				window.setTimeout(() => {
-					if(link.includes("soundcloud.com"))
+					if(link.includes('soundcloud.com'))
 						this.updateLink1(link)
 
-					if(link.includes("twitter.com"))
+					if(link.includes('twitter.com'))
 						this.updateLink2(link)
 
-					if(link.includes(".") && !(link.includes("soundcloud.com")) && !(link.includes("facebook.com"))&& !(link.includes("twitter.com")))
+					if(link.includes('.') && !(link.includes('soundcloud.com')) && !(link.includes('facebook.com'))&& !(link.includes('twitter.com')))
 						this.updateLink3(link)
 
-					if(link.includes("facebook.com"))
+					if(link.includes('facebook.com'))
 						this.updateLink4(link)
 				},0)
 			})
-	},
+	}
 
-	updateLink1: function(url) {
+	updateLink1(url) {
 		var link_set = [...this.props.textboxValues.link_set]
 		link_set[0] = url
 		this.props.updateTextboxValues({ link_set })
-	},
+	}
 
-	updateLink2: function(url) {
+	updateLink2(url) {
 		var link_set = [...this.props.textboxValues.link_set]
 		link_set[1] = url
 		this.props.updateTextboxValues({ link_set })
-	},
+	}
 
-	updateLink3: function(url) {
+	updateLink3(url) {
 		var link_set = [...this.props.textboxValues.link_set]
 		link_set[2] = url
 		this.props.updateTextboxValues({ link_set })
-	},
+	}
 
-	updateLink4: function(url) {
+	updateLink4(url) {
 		var link_set = [...this.props.textboxValues.link_set]
 		link_set[3] = url
 		this.props.updateTextboxValues({ link_set })
-	},
+	}
 
-	render: function() {
+	render() {
 		if(this.props.show)
 			return (
 				<div className="links-edit--wrapper">
@@ -82,9 +124,16 @@ var ProfileEditLinks = React.createClass({
 		else
 			return <div></div>
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ProfileEditLinks)
+ProfileEditLinksSmart.propTypes = smartPropTypes
+ProfileEditLinksSmart.defaultProps = smartDefaultProps
+
+const ProfileEditLinks = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProfileEditLinksSmart)
+
+export {
+	ProfileEditLinks,
+}

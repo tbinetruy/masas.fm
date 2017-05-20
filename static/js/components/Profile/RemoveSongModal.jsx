@@ -1,48 +1,75 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
-
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/RemoveSongModal.jsx")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
 const { updateNotificationBar, updateProfileInfo } = require('../../MASAS_functions.jsx')
-var { Button } = require("../UI/UI.jsx")
+const { Button } = require('../UI/UI.jsx')
 
-// var Template = (props) => {
 
-// }
+/**
+ * Redux container
+ */
 
-var RemoveSongModal = React.createClass({
-	propTypes: {
-		MASAS_info: React.PropTypes.object,
-		SC_info: React.PropTypes.object,
-		toggleModal: React.PropTypes.func,
-	},
+const reduxStatePropTypes = {
+	MASAS_info: PropTypes.object,
+}
 
-	componentWillMount: function() {
-		
-	},
+const mapStateToProps = function(state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+	}
+}
 
-	removeSong: function() {
-		var header = "Bearer " + this.props.MASASuser
+const reduxDispatchPropTypes = {
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	SC_info: PropTypes.object,
+	toggleModal: PropTypes.func,
+}
+
+const smartDefaultProps = {
+}
+
+class RemoveSongModalSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	removeSong() {
+		var header = 'Bearer ' + this.props.MASASuser
 
 		$.ajax({
 			type: 'DELETE',
 			url: this.props.MASAS_info.url,
 			headers: {
-				"Authorization": header,
+				'Authorization': header,
 			},
 			success: (r) => {
 				this.props.toggleModal()
-				updateNotificationBar("Song deleted")
+				updateNotificationBar('Song deleted')
 				updateProfileInfo()
 			},
 			error: (e) => {
-				updateNotificationBar("Error")
+				updateNotificationBar('Error')
 			}
 		})
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="profile-modal--wrapper">
 				<img src="/static/img/MASAS_icon_trash.svg" alt="icon" />
@@ -51,7 +78,7 @@ var RemoveSongModal = React.createClass({
 						Do you really want to remove <strong className="no-margin-bottom">{ this.props.SC_info.title }</strong>
 					</h2>
 					<div className="buttons">
-						<Button 
+						<Button
 							isBigButton={ false }
 							isSecondaryAction={ false }
 							className="cancel-button"
@@ -70,8 +97,16 @@ var RemoveSongModal = React.createClass({
 			</div>
 		)
 	}
-})
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(RemoveSongModal)
+}
+
+RemoveSongModalSmart.propTypes = smartPropTypes
+RemoveSongModalSmart.defaultProps = smartDefaultProps
+
+const RemoveSongModal = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(RemoveSongModalSmart)
+
+export {
+	RemoveSongModal,
+}

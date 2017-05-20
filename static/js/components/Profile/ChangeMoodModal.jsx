@@ -1,55 +1,95 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+/**
+ * patching request needs to be moved to a redux action creator (thunk)
+ * patching url hard coded to dev url. wtf ??
+ * updateprofileinfo is not a function ; call redux thunk action creator
+ * lose jquery dependency
+ */
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ChangeMoodModal.jsx")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import {
+	updateSongMoodModalValue,
+} from '../../reducers/actions/Profile.js'
 
-var { getCookie, updateNotificationBar, updateProfileInfo } = require("../../MASAS_functions.jsx")
-var { TimePicker, Button } = require("../UI/UI.jsx")
+var { getCookie, updateNotificationBar, updateProfileInfo } = require('../../MASAS_functions.jsx')
+var { TimePicker, Button } = require('../UI/UI.jsx')
 
-// var Template = (props) => {
+/**
+ * Redux container
+ */
 
-// }
+const reduxStatePropTypes = {
+	MASASuser: PropTypes.string,
+	moodValue: PropTypes.number,
+}
 
-var ChangeMoodModal = React.createClass({
-	propTypes: {
-		MASAS_info: React.PropTypes.object,
-		SC_info: React.PropTypes.object,
-		toggleModal: React.PropTypes.func,
-		moodValue: React.PropTypes.number,
-		updateMoodValue: React.PropTypes.func,
-	},
+const mapStateToProps = function(state) {
+	return {
+		moodValue: state.profileReducer.changeSongMoodValue,
+		MASASuser: state.appReducer.MASASuser,
+	}
+}
 
-	componentWillMount: function() {
-		
-	},
+const reduxDispatchPropTypes = {
+	updateMoodValue: PropTypes.func,
+}
 
-	changeMood: function() {
-		var header = "Bearer " + this.props.MASASuser
-		var csrftoken = getCookie("csrftoken")
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateMoodValue: (discoverNumber) => dispatch(updateSongMoodModalValue(discoverNumber)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	MASAS_info: PropTypes.object,
+	SC_info: PropTypes.object,
+	toggleModal: PropTypes.func,
+}
+
+const smartDefaultProps = {
+}
+
+class ChangeMoodModalSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.changeMood = this.changeMood.bind(this)
+    }
+
+	changeMood() {
+		var header = 'Bearer ' + this.props.MASASuser
+		var csrftoken = getCookie('csrftoken')
 
 		$.ajax({
 			type: 'PATCH',
 			url: this.props.MASAS_info.url,
 			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken
+				'Authorization': header,
+				'X-CSRFToken': csrftoken
 			},
 			data: {
-				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.moodValue + "/",
+				timeInterval: 'http://localhost:8000/api/time-intervals/' + this.props.moodValue + '/',
 			},
 			success: (r) => {
 				this.props.toggleModal()
-				updateNotificationBar("Song updated")
+				updateNotificationBar('Song updated')
 				updateProfileInfo()
 			},
 			error: (e) => {
-				updateNotificationBar("Error")
+				updateNotificationBar('Error')
 			}
 		})
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="profile-modal--wrapper">
 				<div className="song-info--wrapper">
@@ -58,7 +98,7 @@ var ChangeMoodModal = React.createClass({
 							this.props.SC_info.artwork_url ?
 								<img src={ this.props.SC_info.artwork_url } alt="artwork" />
 							:
-								""
+								''
 						}
 					</div>
 					<div className="song-title">
@@ -90,9 +130,16 @@ var ChangeMoodModal = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ChangeMoodModal)
+ChangeMoodModalSmart.propTypes = smartPropTypes
+ChangeMoodModalSmart.defaultProps = smartDefaultProps
+
+const ChangeMoodModal = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ChangeMoodModalSmart)
+
+export {
+	ChangeMoodModal,
+}

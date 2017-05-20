@@ -1,77 +1,118 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/CreateProfile.jsx")
+import { consts as MASAS_consts, updateUserStep } from '../../MASAS_functions.jsx'
+import { ProfileEdit } from './ProfileEdit.jsx'
+import { saveProfile } from '../../reducers/actions/Profile.js'
+import {
+	setEditingProfile,
+	updateProfilePicture,
+} from '../../reducers/actions/Login.js'
+import {
+	closeAndEmptyMainModal,
+	updatePageTitle,
+} from '../../reducers/actions/App.js'
+var { Button } = require('../UI/UI.jsx')
+var { getCookie } = require('../../MASAS_functions.jsx')
 
-import { updateUserStep, consts as MASAS_consts } from "../../MASAS_functions.jsx"
+/**
+ * Redux container
+ */
 
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-var { Button } = require("../UI/UI.jsx")
-// var { browserHistory } = require('react-router')
+const reduxStatePropTypes = {
+	pageTitle: PropTypes.string,
+	userData: PropTypes.object,
+	userToken: PropTypes.string,
+}
 
-import ProfileEdit from "./ProfileEdit.jsx"
-var { getCookie } = require("../../MASAS_functions.jsx")
+const mapStateToProps = function(state) {
+	return {
+		userToken: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+		pageTitle: state.appReducer.pageTitle,
+	}
+}
 
-var CreateProfile = React.createClass({
-	propTypes: {
-		userToken: React.PropTypes.string,
-		userData: React.PropTypes.object,
-		pageTitle: React.PropTypes.string,
+const reduxDispatchPropTypes = {
+	closeModal: PropTypes.func,
+	saveProfile: PropTypes.func,
+	setEditingProfile: PropTypes.func,
+	updateProfilePicture: PropTypes.func,
+	updateTitle: PropTypes.func,
+}
 
-		saveProfile: React.PropTypes.func,
-		closeModal: React.PropTypes.func,
-		updateProfilePicture: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-		setEditingProfile: React.PropTypes.func,
-	},
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType, backArrowFunc) => dispatch(updatePageTitle(title, pageType, backArrowFunc)),
+		saveProfile: (getCookie, callbackSuccess, callbackError = () => {}) => dispatch(saveProfile(getCookie, callbackSuccess, callbackError)),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
+		updateProfilePicture: isDefaultPicture => dispatch(updateProfilePicture(isDefaultPicture)),
+		setEditingProfile: isEditingProfile => dispatch(setEditingProfile(isEditingProfile)),
+	}
+}
 
-	getInitialState: function() {
-		return {
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class CreateProfileSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.state = {
 			avatar: this.getDefaultAvatar(),
 		}
-	},
 
-	componentDidMount: function() {
+		this.getDefaultAvatar = this.getDefaultAvatar.bind(this)
+		this.updateDefaultAvatar = this.updateDefaultAvatar.bind(this)
+		this.saveProfile = this.saveProfile.bine(this)
+    }
+
+	componentDidMount() {
 		this.props.updateTitle('My Profile')		// 0 = menu icon; 1 = arrow back
-	},
+	}
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		// close edit profile form at unmount
 		this.props.setEditingProfile(false)
-	},
+	}
 
-	getDefaultAvatar: function() {
-		const avatarUrlRoot = window.location.origin + "/static/img/avatars/"
-		const avatarUrlSuffix = ".svg"
+	getDefaultAvatar() {
+		const avatarUrlRoot = window.location.origin + '/static/img/avatars/'
+		const avatarUrlSuffix = '.svg'
 		let randomAvatar = Math.floor(Math.random() * 6)
 
 		return avatarUrlRoot + randomAvatar + avatarUrlSuffix
-	},
+	}
 
 	// recursive so it always returns new avatar
-	updateDefaultAvatar: function() {
+	updateDefaultAvatar() {
 		const avatar = this.getDefaultAvatar()
 
 		if(avatar === this.state.avatar)
 			this.updateDefaultAvatar()
 		else
 			this.setState({ avatar })
-	},
+	}
 
-	saveProfile: function() {
+	saveProfile() {
 		this.props.saveProfile(getCookie, this.props.closeModal)
 
 		this.props.updateProfilePicture(this.state.avatar)
 
 		updateUserStep(this.props.userData, this.props.userToken, MASAS_consts.userSteps.HAS_CREATED_PROFILE)
-	},
+	}
 
-	updateUserStep: function() {
-		// not in redux because does not affect redux state
-
-	},
-
-	render: function() {
+	render() {
 		return (
 			<div className="create-profile--wrapper">
 				<h1 className="page-title">
@@ -97,9 +138,16 @@ var CreateProfile = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CreateProfile)
+CreateProfileSmart.propTypes = smartPropTypes
+CreateProfileSmart.defaultProps = smartDefaultProps
+
+const CreateProfile = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CreateProfileSmart)
+
+export {
+	CreateProfile,
+}

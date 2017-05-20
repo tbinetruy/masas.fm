@@ -1,55 +1,95 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEdit.jsx")
+var { Textbox } = require('../UI/UI.jsx')
+import { ProfileEditLinks } from './ProfileEditLinks.jsx'
+import { CountryAutocomplete } from './CountryAutocomplete.jsx'
+import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'
 
-var { Textbox } = require("../UI/UI.jsx")
-var ProfileEditLinks = require("./ProfileEditLinks.jsx")
-var CountryAutocomplete = require("./CountryAutocomplete.jsx")
+/**
+ * Redux container
+ */
 
-var ProfileEdit = React.createClass({
-	propTypes: {
-		textboxValues: React.PropTypes.object,
-		userData: React.PropTypes.object,
-		show: React.PropTypes.bool.isRequired,		// should comp be shown
+const reduxStatePropTypes = {
+	textboxValues: React.PropTypes.object,
+	userData: React.PropTypes.object,
+}
 
-		updateTextboxValues: React.PropTypes.func,
-	},
+const mapStateToProps = function(state) {
+	return {
+		textboxValues: state.profileReducer.textboxValues,
+		userData: state.appReducer.userData,
+	}
+}
 
-	componentDidMount: function() {
+const reduxDispatchPropTypes = {
+	updateTextboxValues: React.PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTextboxValues: textboxValues => dispatch(updateEditProfileTextboxValues(textboxValues))
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	show: React.PropTypes.bool.isRequired,		// should comp be shown
+}
+
+const smartDefaultProps = {
+}
+
+class ProfileEditSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.updateName = this.updateName.bind(this)
+		this.updateCity = this.updateCity.bind(this)
+		this.updateOccupation = this.updateOccupation.bind(this)
+    }
+
+	componentDidMount() {
 		if(this.props.userData.city !== null)
 			this.props.updateTextboxValues({ city: this.props.userData.city.url })
 
-		if(this.props.userData.name !== "")
+		if(this.props.userData.name !== '')
 			this.props.updateTextboxValues({ name: this.props.userData.name })
 
-		if(this.props.userData.occupation !== "")
+		if(this.props.userData.occupation !== '')
 			this.props.updateTextboxValues({ occupation: this.props.userData.occupation })
-	},
+	}
 
-	updateName: function(name) {
+	updateName(name) {
 		this.props.updateTextboxValues({ name })
-	},
+	}
 
-	updateCity: function(city) {
+	updateCity(city) {
 		this.props.updateTextboxValues({ city })
-	},
+	}
 
-	updateOccupation: function(occupation) {
+	updateOccupation(occupation) {
 		this.props.updateTextboxValues({ occupation })
-	},
+	}
 
-	render: function() {
+	render() {
 		let {
 			name,
 			occupation
 		} = this.props.textboxValues
 
 		if(name === null)
-			name = ""
+			name = ''
 
 		if(occupation === null)
-			occupation = ""
+			occupation = ''
 
 		if(this.props.show)
 			return (
@@ -62,7 +102,7 @@ var ProfileEdit = React.createClass({
 							isRequired={ true }>
 							Stage Name
 							</Textbox>
-						<CountryAutocomplete onChange={ this.updateCity }/>
+						<CountryAutocomplete onChange={ this.updateCity } />
 						<Textbox onChange={ this.updateOccupation } value={ occupation } id="occupation">Occupation</Textbox>
 					</div>
 					<div className="links-info">
@@ -73,9 +113,16 @@ var ProfileEdit = React.createClass({
 		else
 			return <div></div>
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ProfileEdit)
+ProfileEditSmart.propTypes = smartPropTypes
+ProfileEditSmart.defaultProps = smartDefaultProps
+
+const ProfileEdit = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProfileEditSmart)
+
+export {
+	ProfileEdit,
+}

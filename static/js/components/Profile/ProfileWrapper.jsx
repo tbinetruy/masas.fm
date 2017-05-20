@@ -1,17 +1,52 @@
-var React = require("react")
+/**
+ * uses create class because of use of mixin
+ */
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileWrapper.jsx")
+import React, { PropTypes, createClass } from 'react'
+import { connect } from 'react-redux'
 
-import { MobileBlurBackground } from "../MASAS_mixins.jsx"
+import { MobileBlurBackground } from '../MASAS_mixins.jsx'
 
-var ProfileWrapper = React.createClass({
+
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	title: PropTypes.string,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		title: state.appReducer.pageTitle,
+	}
+}
+
+const reduxDispatchPropTypes = {
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	children: PropTypes.node,
+}
+
+var ProfileWrapperSmart = createClass({
 	mixins: [ MobileBlurBackground ],
 
-	propTypes: {
-		title: React.PropTypes.string,
-		children: React.PropTypes.node,
-	},
+	propTypes: smartPropTypes,
 
 	render: function() {
 		var marginHeight = '4rem'
@@ -19,7 +54,7 @@ var ProfileWrapper = React.createClass({
 			minHeight:  marginHeight,
 			maxHeight: marginHeight
 		}
-		
+
 		return (
 			<div className="app-body body--wrapper" id="app-body--profile">
 				<div className="row row-display-none-sm no-margin" style={ marginStyle }>
@@ -29,7 +64,7 @@ var ProfileWrapper = React.createClass({
 					<div className="col-md-8 profile-header-desktop page-title--wrapper">
 						<div className="box page-title">{ this.props.title }</div>
 						<hr />
-						
+
 					</div>
 					<div className="col-md-2">
 						<div className="box"></div>
@@ -60,7 +95,11 @@ var ProfileWrapper = React.createClass({
 })
 
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ProfileWrapper)
+const ProfileWrapper = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProfileWrapperSmart)
+
+export {
+	ProfileWrapper,
+}

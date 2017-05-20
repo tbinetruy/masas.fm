@@ -1,54 +1,119 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Profile.jsx")
+import { ProfileWrapper } from './ProfileWrapper.jsx'
+import { ProfileDumb } from './ProfileDumb.jsx'
 
-var ProfileWrapper = require("./ProfileWrapper.jsx")
-var ProfileDumb = require("./ProfileDumb.jsx")
+var { getCookie, isObjectEmpty } = require('../../MASAS_functions.jsx')
 
-var { getCookie, isObjectEmpty } = require("../../MASAS_functions.jsx")
+import {
+	getPublicProfileInfo,
+	getSCinfo,
+	saveProfile,
+	toggleEditingProfile,
+	updateProfileBackArrowFunc,
+	updatePublicProfileInfo,
+	updateUserSCSongs
+} from '../../reducers/actions/Profile.js'
+
+import { updatePageTitle } from '../../reducers/actions/App.js'
 
 
-var Profile = React.createClass({
-	propTypes: {
-		isEditingProfile: React.PropTypes.bool,
-		publicProfileInfo: React.PropTypes.object,
-		route: React.PropTypes.object,
-		textboxValues: React.PropTypes.object,
-		userSCSongs: React.PropTypes.array,
-		userData: React.PropTypes.object,
-		userToken: React.PropTypes.string,
-		routeParams: React.PropTypes.object,
+/**
+ * Redux container
+ */
 
-		backArrowFunc: React.PropTypes.func,
-		resetBackArrowFunc: React.PropTypes.func,
-		getPublicProfileInfo: React.PropTypes.func,
-		toggleEditingProfile: React.PropTypes.func,
-		updatePublicProfileInfo: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-		updateUserSCSongs: React.PropTypes.func,
-		getSCinfo: React.PropTypes.func,
-		saveProfile: React.PropTypes.func
-	},
+const reduxStatePropTypes = {
+	isEditingProfile: PropTypes.bool,
+	publicProfileInfo: PropTypes.object,
+	textboxValues: PropTypes.object,
+	userData: PropTypes.object,
+	userSCSongs: PropTypes.array,
+	userToken: PropTypes.string,
+	backArrowFunc: PropTypes.func,
+}
 
-	componentWillMount: function() {
+const mapStateToProps = function(state) {
+	return {
+		userToken: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+		isEditingProfile: state.profileReducer.isEditingProfile,
+		textboxValues: state.profileReducer.textboxValues,
+		publicProfileInfo: state.profileReducer.publicProfileInfo,
+		userSCSongs: state.profileReducer.userSCSongs,
+		backArrowFunc: state.profileReducer.backArrowFunc,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	getPublicProfileInfo: PropTypes.func,
+	getSCinfo: PropTypes.func,
+	resetBackArrowFunc: PropTypes.func,
+	saveProfile: PropTypes.func,
+	toggleEditingProfile: PropTypes.func,
+	updatePublicProfileInfo: PropTypes.func,
+	updateTitle: PropTypes.func,
+	updateUserSCSongs: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType, backArrowFunc) => dispatch(updatePageTitle(title, pageType, backArrowFunc)),
+		toggleEditingProfile: () => dispatch(toggleEditingProfile()),
+		updatePublicProfileInfo: publicProfileInfo => dispatch(updatePublicProfileInfo(publicProfileInfo)),
+		updateUserSCSongs: userSCSongs => dispatch(updateUserSCSongs(userSCSongs)),
+		getPublicProfileInfo: (userPk) => dispatch(getPublicProfileInfo(userPk)),
+		getSCinfo: () => dispatch(getSCinfo()),
+		saveProfile: (getCookie) => dispatch(saveProfile(getCookie)),
+		resetBackArrowFunc: () => dispatch(updateProfileBackArrowFunc(null)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	route: PropTypes.object,
+	routeParams: PropTypes.object,
+}
+
+const smartDefaultProps = {
+}
+
+class ProfileSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.updateTitle = this.updateTitle.bind(this)
+		this.getPublicProfileInfo = this.getPublicProfileInfo.bind(this)
+		this.updatePageTitle = this.updatePageTitle.bind(this)
+		this.getSCinfo = this.getSCinfo.bind(this)
+		this.saveProfile = this.saveProfile.bind(this)
+    }
+
+	componentWillMount() {
 		this.updateTitle('My Profile')		// 0 = menu icon; 1 = arrow back
 
 		this.getSCinfo()
 
 		this.getPublicProfileInfo()
-	},
+	}
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		if(Object.keys(this.props.publicProfileInfo).length !== 0)
 			this.props.updatePublicProfileInfo({})
 
 		// reset back arrow func
 		this.props.resetBackArrowFunc(null)
-	},
+	}
 
 	// componentWillReceiveProps: function(nextProps, nextState) {
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps(nextProps) {
 		if(nextProps.route.publicProfile !== this.props.route.publicProfile) {
 			if(nextProps.route.publicProfile)
 				this.getPublicProfileInfo(nextProps)
@@ -56,52 +121,53 @@ var Profile = React.createClass({
 				this.props.updatePublicProfileInfo({})
 			window.setTimeout(() => this.getSCinfo(), 0)
 		}
-	},
+	}
 
-	updateTitle: function(title) {
-		if(this.props.backArrowFunc)
-			this.props.updateTitle(title, 1, this.props.backArrowFunc)
-		else
-			this.props.updateTitle(title, 0)
-	},
-
-	getPublicProfileInfo: function(props = null) {
-		if(props === null)
-			props = this.props
-
-		if(typeof(props.routeParams.username) !== "undefined")
-			this.props.getPublicProfileInfo(props.routeParams.username)
-	},
-
-	updatePageTitle: function() {
-		if(this.isPublicProfile) {
-			if(!isObjectEmpty(this.props.publicProfileInfo)) {
-				var titleStr = this.props.publicProfileInfo.name ? this.props.publicProfileInfo.name : this.props.publicProfileInfo.username
-				this.updateTitle(titleStr + "'s Profile")
-			}
-		} else
-			this.updateTitle("My Profile")
-	},
-
-	getSCinfo: function() {
-		this.props.getSCinfo()
-	},
-
-	componentDidUpdate: function(prevProps) {
+	componentDidUpdate(prevProps) {
 		if(JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs))
 			this.getSCinfo()
 
 		this.updatePageTitle()
-	},
+	}
 
-	saveProfile: function() {
+	updateTitle(title) {
+		if(this.props.backArrowFunc)
+			this.props.updateTitle(title, 1, this.props.backArrowFunc)
+		else
+			this.props.updateTitle(title, 0)
+	}
+
+	getPublicProfileInfo(props = null) {
+		if(props === null)
+			props = this.props
+
+		if(typeof(props.routeParams.username) !== 'undefined')
+			this.props.getPublicProfileInfo(props.routeParams.username)
+	}
+
+	updatePageTitle() {
+		if(this.isPublicProfile) {
+			if(!isObjectEmpty(this.props.publicProfileInfo)) {
+				var titleStr = this.props.publicProfileInfo.name ? this.props.publicProfileInfo.name : this.props.publicProfileInfo.username
+				this.updateTitle(titleStr + '\'s Profile')
+			}
+		} else
+			this.updateTitle('My Profile')
+	}
+
+	getSCinfo() {
+		this.props.getSCinfo()
+	}
+
+
+	saveProfile() {
 		this.props.saveProfile(getCookie)
-	},
+	}
 
-	render: function() {
+	render() {
 		var showProfile = false
 		var userData = {}
-		this.isPublicProfile = typeof(this.props.routeParams.username) !== "undefined"
+		this.isPublicProfile = typeof(this.props.routeParams.username) !== 'undefined'
 		var { isPublicProfile } = this
 
 		if(isPublicProfile) {
@@ -111,29 +177,36 @@ var Profile = React.createClass({
 			showProfile = !isObjectEmpty(this.props.userData)
 			userData = this.props.userData
 
-			if(this.props.userToken === "")
+			if(this.props.userToken === '')
 				showProfile = false
 		}
 
 		if(showProfile) {
-			return <ProfileDumb 
+			return <ProfileDumb
 				userData={ userData }
 				isPublicProfile={ isPublicProfile }
 				isEditingProfile={ this.props.isEditingProfile }
 				userSCSongs={ this.props.userSCSongs }
 				toogleEditingProfile={ this.props.toggleEditingProfile }
-				saveProfile={ this.saveProfile }/>
+				saveProfile={ this.saveProfile } />
 		} else {
 			return (
 				<div style={{display: 'flex', flex: 1}}>
-					<ProfileWrapper/>
+					<ProfileWrapper />
 				</div>
 			)
 		}
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Profile)
+ProfileSmart.propTypes = smartPropTypes
+ProfileSmart.defaultProps = smartDefaultProps
+
+const Profile = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProfileSmart)
+
+export {
+	Profile,
+}
