@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-import {
-	updateUserStep,
-} from '../../reducers/actions/Profile.js'
+import { updateUserStep } from '../../reducers/actions/Profile.js'
 
 /**
  * Redux container

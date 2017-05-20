@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { changeBgState } from '../../reducers/actions/App.js'
 
 // exeptionally import store to retrieve 1 value (read only)
-var { getState } = require('../../reducers/reducers.js')
+import { getState } from '../../reducers/reducers.js'
 import { closeModal } from '../../MASAS_functions.jsx'
 
 /**

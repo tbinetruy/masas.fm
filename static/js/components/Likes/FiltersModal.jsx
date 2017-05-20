@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import {
 	changeModalContent,
-	toogleIsModalOpened
+	toogleIsModalOpened,
 } from '../../reducers/actions/App.js'
 
 import { toogleHashtagFilter } from '../../reducers/actions/Likes.js'

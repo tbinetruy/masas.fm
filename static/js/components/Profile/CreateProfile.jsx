@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { consts as MASAS_consts, updateUserStep } from '../../MASAS_functions.jsx'
+import {
+	consts as MASAS_consts,
+	updateUserStep,
+} from '../../MASAS_functions.jsx'
 import { ProfileEdit } from './ProfileEdit.jsx'
 import { saveProfile } from '../../reducers/actions/Profile.js'
 import {

@@ -6,9 +6,10 @@
 var React = require('react')
 
 var $ = require('jquery')
-//var paper = require("paper")
-
-var { makePromiseCancelable, discoverHashtagNames } = require('../../MASAS_functions.jsx')
+import {
+	discoverHashtagNames,
+	makePromiseCancelable,
+} from '../../MASAS_functions.jsx'
 
 var pixelRatio = () => {
 	return 1 // paper.view.pixelRatio

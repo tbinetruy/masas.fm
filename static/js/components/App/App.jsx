@@ -1,13 +1,11 @@
+var SC = require('soundcloud')
+var Cookie = require('js-cookie')
+
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { AppDumb } from './AppDumb.jsx'
-
-var SC = require('soundcloud')
-var Cookie = require('js-cookie')
-
 import { CreateProfile } from '../Profile/CreateProfile.jsx'
-
 import {
 	changeModalContent,
 	closeAndEmptyMainModal,
@@ -15,13 +13,13 @@ import {
 	setAppFetchingStateFalse,
 	setAppFetchingStateTrue,
 } from '../../reducers/actions/App.js'
-
 import { changeUnsplashArtist } from '../../reducers/actions/Home.js'
 import { loginWithToken } from '../../reducers/actions/login.js'
-import { addRandomSongToHistory as addRandomSongToDiscoverHistory } from '../../reducers/actions/discover.js'
-
 import {
-	addRandomSongToHistory as addRandomSongToPopularHistory
+	addRandomSongToHistory as addRandomSongToDiscoverHistory,
+} from '../../reducers/actions/discover.js'
+import {
+	addRandomSongToHistory as addRandomSongToPopularHistory,
 } from '../../reducers/actions/popular.js'
 
 

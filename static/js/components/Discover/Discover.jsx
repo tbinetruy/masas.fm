@@ -6,8 +6,8 @@ import {
 } from '../UI/UI.jsx'
 
 import {
-	getTimeIntervalFromURL,
 	getDiscoverNumberFromCurrentTime,
+	getTimeIntervalFromURL,
 } from '../../MASAS_functions.jsx'
 
 import { ArtworkLine } from './ArtworkLine.jsx'

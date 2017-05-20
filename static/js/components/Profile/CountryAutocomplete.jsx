@@ -5,7 +5,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-const Autocomplete = require('react-autocomplete')
+import Autocomplete from 'react-autocomplete'
 
 /**
  * Redux container

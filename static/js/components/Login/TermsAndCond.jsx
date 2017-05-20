@@ -1,9 +1,10 @@
+var { acceptTerms } = require('./ajaxCalls.jsx')
+
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { Button } from '../UI/UI.jsx'
 import { Terms } from '../Legals/Terms.jsx'
-var { acceptTerms } = require('./ajaxCalls.jsx')
 
 /**
  * Redux container

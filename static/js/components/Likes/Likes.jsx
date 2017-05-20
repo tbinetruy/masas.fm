@@ -24,7 +24,10 @@ import {
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
 
-import { isSubsequence, timeIntervalURLToString } from '../../MASAS_functions.jsx'
+import {
+	isSubsequence,
+	timeIntervalURLToString
+} from '../../MASAS_functions.jsx'
 
 
 /**

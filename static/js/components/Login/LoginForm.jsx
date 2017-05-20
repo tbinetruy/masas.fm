@@ -1,7 +1,13 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { Body, Button, Link, Password, Textbox } from '../UI/UI.jsx'
+import {
+	Body,
+	Button,
+	Link,
+	Password,
+	Textbox,
+} from '../UI/UI.jsx'
 
 import GoogleLogin from 'react-google-login'
 import { TwitterLoginButton } from './TwitterLoginButton.jsx'

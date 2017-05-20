@@ -15,10 +15,10 @@ import { LegalsHome as Legals } from './components/Legals/LegalsHome.jsx'
 import { Popular } from './components/Popular/Popular.jsx'
 import { Manifesto } from './components/Manifesto/Manifesto.jsx'
 import { Profile } from './components/Profile/Profile.jsx'
-var store = require('./reducers/reducers.js')
+import { UploadSC } from './components/UploadSC/UploadSC.jsx'
+import store from './reducers/reducers.js'
 var SoundcloudCallback = require('./SoundcloudCallback.jsx')
 var TwitterCallback = require('./TwitterCallback.jsx')
-var UploadSC = require('./components/UploadSC/UploadSC.jsx')
 
 
 

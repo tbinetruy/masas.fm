@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { Body, Textbox, Button, Checkbox } from '../UI/UI.jsx'
+import {
+	Body,
+	Textbox,
+	Button,
+	Checkbox
+} from '../UI/UI.jsx'
 
 /**
  * Redux container

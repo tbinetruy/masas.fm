@@ -3,8 +3,14 @@ import { connect } from 'react-redux'
 
 import { ChangeMoodModal } from './ChangeMoodModal.jsx'
 import { RemoveSongModal } from './RemoveSongModal.jsx'
-import { Marquee, RankingInfoIcon } from '../UI/UI.jsx'
-import { isObjectEmpty, timeIntervalURLToString } from '../../MASAS_functions.jsx'
+import {
+	Marquee,
+	RankingInfoIcon,
+} from '../UI/UI.jsx'
+import {
+	isObjectEmpty,
+	timeIntervalURLToString,
+} from '../../MASAS_functions.jsx'
 
 import {
 	loadPlaylist,

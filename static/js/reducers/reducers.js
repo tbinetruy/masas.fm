@@ -47,12 +47,11 @@ const rootReducer = Redux.combineReducers({
 })
 
 
-var store = Redux.createStore(
-		rootReducer,
-		initialState,
-		Redux.compose(
-			Redux.applyMiddleware(thunkMiddleware),
-			window.devToolsExtension ? window.devToolsExtension() : f => f
-			)
-		)
-module.exports = store
+export const store = Redux.createStore(
+	rootReducer,
+	initialState,
+	Redux.compose(
+		Redux.applyMiddleware(thunkMiddleware),
+		window.devToolsExtension ? window.devToolsExtension() : f => f
+	)
+)

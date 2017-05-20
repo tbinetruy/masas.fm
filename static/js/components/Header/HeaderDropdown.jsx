@@ -8,8 +8,10 @@ import {
 	toogleIsModalOpened,
 	updateSplashScreenLoginMessage
 } from '../../reducers/actions/App.js'
-
-import { Button, Link } from '../UI/UI.jsx'
+import {
+	Button,
+	Link,
+} from '../UI/UI.jsx'
 import { browserHistory } from 'react-router'
 import { SplashScreen } from '../App/SplashScreen.jsx'
 

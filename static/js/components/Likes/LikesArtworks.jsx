@@ -3,6 +3,7 @@
  * creates invisible artworks to keep the last line aligned left using flexbox
  */
 
+const { defaultState } = require('../../reducers/Likes.jsx')
 
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -11,7 +12,6 @@ import { changeBgState } from '../../reducers/actions/App.js'
 import { updateNumberLikesShown } from '../../reducers/actions/Likes.js'
 import { NoLikesComponent } from './NoLikesComponent.jsx'
 import { Button } from '../UI/UI.jsx'
-const { defaultState } = require('../../reducers/Likes.jsx')
 const defaultNumRowLikesShown = defaultState.numRowLikesShown
 
 

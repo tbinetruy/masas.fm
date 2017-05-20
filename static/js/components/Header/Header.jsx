@@ -5,7 +5,7 @@ import { Notification } from './Notification.jsx'
 import { HeaderDropdown } from './HeaderDropdown.jsx'
 
 import { getPathList } from '../../MASAS_functions.jsx'
-import {Link } from '../UI/UI.jsx'
+import { Link } from '../UI/UI.jsx'
 
 import {
 	closeAndEmptyMainModal,

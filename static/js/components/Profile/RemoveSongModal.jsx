@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { updateNotificationBar, updateProfileInfo } from '../../MASAS_functions.jsx'
+import {
+	updateNotificationBar,
+	updateProfileInfo,
+} from '../../MASAS_functions.jsx'
 import { Button } from '../UI/UI.jsx'
 
 
