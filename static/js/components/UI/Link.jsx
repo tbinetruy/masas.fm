@@ -1,39 +1,40 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React, { PropTypes } from 'react'
 
-var { browserHistory } = require('react-router')
+import { browserHistory } from 'react-router'
 
-var Link = React.createClass({
-	propTypes: {
-		to: React.PropTypes.string,				// path to forward to
-		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		onClick: React.PropTypes.func,
-	},
+/**
+ * Dumb component
+ */
 
-	getDefaultProps: function() {
-		return {
-			onClick: () => {},
-		}
-	},
+const dumbPropTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,
+	disabled: PropTypes.bool,
+	onClick: PropTypes.func,
+	to: PropTypes.string,				// path to forward to
+}
 
-	componentWillMount: function() {
-	},
+const dumbDefaultProps = {
+	onClick: () => {},
+}
 
-	goToURL: function(path) {
-		browserHistory.push(path)
-	},
+const LinkDumb = props => {
+	const goToURL = (path) => browserHistory.push(path)
 
-	render: function() {
-		return (
-			<span onClick={this.props.onClick}>
-				<span onClick={!this.props.disabled ? this.goToURL.bind(null, this.props.to) : null} 
-					className={"MASAS-link " + (this.props.className ? this.props.className : "") + (this.props.disabled ? " disabled" : "")}>
-					{this.props.children}
-				</span>
+	return (
+		<span onClick={ props.onClick }>
+			<span onClick={ !props.disabled ? goToURL.bind(null, props.to) : null }
+				className={ 'MASAS-link ' + (props.className ? props.className : '') + (props.disabled ? ' disabled' : '') }
+			>
+				{ props.children }
 			</span>
-		)
-	}
-})
+		</span>
+	)
+}
 
-module.exports = Link
+LinkDumb.propTypes = dumbPropTypes
+LinkDumb.defaultProps = dumbDefaultProps
+
+export {
+	LinkDumb as Link,
+}

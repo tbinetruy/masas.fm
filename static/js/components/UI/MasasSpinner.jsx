@@ -1,13 +1,13 @@
-var React = require("react")
+var React = require('react')
 
 var MasasSpinner = React.createClass({
 	propTypes: {
 		progress: React.PropTypes.number,
+		showMASASLogo: React.PropTypes.bool,			// should gif logo after infinity be MASAS (true) or check sign (false)
 		size: React.PropTypes.number,
 		triggerStart: React.PropTypes.number,
-		showMASASLogo: React.PropTypes.bool,			// should gif logo after infinity be MASAS (true) or check sign (false)
 	},
- 
+
 	getDefaultProps: function() {
 		return {
 			showMASASLogo: false,
@@ -27,13 +27,11 @@ var MasasSpinner = React.createClass({
 	componentWillReceiveProps: function( newProps, newState ) {
 		if( newProps.triggerStart != this.props.triggerStart && newProps.triggerStart === 1 )
 			this.restartLoader()
-		if(this.props.progress > newProps.progress)
-			console.log(this.props.progress, newProps.progress)
 	},
 
 	init() {
 		// CODE FOR GENERATING SMOOTH CURVE THROUGH ARRAY OF POINTS [x1,y1,x2,y2,...,xn,yn]
-		if(typeof CanvasRenderingContext2D!=="undefined"){CanvasRenderingContext2D.prototype.curve=function(A,I,m,l){var z,B=[],J,K,E,G,F,H,c,d,e,f,C,D,j,v,s,w,u,n,o,p,q,r=A.length,a=!1,g,h,b=0.25,k=5;I=(typeof I==="number")?I:0.5;if(typeof m==="number"){m=parseInt(m,10);if(m===0){m=-4}a=m<0?!0:!1;b=1/Math.abs(m);if(a===!0){k=(typeof l==="number")?parseInt(l,10):10}if(k<1){k=1}}else{a=!0}z=A.concat();z.unshift(A[1]);z.unshift(A[0]);z.push(A[r-2],A[r-1]);for(j=2;j<r;j+=2){n=z[j];o=z[j+1];p=z[j+2];q=z[j+3];E=(p-z[j-2])*I;G=(z[j+4]-n)*I;F=(q-z[j-1])*I;H=(z[j+5]-o)*I;if(a===!0){g=p-n;h=q-n;m=(Math.max(k,Math.abs(Math.sqrt(g*g+h*h))*b+0.5))|0}for(D=0;D<=m;D++){C=D/m;s=Math.pow(C,2);v=s*C;u=s*3;w=v*2;c=w-u+1;d=u-w;e=v-2*s+C;f=v-s;J=c*n+d*p+e*E+f*G;K=c*o+d*q+e*F+f*H;this.lineTo(J,K)}}return this}}
+		if(typeof CanvasRenderingContext2D!=='undefined'){CanvasRenderingContext2D.prototype.curve=function(A,I,m,l){var z,B=[],J,K,E,G,F,H,c,d,e,f,C,D,j,v,s,w,u,n,o,p,q,r=A.length,a=!1,g,h,b=0.25,k=5;I=(typeof I==='number')?I:0.5;if(typeof m==='number'){m=parseInt(m,10);if(m===0){m=-4}a=m<0?!0:!1;b=1/Math.abs(m);if(a===!0){k=(typeof l==='number')?parseInt(l,10):10}if(k<1){k=1}}else{a=!0}z=A.concat();z.unshift(A[1]);z.unshift(A[0]);z.push(A[r-2],A[r-1]);for(j=2;j<r;j+=2){n=z[j];o=z[j+1];p=z[j+2];q=z[j+3];E=(p-z[j-2])*I;G=(z[j+4]-n)*I;F=(q-z[j-1])*I;H=(z[j+5]-o)*I;if(a===!0){g=p-n;h=q-n;m=(Math.max(k,Math.abs(Math.sqrt(g*g+h*h))*b+0.5))|0}for(D=0;D<=m;D++){C=D/m;s=Math.pow(C,2);v=s*C;u=s*3;w=v*2;c=w-u+1;d=u-w;e=v-2*s+C;f=v-s;J=c*n+d*p+e*E+f*G;K=c*o+d*q+e*F+f*H;this.lineTo(J,K)}}return this}}
 
 		// START LOADER IF NECESSARY
 		if(this.props.triggerStart === 1)
@@ -44,9 +42,9 @@ var MasasSpinner = React.createClass({
 		// PRELOAD GIF
 		var checkGif = new Image()
 		if(this.props.showMASASLogo)
-			checkGif.src = "/static/img/infini_masas.gif"+"?a="+Math.random()
+			checkGif.src = '/static/img/infini_masas.gif'+'?a='+Math.random()
 		else
-			checkGif.src = "/static/img/infini_check.gif"+"?a="+Math.random()	 // randomize source (needed for gif restart)
+			checkGif.src = '/static/img/infini_check.gif'+'?a='+Math.random()	 // randomize source (needed for gif restart)
 
 		// RESET startPt
 		this.setState({'startPt':  0})
@@ -63,7 +61,7 @@ var MasasSpinner = React.createClass({
 			if (!this.isMounted())
 				return
 
-			// GET INFINITY SIGN DOM ELEMENTS 
+			// GET INFINITY SIGN DOM ELEMENTS
 			var path = document.querySelector('#svg-path')
 
 			// CLEAR INTERVAL IF SPINNER WAS UNMOUNTED DURING PROGRESS
@@ -95,37 +93,23 @@ var MasasSpinner = React.createClass({
 
 				// HIDE GIF AFTER ANIMATION
 				var counter = 0
-				// var hideGifTimer = setInterval( () => {
-				//   // do not execute function first time interval is called (at t=0 and not t=1s)
-				//   if( counter > 0) {
-				//     gif.src='';    // change source to force restting the gif
-				//     $('#masas-loader-gif-finished').hide();
-
-				//     clearInterval( hideGifTimer );
-
-				//     // emit event once gif has finished animating 
-				//     uploadEvents.emitEvent('masasLoaderFinished');
-				//   }
-
-				//   counter = counter + 1;
-				// }, 1000);
 
 				// HIDE INF SIGN
 				$('#canvas').hide()
 			}
-		}, 42) 
+		}, 42)
 	},
 
-	draw: function() { 
+	draw: function() {
 
-		var startPt = this.state.startPt // time parameter on parametrized curve;  [0,1]; 
+		var startPt = this.state.startPt // time parameter on parametrized curve;  [0,1];
 		var length = this.props.progress // length of inf sign: [0,1]
 
 		// GET DOM ELEMENTS
 		var path = document.querySelector('#svg-path')
 		var bezierLength = path.getTotalLength()
-		var c=document.querySelector("#canvas")
-		var ctx=c.getContext("2d")
+		var c=document.querySelector('#canvas')
+		var ctx=c.getContext('2d')
 
 		// MAGIC NUMBERS (for translation/scalling)
 		var xTranslation = .1235*this.props.size
@@ -165,13 +149,13 @@ var MasasSpinner = React.createClass({
 		ctx.stroke()
 
 		// CURVE STYLES
-		ctx.strokeStyle = "#FFF"
+		ctx.strokeStyle = '#FFF'
 		ctx.lineWidth = 2*this.props.size/100 // magic scaling number
 		ctx.lineJoin = 'round'
 		ctx.opacity=1
 		ctx.closePath()
 	},
- 
+
 	render() {
 		var translation = 100
 		return (
@@ -182,15 +166,15 @@ var MasasSpinner = React.createClass({
 				</div>
 
 				<div className="Masas-loader-gif" style={{position: 'absolute', left: '50%', right: '50%', transform: 'translate(-50%, -50%)'}}>
-					<img style={{ height: this.props.size + 'px', position: 'absolute', left: '50%', right: '50%', transform: 'translate(-50%, 0%)'}} id="masas-loader-gif-finished"/>
+					<img style={{ height: this.props.size + 'px', position: 'absolute', left: '50%', right: '50%', transform: 'translate(-50%, 0%)'}} id="masas-loader-gif-finished" />
 				</div>
 
 				<svg enableBackground="new 0 0 500 500" id="svg" style={{display:'none', backgroundColor: 'grey', height: this.props.size + 'px', width: this.props.size + 'px'}}>
 					<path   id="svg-path"
-					transform={"translate(0 "+translation+")"}
-					fill="none" 
-					stroke="#4310C1" 
-					strokeWidth="10" 
+					transform={'translate(0 '+translation+')'}
+					fill="none"
+					stroke="#4310C1"
+					strokeWidth="10"
 					strokeDasharray="700 700"
 					startOffset="200"
 					d="M-0.1,36c0-16.2,19.1-36,57-36   c34.4,0,66.1,20,86,36c19.9,16,54.1,36,89,36c40.9,0,56.9-19,57-36c0.1-16-15.9-36-57-36c-34.9,0-70.5,19.3-89,36   C124,53,91,72,56.9,72C19.4,72-0.1,53.3-0.1,36z"
@@ -202,4 +186,6 @@ var MasasSpinner = React.createClass({
 	}
 })
 
-module.exports = MasasSpinner
+export {
+	MasasSpinner,
+}

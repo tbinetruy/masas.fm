@@ -1,77 +1,74 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
 
-var Button = React.createClass({
-	propTypes: {
-		noBorders: React.PropTypes.bool,				// should button have borders
-		className: React.PropTypes.string,				// class names
-		isBigButton: React.PropTypes.bool, 			// is it a big button
-		isSecondaryAction: React.PropTypes.bool,		// is it a secondary button
-		onClick: React.PropTypes.func.isRequired,		// what to do when user clicks on button
-		isDisabled: React.PropTypes.bool,			// is button disabled
-		wrapperStyle: React.PropTypes.object,		// styles associated with button wrapper
-		soundcloud: React.PropTypes.bool,			// is button style for SC login
-		facebook: React.PropTypes.bool, 			// is button style for FB login
-		twitter: React.PropTypes.bool, 			// is button style for Twitterlogin
-		children: React.PropTypes.node,
-	},
+const dumbPropTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,				// class names
+	facebook: PropTypes.bool, 			// is button style for FB login
+	isBigButton: PropTypes.bool, 			// is it a big button
+	isDisabled: PropTypes.bool,			// is button disabled
+	isSecondaryAction: PropTypes.bool,		// is it a secondary button
+	noBorders: PropTypes.bool,				// should button have borders
+	onClick: PropTypes.func.isRequired,		// what to do when user clicks on button
+	soundcloud: PropTypes.bool,			// is it soundcloud themes button
+	twitter: PropTypes.bool, 			// is button style for Twitterlogin
+	wrapperStyle: PropTypes.object,		// styles associated with button wrapper
+}
 
-	componentWillMount: function() {
-	},
+const dumbDefaultProps = {
+	noBorders: false,
+	className: '',
+	isDisabled: false,
+	isSecondaryAction: false,
+	isBigButton: true,
+	wrapperStyle: {},
+	soundcloud: false,
+	facebook: false,
+	twitter: false,
+}
 
-	getDefaultProps: function() {
-		return {
-			noBorders: false,
-			className: "",
-			isDisabled: false,
-			isSecondaryAction: false,
-			isBigButton: true,
-			wrapperStyle: {},
-			soundcloud: false,
-			facebook: false,
-			twitter: false,
+const ButtonDumb = props => (
+	<div
+		className={
+			'MASAS-button '
+			+ (props.isSecondaryAction ? 'secondary-button ' : '')
+			+ (props.className ? (' ' + props.className + ' ') : '')
+			+ (props.isBigButton ? 'MASAS-big-button ' : '')
+			+ (props.noBorders ? ' no-borders ' : '')
+			+ (props.isDisabled ? ' disabled ' : '')
+			+ (props.soundcloud ? ' soundcloud-login-button' : '')
+			+ (props.facebook ? ' facebook-login-button' : '')
+			+ (props.twitter ? ' twitter-login-button' : '')
 		}
-	},
+		onClick={ !props.isDisabled ? props.onClick : ( () => {} ) }
+		style={ props.wrapperStyle }>
+		<div className={'wrapper'}>
+			{
+				props.soundcloud ?
+					<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud login" />
+				:
+					''
+			}
+			{
+				props.facebook ?
+					<img src="/static/img/facebook.svg" className="facebook-icon" alt="facebook login" />
+				:
+					''
+			}
+			{
+				props.twitter ?
+					<img src="/static/img/facebook.svg" alt="twitter login" />
+				:
+					''
+			}
+			{ props.children }
+		</div>
+	</div>
+)
 
-	render: function() {
-		return (
-			<div
-				className={
-					"MASAS-button "
-					+ (this.props.isSecondaryAction ? "secondary-button " : "")
-					+ (this.props.className ? (" " + this.props.className + " ") : "")
-					+ (this.props.isBigButton ? "MASAS-big-button " : "")
-					+ (this.props.noBorders ? " no-borders " : "")
-					+ (this.props.isDisabled ? " disabled " : "")
-					+ (this.props.soundcloud ? " soundcloud-login-button" : "")
-					+ (this.props.facebook ? " facebook-login-button" : "")
-					+ (this.props.twitter ? " twitter-login-button" : "")
-				}
-				onClick={ !this.props.isDisabled ? this.props.onClick : ( () => {} ) }
-				style={ this.props.wrapperStyle }>
-				<div className={"wrapper"}>
-					{
-						this.props.soundcloud ?
-							<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud login" />
-						:
-							""
-					}
-					{
-						this.props.facebook ?
-							<img src="/static/img/facebook.svg" className="facebook-icon" alt="facebook login" />
-						:
-							""
-					}
-					{
-						this.props.twitter ?
-							<img src="/static/img/facebook.svg" alt="twitter login" />
-						:
-							""
-					}
-					{ this.props.children }
-				</div>
-			</div>
-		)
-	}
-})
 
-module.exports = Button
+ButtonDumb.propTypes = dumbPropTypes
+ButtonDumb.defaultProps = dumbDefaultProps
+
+export {
+	ButtonDumb as Button,
+}

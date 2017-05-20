@@ -1,29 +1,58 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/Body.jsx')
+/**
+ * Redux container
+ */
 
-var Body = React.createClass({
-	propTypes: {
-		children: React.PropTypes.node,
-		isModalOpened: React.PropTypes.bool,
-		modalType: React.PropTypes.number,
-		noBackground: React.PropTypes.bool,		// should Body background be dark or transparent
-		title: React.PropTypes.string,
-		wide: React.PropTypes.bool,				// full screen width body
-	},
+const reduxStatePropTypes = {
+	isModalOpened: PropTypes.bool,
+	modalType: PropTypes.number,
+	title: PropTypes.string,
+}
 
-	getDefaultProps: function() {
-		return {
-			noBackground: false,				// show dark background by default
-			wide: false,
-		}
-	},
+const mapStateToProps = function(state) {
+	return {
+		title: state.appReducer.pageTitle,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened,
+	}
+}
 
-	componentWillMount: function() {
-	},
+const reduxDispatchPropTypes = {
 
-	render: function() {
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	children: PropTypes.node,
+	noBackground: PropTypes.bool,		// should Body background be dark or transparent
+	wide: PropTypes.bool,				// full screen width body
+}
+
+const smartDefaultProps = {
+	noBackground: false,				// show dark background by default
+	wide: false,
+}
+
+class BodySmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	render() {
 		var marginHeight = '4.2rem'
 		var marginStyle = {
 			minHeight:  marginHeight,
@@ -76,10 +105,16 @@ var Body = React.createClass({
 				</div>
 			)
 	}
-})
+}
 
+BodySmart.propTypes = smartPropTypes
+BodySmart.defaultProps = smartDefaultProps
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Body)
+const Body = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BodySmart)
+
+export {
+	Body,
+}

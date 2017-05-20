@@ -3,41 +3,38 @@
 // instead, slider value binded 2 ways with inner state var calling this.props.onChange when slider movement is
 // triggered.
 
-var React = require("react")
+var React = require('react')
 
-var $ = require("jquery")
+var $ = require('jquery')
 //var paper = require("paper")
 
-var { makePromiseCancelable, discoverHashtagNames } = require("../../MASAS_functions.jsx")
+var { makePromiseCancelable, discoverHashtagNames } = require('../../MASAS_functions.jsx')
 
 var pixelRatio = () => {
 	return 1 // paper.view.pixelRatio
 }
 
-var TimePicker = React.createClass({
+const TimePicker = React.createClass({
 	cancelablePromise: makePromiseCancelable(new Promise( () => {} )),
 
 	propTypes: {
-		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
-		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
-		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
-		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
+		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
+		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
+		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
+		onFirstSunMove: React.PropTypes.func,				// callback called on first user interaction with the sun
+		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
+		rangePercent: React.PropTypes.number,				// slider value
+		renderForUITip: React.PropTypes.bool,				// slider controlled by mouse.onMove
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number,					// slider value affecting sun position
-		renderForUITip: React.PropTypes.bool,				// slider controlled by mouse.onMove
-		rangePercent: React.PropTypes.number,				// slider value
-		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
+		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
 
-		onFirstSunMove: React.PropTypes.func,				// callback called on first user interaction with the sun
 	},
 
 	getInitialState: function() {
-		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
-		// const rangePercent = this.props.rangePercent
 		return {
 			rangePercent: this.props.rangePercent,		// (number) 0-100, slider value
-			// sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
@@ -52,8 +49,9 @@ var TimePicker = React.createClass({
 			showHashtag: true,
 			sliderValue: -1,
 			renderForUITip: false,
-			canvasId: "timePicker--wrapper",
-			onSliderChange: () => {}
+			canvasId: 'timePicker--wrapper',
+			onSliderChange: () => {},
+			onFirstSunMove: () => {},
 		}
 	},
 
@@ -81,8 +79,8 @@ var TimePicker = React.createClass({
 			// get canvas dimensions from styles
 		var canvasHeight = window.getComputedStyle(canvasWrapper).height
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width
-		canvasHeight = parseInt(canvasHeight.split("p")[0])
-		canvasWidth = parseInt(canvasWidth.split("p")[0])
+		canvasHeight = parseInt(canvasHeight.split('p')[0])
+		canvasWidth = parseInt(canvasWidth.split('p')[0])
 
 			// define sun arc path center and radius (magic numbers used for ajusting curves)
 		var arcRadius = canvasWidth / 1.9
@@ -106,17 +104,17 @@ var TimePicker = React.createClass({
 			var start = polarToCartesian(x, y, radius, endAngle)
 			var end = polarToCartesian(x, y, radius, startAngle)
 
-			var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1"
+			var largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1'
 
 			var d = [
-				"M", start.x, start.y,
-				"A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
-			].join(" ")
+				'M', start.x, start.y,
+				'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y
+			].join(' ')
 
 			return d
 		}
 
-		document.getElementById(this.props.canvasId).setAttribute("d", describeArc(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y, this.state.arcRadius, -70, 70));
+		document.getElementById(this.props.canvasId).setAttribute('d', describeArc(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y, this.state.arcRadius, -70, 70));
 	},
 
 	handleTimePickerChange: function(rangeValue, currentDiscover) {
@@ -210,8 +208,8 @@ var TimePicker = React.createClass({
 		var sunCoords = this.getSunCoords(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 		var top = sunCoords.y - sunIconSize / 2
 		var left = sunCoords.x - sunIconSize / 2
-		var height = sunIconSize + "px"
-		var width = sunIconSize + "px"
+		var height = sunIconSize + 'px'
+		var width = sunIconSize + 'px'
 
 		// styling and positioning sun icon
 		var sunIconStyle
@@ -235,41 +233,41 @@ var TimePicker = React.createClass({
 		}
 
 		return (
-			<div className={ "MASAS-time-picker " + this.props.wrapperClassName} ref="svgWrapper">
+			<div className={ 'MASAS-time-picker ' + this.props.wrapperClassName} ref="svgWrapper">
 				<svg ref="svg" style={{ width: '100%', height: '100%' }}>
 					<path id={this.props.canvasId} fill="none" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="7" strokeOpacity="0.8" />
 				</svg>
 				<div className="timePicker-slider--wrapper">
 					<div style={{
-						position: "relative",
-						width: "100%",
-						height: "100%" }}>
+						position: 'relative',
+						width: '100%',
+						height: '100%' }}>
 						<hr style={{
-							position: "absolute",
+							position: 'absolute',
 							right: 0,
 							left: 0,
-							bottom: "1rem",
-							zIndex: "-2",
-							display: "none",
-						}}/>
+							bottom: '1rem',
+							zIndex: '-2',
+							display: 'none',
+						}} />
 						<img
 							src="/static/img/MASAS_slider_thumb_icon.svg"
 							style={{
-								position: "absolute",
-								bottom: "1rem",
+								position: 'absolute',
+								bottom: '1rem',
 								left: sunIconStyle.left,
-								transform: "translateY(37%)",
-								zIndex: "-1",
-								display: "none"
+								transform: 'translateY(37%)',
+								zIndex: '-1',
+								display: 'none'
 							}}
-							alt="slider thumb icon"/>
+							alt="slider thumb icon" />
 					</div>
 					<div className="timeRange-hashtag">
 						{
 							this.props.showHashtag ?
 								this.getHashtag(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 							:
-								""
+								''
 						}
 					</div>
 				</div>
@@ -279,4 +277,6 @@ var TimePicker = React.createClass({
 	}
 })
 
-module.exports = TimePicker
+export {
+	TimePicker as TimePickerInside,
+}

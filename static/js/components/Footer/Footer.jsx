@@ -22,7 +22,6 @@ import {
 
 import { showPlayerMobile } from '../../reducers/actions/App.js'
 
-var MiniProfileWrapper = require('../Profile/MiniProfileWrapper.jsx')
 var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
 
 /**
@@ -171,8 +170,6 @@ class FooterSmart extends React.Component {
 
 
 				<div className={ 'slider--wrapper ' + (this.props.isPlayerBarOpened ? 'opened' : '') }>
-
-					<MiniProfileWrapper />
 
 					<ProgressBar />
 

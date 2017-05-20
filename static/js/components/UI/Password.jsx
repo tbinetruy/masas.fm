@@ -1,32 +1,37 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React, { PropTypes } from 'react'
 
-var Password = React.createClass({
-	propTypes: {
-		label: React.PropTypes.string,				// textbox label
-		labelError: React.PropTypes.string,			// textbox label when error
-		error: React.PropTypes.bool,				// true = error
-	},
+/**
+ * Dumb component
+ */
 
-	componentWillMount: function() {
-	},
+const dumbPropTypes = {
+		children: PropTypes.node,
+		error: PropTypes.bool,				// true = error
+		id: PropTypes.string,
+		labelError: PropTypes.string,			// textbox label when error
+}
 
-	render: function() {
-		return (
-			<div className="MASAS-password">
-				<div className={"wrapper" + (this.props.error ? " error " : "")}>
-					<label className="MASAS-label" htmlFor={this.props.id}>
-						{ this.props.error ?
-							this.props.labelError 
-							:
-							this.props.children 
-						}
-					</label>
-					<input id={this.props.id} className="MASAS-password-input" type="password" />
-				</div>
-			</div>
-		)
-	}
-})
+const dumbDefaultProps = {
+}
 
-module.exports = Password
+const PasswordDumb = props => (
+	<div className="MASAS-password">
+		<div className={ 'wrapper' + (props.error ? ' error ' : '') }>
+			<label className="MASAS-label" htmlFor={ props.id }>
+				{ props.error ?
+					props.labelError
+					:
+					props.children
+				}
+			</label>
+			<input id={ props.id } className="MASAS-password-input" type="password" />
+		</div>
+	</div>
+)
+
+PasswordDumb.propTypes = dumbPropTypes
+PasswordDumb.defaultProps = dumbDefaultProps
+
+export {
+	PasswordDumb as Password,
+}

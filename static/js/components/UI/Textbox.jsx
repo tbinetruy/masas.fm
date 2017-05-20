@@ -1,63 +1,66 @@
- var React = require("react")
-var ReactDOM = require("react-dom")
-const { dispatch } = require("../../reducers/reducers.js")
-//
-var Textbox = React.createClass({
-	propTypes: {
-		label: React.PropTypes.string,				// textbox label
-		labelError: React.PropTypes.string,			// textbox label when error
-		error: React.PropTypes.bool,				// true = error
-		actionString: React.PropTypes.string, 		// name of action to call on string update 
-		actionParamName: React.PropTypes.string, 	// name of input attribute of action dispatched 
-		id: React.PropTypes.string, 				// name used to display textbox and error UI properly
-		onChange: React.PropTypes.func,			// callback called when input field changes
-		value: React.PropTypes.string,				// value of input field
-		required: React.PropTypes.bool, 			// is field required
-	},
+import React, { PropTypes } from 'react'
 
-	getDefaultProps: function() {
-		return {
-			onChange: () => {},
-			required: false,
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	children: PropTypes.node,
+	error: PropTypes.bool,				// true = error
+	id: PropTypes.string, 				// name used to display textbox and error UI properly
+	isRequired: PropTypes.bool,
+	labelError: PropTypes.string,			// textbox label when error
+	onChange: PropTypes.func,			// callback called when input field changes
+	value: PropTypes.string,				// value of input field
+}
+
+const smartDefaultProps = {
+	onChange: () => {},
+	required: false,
+}
+
+class TextboxSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.state = {
+			input: '',
 		}
-	},
 
-	getInitialState: function() {
-		return {
-			input: "", 
-		}
-	},
+		this.onInputChange = this.onInputChange.bind(this)
+    }
 
-	componentWillMount: function() {
-	},
-
-	componentDidUpdate: function(prevProps, prevState) {
-	},
-
-	onInputChange: function(e) {
+	onInputChange(e) {
 		this.props.onChange(e.target.value)
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="MASAS-textbox">
-				<div className={"MASAS-textbox--wrapper" + (this.props.error ? " error" : "")}>
+				<div className={'MASAS-textbox--wrapper' + (this.props.error ? ' error' : '')}>
 					<input id={this.props.id} value={ this.props.value } onChange={ this.onInputChange } className="MASAS-text-input" type="text" />
-					<label className={ "MASAS-label" + (this.props.isRequired ? " required" : "") } htmlFor={this.props.id}>
-						{ 
+					<label className={ 'MASAS-label' + (this.props.isRequired ? ' required' : '') } htmlFor={this.props.id}>
+						{
 							this.props.children ?
 								this.props.error ?
-									this.props.labelError 
-									:
-									( this.props.children + ( this.props.isRequired ? " *" : "" ) )
+									this.props.labelError
 								:
-									null
+									( this.props.children + ( this.props.isRequired ? ' *' : '' ) )
+							:
+								null
 						}
 					</label>
 				</div>
 			</div>
 		)
 	}
-})
+}
 
-module.exports = Textbox
+
+TextboxSmart.propTypes = smartPropTypes
+TextboxSmart.defaultProps = smartDefaultProps
+
+export {
+	TextboxSmart as Textbox,
+}

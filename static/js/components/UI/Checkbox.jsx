@@ -1,42 +1,53 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React, { PropTypes } from 'react'
 
-var Checkbox = React.createClass({
-	propTypes: {
-		style: React.PropTypes.object,
-		className: React.PropTypes.string,
-		initChecked: React.PropTypes.bool, 				// is it checked on mounting
-		onChange: React.PropTypes.func.isRequired,			// function called on onchange callback
-	},
+/**
+ * Smart component
+ */
 
-	getInitialState: function() {
-		return {
+const smartPropTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,
+	id: PropTypes.string,
+	onChange: PropTypes.func.isRequired,			// function called on onchange callback
+}
+
+const smartDefaultProps = {
+}
+
+class CheckboxSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.state = {
 			isChecked: false,					// (BOOL) is checkbox checked
 		}
-	},
 
-	componentWillMount: function() {
-	},
+		this.handleOnChange = this.handleOnChange.bind(this)
+    }
 
-	handleOnChange: function(e) {
+	handleOnChange(e) {
 		this.setState({ isChecked: !this.state.isChecked })
 		this.props.onChange(!this.state.isChecked)
-	},
+	}
 
-	render: function() {
-		console.log(this.state)
+	render() {
 		return (
-			<div className={ "MASAS-checkbox " + (this.props.className ? this.props.className : "")}>
-				<input 
-					type="checkbox" 
+			<div className={ 'MASAS-checkbox ' + (this.props.className ? this.props.className : '')}>
+				<input
+					type="checkbox"
 					checked={ this.state.isChecked }
 					onChange={ this.handleOnChange }
-					className="input" 
-					id={this.props.id}/>
+					className="input"
+					id={this.props.id} />
 				<label className="label" htmlFor={this.props.id}>{this.props.children}</label>
 			</div>
 		)
 	}
-})
+}
 
-module.exports = Checkbox
+CheckboxSmart.propTypes = smartPropTypes
+CheckboxSmart.defaultProps = smartDefaultProps
+
+export {
+	CheckboxSmart as Checkbox,
+}

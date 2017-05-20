@@ -1,77 +1,97 @@
-// NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
+/**
+ * NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
+ */
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var React = require("react")
-var ReactRedux = require("react-redux")
-
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Modal.jsx")
+import { changeBgState } from '../../reducers/actions/App.js'
 
 // exeptionally import store to retrieve 1 value (read only)
-var { getState } = require("../../reducers/reducers.js")
+var { getState } = require('../../reducers/reducers.js')
+var { closeModal } = require('../../MASAS_functions.jsx')
 
+/**
+ * Redux container
+ */
 
+const reduxStatePropTypes = {
+	backgroundURL: PropTypes.string,
+	pageTitle: PropTypes.string,
+}
 
-var { closeModal } = require("../../MASAS_functions.jsx")
+const mapStateToProps = function(state) {
+	return {
+		backgroundURL: state.homeReducer.backgroundURL,
+		pageTitle: state.appReducer.pageTitle,
+	}
+}
 
-let Modal = React.createClass({
-	propTypes: {
-		isOpened: React.PropTypes.bool,			// is modal shown
-		closeModalFunc: React.PropTypes.func, 		// what to execute when clicking on close modal area (arrow or overlay)
-		type: React.PropTypes.number, 			// what type the modal is
-		children: React.PropTypes.node,
-		backgroundURL: React.PropTypes.string,
-		pageTitle: React.PropTypes.string,
+const reduxDispatchPropTypes = {
+	modalBlurBg: PropTypes.func,
+	modalSaturateBg: PropTypes.func,
+}
 
-		modalBlurBg: React.PropTypes.func,
-		modalSaturateBg: React.PropTypes.func,
-	},
+const mapDispatchToProps = function(dispatch) {
+	return {
+		modalBlurBg: (blur) => dispatch(changeBgState.modalBlur(blur)),
+		modalSaturateBg: (sat) => dispatch(changeBgState.modalSaturate(sat)),
+	}
+}
 
-	getDefaultProps: function() {
-		return {
-			isOpened: false,
-			closeModalFunc: () => {},
-			type: 1,
-		}
-	},
+/**
+ * Smart component
+ */
 
-	componentDidMount: function() {
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
 
-	componentWillUnmount: function() {
-	},
+	children: PropTypes.node,
+	closeModalFunc: PropTypes.func, 		// what to execute when clicking on close modal area (arrow or overlay)
+	isOpened: PropTypes.bool,			// is modal shown
+	type: PropTypes.number, 			// what type the modal is
+}
 
-	componentDidUpdate: function() {
-	},
+const smartDefaultProps = {
+	isOpened: false,
+	closeModalFunc: () => {},
+	type: 1,
+}
 
-	closeModal: function() {
-		getState().appReducer.closeModalFunc()
-		closeModal()
-	},
+class ModalSmart extends React.Component {
+    constructor(props) {
+        super(props)
 
-	componentWillReceiveProps: function(nextProps) {
+		this.closeModal = this.closeModal.bind(this)
+    }
+
+	componentWillReceiveProps(nextProps) {
 		// update background blur on modal appear/dissapear
 		// unless we are on /upload page (it handles background blurs itself)
 		if(nextProps.isOpened === false) {
 			// remove background blur
-			// $('#body--background').removeClass('blurred')
 			this.props.modalBlurBg(false)
 			this.props.modalSaturateBg(false)
 		} else if(nextProps.isOpened === true && nextProps.type === 1) {
 			this.props.modalBlurBg(true)
 			this.props.modalSaturateBg(true)
 			// put background blur on
-			// $('#body--background').addClass('blurred')
 		} else if( nextProps.isOpened === true && (nextProps.type === 2 || nextProps.type === 4)) {
 			this.props.modalBlurBg(true)
 			this.props.modalSaturateBg(false)
-			// $('#body--background').removeClass('saturated')
 		}
-	},
+	}
 
-	render: function() {
+	closeModal() {
+		getState().appReducer.closeModalFunc()
+		closeModal()
+	}
+
+	render() {
 		// default modal (report copyright/spam/delete etc)
 		if(this.props.type === 1)
 			return (
-				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
+				<div className={ 'MASAS-modal' + (this.props.isOpened ? '' : ' closed') } id="MASAS-modal">
 					<div className="modal-overlay" onClick={ this.props.closeModalFunc }>
 
 					</div>
@@ -87,7 +107,7 @@ let Modal = React.createClass({
 		else if(this.props.type === 2)
 			return (
 				<div
-					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
+					className={ 'MASAS-modal type2' + (this.props.isOpened ? '' : ' closed') }
 					id="MASAS-modal"
 					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
 					<div className="modal-type-2--wrapper">
@@ -95,10 +115,6 @@ let Modal = React.createClass({
 							<img src="/static/img/tip-light-bulb.png" alt="light bulb icon" />
 							Tip
 						</div>
-						{/* <div className="close-icon">
-							<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" alt="close modal" />
-							dismiss tips
-						</div> */}
 						<div className="">
 								{ this.props.children }
 						</div>
@@ -109,7 +125,7 @@ let Modal = React.createClass({
 		else if(this.props.type === 4)
 			return (
 				<div
-					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
+					className={ 'MASAS-modal type2' + (this.props.isOpened ? '' : ' closed') }
 					id="MASAS-modal"
 					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
 					<div className="modal-type-4--wrapper">
@@ -120,7 +136,7 @@ let Modal = React.createClass({
 		// splash screen
 		else if(this.props.type === 3)
 			return (
-				<div className={ "MASAS-modal type3" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
+				<div className={ 'MASAS-modal type3' + (this.props.isOpened ? '' : ' closed') } id="MASAS-modal">
 					<div className="modal-type-3--wrapper">
 						{ this.props.children }
 					</div>
@@ -129,11 +145,11 @@ let Modal = React.createClass({
 		// create my profile
 		else if(this.props.type === 5)
 			return (
-				<div className={ "MASAS-modal type5" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
+				<div className={ 'MASAS-modal type5' + (this.props.isOpened ? '' : ' closed') } id="MASAS-modal">
 					<div
 						className="modal-background"
 						style={{
-							backgroundImage: "url(" + this.props.backgroundURL + ")"
+							backgroundImage: 'url(' + this.props.backgroundURL + ')'
 						}}>
 					</div>
 					<div className="modal-type-5--wrapper">
@@ -142,9 +158,17 @@ let Modal = React.createClass({
 				</div>
 			)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Modal)
+
+ModalSmart.propTypes = smartPropTypes
+ModalSmart.defaultProps = smartDefaultProps
+
+const Modal = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ModalSmart)
+
+export {
+	Modal,
+}

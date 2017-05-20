@@ -1,47 +1,31 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React, { PropTypes } from 'react'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/TimePickerInside.jsx")
+import { TimePickerInside } from './TimePickerInside.jsx'
+var NoUISlider = require('react-nouislider')
 
-var TimePickerInside = require("./TimePickerInside.jsx")
-var NoUISlider = require("react-nouislider")
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
 
-// var Template = (props) => {
+/**
+ * Smart component
+ */
 
-// }
+const smartPropTypes = {
+	currentDiscover: PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
+	initialDiscover: PropTypes.number.isRequired, 			// 1-6 starting slider position
+	onFirstSunMove: PropTypes.func,				// called on first user interaction with the sun
+}
 
-var TimePickerWrapper = React.createClass({
-	propTypes: {
-		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
-		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
-		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
-		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
-		canvasId: React.PropTypes.string,					// canvas id used for drawing
-		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
-		sliderValue: React.PropTypes.number,					// slider value affecting sun position
-		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
+const smartDefaultProps = {
+	initialDiscover: 1,
+	currentDiscover: 1,
+	onSliderChange: () => {},
+}
 
-		onFirstSunMove: React.PropTypes.func,				// called on first user interaction with the sun
-	},
+class TimePickerSmart extends React.Component {
+    constructor(props) {
+        super(props)
 
-	getDefaultProps: function() {
-		return {
-			initialDiscover: 1,
-			currentDiscover: 1,
-			onSliderChange: () => {},
-		}
-	},
-
-	componentWillMount: function() {
-	},
-
-	updateCanvas: function(e) {
-		if(this.refs.canvas !== undefined)
-			this.refs.canvas.setState({ rangePercent: parseFloat(e) })
-	},
+		this.updateCanvas = this.updateCanvas.bind(this)
+    }
 
 	shouldComponentUpdate(nextProps, nextState) {
 		// don't rerender if current discover changes
@@ -49,16 +33,21 @@ var TimePickerWrapper = React.createClass({
 			return false
 
 		return true
-	},
+	}
 
-	render: function() {
-		const startValue = (this.props.initialDiscover-0.5)*100/6
+	updateCanvas(e) {
+		if(this.refs.canvas !== undefined)
+			this.refs.canvas.setState({ rangePercent: parseFloat(e) })
+	}
+
+	render() {
+		const startValue = (this.props.initialDiscover - 0.5) * 100 / 6
 
 		return (
 			<div className="time-picker-wrapper-comp">
 				<NoUISlider
 					range={{ min: 0, max: 100}}
-					start={[startValue]}
+					start={ [startValue] }
 					onUpdate={ this.updateCanvas }
 					/>
 				<TimePickerInside
@@ -70,9 +59,11 @@ var TimePickerWrapper = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(TimePickerWrapper)
+TimePickerSmart.propTypes = smartPropTypes
+TimePickerSmart.defaultProps = smartDefaultProps
+
+export {
+	TimePickerSmart as TimePicker,
+}
