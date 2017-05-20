@@ -1,4 +1,4 @@
-var Cookie = require("js-cookie")
+var Cookie = require('js-cookie')
 
 var MASAS_functions = {}
 
@@ -13,7 +13,7 @@ var MASAS_functions = {}
 MASAS_functions.getUserPkFromURL = url => {
 	var str = url
 	str = str.slice(0, str.length-1)
-	str = str.substring(str.lastIndexOf("/")+1,str.length)
+	str = str.substring(str.lastIndexOf('/')+1,str.length)
 
 	return str
 }
@@ -36,12 +36,12 @@ MASAS_functions.background = {
 
 MASAS_functions.discoverHashtagNames = () => {
 	return [
-		"#EarlyMorning",
-		"#LateMorning",
-		"#EarlyAfternoon",
-		"#LateAfternoon",
-		"#EarlyEvening",
-		"#LateEvening"
+		'#EarlyMorning',
+		'#LateMorning',
+		'#EarlyAfternoon',
+		'#LateAfternoon',
+		'#EarlyEvening',
+		'#LateEvening'
 	]
 }
 
@@ -50,20 +50,20 @@ MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
 	const hastagNames = MASAS_functions.discoverHashtagNames()
 
 	switch(switchVar) {
-		case "1":
+		case '1':
 			return hastagNames[0]
-		case "2":
+		case '2':
 			return hastagNames[1]
-		case "3":
+		case '3':
 			return hastagNames[2]
-		case "4":
+		case '4':
 			return hastagNames[3]
-		case "5":
+		case '5':
 			return hastagNames[4]
-		case "6":
+		case '6':
 			return hastagNames[5]
 		default:
-			return ""
+			return ''
 	}
 }
 
@@ -90,19 +90,19 @@ MASAS_functions.makePromiseCancelable = (promise) => {
 }
 
 MASAS_functions.updateAuthCookie = (userToken) => {
-	Cookie.set("MASAS_authToken", userToken)
+	Cookie.set('MASAS_authToken', userToken)
 }
 
 
 // using jQuery
 MASAS_functions.getCookie = (name) => {
 	var cookieValue = null
-	if (document.cookie && document.cookie != "") {
-		var cookies = document.cookie.split(";")
+	if (document.cookie && document.cookie != '') {
+		var cookies = document.cookie.split(';')
 		for (var i = 0; i < cookies.length; i++) {
 			var cookie = $.trim(cookies[i])
 			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) == (name + "=")) {
+			if (cookie.substring(0, name.length + 1) == (name + '=')) {
 				cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
 				break
 			}

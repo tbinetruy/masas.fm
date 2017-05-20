@@ -5,7 +5,7 @@ export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const CHANGE_HOME_PAGE_NUMBER = 'CHANGE_HOME_PAGE_NUMBER'
 export const CHANGE_TIME_PICKER_DEMO = 'CHANGE_TIME_PICKER_DEMO'
 
-const unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
+const unsplashClientID = 'bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa'
 
 export function changeTimePickerDemo(number) {
 	return {
@@ -35,8 +35,8 @@ function updateUnsplashArtist (username, name, url) {
 // get new unsplash artist (get both new unsplash artist and new picture)
 export function changeUnsplashArtist () {
 	return dispatch => {
-		fetch("https://api.unsplash.com/users/masas/likes/?client_id=" + unsplashClientID, {
-			method: "GET",
+		fetch('https://api.unsplash.com/users/masas/likes/?client_id=' + unsplashClientID, {
+			method: 'GET',
 			body: {
 				client_id: unsplashClientID,
 				per_page: 30
@@ -57,7 +57,7 @@ export function changeUnsplashArtist () {
 
 // update background state
 function changeBackground(url) {
-	return { 
+	return {
 		type: CHANGE_BACKGROUND,
 		backgroundURL: url
 	}
@@ -69,7 +69,7 @@ export function getNewBackground() {
 		const state = getState()
 		const { unsplashArtistName } = state.homeReducer
 
-		fetch("https://api.unsplash.com/photos/random/?username=" + unsplashArtistName + "&client_id=" + unsplashClientID)
+		fetch('https://api.unsplash.com/photos/random/?username=' + unsplashArtistName + '&client_id=' + unsplashClientID)
 		.then( r => r.json() )
 		.then( r => {
 			dispatch(changeBackground(r.urls.regular))

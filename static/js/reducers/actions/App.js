@@ -1,7 +1,7 @@
-import { updateNotificationBar } from "./Header.js"
-var Cookie = require("js-cookie")
+import { updateNotificationBar } from './Header.js'
+var Cookie = require('js-cookie')
 
-import { resetTextboxValue } from "./Profile.js"
+import { resetTextboxValue } from './Profile.js'
 
 // to refactor
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
@@ -53,16 +53,16 @@ export const updateSplashScreenLoginMessage = message => {
 }
 
 export const logout = () => dispatch => {
-	Cookie.remove("MASAS_authToken")
+	Cookie.remove('MASAS_authToken')
 
 	// update appReducer state
-	dispatch({type: "LOGOUT"})
+	dispatch({type: 'LOGOUT'})
 
 	// update edit profile state
 	dispatch(resetTextboxValue())
 
 	FB.logout(function(response) {
-		updateNotificationBar("Logged out !")
+		updateNotificationBar('Logged out !')
 	})
 }
 

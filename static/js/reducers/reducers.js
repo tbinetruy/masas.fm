@@ -1,19 +1,19 @@
-var Redux = require("redux")
-import thunkMiddleware from "redux-thunk"
+var Redux = require('redux')
+import thunkMiddleware from 'redux-thunk'
 
-import { appReducer, defaultState as appDefaultState } from "./App.jsx"
-import { headerReducer, defaultState as headerDefaultState } from "./Header.jsx"
-import { bodyReducer, defaultState as bodyDefaultState } from "./Body.jsx"
-import { footerReducer, defaultState as footerDefaultState } from "./Footer.jsx"
-import { loginReducer, defaultState as loginDefaultState } from "./Login.jsx"
-import { homeReducer, defaultState as homeDefaultState } from "./Home.jsx"
-import { uploadSCReducer, defaultState as uploadDefaultState } from "./UploadSC.jsx"
-import { playerReducer, defaultState as playerDefaultState } from "./Player.jsx"
-import { likesReducer, defaultState as likesDefaultState } from "./Likes.jsx"
-import { discoverReducer, defaultState as discoverDefaultState  } from "./Discover.jsx"
-import { legalsReducer, defaultState as legalsDefaultState  } from "./Legals.jsx"
-import { profileReducer, defaultState as profileDefaultState  } from "./Profile.jsx"
-import { popularReducer, defaultState as popularDefaultState  } from "./Popular.jsx"
+import { defaultState as appDefaultState, appReducer } from './App.jsx'
+import { defaultState as headerDefaultState, headerReducer } from './Header.jsx'
+import { defaultState as bodyDefaultState, bodyReducer } from './Body.jsx'
+import { defaultState as footerDefaultState, footerReducer } from './Footer.jsx'
+import { defaultState as loginDefaultState, loginReducer } from './Login.jsx'
+import { defaultState as homeDefaultState, homeReducer } from './Home.jsx'
+import { defaultState as uploadDefaultState, uploadSCReducer } from './UploadSC.jsx'
+import { defaultState as playerDefaultState, playerReducer } from './Player.jsx'
+import { defaultState as likesDefaultState, likesReducer } from './Likes.jsx'
+import { defaultState as discoverDefaultState, discoverReducer  } from './Discover.jsx'
+import { defaultState as legalsDefaultState, legalsReducer  } from './Legals.jsx'
+import { defaultState as profileDefaultState, profileReducer  } from './Profile.jsx'
+import { defaultState as popularDefaultState, popularReducer  } from './Popular.jsx'
 
 const initialState = {
 	headerReducer: headerDefaultState,
@@ -48,7 +48,7 @@ const rootReducer = Redux.combineReducers({
 
 
 var store = Redux.createStore(
-		rootReducer, 
+		rootReducer,
 		initialState,
 		Redux.compose(
 			Redux.applyMiddleware(thunkMiddleware),
