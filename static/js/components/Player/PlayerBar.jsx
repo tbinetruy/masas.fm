@@ -1,73 +1,122 @@
-var React = require('react')
+/**
+ * remove jquery dpeendency
+ */
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/PlayerBar.jsx')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
 var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
 var { Marquee } = require('../UI/UI.jsx')
 
+const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'
+
 import { POPULAR } from '../../reducers/actions/Player.js'
-const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'  // "http://www.xamuel.com/blank-mp3-files/point1sec.mp3" //
+import { LikeButton } from './controls/LikeButton.jsx'
+import { DislikeButton } from './controls/DislikeButton.jsx'
+import { NextButton } from './controls/NextButton.jsx'
+import { PlayButton } from './controls/PlayButton.jsx'
+import { PreviousButton } from './controls/PreviousButton.jsx'
 
 import {
-	LikeButton,
-} from './controls/LikeButton.jsx'
+	pausePlayer,
+	playNewSong,
+	playNewSongFromPlaylist,
+	playPlayer,
+	playRandomSong,
+	resumePlayer,
+	setIsPlayerBuffering,
+} from '../../reducers/actions/Player.js'
 
-import {
-	DislikeButton,
-} from './controls/DislikeButton.jsx'
-
-import {
-	NextButton,
-} from './controls/NextButton.jsx'
-
-import {
-	PlayButton,
-} from './controls/PlayButton.jsx'
-
-import {
-	PreviousButton,
-} from './controls/PreviousButton.jsx'
+import { showPlayerMobile } from '../../reducers/actions/App.js'
 
 
 
-var Player = React.createClass({
-	propTypes: {
-		MASAS_songInfo: React.PropTypes.object,
-		SC_songInfo: React.PropTypes.object,
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	MASAS_songInfo: PropTypes.object,
+	SC_songInfo: PropTypes.object,
+	isPaused: PropTypes.bool,
+	isPlaylistPlaying: PropTypes.bool,
+	playingFromPopular: PropTypes.bool,
+	playlist: PropTypes.array,
+	playlistPosition: PropTypes.number,
+	songPlaying: PropTypes.string,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		songPlaying: state.playerReducer.songPlaying,
+		isPaused: state.playerReducer.isPaused,
+		SC_songInfo: state.playerReducer.SC_songInfo,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		playlist: state.playerReducer.playlist,
+		playlistPosition: state.playerReducer.playlistPosition,
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying,
+		playingFromPopular: state.playerReducer.playingFromPopular,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	dispatch: PropTypes.func,
+	pause: PropTypes.func,
+	play: PropTypes.func,
+	playNewSong: PropTypes.func,
+	playNewSongFromPlaylist: PropTypes.func,
+	playRandomSong: PropTypes.func,
+	resumePlaying: PropTypes.func,
+	setIsPlayerBuffering: PropTypes.func,
+	showPlayerMobile: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		dispatch,
+		play: () => dispatch(playPlayer()),
+		pause: () => dispatch(pausePlayer()),
+		resumePlaying: () => dispatch(resumePlayer()),	// same as this.props.play (see actions/Player.js) Not sure keeping both for historical reasons for now
+		playNewSong: () => dispatch(playNewSong()),
+		playRandomSong: (timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
+		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
+		setIsPlayerBuffering: value => dispatch(setIsPlayerBuffering(value)),
+		showPlayerMobile: choice => dispatch(showPlayerMobile(choice)),
+	}
+}
 
 
-		dispatch: React.PropTypes.func,
-		isPaused: React.PropTypes.bool,
-		isPlayerMobile: React.PropTypes.bool, 			// is UI on mobile player in footer tray
-		isPlaylistPlaying: React.PropTypes.bool,
-		pause: React.PropTypes.func,
-		play: React.PropTypes.func,
-		playNewSong: React.PropTypes.func,
-		playNewSongFromPlaylist: React.PropTypes.func,
-		playRandomSong: React.PropTypes.func,
-		playingFromPopular: React.PropTypes.bool,
-		playlist: React.PropTypes.array,
-		playlistPosition: React.PropTypes.number,
-		resumePlaying: React.PropTypes.func,
-		setIsPlayerBuffering: React.PropTypes.func,
-		showPlayerMobile: React.PropTypes.func,
-		songPlaying: React.PropTypes.string,
-	},
+/**
+ * Smart component
+ */
 
-	componentWillMount: function() {
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
 
-	componentWillUnmount: function() {
+	isPlayerMobile: PropTypes.bool, 			// is UI on mobile player in footer tray
+}
+
+const smartDefaultProps = {
+}
+
+class PlayerSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.renderRadioTime = this.renderRadioTime.bind(this)
+    }
+
+	componentWillUnmount() {
 		$('#jquery_jplayer_1').unbind($.jPlayer.event.ended)
 		$('#jquery_jplayer_1').unbind($.jPlayer.event.play)
 		$('#jquery_jplayer_1').unbind($.jPlayer.event.waiting)
 		$('#jquery_jplayer_1').unbind($.jPlayer.event.stalled)
 		$('#jquery_jplayer_1').unbind($.jPlayer.event.canplay)
 		$('#jquery_jplayer_1').unbind($.jPlayer.event.pause)
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			this.props.resumePlaying()
 
@@ -121,9 +170,9 @@ var Player = React.createClass({
 			// this.props.dispatch({ type: 'PAUSE' })
 			this.props.pause()
 		})
-	},
+	}
 
-	componentWillReceiveProps: function(newProps) {
+	componentWillReceiveProps(newProps) {
 		if( newProps.songPlaying !== null && (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused))
 		{
 			if(newProps.songPlaying !== this.props.songPlaying) {
@@ -136,9 +185,9 @@ var Player = React.createClass({
 			} else
 				this.props.resumePlaying()
 		}
-	},
+	}
 
-	renderRadioTime: function() {
+	renderRadioTime() {
 		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
 		switch(switchVar) {
 			case '1':
@@ -156,10 +205,10 @@ var Player = React.createClass({
 			default:
 				return
 		}
-	},
+	}
 
 
-	render: function() {
+	render() {
 		return (
 			<div className={ 'navbar-player--wrapper' + (this.props.isPlayerMobile ? ' player-mobile' : '') }>
                 <LikeButton />
@@ -205,12 +254,17 @@ var Player = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = {
-	PlayerBar: ReactRedux.connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(Player),
-	SILENT_SOUND_SRC: SILENT_SOUND_SRC,
+PlayerSmart.propTypes = smartPropTypes
+PlayerSmart.defaultProps = smartDefaultProps
+
+const Player = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PlayerSmart)
+
+export {
+	SILENT_SOUND_SRC,
+	Player,
 }

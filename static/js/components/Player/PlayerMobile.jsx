@@ -1,30 +1,65 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/PlayerMobile.jsx')
-
-var { PlayerBar } = require('./PlayerBar.jsx')
-
-var { browserHistory } = require('react-router')
+import { Player as PlayerBar } from './PlayerBar.jsx'
+import { browserHistory } from 'react-router'
+import { ProgressBar } from '../Footer/ProgressBar.jsx'
+import { showPlayerMobile } from '../../reducers/actions/App.js'
+import { updateProfileBackArrowFunc } from '../../reducers/actions/Profile.js'
+import { PlayingArtwork } from './PlayingArtwork.jsx'
 
 var { getUserPkFromURL } = require('../../MASAS_functions.jsx')
 
-import { ProgressBar } from '../Footer/ProgressBar.jsx'
-import PlayingArtwork from './PlayingArtwork.jsx'
+
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	MASAS_songInfo: React.PropTypes.object,
+	isPlayerMobileShown: React.PropTypes.bool,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		isPlayerMobileShown: state.appReducer.isPlayerMobileShown,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	showPlayerMobile: React.PropTypes.func,
+	updateProfileBackArrowFunc: React.PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		showPlayerMobile: choice => dispatch(showPlayerMobile(choice)),
+		updateProfileBackArrowFunc: func => dispatch(updateProfileBackArrowFunc(func)),
+	}
+}
 
 
-const PlayerMobile = React.createClass({
-	propTypes: {
-		MASAS_songInfo: React.PropTypes.object,
-		isPlayerMobileShown: React.PropTypes.bool,
-		showPlayerMobile: React.PropTypes.func,
-		updateProfileBackArrowFunc: React.PropTypes.func,
-	},
+/**
+ * Smart component
+ */
 
-	componentWillMount: function() {
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
 
-	redirectToProfile: function() {
+const smartDefaultProps = {
+}
+
+class PlayerMobileSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.redirectToProfile = this.redirectToProfile.bind(this)
+    }
+
+	redirectToProfile() {
 		// push client to user page
 		if(this.props.MASAS_songInfo)
 			browserHistory.push('/user/' + getUserPkFromURL(this.props.MASAS_songInfo.trackArtist))
@@ -34,9 +69,9 @@ const PlayerMobile = React.createClass({
 
 		// close player mobile
 		this.props.showPlayerMobile(false)
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className={ 'player-mobile--top-wrapper' + (this.props.isPlayerMobileShown ? ' show' : '') }>
 				<div
@@ -58,9 +93,16 @@ const PlayerMobile = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PlayerMobile)
+PlayerMobileSmart.propTypes = smartPropTypes
+PlayerMobileSmart.defaultProps = smartDefaultProps
+
+const PlayerMobile = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PlayerMobileSmart)
+
+export {
+	PlayerMobile,
+}

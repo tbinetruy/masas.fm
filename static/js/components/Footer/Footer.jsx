@@ -2,10 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
 import { UnsplashControls } from './UnsplashControls.jsx'
-var MiniProfileWrapper = require('../Profile/MiniProfileWrapper.jsx')
-var { PlayerBar } = require('../Player/PlayerBar.jsx')
-const Player = PlayerBar
-var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
+import { Player } from '../Player/PlayerBar.jsx'
 import { ProgressBar } from './ProgressBar.jsx'
 
 import {
@@ -24,6 +21,9 @@ import {
 } from '../../reducers/actions/Footer.js'
 
 import { showPlayerMobile } from '../../reducers/actions/App.js'
+
+var MiniProfileWrapper = require('../Profile/MiniProfileWrapper.jsx')
+var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
 
 /**
  * Redux container

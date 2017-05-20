@@ -1,27 +1,65 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var {
-	mapStateToProps,
-	mapDispatchToProps
-} = require('./containers/PlayingArtwork.jsx')
+import {
+	pausePlayer,
+	playPlayer,
+} from '../../reducers/actions/Player.js'
 
 import { Artwork } from '../Discover/dumb/Artwork.jsx'
 
-var PlayingArtwork = React.createClass({
-	propTypes: {
-		MASAS_songInfo: React.PropTypes.object,
-		SC_songInfo: React.PropTypes.object,
-		isPaused: React.PropTypes.bool,
-		onArtistClick: React.PropTypes.func,
-		pause: React.PropTypes.func,
-		play: React.PropTypes.func,
-	},
+/**
+ * Redux container
+ */
 
-	componentWillMount: function() {
-	},
+const reduxStatePropTypes = {
+	MASAS_songInfo: PropTypes.object,
+	SC_songInfo: PropTypes.object,
+	isPaused: PropTypes.bool,
+}
 
-	render: function() {
+const mapStateToProps = function(state) {
+	return {
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		SC_songInfo: state.playerReducer.SC_songInfo,
+		isPaused: state.playerReducer.isPaused,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	pause: PropTypes.func,
+	play: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		play: () => dispatch(playPlayer()),
+		pause: () => dispatch(pausePlayer()),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	onArtistClick: PropTypes.func,
+}
+
+const smartDefaultProps = {
+	onArtistClick: () => {},
+}
+
+class PlayingArtworkSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	render() {
 		let artworkURL = ''
 		if(this.props.SC_songInfo)
 			if(this.props.SC_songInfo.artwork_url)
@@ -51,9 +89,16 @@ var PlayingArtwork = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PlayingArtwork)
+PlayingArtworkSmart.propTypes = smartPropTypes
+PlayingArtworkSmart.defaultProps = smartDefaultProps
+
+const PlayingArtwork = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PlayingArtworkSmart)
+
+export {
+	PlayingArtwork,
+}

@@ -8,8 +8,8 @@ import { Footer } from '../Footer/Footer.jsx'
 import { Discover } from '../Discover/Discover.jsx'
 import { NavSidebar } from '../NavSidebar/NavSidebar.jsx'
 var { Modal } = require('../UI/UI.jsx')
-var PlayerAudioTag = require('../Player/PlayerAudioTag.jsx')
-var PlayerMobile = require('../Player/PlayerMobile.jsx')
+import { PlayerAudioTag } from '../Player/PlayerAudioTag.jsx'
+import { PlayerMobile } from '../Player/PlayerMobile.jsx'
 
 /**
  * Redux container

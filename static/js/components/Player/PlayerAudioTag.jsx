@@ -1,37 +1,68 @@
-// mounts audio tag into dom and initializes jPlayer
+/**
+ * mounts audio tag into dom and initializes jPlayer
+ *
+ * need to remove jquery dependency
+ */
 
-var React = require("react")
+import React from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerAudioTag.jsx")
+import { SILENT_SOUND_SRC } from './PlayerBar.jsx'
 
-import { SILENT_SOUND_SRC } from "./PlayerBar.jsx"
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
+/**
+ * Redux container
+ */
 
-// var Template = (props) => {
+const reduxStatePropTypes = {
 
-// }
+}
 
-var PlayerAudioTag = React.createClass({
-	propTypes: {
-	},
+const mapStateToProps = function(state) {
+	return {
+	}
+}
 
-	componentDidMount: function() {
-		$("#jquery_jplayer_1").jPlayer({
+const reduxDispatchPropTypes = {
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class PlayerAudioTagSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	componentDidMount() {
+		$('#jquery_jplayer_1').jPlayer({
 			ready: function() {
 				var streamURL = SILENT_SOUND_SRC
-				console.log(SILENT_SOUND_SRC)
-				$(this).jPlayer("setMedia", {
+
+				$(this).jPlayer('setMedia', {
 					mp3: streamURL,
-					oga: ""
+					oga: ''
 				})
 
 				var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
 				var kickoff = function () {
-					$("#jquery_jplayer_1").jPlayer("play")
+					$('#jquery_jplayer_1').jPlayer('play')
 					document.documentElement.removeEventListener(click, kickoff, true)
 				}
 				document.documentElement.addEventListener(click, kickoff, true)
@@ -49,9 +80,9 @@ var PlayerAudioTag = React.createClass({
 					}
 				}
 			},
-			swfPath: "http://jplayer.org/latest/dist/jplayer",
-			supplied: "mp3, oga",
-			wmode: "window",
+			swfPath: 'http://jplayer.org/latest/dist/jplayer',
+			supplied: 'mp3, oga',
+			wmode: 'window',
 			useStateClassSkin: true,
 			autoBlur: false,
 			smoothPlayBar: true,
@@ -59,17 +90,24 @@ var PlayerAudioTag = React.createClass({
 			remainingDuration: true,
 			toggleDuration: true
 		})
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div id="jquery_jplayer_1">
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PlayerAudioTag)
+PlayerAudioTagSmart.propTypes = smartPropTypes
+PlayerAudioTagSmart.defaultProps = smartDefaultProps
+
+const PlayerAudioTag = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PlayerAudioTagSmart)
+
+export {
+	PlayerAudioTag,
+}
