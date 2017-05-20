@@ -18,7 +18,7 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	login: React.PropTypes.func,
+	login: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -88,5 +88,5 @@ const TwitterLoginButtonContent = connect(
 )(TwitterLoginButtonContentSmart)
 
 export {
-	TwitterLoginButtonContent,
+	TwitterLoginButtonContent as TwitterLoginButton,
 }
