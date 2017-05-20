@@ -7,7 +7,7 @@ import {
 
 
 // global vars to this file
-const GOOGLE_USER_ID = undefined
+let GOOGLE_USER_ID = undefined
 const GOOGLE_API_KEY = 'AIzaSyCOTG3VdcDm8hAKe1abZQMjIggV4atedtI'
 
 const logout = () => {

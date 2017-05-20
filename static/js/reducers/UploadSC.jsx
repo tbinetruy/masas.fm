@@ -1,18 +1,17 @@
 var SC = require('soundcloud')
 
 import {
-	UPDATE_SC_USER_TRACKS,
+	HANDLE_PICK_TIME_UPLOAD,
+	UPDATE_IS_CONNECTED_SC,
+	UPDATE_IS_DISABLED_UPLOAD_BUTTON,
 	UPDATE_MASAS_USER_TRACKS,
 	UPDATE_SC_USERNAME,
-	UPDATE_IS_CONNECTED_SC,
-	HANDLE_PICK_TIME_UPLOAD,
+	UPDATE_SC_USER_TRACKS,
 	UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE,
-	UPDATE_IS_DISABLED_UPLOAD_BUTTON,
 } from './actions/UploadSC.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	choosingTime: null,				// (object)  song info from SC (if not null => show picking time screen)
 	isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
@@ -26,9 +25,8 @@ exportVar.defaultState = {
 	tipTimePickerValue: 2,				// (int) \in [1,6], slider hashtag on tip modal
 	isUploadButtonDisabled: true,		// (bool) is the upload button disabled on the time picker page
 }
-const { defaultState } = exportVar
 
-exportVar.uploadSCReducer = function(state = defaultState, action) {
+const uploadSCReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
 		case UPDATE_IS_DISABLED_UPLOAD_BUTTON:
@@ -107,5 +105,7 @@ exportVar.uploadSCReducer = function(state = defaultState, action) {
 
 }
 
-
-module.exports = exportVar
+export {
+	defaultState,
+	uploadSCReducer,
+}

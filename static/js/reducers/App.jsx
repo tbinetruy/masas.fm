@@ -1,5 +1,3 @@
-var React = require('react')
-
 import {
     BLACK_BG,
 	BLUR_BG,
@@ -27,9 +25,7 @@ import {
 	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
 } from './actions/App.js'
 
-let exportVar = {}
-
-exportVar.defaultState = {
+const defaultState = {
 	MASASuser: '', 						// user login token
 	MASASuserPk: null,					// (str) user pk from masas api
 	userData: {},						// user data (pk, username, email etc)
@@ -63,9 +59,7 @@ exportVar.defaultState = {
 	isPlayerMobileShown: false,			// (bool)
 }
 
-const { defaultState } = exportVar
-
-exportVar.appReducer = function(state = defaultState, action) {
+const appReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
 		case BLACK_BG:
@@ -293,4 +287,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 }
 
 
-module.exports = exportVar
+export {
+	appReducer,
+	defaultState,
+}

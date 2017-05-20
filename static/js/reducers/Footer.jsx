@@ -3,16 +3,14 @@ import {
 	TOOGLE_IS_FOOTER_OPENED,
 } from './actions/Footer.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	progressBar: 0,				// (INT) 0-100, song progress time bar
 	isOpened: false,				// (BOOL), is footer opened
 	suggestNewTime: 1,				// (INT) 1-6, time interval recommanded by user to uploader's song
 }
-const { defaultState } = exportVar
 
-exportVar.footerReducer = function(state = defaultState, action) {
+const footerReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
 		case SET_PLAYER_PROGRESS_BAR: // not tested
@@ -39,4 +37,7 @@ exportVar.footerReducer = function(state = defaultState, action) {
 	}
 }
 
-module.exports = exportVar
+export {
+	defaultState,
+	footerReducer,
+}

@@ -1,10 +1,8 @@
-let exportVar = {}
 
-exportVar.defaultState = {}
-const { defaultState } = exportVar
+const defaultState = {}
 
-exportVar.templateReducer = function(state = defaultState, action) {
-	
+const templateReducer = function(state = defaultState, action) {
+
 	switch(action.type) {
 		case 'TYPE':
 			return {
@@ -17,5 +15,7 @@ exportVar.templateReducer = function(state = defaultState, action) {
 	}
 }
 
-
-module.exports = exportVar
+export {
+	defaultState,
+	templateReducer,
+}

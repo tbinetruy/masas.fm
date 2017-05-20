@@ -6,9 +6,8 @@ import {
 	UPDATE_TEXTBOX_VALUE,
 } from './actions/Popular.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	history: [],							// array containing info relative to  songs played from popular
 	genre: {								// (obj) data relative to popular genre selection
 		apiGenres: [],						// (array) genres retrieved from api
@@ -17,9 +16,8 @@ exportVar.defaultState = {
 	}
 }
 
-const { defaultState } = exportVar
 
-exportVar.popularReducer = function(state = defaultState, action) {
+const popularReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
 		case UPDATE_SELECTED_GENRE:
@@ -70,5 +68,7 @@ exportVar.popularReducer = function(state = defaultState, action) {
 	}
 }
 
-
-module.exports = exportVar
+export {
+	defaultState,
+	popularReducer,
+}

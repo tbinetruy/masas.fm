@@ -1,26 +1,25 @@
 import {
-	SET_SONG_IS_FETCHING_TRUE,
-	UPDATE_MASAS_SONG_INFO,
-	UPDATE_SC_SONG_INFO,
-	UPDATE_ARTIST_INFO,
-	SET_SONG_IS_FETCHING_FALSE,
 	LIKE_SONG,
-	UNLIKE_SONG,
-	STOP,
+	LOAD_PLAYLIST,
+	PAUSE,
 	PLAY,
 	PLAY_NEW_SONG,
 	PLAY_NEW_SONG_FROM_PLAYLIST,
 	SET_IS_BUFFERING_FALSE,
 	SET_IS_BUFFERING_TRUE,
-	TOOGLE_SONG_LIKE,
-	PAUSE,
-	LOAD_PLAYLIST,
 	SET_PLAYING_FROM_POPULAR,
-} from "./actions/Player.js"
+	SET_SONG_IS_FETCHING_FALSE,
+	SET_SONG_IS_FETCHING_TRUE,
+	STOP,
+	TOOGLE_SONG_LIKE,
+	UNLIKE_SONG,
+	UPDATE_ARTIST_INFO,
+	UPDATE_MASAS_SONG_INFO,
+	UPDATE_SC_SONG_INFO,
+} from './actions/Player.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	songPlaying: null,					// (string) currently playing song (song api url)
 	isPaused: false,					// (bool) is player paused
 	playerAtTime: 0,					// (float) time current song playing is at
@@ -36,9 +35,8 @@ exportVar.defaultState = {
 	playingFromPopular: false,				// (bool) is player playing from popular
 }
 
-const { defaultState } = exportVar
 
-exportVar.playerReducer = function(state = defaultState, action) {
+const playerReducer = function(state = defaultState, action) {
 
 	// using array in case needed ultiple tmp vars
 	// not sure about browser es6 block scoping implementation
@@ -156,4 +154,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 }
 
 
-module.exports = exportVar
+export {
+	defaultState,
+	playerReducer,
+}

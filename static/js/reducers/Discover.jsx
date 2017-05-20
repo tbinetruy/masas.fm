@@ -2,15 +2,14 @@ import {
 	ADD_SONG_TO_HISTORY,
 	CHANGE_DISCOVER_NUMBER,
 	REMOVE_SONG_FROM_HISTORY,
-} from "./actions/Discover.js"
+} from './actions/Discover.js'
 
 import {
 	POPULAR,
-}	from "./actions/Player.js"
+}	from './actions/Player.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	discoverNumber: 1,						// which discover to show on page
 
 	history: {
@@ -24,9 +23,7 @@ exportVar.defaultState = {
 	}
 }
 
-const { defaultState } = exportVar
-
-exportVar.discoverReducer = function(state = defaultState, action) {
+const discoverReducer = function(state = defaultState, action) {
 
 	switch(action.type) {
 		case ADD_SONG_TO_HISTORY:
@@ -106,4 +103,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 }
 
 
-module.exports = exportVar
+export {
+	defaultState,
+	discoverReducer,
+}

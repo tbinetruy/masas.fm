@@ -1,29 +1,25 @@
 import {
-	
-	UPDATE_LIKES,
 	TOGGLE_MINI_PROFILE,
-	UPDATE_MINI_PROFILE,
 	TOOGLE_HASHTAG_FILTER,
+	UPDATE_LIKES,
+	UPDATE_MINI_PROFILE,
 	UPDATE_NUMBER_OF_LIKES_SHOWN
-} from "./actions/Likes.js"
+} from './actions/Likes.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	userLikes: [],								// user likes from MASAS API
 	SCinfo: [],								// song info corresponding to these likes from SCinfo (depreciating)
 	likesInfo: null, 								// (array[object]) object contains SCinfo and artistInfo for each entry
 	reFetch: 0,								// rerender when new likes come in
-	searchInput: "", 							// (string) search textbox input
+	searchInput: '', 							// (string) search textbox input
 	hashtagFilter: [false,false,false,false,false,false],				// (array) 1 = include in search. 1st entry = #EarlyMorning
 	loadMoreLikes: true, 							// (bool) need more likes to load in infinite scrool ?
 	numRowLikesShown: 3,						// (int) how many rows of like artworks are shown max
 }
 
-const { defaultState } = exportVar
+const likesReducer = function(state = defaultState, action) {
 
-exportVar.likesReducer = function(state = defaultState, action) {
-	
 	switch(action.type) {
 		case UPDATE_NUMBER_OF_LIKES_SHOWN:
 			var { numRowLikesShown } = action
@@ -98,7 +94,7 @@ exportVar.likesReducer = function(state = defaultState, action) {
 				reFetch: ( state.reFetch > 100 ? 1 : state.reFetch+1 ),
 			}
 		case 'UPDATE_LIKES_SEARCH_INPUT':
-			return { 
+			return {
 				...state,
 				searchInput: action.input
 			}
@@ -108,4 +104,7 @@ exportVar.likesReducer = function(state = defaultState, action) {
 }
 
 
-module.exports = exportVar
+export {
+	defaultState,
+	likesReducer,
+}

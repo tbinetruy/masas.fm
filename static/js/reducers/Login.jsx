@@ -1,15 +1,13 @@
-let exportVar = {}
+const defaultState = {}
 
-exportVar.defaultState = {}
-const { defaultState } = exportVar
-
-exportVar.loginReducer = function(state = defaultState, action) {
-  
+const loginReducer = function(state = defaultState, action) {
 	switch(action.type) {
 		default:
 			return state
 	}
 }
 
-
-module.exports = exportVar
+export {
+	defaultState,
+	loginReducer,
+}

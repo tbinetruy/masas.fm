@@ -1,22 +1,20 @@
 import {
-	CHANGE_UNSPLASH_ARTIST,
+	CHANGE_BACKGROUND,
 	CHANGE_HOME_PAGE_NUMBER,
 	CHANGE_TIME_PICKER_DEMO,
-	CHANGE_BACKGROUND
+	CHANGE_UNSPLASH_ARTIST
 } from './actions/Home.js'
 
-let exportVar = {}
 
-exportVar.defaultState = {
+const defaultState = {
 	currentPage: 1,								// (int) current page on the home page
-	unsplashArtistUsername: "jeromeprax",				// (string) unsplash username  to look up backgrounds against
-	unsplashArtistName: "Jérome Prax", 					// (string) unsplash name to display
-	backgroundURL: "https://source.unsplash.com/user/jeromeprax/1600x900",							// (string) unsplash URL of bg
+	unsplashArtistUsername: 'jeromeprax',				// (string) unsplash username  to look up backgrounds against
+	unsplashArtistName: 'Jérome Prax', 					// (string) unsplash name to display
+	backgroundURL: 'https://source.unsplash.com/user/jeromeprax/1600x900',							// (string) unsplash URL of bg
 	timePickerDemo: 2,							// (int) discover number on TimePicker on Home page info part
 }
-const{ defaultState } = exportVar
 
-exportVar.homeReducer = function(state = defaultState, action) {
+const homeReducer = function(state = defaultState, action) {
 	switch(action.type) {
 		case CHANGE_TIME_PICKER_DEMO:
 			return {
@@ -52,4 +50,7 @@ exportVar.homeReducer = function(state = defaultState, action) {
 }
 
 
-module.exports = exportVar
+export {
+	defaultState,
+	homeReducer,
+}
