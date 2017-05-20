@@ -1,4 +1,4 @@
-import React, { PropTypes, createClass } from 'react'
+import React, { createClass } from 'react'
 
 import { BlurBackground } from '../MASAS_mixins.jsx'
 
