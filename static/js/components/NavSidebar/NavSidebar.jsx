@@ -171,12 +171,12 @@ class NavSidebarSmart extends React.Component {
 		}
 
 		return (
-			<Sidebar sidebar={sidebarContent}
-				open={this.props.navSiderbarOpen}
-				onSetOpen={this.props.toogleSidebar}
-				styles={navBarStylesOverride}
-				touchHandleWidth={20}>
-				{this.props.children}
+			<Sidebar sidebar={ sidebarContent }
+				open={ this.props.navSiderbarOpen }
+				onSetOpen={ this.props.toogleSidebar }
+				styles={ navBarStylesOverride }
+				touchHandleWidth={ 20 }>
+				{ this.props.children }
 			</Sidebar>
 		)
 	}
