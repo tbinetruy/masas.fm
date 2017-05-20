@@ -1,10 +1,3 @@
-import {
-	updatePageTitle
-} from "../../../reducers/actions/App.js"
-
-import {
-	toogleLegalsPageNumber
-} from "../../../reducers/actions/Legals.js"
 
 var LegalsContent = {}
 

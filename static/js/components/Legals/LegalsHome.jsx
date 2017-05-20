@@ -1,48 +1,79 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsHome.jsx")
+var { Body, Button } = require('../UI/UI.jsx')
+import { LegalsContent } from './LegalsContent.jsx'
+import { EnforcementGuidelines } from './EnforcementGuidelines.jsx'
+import { Guidelines } from './Guidelines.jsx'
+import { LearnCopyright } from './LearnCopyright.jsx'
+import { Privacy } from './Privacy.jsx'
+import { ReportCopyright } from './ReportCopyright.jsx'
+import { Terms } from './Terms.jsx'
+import { Rest } from './Rest.jsx'
+import { updatePageTitle } from '../../reducers/actions/App.js'
+import { toogleLegalsPageNumber } from '../../reducers/actions/Legals.js'
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-var { Body, Button } = require("../UI/UI.jsx")
-var LegalsContent = require("./LegalsContent.jsx")
-var EnforcementGuidelines = require("./EnforcementGuidelines.jsx")
-var Guidelines = require("./Guidelines.jsx")
-var LearnCopyright = require("./LearnCopyright.jsx")
-var Privacy = require("./Privacy.jsx")
-var ReportCopyright = require("./ReportCopyright.jsx")
-var Terms = require("./Terms.jsx")
-var Rest = require("./Rest.jsx")
 
-// var Template = (props) => {
+/**
+ * Redux container
+ */
 
-// }
+const reduxStatePropTypes = {
+	pageNumber: PropTypes.number,
+}
 
-var LegalsHome = React.createClass({
-	propTypes: {
-		splashScreenLegals: React.PropTypes.bool,
-		backButtonFunc: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-	},
+const mapStateToProps = function(state) {
+	return {
+		pageNumber: state.legalsReducer.pageNumber,
+	}
+}
 
-	getDefaultProps: function() {
-		return {
-			splashScreenLegals: false,
-			backButtonFunc: () => {},
-		}
-	},
+const reduxDispatchPropTypes = {
+	goToPage: PropTypes.func,
+	updateTitle: PropTypes.func,
+}
 
-	componentDidMount: function() {
-		if(window.location.pathname === "/legals")
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		goToPage: pageNumber => dispatch(toogleLegalsPageNumber(pageNumber))
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	backButtonFunc: PropTypes.func,
+	splashScreenLegals: PropTypes.bool,
+}
+
+const smartDefaultProps = {
+	splashScreenLegals: false,
+	backButtonFunc: () => {},
+}
+
+class LegalsHomeSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	componentDidMount() {
+		if(window.location.pathname === '/legals')
 			this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
-	},
+	}
 
-	componentWillUpdate: function() {
+	componentWillUpdate() {
 		if(!this.props.splashScreenLegals)
 			this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
-	},
+	}
 
-	render: function() {
+	render() {
 		const indexLinks = (
 			<div className="legal-links--wrapper">
 				<span onClick={ this.props.goToPage.bind(this, 1) } className="legal-links">Terms of Uses</span>
@@ -94,7 +125,7 @@ var LegalsHome = React.createClass({
 							</div>
 						</Body>
 					)
-				else 
+				else
 					return (
 						<div className="text--wrapper">
 							<img src="/static/img/MASAS_logo-M.svg" alt="logo" className="logo" />
@@ -104,7 +135,7 @@ var LegalsHome = React.createClass({
 							{ indexLinks }
 							<Button
 								isBigButton={ false }
-								onClick={ this.props.backButtonFunc } 
+								onClick={ this.props.backButtonFunc }
 								isSecondaryAction={ true }
 								className="legals-index-back-button" >
 								Back
@@ -113,9 +144,16 @@ var LegalsHome = React.createClass({
 						)
 		}
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(LegalsHome)
+LegalsHomeSmart.propTypes = smartPropTypes
+LegalsHomeSmart.defaultProps = smartDefaultProps
+
+const LegalsHome = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LegalsHomeSmart)
+
+export {
+	LegalsHome,
+}

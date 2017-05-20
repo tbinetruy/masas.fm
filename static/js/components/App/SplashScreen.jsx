@@ -6,7 +6,7 @@ var Swiper = require('swiper/dist/js/swiper.min.js')
 var { goToURL } = require('../../MASAS_functions.jsx')
 var { Button } = require('../UI/UI.jsx')
 var LoginForm = require('../Login/LoginForm.jsx')
-var Legals = require('../Legals/LegalsHome.jsx')
+import { LegalsHome as Legals } from '../Legals/LegalsHome.jsx'
 
 import {
 	changeSplashScreenPage,

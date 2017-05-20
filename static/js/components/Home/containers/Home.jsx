@@ -1,11 +1,3 @@
-import {
-	updatePageTitle,
-} from "../../../reducers/actions/App.js"
-
-import{
-	changeHomePageNumber,
-	changeTimePickerDemo
-} from "../../../reducers/actions/Home.js"
 
 var { browserHistory } = require('react-router')
 

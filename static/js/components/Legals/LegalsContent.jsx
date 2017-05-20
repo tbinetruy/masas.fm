@@ -1,29 +1,63 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsContent.jsx")
+var { Body, Button } = require('../UI/UI.jsx')
 
-var { Body, Button } = require("../UI/UI.jsx")
+import { updatePageTitle } from '../../reducers/actions/App.js'
+import { toogleLegalsPageNumber } from '../../reducers/actions/Legals.js'
 
-var LegalsContent = React.createClass({
-	propTypes: {
-		splashScreenLegals: React.PropTypes.bool,
-	},
+/**
+ * Redux container
+ */
 
-	getDefaultProps: function() {
-		return {
-			splashScreenLegals: false
-		}
-	},
+const reduxStatePropTypes = {
 
-	componentWillMount: function() {
-		if(!this.props.splashScreenLegals && window.location.pathname === "/legals")
+}
+
+const mapStateToProps = function(state) {
+	return {
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updateTitle: PropTypes.func,
+	gotToHome: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, backArrowFunc) => dispatch(updatePageTitle(title, 1, backArrowFunc)),
+		goToHome: () => dispatch(toogleLegalsPageNumber(0))
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	splashScreenLegals: PropTypes.bool,
+}
+
+const smartDefaultProps = {
+	splashScreenLegals: false
+}
+
+class LegalsContentSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	componentWillMount() {
+		if(!this.props.splashScreenLegals && window.location.pathname === '/legals')
 			this.props.updateTitle('Legals', this.props.goToHome )
+	}
 
-		// this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
-	},
-
-	render: function() {
+	render() {
 		const content = (
 			<div className="legals-content--wrapper">
 				<div className="legals-content">
@@ -34,26 +68,33 @@ var LegalsContent = React.createClass({
 				</div>
 				<Button
 					isBigButton={ false }
-					onClick={ this.props.goToHome } 
+					onClick={ this.props.goToHome }
 					isSecondaryAction={ true }
 					className="back-to-legals-summary">
 					Back
 				</Button>
 			</div>
-			)
+		)
 
 		if(this.props.splashScreenLegals)
 			return content
 		else
 			return (
 				<Body>
-					{ content }	
+					{ content }
 				</Body>
 			)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(LegalsContent)
+LegalsContentSmart.propTypes = smartPropTypes
+LegalsContentSmart.defaultProps = smartDefaultProps
+
+const LegalsContent = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LegalsContentSmart)
+
+export {
+	LegalsContent,
+}

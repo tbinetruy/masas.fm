@@ -1,105 +1,127 @@
-var React = require("react")
-// import $ from "jquery"
-
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
 var { browserHistory } = require('react-router')
 
-var LoginForm = require("../Login/LoginForm.jsx")
-var { Button } = require("../UI/UI.jsx")
+var LoginForm = require('../Login/LoginForm.jsx')
+var { Button } = require('../UI/UI.jsx')
+var HomeCountdown = require('./HomeCountdown.jsx')
 
-var HomeCountdown = require("./HomeCountdown.jsx")
+import {
+	updatePageTitle,
+} from '../../../reducers/actions/App.js'
 
-var Home = React.createClass({
-	propTypes: {
-		updateTimePickerNumber: React.PropTypes.func,
-		goToPage: React.PropTypes.func,
-		goToLogin: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-		demoTimePickerNumber: React.PropTypes.number,
-		currentPage: React.PropTypes.number,
-		user: React.PropTypes.string,
-	},
+import{
+	changeHomePageNumber,
+	changeTimePickerDemo
+} from '../../../reducers/actions/Home.js'
 
-	getInitialState: function() {
-		return {
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	currentPage: PropTypes.number,
+	demoTimePickerNumber: PropTypes.number,
+	user: PropTypes.string,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		user: state.appReducer.MASASuser,
+		currentPage: state.homeReducer.currentPage,
+		demoTimePickerNumer: state.homeReducer.timePickerDemo,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	goToLogin: PropTypes.func,
+	goToPage: PropTypes.func,
+	updateTimePickerNumber: PropTypes.func,
+	updateTitle: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		goToLogin: () => browserHistory.push('/login'),
+		goToPage: (pageNumber, totalNumberPages) => dispatch(changeHomePageNumber(pageNumber, totalNumberPages)),
+		updateTimePickerNumber: (number) => dispatch(changeTimePickerDemo(number))
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+}
+
+const smartDefaultProps = {
+}
+
+class HomeSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.state = {
 			pageNumber: 1, 		// page number
 			value: 0
 		}
-	},
 
-	componentWillMount: function() {
+		this.scrollToInfo = this.scrollToInfo.bind(this)
+    }
 
+	componentWillMount() {
 		this.props.updateTitle('Home', '0')		// 0 = menu icon; 1 = arrow back
-	},
+	}
 
-	componentDidMount: function() {
-	},
-
-	componentWillUnmount: function () {
-		// $("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
+	componentWillUnmount() {
 		this.props.goToPage(1, 4)
-	},
+	}
 
-	scrollToInfo: function() {
-	},
+	scrollToInfo() {
+	}
 
-	render: function() {
+	render() {
 		const currentPage = this.props.currentPage
 		const pageCount = 4
-
-		// update page backgound (fixed positioning are slow)
-		// $("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
-		// switch(currentPage) {
-		// 	case 1:
-		// 		// app background
-		// 		break
-		// 	case 2:
-		// 		$("#body--background").addClass("artist-page-bg")
-		// 		break
-		// 	case 3:
-		// 		$("#body--background").addClass("musicLover-page-bg")
-		// 		break
-		// 	case 4:
-		// 		$("#body--background").addClass("dev-page-bg blurred saturated")
-		// 		break
-		// 	default:
-		// 		break
-		// }
 
 		return (
 			<div className="home--wrapper">
 
-				{ 
-					currentPage !== 1 ? 
+				{
+					currentPage !== 1 ?
 						<div className="page-up--wrapper">
-							<img onClick={this.props.goToPage.bind(null, currentPage - 1, pageCount)} src="/static/img/MASAS_arrow_down.svg" alt="down arrow" className="page-up-icon"/>
+							<img onClick={this.props.goToPage.bind(null, currentPage - 1, pageCount)} src="/static/img/MASAS_arrow_down.svg" alt="down arrow" className="page-up-icon" />
 						</div>
 					:
-						""
+						''
 				}
 
-				<div 
-					className="multiPage--wrapper" 
+				<div
+					className="multiPage--wrapper"
 					id="multiPage--wrapper"
 					style={{
-						overflowY: "hidden",
+						overflowY: 'hidden',
 					}}>
 
 					<div className="page" id="homepage-login">
-						{ /* <UnsplashControls /> */ }
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
 						</div>
-						
+
 						<div style={{ visibility: ( this.props.user ? 'hidden' : 'visible') }}>
-							<LoginForm 
-								fullForm={false} 
-								buttonTitle="Request an Invitation" 
-								subtitle="via Facebook"/>
+							<LoginForm
+								fullForm={false}
+								buttonTitle="Request an Invitation"
+								subtitle="via Facebook" />
 						</div>
-						
+
 						<div className="link-button--wrapper">
 							<Button className="upload-link-button" onClick={ () => browserHistory.push('/upload') } isBigButton={ true } isSecondaryAction={ true }>Share My Sounds</Button>
 							<Button className="popular-link-button" onClick={ () => browserHistory.push('/crowdradio') } isBigButton={ true } isSecondaryAction={ false }>Play Crowdradio</Button>
@@ -109,9 +131,17 @@ var Home = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Home)
+
+HomeSmart.propTypes = smartPropTypes
+HomeSmart.defaultProps = smartDefaultProps
+
+const Home = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HomeSmart)
+
+export {
+	Home,
+}

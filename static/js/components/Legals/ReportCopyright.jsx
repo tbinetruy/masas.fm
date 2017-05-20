@@ -1,27 +1,11 @@
-var React = require("react")
+import React from 'react'
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
+const ReportCopyright = props => (
+	<div className="legals-content">
+		ReportCopyright
+	</div>
+)
 
-// var Template = (props) => {
-
-// }
-
-var ReportCopyright = React.createClass({
-	propTypes: {
-	},
-
-	componentWillMount: function() {
-		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
-	},
-
-	render: function() {
-		return (
-			<div className="legals-content">
-				ReportCopyright
-			</div>
-		)
-	}
-})
-
-module.exports = ReportCopyright
+export {
+	ReportCopyright,
+}

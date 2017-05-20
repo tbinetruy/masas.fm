@@ -1,18 +1,15 @@
 require('babel-polyfill')
 
-var React = require('react')
-var ReactDOM = require('react-dom')
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-var ReactRedux = require('react-redux')
+import { Provider } from 'react-redux'
+import { Route, Router, browserHistory } from 'react-router'
+
 var store = require('./reducers/reducers.js')
-
-var Router = require('react-router').Router
-var Route = require('react-router').Route
-var browserHistory = require('react-router').browserHistory
 
 var SoundcloudCallback = require('./SoundcloudCallback.jsx')
 var TwitterCallback = require('./TwitterCallback.jsx')
-
 import { App } from './components/App/App.jsx'
 var Login = require('./components/Login/LoginForm.jsx')
 var InvitationPending = require('./components/Login/InvitationPending.jsx')
@@ -21,12 +18,12 @@ var UploadSC = require('./components/UploadSC/UploadSC.jsx')
 var Profile = require('./components/Profile/Profile.jsx')
 var Likes = require('./components/Likes/Likes.jsx')
 import { Discover } from './components/Discover/Discover.jsx'
-var Legals = require('./components/Legals/LegalsHome.jsx')
+import { LegalsHome as Legals } from './components/Legals/LegalsHome.jsx'
 var Popular = require('./components/Popular/Popular.jsx')
 var { Manifesto } = require('./components/Manifesto/Manifesto.jsx')
 
 ReactDOM.render((
-       <ReactRedux.Provider store={store}>
+       <Provider store={store}>
                <Router history={browserHistory}>
                        <Route path="/" component={App}>
                                <Route path="discover" component={Popular} />
@@ -44,5 +41,5 @@ ReactDOM.render((
                        <Route path="/sc-callback" component={SoundcloudCallback} />
                        <Route path="/twitter-callback" component={TwitterCallback} />
                </Router>
-       </ReactRedux.Provider>
+       </Provider>
 ), document.getElementById('content'))
