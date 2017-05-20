@@ -26,7 +26,7 @@ import {
 	updateNotificationBar,
 } from './reducers/actions/Header.js'
 
-var { browserHistory } = require('react-router')
+import { browserHistory } from 'react-router'
 var Cookie = require('js-cookie')
 
 var MASAS_functions = {}
@@ -40,12 +40,14 @@ var MASAS_functions = {}
 /////
 
 // userStep: (int)
-MASAS_functions.consts = {
+
+
+const consts = {
 	userSteps: {
 		HAS_CREATED_PROFILE: 8,
 	}
 }
-MASAS_functions.updateUserStep = (userData, userToken, userStep) => {
+const updateUserStep = (userData, userToken, userStep) => {
 
 	const header = 'Bearer ' + userToken
 	var csrftoken = MASAS_functions.getCookie('csrftoken')
@@ -76,7 +78,7 @@ MASAS_functions.updateUserStep = (userData, userToken, userStep) => {
 /////
 
 // returns a dict with urls used for different pages on the website
-MASAS_functions.getPathList = {
+const getPathList = {
 	home: '/',
 	discover: '/discover',
 	popular: '/crowdradio',
@@ -88,9 +90,10 @@ MASAS_functions.getPathList = {
 	settings: '/settings'
 }
 
+
 // return key pair object with key = url get params ; pair = value associated with get key
 // source: http://stackoverflow.com/a/979995
-MASAS_functions.getUrlParams = () => {
+const getUrlParams = () => {
 	// This function is anonymous, is executed immediately and
 	// the return value is assigned to QueryString!
 	var query_string = {}
@@ -116,12 +119,12 @@ MASAS_functions.getUrlParams = () => {
 
 // input: usersteps from masas api
 // output: array of ints filled with user steps
-MASAS_functions.getUserSteps = usersteps => {
+const getUserSteps = usersteps => {
 	return usersteps.map( entry => entry.step )
 }
 
 // source: http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
-MASAS_functions.copyTextToClipboard = function(text) {
+const copyTextToClipboard = function(text) {
 	var textArea = document.createElement('textarea')
 
 	//
@@ -170,16 +173,14 @@ MASAS_functions.copyTextToClipboard = function(text) {
 	try {
 		var successful = document.execCommand('copy')
 		var msg = successful ? 'successful' : 'unsuccessful'
-		console.log('Copying text command was ' + msg)
 	} catch (err) {
-		console.log('Oops, unable to copy')
 	}
 
 	document.body.removeChild(textArea)
 }
 
 
-MASAS_functions.getDiscoverNumberFromCurrentTime = () => {
+const getDiscoverNumberFromCurrentTime = () => {
 	const hours = new Date().getHours()
 
 	if(hours >= 4 && hours < 8)
@@ -196,7 +197,7 @@ MASAS_functions.getDiscoverNumberFromCurrentTime = () => {
 		return 6
 }
 
-MASAS_functions.getUserPkFromURL = url => {
+const getUserPkFromURL = url => {
 	var str = url
 	str = str.slice(0, str.length-1)
 	str = str.substring(str.lastIndexOf('/')+1,str.length)
@@ -204,14 +205,14 @@ MASAS_functions.getUserPkFromURL = url => {
 	return str
 }
 
-MASAS_functions.getTimeIntervalNumberFromUrl = url => {
+const getTimeIntervalNumberFromUrl = url => {
 	return MASAS_functions.getUserPkFromURL(url)
 }
 
-MASAS_functions.isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
-MASAS_functions.isObjectNotEmpty = obj => Object.keys(obj).length !== 0 && obj.constructor === Object
+const isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
+const isObjectNotEmpty = obj => Object.keys(obj).length !== 0 && obj.constructor === Object
 
-MASAS_functions.background = {
+const background = {
 	blur: () => {
 		$('#body--background').addClass('blurred')
 	},
@@ -220,7 +221,7 @@ MASAS_functions.background = {
 	}
 }
 
-MASAS_functions.discoverHashtagNames = () => {
+const discoverHashtagNames = () => {
 	return [
 		'#EarlyMorning',
 		'#LateMorning',
@@ -231,30 +232,31 @@ MASAS_functions.discoverHashtagNames = () => {
 	]
 }
 
-MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
+const timeIntervalURLToString = (timeIntervalURL) => {
 	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
 	const hastagNames = MASAS_functions.discoverHashtagNames()
 
 	switch(switchVar) {
-		case '1:
+		case '1':
 			return hastagNames[0]
-		case "2":
+		case '2':
 			return hastagNames[1]
-		case "3":
+		case '3':
 			return hastagNames[2]
-		case "4":
+		case '4':
 			return hastagNames[3]
-		case "5":
+		case '5':
 			return hastagNames[4]
-		case "6":
+		case '6':
 			return hastagNames[5]
 		default:
-			return ""
+			return ''
 	}
 }
 
+
 // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
-MASAS_functions.makePromiseCancelable = (promise) => {
+const makePromiseCancelable = (promise) => {
 	let hasCanceled_ = false;
 
 	const wrappedPromise = new Promise((resolve, reject) => {
@@ -275,23 +277,23 @@ MASAS_functions.makePromiseCancelable = (promise) => {
 	}
 }
 
-MASAS_functions.updateAuthCookie = (userToken) => {
-	Cookie.set("MASAS_authToken", userToken)
+const updateAuthCookie = (userToken) => {
+	Cookie.set('MASAS_authToken', userToken)
 }
 
-MASAS_functions.goToURL = (path) => {
+const goToURL = (path) => {
 	browserHistory.push(path)
 }
 
 // using jQuery
-MASAS_functions.getCookie = (name) => {
+const getCookie = (name) => {
 	var cookieValue = null
-	if (document.cookie && document.cookie != "") {
-		var cookies = document.cookie.split(";")
+	if (document.cookie && document.cookie != '') {
+		var cookies = document.cookie.split(';')
 		for (var i = 0; i < cookies.length; i++) {
 			var cookie = $.trim(cookies[i])
 			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) == (name + "=")) {
+			if (cookie.substring(0, name.length + 1) == (name + '=')) {
 				cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
 				break
 			}
@@ -301,7 +303,7 @@ MASAS_functions.getCookie = (name) => {
 }
 
 // (BOOL) checks if a sequence is a subsequence of a string
-MASAS_functions.isSubsequence = (sequence, string) => {
+const isSubsequence = (sequence, string) => {
 	if (string.toLowerCase().includes(sequence.toLowerCase()))
 		return true
 	else
@@ -309,7 +311,7 @@ MASAS_functions.isSubsequence = (sequence, string) => {
 }
 
 // returns 1-6 for timeInterval based on songId
-MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
+const getTimeIntervalFromURL = (timeIntervalURL) => {
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }
 
@@ -322,13 +324,13 @@ MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 /////
 
 
-MASAS_functions.logout = () => {
-	Cookie.remove("MASAS_authToken")
+const logout = () => {
+	Cookie.remove('MASAS_authToken')
 
-	dispatch({type: "LOGOUT"})
+	dispatch({type: 'LOGOUT'})
 
 	FB.logout(function(response) {
-		MASAS_functions.updateNotificationBar("Logged out !")
+		MASAS_functions.updateNotificationBar('Logged out !')
 	})
 }
 
@@ -342,28 +344,28 @@ MASAS_functions.logout = () => {
 /////
 
 // pause player
-MASAS_functions.pausePlayer = () => {
+const dispatchPausePlayer = () => {
 	dispatch(pausePlayer())
 }
 
-MASAS_functions.playPreviousSong = () => {
+const playPreviousSong = () => {
 	dispatch(playPreviousSongInHistory())
 }
 
 // update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
-MASAS_functions.playNewSong = () => {
+const dispatchPlayNewSong = () => {
 	dispatch(playNewSong())
 }
 
 // gets song based on timeInteral and play song
-MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
+const dispatchPlayRandomSong = (MASASuser, timeInterval = 0) => {
 	dispatch(playRandomSong(timeInterval))
-},
+}
 
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
-MASAS_functions.toggleSongLike = (userToken, songId) => {
+const dispatchToggleSongLike = (userToken, songId) => {
 	dispatch(toggleSongLike(songId))
 }
 
@@ -375,13 +377,43 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 /////
 /////
 
-MASAS_functions.closeModal = () => {
+const closeModal = () => {
 	dispatch(closeAndEmptyMainModal())
 }
 
-MASAS_functions.updateNotificationBar = (notificationText) => {
+const dispatchUpdateNotificationBar = (notificationText) => {
 	dispatch(updateNotificationBar(notificationText))
 
 }
 
-module.exports = MASAS_functions
+export {
+	dispatchPausePlayer as pausePlayer,
+	dispatchPlayNewSong as playNewSong,
+	dispatchPlayRandomSong as playRandomSong,
+	dispatchToggleSongLike as toggleSongLike,
+	dispatchUpdateNotificationBar as updateNotificationBar,
+
+	background,
+	closeModal,
+	consts,
+	copyTextToClipboard,
+	discoverHashtagNames,
+	getCookie,
+	getDiscoverNumberFromCurrentTime,
+	getPathList,
+	getTimeIntervalNumberFromUrl,
+	getTimeIntervalFromURL,
+	getUrlParams,
+	getUserSteps,
+	getUserPkFromURL,
+	goToURL,
+	isObjectEmpty,
+	isObjectNotEmpty,
+	isSubsequence,
+	logout,
+	makePromiseCancelable,
+	playPreviousSong,
+	timeIntervalURLToString,
+	updateUserStep,
+	updateAuthCookie,
+}
