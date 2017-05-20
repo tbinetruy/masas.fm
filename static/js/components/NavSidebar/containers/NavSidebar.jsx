@@ -1,21 +1,16 @@
 import {
+	changeModalContent,
 	closeAndEmptyMainModal,
+	logout,
 	toogleIsModalOpened,
 	toogleNavSidebar,
-	changeModalContent,
-	logout,
 	updateSplashScreenLoginMessage,
-} from "../../../reducers/actions/App.js"
-//var { logout } = require("../../../MASAS_functions.jsx")
+} from '../../../reducers/actions/App.js'
 
 var NavSidebar = {}
 
 NavSidebar.mapStateToProps = function(state) {
 	return {
-		navSiderbarOpen: state.appReducer.navSiderbarOpen,
-		MASASuser: state.appReducer.MASASuser,
-		userData: state.appReducer.userData,
-		isModalOpened: state.appReducer.isModalOpened,
 	}
 }
 

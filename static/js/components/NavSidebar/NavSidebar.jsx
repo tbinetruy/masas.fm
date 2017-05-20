@@ -1,65 +1,116 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import Sidebar from 'react-sidebar'
+import { SplashScreen } from '../App/SplashScreen.jsx'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/NavSidebar.jsx")
+var { Link } = require('../UI/UI.jsx')
+var { goToURL } = require('../../MASAS_functions.jsx')
 
-var { Link } = require("../UI/UI.jsx")
-var { goToURL } = require("../../MASAS_functions.jsx")
+import {
+	changeModalContent,
+	closeAndEmptyMainModal,
+	logout,
+	toogleIsModalOpened,
+	toogleNavSidebar,
+	updateSplashScreenLoginMessage,
+} from '../../reducers/actions/App.js'
 
-var SplashScreen = require("../App/SplashScreen.jsx")
-import Sidebar from "react-sidebar"
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	MASASuser: React.PropTypes.string.isRequired,
+	isModalOpened: React.PropTypes.bool,
+	navSiderbarOpen: React.PropTypes.bool.isRequired,
+	userData: React.PropTypes.object.isRequired,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		navSiderbarOpen: state.appReducer.navSiderbarOpen,
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+		isModalOpened: state.appReducer.isModalOpened,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	closeModal: React.PropTypes.func,
+	logout: React.PropTypes.func,
+	toogleModal: React.PropTypes.func,
+	toogleSidebar: React.PropTypes.func,
+	updateLoginMessage: React.PropTypes.func,
+	updateModalContent: React.PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		toogleSidebar: () => dispatch(toogleNavSidebar()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
+		logout: () => dispatch(logout()),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+	}
+}
 
 
-var NavSidebar = React.createClass({
-	propTypes: {
-		children: React.PropTypes.node,
-		navSiderbarOpen: React.PropTypes.bool.isRequired,
-		MASASuser: React.PropTypes.string.isRequired,
-		userData: React.PropTypes.object.isRequired,
-		toogleSidebar: React.PropTypes.func.isRequired,
-		logout: React.PropTypes.func.isRequired,
-		isModalOpened: React.PropTypes.bool,
+/**
+ * Smart component
+ */
 
-		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		closeModal: React.PropTypes.func,
-		updateLoginMessage: React.PropTypes.func,
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
 
-	componentWillMount: function() {
-	},
+	children: React.PropTypes.node,
+}
 
-	goToProfile: function() {
-		goToURL("/profile")
+const smartDefaultProps = {
+}
+
+class NavSidebarSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.clearUI = this.clearUI.bind(this)
+		this.logout = this.logout.bind(this)
+		this.goToLogin = this.goToLogin.bind(this)
+		this.goToProfile = this.goToProfile.bind(this)
+    }
+
+	goToProfile() {
+		goToURL('/profile')
 		this.clearUI()
-	},
+	}
 
-	goToLogin: function() {
+	goToLogin() {
 		if(!this.props.isModalOpened)
 			this.props.toogleModal()
 
-		this.props.updateLoginMessage("")
+		this.props.updateLoginMessage('')
 		this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
 		this.props.toogleSidebar()
-	},
+	}
 
-	logout: function() {
+	logout() {
 		this.clearUI()
 		this.props.logout()
-	},
+	}
 
 	// closes sidebar and modal
-	clearUI: function() {
+	clearUI() {
 		this.props.toogleSidebar()
 		this.props.closeModal()
-	},
+	}
 
-	render: function() {
+	render() {
 		var sidebarContent = <div className="navSidebar--wrapper">
-						{ this.props.MASASuser !== "" ?
+						{ this.props.MASASuser !== '' ?
 							<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
-								<img src={this.props.userData.avatar_url + "?width=300"}alt="profile-picture" className="profile-picture" />
-								<span className="username">{/* this.props.userData.username */}My Profile</span>
+								<img src={this.props.userData.avatar_url + '?width=300'}alt="profile-picture" className="profile-picture" />
+								<span className="username">My Profile</span>
 							</div>
 							:
 							<div className="profile-picture--wrapper" onClick={ this.goToLogin }>
@@ -70,25 +121,21 @@ var NavSidebar = React.createClass({
 							<div className="nav-links">
 								<div className="link">
 									<Link to='/crowdradio' onClick={ this.clearUI }>
-										{ /* <img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />*/}
 										crowdradio
 									</Link>
 								</div>
 								<div className="link">
 									<Link to='/discover' disabled={ false } onClick={this.clearUI}>
-										{ /* <img src="/static/img/MASAS_icon_Discover.svg" alt="radio icon" />*/}
 										discover
 									</Link>
 								</div>
 								<div className="link">
 									<Link disabled={ false } to="/likes" onClick={this.clearUI}>
-										{ /* <img src="/static/img/MASAS_liked.svg" alt="radio icon" />*/}
 										likes
 									</Link>
 								</div>
 								<div className="link">
 									<Link disabled={ false } to="/upload" onClick={this.clearUI}>
-										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
 										upload
 									</Link>
 								</div>
@@ -133,9 +180,16 @@ var NavSidebar = React.createClass({
 			</Sidebar>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(NavSidebar)
+NavSidebarSmart.propTypes = smartPropTypes
+NavSidebarSmart.defaultProps = smartDefaultProps
+
+const NavSidebar = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NavSidebarSmart)
+
+export {
+	NavSidebar,
+}

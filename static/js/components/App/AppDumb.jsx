@@ -6,7 +6,7 @@ import { closeAndEmptyMainModal } from '../../reducers/actions/App.js'
 import { Header } from '../Header/Header.jsx'
 import { Footer } from '../Footer/Footer.jsx'
 import { Discover } from '../Discover/Discover.jsx'
-var NavSidebar = require('../NavSidebar/NavSidebar.jsx')
+import { NavSidebar } from '../NavSidebar/NavSidebar.jsx'
 var { Modal } = require('../UI/UI.jsx')
 var PlayerAudioTag = require('../Player/PlayerAudioTag.jsx')
 var PlayerMobile = require('../Player/PlayerMobile.jsx')
