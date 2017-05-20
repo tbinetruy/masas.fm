@@ -1,36 +1,63 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
-
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/TermsAndCond.jsx")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
 var { acceptTerms } = require('./ajaxCalls.jsx')
+var { Button } = require('../UI/UI.jsx')
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-var { Button, Checkbox, Link } = require("../UI/UI.jsx")
+import { Terms } from '../Legals/Terms.jsx'
 
-var Terms= require('../Legals/Terms.jsx')
-// var Template = (props) => {
+/**
+ * Redux container
+ */
 
-// }
+const reduxStatePropTypes = {
 
-var TermsAndCond = React.createClass({
-	propTypes: {
-		userPk: React.PropTypes.number,
-		userToken: React.PropTypes.string, 
-		userData: React.PropTypes.object
-	},
+}
 
-	componentWillMount: function() {
-	},
+const mapStateToProps = function(state) {
+	return {
+	}
+}
 
-	acceptTerms: function() {
-		console.log(this.props)
+const reduxDispatchPropTypes = {
+	updateTitle: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	userData: PropTypes.object,
+	userPk: PropTypes.number,
+	userToken: PropTypes.string,
+}
+
+const smartDefaultProps = {
+}
+
+class TermsAndCondSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.acceptTerms = this.acceptTerms.bind(this)
+    }
+
+	acceptTerms() {
 		acceptTerms(this.props.userToken, this.props.userData, this.props.userPk)
-	},
+	}
 
-	render: function() {
-		// console.log(<TermsText />)
+	render() {
 		return (
 			<div className="term-and-cond-modal-content">
 				<div className="legals-content--wrapper">
@@ -45,9 +72,16 @@ var TermsAndCond = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(TermsAndCond)
+TermsAndCondSmart.propTypes = smartPropTypes
+TermsAndCondSmart.defaultProps = smartDefaultProps
+
+const TermsAndCond = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TermsAndCondSmart)
+
+export {
+	TermsAndCond,
+}

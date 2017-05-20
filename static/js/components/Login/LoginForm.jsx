@@ -1,43 +1,75 @@
-var React = require("react")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/LoginForm.jsx")
+var { Body, Textbox, Password, Button, Link } = require('../UI/UI.jsx')
 
-var { Body, Textbox, Password, Button, Link } = require("../UI/UI.jsx")
+import GoogleLogin from 'react-google-login'
+import { TwitterLoginButton } from './TwitterLoginButton.jsx'
 
-import GoogleLogin from "react-google-login"
-import { TwitterLoginButton } from "./TwitterLoginButton.jsx"
+import { login } from '../../reducers/actions/Login.js'
+import { updatePageTitle } from '../../reducers/actions/App.js'
 
-var LoginForm = React.createClass({
-	propTypes: {
-		fullForm: React.PropTypes.bool, 			// show the full login form be shown
-		buttonTitle: React.PropTypes.string,			// log in button content
-		subtitle: React.PropTypes.string,			// text under button
-		route: React.PropTypes.object,			// route object from react-router
+/**
+ * Redux container
+ */
 
-		login: React.PropTypes.func,				// login function
-		updateTitle: React.PropTypes.func,			// update title function
-	},
+const reduxStatePropTypes = {
 
-	getDefaultProps: function() {
-		return {
-			fullForm: false,
-			buttonTitle: "Log-in via Facebook",
-			subtitle: "",
-			login: () => {},
-		}
-	},
+}
 
-	componentWillMount: function() {
+const mapStateToProps = function(state) {
+	return {
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updateTitle: PropTypes.func,
+	login: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		login: (backend, token = undefined) => dispatch(login(backend, token)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	buttonTitle: PropTypes.string,			// log in button content
+	fullForm: PropTypes.bool, 			// show the full login form be shown
+	login: PropTypes.func,				// login function
+	route: PropTypes.object,			// route object from react-router
+	subtitle: PropTypes.string,			// text under button
+	updateTitle: PropTypes.func,			// update title function
+}
+
+const smartDefaultProps = {
+	fullForm: false,
+	buttonTitle: 'Log-in via Facebook',
+	subtitle: '',
+	login: () => {},
+}
+
+class LoginFormSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	componentWillMount() {
 		if(this.props.route !== undefined)
-			if(this.props.route.path === "login")
+			if(this.props.route.path === 'login')
 				this.props.updateTitle('Login', '0')
-	},
+	}
 
-
-
-	render: function() {
-
+	render() {
 		if(this.props.fullForm)
 			return (
 				<Body>
@@ -57,7 +89,7 @@ var LoginForm = React.createClass({
 									</div>
 								</div>
 								<div className="login-form">
-									<Textbox id="login-username-input" labelError="Username does not exist" error={false}>Please enter your username</Textbox><br/>
+									<Textbox id="login-username-input" labelError="Username does not exist" error={false}>Please enter your username</Textbox><br />
 									<Password id="login-password-input" labelError="Password invalid" error={false}>Please enter your password</Password>
 									<Link to="/"><span className="forgot-password">Forgot your password?</span></Link>
 								</div>
@@ -99,9 +131,16 @@ var LoginForm = React.createClass({
 				</div>
 			)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(LoginForm)
+LoginFormSmart.propTypes = smartPropTypes
+LoginFormSmart.defaultProps = smartDefaultProps
+
+const LoginForm = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginFormSmart)
+
+export {
+	LoginForm,
+}

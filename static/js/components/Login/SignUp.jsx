@@ -1,17 +1,54 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/SignUp.jsx")
+var { Body, Textbox, Password, Button, Checkbox } = require('../UI/UI.jsx')
 
-var { Body, Textbox, Password, Button, Checkbox } = require("../UI/UI.jsx")
+/**
+ * Redux container
+ */
 
-var SignUpForm = React.createClass({
-	componentWillMount: function() {
+const reduxStatePropTypes = {
+
+}
+
+const mapStateToProps = function(state) {
+	return {
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updaetTitle: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: 'Sign-up', pageType: '0'})
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class SignUpFormSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	componentWillMount() {
 		this.props.updateTitle()
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<Body>
 			<div className="sign-up-form--wrapper1">
@@ -43,9 +80,16 @@ var SignUpForm = React.createClass({
 			</Body>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SignUpForm)
+SignUpFormSmart.propTypes = smartPropTypes
+SignUpFormSmart.defaultProps = smartDefaultProps
+
+const SignUpForm = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SignUpFormSmart)
+
+export {
+	SignUpForm,
+}
