@@ -15,9 +15,17 @@ import {
  * Redux container
  */
 
+const reduxStatePropTypes = {
+
+}
+
 const mapStateToProps = function(state) {
 	return {
 	}
+}
+
+const reduxDispatchPropTypes = {
+	updateTipBar: React.PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -25,6 +33,11 @@ const mapDispatchToProps = function(dispatch) {
 		updateTipBar: (text, step, tipCTA) => dispatch(updateTipBar(text, step, tipCTA))
 	}
 }
+
+
+/**
+ * Dumb component
+ */
 
 const ManifestoDumb = props => (
 	<Body wide={ true }>
@@ -79,6 +92,19 @@ const ManifestoDumb = props => (
 	</Body>
 )
 
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
 class ManifestoSmart extends React.Component {
     constructor(props) {
         super(props)
@@ -99,9 +125,8 @@ class ManifestoSmart extends React.Component {
 	}
 }
 
-ManifestoSmart.propTypes = {
-	updateTipBar: React.PropTypes.func,
-}
+ManifestoSmart.propTypes = smartPropTypes
+ManifestoSmart.defaultProps = smartDefaultProps
 
 const Manifesto = connect(
     mapStateToProps,
