@@ -1,21 +1,3 @@
-export {
-	CLOSE_PICK_TIME_WINDOW,
-	HANDLE_PICK_TIME_UPLOAD,
-	UPDATE_IS_CONNECTED_SC,
-	UPDATE_IS_DISABLED_UPLOAD_BUTTON,
-	UPDATE_MASAS_USER_TRACKS,
-	UPDATE_SC_USER_TRACKS,
-	UPDATE_SC_USERNAME,
-	UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE,
-
-	closePickTimeWindow,
-	handlePickTimeUpload,
-	updateIsConnectedSC,
-	updateIsUploadButtonDisabled,
-	updateSCUserTracks,
-	updateSCUsername,
-	updateUploadTipTimePickerValue,
-}
 
 const UPDATE_SC_USER_TRACKS = 'UPDATE_SC_USER_TRACKS'
 const UPDATE_MASAS_USER_TRACKS = 'UPDATE_MASAS_USER_TRACKS'
@@ -79,4 +61,23 @@ function updateIsConnectedSC(isConnectedSoundcloud) {
 		type: UPDATE_IS_CONNECTED_SC,
 		isConnectedSoundcloud
 	}
+}
+
+export {
+	CLOSE_PICK_TIME_WINDOW,
+	HANDLE_PICK_TIME_UPLOAD,
+	UPDATE_IS_CONNECTED_SC,
+	UPDATE_IS_DISABLED_UPLOAD_BUTTON,
+	UPDATE_MASAS_USER_TRACKS,
+	UPDATE_SC_USER_TRACKS,
+	UPDATE_SC_USERNAME,
+	UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE,
+
+	closePickTimeWindow,
+	handlePickTimeUpload,
+	updateIsConnectedSC,
+	updateIsUploadButtonDisabled,
+	updateSCUserTracks,
+	updateSCUsername,
+	updateUploadTipTimePickerValue,
 }
