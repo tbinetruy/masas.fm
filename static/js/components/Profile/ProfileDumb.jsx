@@ -12,12 +12,12 @@ import { Marquee } from '../UI/UI.jsx'
  */
 
 const dumbPropTypes = {
-		isEditingProfile: React.PropTypes.bool,			// is user currently editing profile
-		isPublicProfile: React.PropTypes.bool,			// is comp showing public profile or private profile
-		saveProfile: React.PropTypes.func,				// function called when user saved profile
-		toogleEditingProfile: React.PropTypes.func,		// hides/closes edit profile form
-		userData: React.PropTypes.object,				// object containing user data to display
-		userSCSongs: React.PropTypes.array,				// user SC related info for songs. Not used. Only passed down to track list dumb component
+		isEditingProfile: PropTypes.bool,			// is user currently editing profile
+		isPublicProfile: PropTypes.bool,			// is comp showing public profile or private profile
+		saveProfile: PropTypes.func,				// function called when user saved profile
+		toogleEditingProfile: PropTypes.func,		// hides/closes edit profile form
+		userData: PropTypes.object,				// object containing user data to display
+		userSCSongs: PropTypes.array,				// user SC related info for songs. Not used. Only passed down to track list dumb component
 }
 
 const dumbDefaultProps = {

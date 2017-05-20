@@ -22,7 +22,7 @@ import {
 	setIsPlayerBuffering,
 } from '../../reducers/actions/Player.js'
 import { showPlayerMobile } from '../../reducers/actions/App.js'
-var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
+import { getTimeIntervalFromURL } from '../../MASAS_functions.jsx'
 
 const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'
 

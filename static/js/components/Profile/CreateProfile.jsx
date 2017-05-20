@@ -13,7 +13,7 @@ import {
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
 import { Button } from '../UI/UI.jsx'
-var { getCookie } = require('../../MASAS_functions.jsx')
+import { getCookie } from '../../MASAS_functions.jsx'
 
 /**
  * Redux container

@@ -8,7 +8,7 @@ import {
 } from '../../reducers/actions/Player.js'
 import { Marquee } from '../UI/UI.jsx'
 
-var { timeIntervalURLToString } = require('../../MASAS_functions.jsx')
+import { timeIntervalURLToString } from '../../MASAS_functions.jsx'
 
 /**
  * Redux container

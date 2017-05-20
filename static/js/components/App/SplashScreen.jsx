@@ -10,7 +10,7 @@ import {
 } from '../../reducers/actions/App.js'
 
 var Swiper = require('swiper/dist/js/swiper.min.js')
-var { goToURL } = require('../../MASAS_functions.jsx')
+import { goToURL } from '../../MASAS_functions.jsx'
 
 
 /**

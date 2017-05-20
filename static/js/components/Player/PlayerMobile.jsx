@@ -7,8 +7,7 @@ import { ProgressBar } from '../Footer/ProgressBar.jsx'
 import { showPlayerMobile } from '../../reducers/actions/App.js'
 import { updateProfileBackArrowFunc } from '../../reducers/actions/Profile.js'
 import { PlayingArtwork } from './PlayingArtwork.jsx'
-
-var { getUserPkFromURL } = require('../../MASAS_functions.jsx')
+import { getUserPkFromURL } from '../../MASAS_functions.jsx'
 
 
 /**

@@ -8,7 +8,7 @@ import { changeBgState } from '../../reducers/actions/App.js'
 
 // exeptionally import store to retrieve 1 value (read only)
 var { getState } = require('../../reducers/reducers.js')
-var { closeModal } = require('../../MASAS_functions.jsx')
+import { closeModal } from '../../MASAS_functions.jsx'
 
 /**
  * Redux container

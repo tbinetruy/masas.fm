@@ -11,8 +11,8 @@ import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.j
  */
 
 const reduxStatePropTypes = {
-	textboxValues: React.PropTypes.object,
-	userData: React.PropTypes.object,
+	textboxValues: PropTypes.object,
+	userData: PropTypes.object,
 }
 
 const mapStateToProps = function(state) {
@@ -23,7 +23,7 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	updateTextboxValues: React.PropTypes.func,
+	updateTextboxValues: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -41,7 +41,7 @@ const smartPropTypes = {
 	...reduxStatePropTypes,
 	...reduxDispatchPropTypes,
 
-	show: React.PropTypes.bool.isRequired,		// should comp be shown
+	show: PropTypes.bool.isRequired,		// should comp be shown
 }
 
 const smartDefaultProps = {

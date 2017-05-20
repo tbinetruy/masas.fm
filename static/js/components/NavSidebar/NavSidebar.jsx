@@ -12,7 +12,7 @@ import {
 	toogleNavSidebar,
 	updateSplashScreenLoginMessage,
 } from '../../reducers/actions/App.js'
-var { goToURL } = require('../../MASAS_functions.jsx')
+import { goToURL } from '../../MASAS_functions.jsx'
 
 /**
  * Redux container

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { ProfileWrapper } from './ProfileWrapper.jsx'
 import { ProfileDumb } from './ProfileDumb.jsx'
 
-var { getCookie, isObjectEmpty } = require('../../MASAS_functions.jsx')
+import { getCookie, isObjectEmpty } from '../../MASAS_functions.jsx'
 
 import {
 	getPublicProfileInfo,

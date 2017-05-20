@@ -5,14 +5,14 @@ import {
 	Link,
 } from '../UI/UI.jsx'
 
-var {
+import {
 	getTimeIntervalFromURL,
 	getDiscoverNumberFromCurrentTime,
-} = require('../../MASAS_functions.jsx')
+} from '../../MASAS_functions.jsx'
 
 import { ArtworkLine } from './ArtworkLine.jsx'
 
-var { TimePicker } = require('../UI/UI.jsx')
+import { TimePicker } from '../UI/UI.jsx'
 
 import {
 	changeBgState,

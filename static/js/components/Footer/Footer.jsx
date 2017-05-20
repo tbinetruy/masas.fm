@@ -22,7 +22,7 @@ import {
 
 import { showPlayerMobile } from '../../reducers/actions/App.js'
 
-var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
+import { getTimeIntervalFromURL } from '../../MASAS_functions.jsx'
 
 /**
  * Redux container

@@ -4,7 +4,7 @@ import { connect }from 'react-redux'
 import { Notification } from './Notification.jsx'
 import { HeaderDropdown } from './HeaderDropdown.jsx'
 
-var { getPathList } = require('../../MASAS_functions.jsx')
+import { getPathList } from '../../MASAS_functions.jsx'
 import {Link } from '../UI/UI.jsx'
 
 import {
