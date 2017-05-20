@@ -6,33 +6,37 @@ import { resetTextboxValue } from './Profile.js'
 // to refactor
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
-export const INCREMENT_LOGGED_OUT_USER_STEP = 'INCREMENT_LOGGED_OUT_USER_STEP'
-export const RESET_LOGGED_OUT_USER_STEP = 'RESET_LOGGED_OUT_USER_STEP'
-export const CHANGE_MODAL_CONTENT = 'CHANGE_MODAL_CONTENT'
-export const UPDATE_MODAL_TYPE = 'UPDATE_MODAL_TYPE'
-export const CLOSE_AND_EMPTY_MAIN_MODAL = 'CLOSE_AND_EMPTY_MAIN_MODAL'
-export const TOOGLE_IS_MODAL_OPENED = 'TOOGLE_IS_MODAL_OPENED'
-export const UPDATE_PAGE_TITLE = 'UPDATE_PAGE_TITLE'
-export const BLUR_BG = 'BLUR_BG'
-export const SATURATE_BG = 'SATURATE_BG'
-export const BLUR_BG_MOBILE = 'BLUR_BG_MOBILE'
-export const SATURATE_BG_MOBILE = 'SATURATE_BG_MOBILE'
-export const MODAL_SATURATE_BG = 'MODAL_SATURATE_BG'
-export const MODAL_BLUR_BG = 'MODAL_BLUR_BG'
-export const DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE'
-export const SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE'
-export const SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE'
-export const CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE'
-export const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
-export const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
-export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
-export const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
-export const UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE = 'UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE'
-export const SHOW_PLAYER_MOBILE = 'SHOW_PLAYER_MOBILE'
-export const RESET_BG = 'RESET_BG'
-export const BLACK_BG = 'BLACK_BG'
 
-export const showPlayerMobile = isPlayerMobileShown => {
+
+const INCREMENT_LOGGED_OUT_USER_STEP = 'INCREMENT_LOGGED_OUT_USER_STEP'
+const RESET_LOGGED_OUT_USER_STEP = 'RESET_LOGGED_OUT_USER_STEP'
+const CHANGE_MODAL_CONTENT = 'CHANGE_MODAL_CONTENT'
+const UPDATE_MODAL_TYPE = 'UPDATE_MODAL_TYPE'
+const CLOSE_AND_EMPTY_MAIN_MODAL = 'CLOSE_AND_EMPTY_MAIN_MODAL'
+const TOOGLE_IS_MODAL_OPENED = 'TOOGLE_IS_MODAL_OPENED'
+const UPDATE_PAGE_TITLE = 'UPDATE_PAGE_TITLE'
+const BLUR_BG = 'BLUR_BG'
+const SATURATE_BG = 'SATURATE_BG'
+const BLUR_BG_MOBILE = 'BLUR_BG_MOBILE'
+const SATURATE_BG_MOBILE = 'SATURATE_BG_MOBILE'
+const MODAL_SATURATE_BG = 'MODAL_SATURATE_BG'
+const MODAL_BLUR_BG = 'MODAL_BLUR_BG'
+const DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE'
+const SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE'
+const SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE'
+const CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE'
+const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
+const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
+const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
+const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
+const UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE = 'UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE'
+const SHOW_PLAYER_MOBILE = 'SHOW_PLAYER_MOBILE'
+const RESET_BG = 'RESET_BG'
+const BLACK_BG = 'BLACK_BG'
+
+
+
+const showPlayerMobile = isPlayerMobileShown => {
 	// $desktop-min-width: 992px
 	if($(window).width() > 992)
 		return {
@@ -45,14 +49,14 @@ export const showPlayerMobile = isPlayerMobileShown => {
 	}
 }
 
-export const updateSplashScreenLoginMessage = message => {
+const updateSplashScreenLoginMessage = message => {
 	return {
 		type: UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
 		splashScreenLoginMessage: message,
 	}
 }
 
-export const logout = () => dispatch => {
+const logout = () => dispatch => {
 	Cookie.remove('MASAS_authToken')
 
 	// update appReducer state
@@ -66,7 +70,7 @@ export const logout = () => dispatch => {
 	})
 }
 
-export function updateMiniProfileSCsongInfo() {
+function updateMiniProfileSCsongInfo() {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { miniProfile } = state.appReducer
@@ -83,7 +87,7 @@ export function updateMiniProfileSCsongInfo() {
 	}
 }
 
-export function updateMiniProfileContent(userApiURL) {
+function updateMiniProfileContent(userApiURL) {
 	return dispatch => {
 		fetch(userApiURL)
 		.then( r => r.json() )
@@ -97,58 +101,58 @@ export function updateMiniProfileContent(userApiURL) {
 	}
 }
 
-export function updateMiniProfileVisibility(isVisible) {
+
+function updateMiniProfileVisibility(isVisible) {
 	return {
 		type: UPDATE_MINI_PROFILE_VISIBILITY,
 		isVisible
 	}
 }
 
-export function toogleNavSidebar() {
+function toogleNavSidebar() {
 	return {
 		type: 'TOOGLE_NAV_SIDEBAR'
 	}
 }
 
-export function changeSplashScreenPage(splashScreenPage) {
+function changeSplashScreenPage(splashScreenPage) {
 	return {
 		type: CHANGE_SLASH_SCREEN_PAGE,
 		splashScreenPage
 	}
 }
 
-export function setAppFetchingStateTrue() {
+function setAppFetchingStateTrue() {
 	return {
 		type: SET_APP_FETCHING_STATE_TRUE
 	}
 }
 
 
-export function setAppFetchingStateFalse() {
+function setAppFetchingStateFalse() {
 	return {
 		type: SET_APP_FETCHING_STATE_FALSE
 	}
 }
 
-export function doneProcessingAuthCookie() {
+function doneProcessingAuthCookie() {
 	return {
 		type: DONE_PROCESSING_AUTH_COOKIE
 	}
 }
 
-export function incrementLoggedOutUserStep() {
+function incrementLoggedOutUserStep() {
 	return {
 		type: INCREMENT_LOGGED_OUT_USER_STEP
 	}
 }
-
-export function resetLoggedOutUserStep() {
+function resetLoggedOutUserStep() {
 	return {
 		type: RESET_LOGGED_OUT_USER_STEP
 	}
 }
 
-export function changeModalContent(modalContent, modalType = 1, closeModalFunc = () => {} ) {
+function changeModalContent(modalContent, modalType = 1, closeModalFunc = () => {} ) {
 	if(closeModalFunc === undefined)
 		closeModalFunc = () => {}
 
@@ -160,26 +164,26 @@ export function changeModalContent(modalContent, modalType = 1, closeModalFunc =
 	}
 }
 
-export function updateModalType(modalType) {
+function updateModalType(modalType) {
 	return {
 		type: UPDATE_MODAL_TYPE,
 		modalType,
 	}
 }
 
-export function closeAndEmptyMainModal() {
+function closeAndEmptyMainModal() {
 	return {
 		type: CLOSE_AND_EMPTY_MAIN_MODAL
 	}
 }
 
-export function toogleIsModalOpened() {
+function toogleIsModalOpened() {
 	return {
 		type: TOOGLE_IS_MODAL_OPENED,
 	}
 }
 
-export function updatePageTitle(title, pageType, backArrowFunc = () => {}) {
+function updatePageTitle(title, pageType, backArrowFunc = () => {}) {
 	return {
 		type: UPDATE_PAGE_TITLE,
 		title,
@@ -188,7 +192,9 @@ export function updatePageTitle(title, pageType, backArrowFunc = () => {}) {
 	}
 }
 
-export var changeBgState = {}
+
+
+const changeBgState = {}
 
 changeBgState.black = function() {
 	return {
@@ -268,4 +274,50 @@ changeBgState.saturateMobile = function(sat) {
 	}
 }
 
-// export default changeBgState
+
+export {
+	BLACK_BG,
+	BLUR_BG,
+	BLUR_BG_MOBILE,
+	CHANGE_MODAL_CONTENT,
+	CHANGE_SLASH_SCREEN_PAGE,
+	CLOSE_AND_EMPTY_MAIN_MODAL,
+	DONE_PROCESSING_AUTH_COOKIE,
+	INCREMENT_LOGGED_OUT_USER_STEP,
+	MODAL_BLUR_BG,
+	MODAL_SATURATE_BG,
+	RESET_LOGGED_OUT_USER_STEP,
+	SATURATE_BG,
+	SATURATE_BG_MOBILE,
+	SHOW_PLAYER_MOBILE,
+	SET_APP_FETCHING_STATE_FALSE,
+	SET_APP_FETCHING_STATE_TRUE,
+	TOOGLE_IS_MODAL_OPENED,
+	TOOGLE_NAV_SIDEBAR,
+	UPDATE_MINI_PROFILE_VISIBILITY,
+	UPDATE_MINI_PROFILE_CONTENT,
+	UPDATE_MODAL_TYPE,
+	UPDATE_PAGE_TITLE,
+	UPDATE_SC_SONG_INFO,
+	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
+
+	closeAndEmptyMainModal,
+	changeBgState,
+	changeModalContent,
+	changeSplashScreenPage,
+	doneProcessingAuthCookie,
+	incrementLoggedOutUserStep,
+	resetLoggedOutUserStep,
+	logout,
+	showPlayerMobile,
+	setAppFetchingStateFalse,
+	setAppFetchingStateTrue,
+	toogleIsModalOpened,
+	toogleNavSidebar,
+	updateMiniProfileSCsongInfo,
+	updateMiniProfileContent,
+	updateMiniProfileVisibility,
+	updateModalType,
+	updatePageTitle,
+	updateSplashScreenLoginMessage,
+}
