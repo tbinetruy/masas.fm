@@ -1,15 +1,3 @@
-import {
-	fetchLikes,
-	updateLikes,
-	toogleHashtagFilter,
-	updateLikesSearchInput,
-} from "../../../reducers/actions/Likes.js"
-
-import {
-	toogleIsModalOpened,
-	changeModalContent,
-	updatePageTitle,
-} from "../../../reducers/actions/App.js"
 
 var Likes = {}
 
@@ -17,13 +5,6 @@ var Likes = {}
 Likes.mapStateToProps = function(state) {
 	return {
 		// userLikes: state.likesReducer.userLikes,
-		userData: state.appReducer.userData,
-		SCinfo: state.likesReducer.SCinfo,
-		userPk: state.appReducer.MASASuserPk,
-		reFetch: state.likesReducer.reFetch,
-		searchInput: state.likesReducer.searchInput,
-		hashtagFilter: state.likesReducer.hashtagFilter,
-		userLikes: state.likesReducer.userLikes,
 	}
 }
 

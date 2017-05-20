@@ -1,61 +1,126 @@
-var React = require("react")
+/**
+ * FETCHES LIKES INFO, FILTERS IT IF NECESSARY, AND FEEDS THE DATA
+ * TO A SUB-COMPONENT THAT DISPLAYS IT
+ */
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/Likes.jsx")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var LikesWrapper = require("./LikesWrapper.jsx")
-var LikesArtworks = require("./LikesArtworks.jsx")
-var { Textbox } = require("../UI/UI.jsx")
-var FiltersModal = require("./FiltersModal.jsx")
+import { LikesArtworks } from './LikesArtworks.jsx'
+import { FiltersModal } from './FiltersModal.jsx'
+var { Textbox } = require('../UI/UI.jsx')
+import { LikesWrapper } from './LikesWrapper.jsx'
 
-var { isSubsequence, timeIntervalURLToString } = require("../../MASAS_functions.jsx")
+var { isSubsequence, timeIntervalURLToString } = require('../../MASAS_functions.jsx')
 
-// FETCHES LIKES INFO, FILTERS IT IF NECESSARY, AND FEEDS THE DATA 
-// TO A SUB-COMPONENT THAT DISPLAYS IT
+import {
+	fetchLikes,
+	toogleHashtagFilter,
+	updateLikes,
+	updateLikesSearchInput,
+} from '../../reducers/actions/Likes.js'
 
-var Likes = React.createClass({
-	propTypes: {
-		SCinfo: React.PropTypes.array,
-		userData: React.PropTypes.object,
-		searchInput: React.PropTypes.string,
-		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		toggleHashtag: React.PropTypes.func,
-		hashtagFilter: React.PropTypes.array,
-		updateLikes: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-		toogleHashtag: React.PropTypes.func,
-		getLikes: React.PropTypes.func,
-		userLikes: React.PropTypes.array,
-		updateSearchInput: React.PropTypes.func,
-	},
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+	updatePageTitle,
+} from '../../reducers/actions/App.js'
 
-	componentWillMount: function() {
-		this.props.updateTitle("Likes", "0")		// 0 = menu icon; 1 = arrow back
+
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	SCinfo: PropTypes.array,
+	hashtagFilter: PropTypes.array,
+	searchInput: PropTypes.string,
+	userData: PropTypes.object,
+	userLikes: PropTypes.array,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		userData: state.appReducer.userData,
+		SCinfo: state.likesReducer.SCinfo,
+		searchInput: state.likesReducer.searchInput,
+		hashtagFilter: state.likesReducer.hashtagFilter,
+		userLikes: state.likesReducer.userLikes,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	getLikes: PropTypes.func,
+	toggleHashtag: PropTypes.func,
+	toogleModal: PropTypes.func,
+	updateLikes: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateSearchInput: PropTypes.func,
+	updateTitle: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		getLikes: () => dispatch(fetchLikes()),
+		updateLikes: SCinfo => dispatch(updateLikes(SCinfo)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		toogleHashtag: hashtagNumber => dispatch(toogleHashtagFilter(hashtagNumber)),
+		updateSearchInput: input => dispatch(updateLikesSearchInput(input)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class LikesSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.getLikes = this.getLikes.bind(this)
+		this.filterLikes = this.filterLikes.bind(this)
+		this.openFiltersModal = this.openFiltersModal.bind(this)
+		this.toggleFilter = this.toggleFilter.bind(this)
+		this.updateSearchInput = this.updateSearchInput.bind(this)
+    }
+
+	componentWillMount() {
+		this.props.updateTitle('Likes', '0')		// 0 = menu icon; 1 = arrow back
 
 		this.getLikes()
-	},
+	}
 
-	componentDidMount: function() {
-	},
-
-	componentWillUnmount: function() {
-		for(var i = 0; i < this.props.hashtagFilter.length; i++) {
-			if(this.props.hashtagFilter[i])
-				this.props.toogleHashtag(i)
-		}
-	},
-
-	getLikes: function() {
-		this.props.getLikes()
-	},
+	componentDidMount() {
+	}
 
 	componentDidUpdate(prevProps) {
 		if(JSON.stringify(prevProps.userData) !== JSON.stringify(this.props.userData))
 			this.getLikes()
-	},
+	}
 
-	filterLikes: function() {
+	componentWillUnmount() {
+		for(var i = 0; i < this.props.hashtagFilter.length; i++) {
+			if(this.props.hashtagFilter[i])
+				this.props.toogleHashtag(i)
+		}
+	}
+
+	getLikes() {
+		this.props.getLikes()
+	}
+
+	filterLikes() {
 		if(this.props.userLikes) {
 			var songList = this.props.userLikes
 
@@ -72,11 +137,11 @@ var Likes = React.createClass({
 				// should refactor this into a "searchStringFilter" function
 				var songSearchString = radioTimeString(
 					song.MASAS_songInfo.song.timeInterval)
-					+ " "
+					+ ' '
 					+ song.SC_songInfo.title
-					+ " "
+					+ ' '
 					+ song.SC_songInfo.tag_list
-					+ " "
+					+ ' '
 					+ song.SC_songInfo.user.username
 
 				return isSubsequence(this.props.searchInput, songSearchString)
@@ -101,27 +166,27 @@ var Likes = React.createClass({
 			}
 
 			return filteredSongList
-		} else 
+		} else
 			return
-	},
+	}
 
-	openFiltersModal: function() {
+	openFiltersModal() {
 		this.props.updateModalContent(<FiltersModal />)
 		this.props.toogleModal()
-	},
+	}
 
-	toggleFilter: function(hashtagNumber) {
+	toggleFilter(hashtagNumber) {
 		this.props.toogleHashtag(hashtagNumber)
-	},
+	}
 
-	updateSearchInput: function(searchInput) {
+	updateSearchInput(searchInput) {
 		this.props.updateSearchInput(searchInput)
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<LikesWrapper>
-					{ 
+					{
 						this.props.userLikes.length ?
 							<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
 								<img src="/static/img/MASAS_search.svg" alt="serach-icon" />
@@ -129,38 +194,44 @@ var Likes = React.createClass({
 								<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_filter.svg" />
 							</div>
 						:
-							""
+							''
 					}
 					{
 						this.props.userLikes.length ?
 							<div className="filters--wrapper">
-								<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>
-								<div onClick={ this.toggleFilter.bind(this, 1) } id="filter-late-morning" className={ "tag-filter " + ( this.props.hashtagFilter[1] ? "enable" : "" )}>#LateMorning</div>
-								<div onClick={ this.toggleFilter.bind(this, 2) } id="filter-early-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[2] ? "enable" : "" )}>#EarlyAfternoon</div>
-								<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[3] ? "enable" : "" )}>#LateAfternoon</div>
-								<div onClick={ this.toggleFilter.bind(this, 4) } id="filter-early-evening" className={ "tag-filter " + ( this.props.hashtagFilter[4] ? "enable" : "" )}>#EarlyEvening</div>
-								<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateEvening</div>
+								<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ 'tag-filter ' + ( this.props.hashtagFilter[0] ? 'enable' : '' )}>#EarlyMorning</div>
+								<div onClick={ this.toggleFilter.bind(this, 1) } id="filter-late-morning" className={ 'tag-filter ' + ( this.props.hashtagFilter[1] ? 'enable' : '' )}>#LateMorning</div>
+								<div onClick={ this.toggleFilter.bind(this, 2) } id="filter-early-afternoon" className={ 'tag-filter ' + ( this.props.hashtagFilter[2] ? 'enable' : '' )}>#EarlyAfternoon</div>
+								<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ 'tag-filter ' + ( this.props.hashtagFilter[3] ? 'enable' : '' )}>#LateAfternoon</div>
+								<div onClick={ this.toggleFilter.bind(this, 4) } id="filter-early-evening" className={ 'tag-filter ' + ( this.props.hashtagFilter[4] ? 'enable' : '' )}>#EarlyEvening</div>
+								<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ 'tag-filter ' + ( this.props.hashtagFilter[5] ? 'enable' : '' )}>#LateEvening</div>
 							</div>
 						:
-							""
+							''
 					}
 
-					<LikesArtworks 
-						SCinfo={ this.props.SCinfo } 
-						userData={ this.props.userData } 
+					<LikesArtworks
+						SCinfo={ this.props.SCinfo }
+						userData={ this.props.userData }
 						userLikes={ this.filterLikes(this.props.userLikes) } />
-				
+
 			</LikesWrapper>
 		)
 	}
-})
-
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Likes)
+}
 
 
+LikesSmart.propTypes = smartPropTypes
+LikesSmart.defaultProps = smartDefaultProps
+
+const Likes = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LikesSmart)
+
+export {
+	Likes,
+}
 
 
 

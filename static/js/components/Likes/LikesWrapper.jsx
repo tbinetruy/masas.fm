@@ -1,43 +1,67 @@
-var React = require("react")
+import React, { PropTypes, createClass } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesWrapper.jsx")
-
-import { MobileBlurBackground } from "../MASAS_mixins.jsx"
+import { MobileBlurBackground } from '../MASAS_mixins.jsx'
 
 
-var LikesWrapper = React.createClass({
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	SCinfo: PropTypes.array,
+	title: PropTypes.string,
+	userLikes: PropTypes.array,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		title: state.appReducer.pageTitle,
+		SCinfo: state.likesReducer.SCinfo,
+		userLikes: state.likesReducer.userLikes,
+	}
+}
+
+const reduxDispatchPropTypes = {
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	children: PropTypes.node,
+}
+
+const LikesWrapperSmart = createClass({
 	mixins: [ MobileBlurBackground ],
 
-	propTypes: {
-		userLikes: React.PropTypes.array,
-		title: React.PropTypes.string,
-		SCinfo: React.PropTypes.array,
-
-		children: React.PropTypes.node,
-	},
+	propTypes: smartPropTypes,
 
 	componentWillMount: function() {
-		// this.props.updateTitle()
 		this.scrollOffset = 70
 	},
 
 	componentDidMount: function() {
-		// var node = ReactDOM.findDOMNode(this.refs.scroll)
-
 		if(this.props.userLikes.length) {
-			this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
+			this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName('filters--wrapper')[0].offsetHeight + 10
 			$('.box.page-content')[0].scrollTop = this.scrollOffset
 		}
 	},
 
-	componentWillUpdate: function(nextProps, nextState) {
-
-	},
-
 	componentDidUpdate: function(prevProps, prevState) {
-		if(this.props.userLikes.length && document.getElementsByClassName("likes-searchbar--wrapper")[0]	)
-			this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
+		if(this.props.userLikes.length && document.getElementsByClassName('likes-searchbar--wrapper')[0]	)
+			this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName('filters--wrapper')[0].offsetHeight + 10
 
 		if(this.props.userLikes.length === 1&& !prevProps.userLikes.length) {
 			$('.box.page-content')[0].scrollTop = this.scrollOffset
@@ -76,7 +100,11 @@ var LikesWrapper = React.createClass({
 })
 
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(LikesWrapper)
+const LikesWrapper = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LikesWrapperSmart)
+
+export {
+	LikesWrapper,
+}

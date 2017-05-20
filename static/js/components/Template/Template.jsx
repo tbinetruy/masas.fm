@@ -79,5 +79,3 @@ const Template = connect(
 export {
 	Template,
 }
-
-

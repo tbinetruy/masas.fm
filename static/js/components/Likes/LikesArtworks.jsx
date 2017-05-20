@@ -1,61 +1,103 @@
-var React = require("react")
-var ReactRedux = require("react-redux")
+/**
+ * DISPLAYS USER LIKES (propTypes)
+ * creates invisible artworks to keep the last line aligned left using flexbox
+ */
 
-// commented because we may need this line in the near future
-var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
-var LikesItem = require("./LikesItem.jsx")
-var NoLikesComponent = require("./NoLikesComponent.jsx")
-
-var { Button } = require("../UI/UI.jsx")
-
-const { defaultState } = require("../../reducers/Likes.jsx")
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { LikesItem } from './LikesItem.jsx'
+import { changeBgState } from '../../reducers/actions/App.js'
+import { updateNumberLikesShown } from '../../reducers/actions/Likes.js'
+import { NoLikesComponent } from './NoLikesComponent.jsx'
+var { Button } = require('../UI/UI.jsx')
+const { defaultState } = require('../../reducers/Likes.jsx')
 const defaultNumRowLikesShown = defaultState.numRowLikesShown
 
-// DISPLAYS USER LIKES (propTypes)
-// creates invisible artworks to keep the last line aligned left using flexbox
-var LikesArtworks = React.createClass({
 
-	propTypes: {
-		SCinfo: React.PropTypes.array,
-		userData: React.PropTypes.object,		
-		userLikes: React.PropTypes.array,
-		userLikesUnfiltered: React.PropTypes.array,
-		bgFilter: React.PropTypes.object,
-		numRowLikesShown: React.PropTypes.number,
-		showMoreLikesButton: React.PropTypes.bool,
+/**
+ * Redux container
+ */
 
-		blurBg: React.PropTypes.func,
-		saturateBg: React.PropTypes.func,
-		blurBgMobile: React.PropTypes.func,
-		saturateBgMobile: React.PropTypes.func,
-		updateNumberLikesShown: React.PropTypes.func,
-		updateShowMoreLikesButton: React.PropTypes.func,
-	},
+const reduxStatePropTypes = {
+	bgFilter: PropTypes.object,
+	numRowLikesShown: PropTypes.number,
+	userLikesUnfiltered: PropTypes.array,
+}
 
-	componentWillMount: function() {
+const mapStateToProps = function(state) {
+	return {
+		bgFilter: state.appReducer.bgFilter,
+		userLikesUnfiltered: state.likesReducer.userLikes,
+		numRowLikesShown: state.likesReducer.numRowLikesShown
+	}
+}
+
+const reduxDispatchPropTypes = {
+	blurBg: PropTypes.func,
+	blurBgMobile: PropTypes.func,
+	saturateBg: PropTypes.func,
+	saturateBgMobile: PropTypes.func,
+	updateNumberLikesShown: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateNumberLikesShown: number => dispatch(updateNumberLikesShown(number)),
+		blurBg: (blur) => dispatch(changeBgState.blur(blur)),
+		saturateBg: (sat) => dispatch(changeBgState.saturate(sat)),
+		blurBgMobile: (blur) => dispatch(changeBgState.blurMobile(blur)),
+		saturateBgMobile: (sat) => dispatch(changeBgState.saturateMobile(sat)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	SCinfo: PropTypes.array,
+	showMoreLikesButton: PropTypes.bool,
+	updateShowMoreLikesButton: PropTypes.func,
+	userData: PropTypes.object,
+	userLikes: PropTypes.array,
+}
+
+const smartDefaultProps = {
+}
+
+class LikesArtworksSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	componentWillMount() {
 		this.numArtworkPerLine = 10
-	},
+	}
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		// hide extra like artworks when umounting
 		this.props.updateNumberLikesShown(defaultNumRowLikesShown)
-	},
+	}
 
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
-	renderLikes: function() {
+	renderLikes() {
 		if (!this.props.userLikesUnfiltered.length)
 			return <NoLikesComponent />
 		else {
 			// // sort by uploaded time
 			const songs = this.props.userLikes
 
-			var songList =  songs.map((song) => { 
-				return <LikesItem 
-						key={ song.MASAS_songInfo.pk } 
-						MASAS_songPk={ song.MASAS_songInfo.pk } 
-						SCinfo={ song.SC_songInfo } 
+			var songList =  songs.map((song) => {
+				return <LikesItem
+						key={ song.MASAS_songInfo.pk }
+						MASAS_songPk={ song.MASAS_songInfo.pk }
+						SCinfo={ song.SC_songInfo }
 						MASASinfo={ song.MASAS_songInfo.song }
 						artistInfo={ song.artistInfo }
 						isShowingArtistInfo={ song.showProfile } />
@@ -69,7 +111,7 @@ var LikesArtworks = React.createClass({
 
 			return songList
 		}
-	},
+	}
 
 	/**
 		** Purpose **
@@ -79,19 +121,19 @@ var LikesArtworks = React.createClass({
 		{ artworkWidth: int, likesWrapperWidth: int }
 		units: px
 	*/
-	getElementsWidth: function() {
+	getElementsWidth() {
 		// insert artwork wrapper in body to get its width
 		// for the artwork, we can just get the hardcoded width from css
-		
-		var $artworkWrapper = $("<div class='likes-scroll--wrapper'><div class='likes--wrapper'><div class='likes-artworks--wrapper'><div class='likes-item--wrapper'><div class='artwork--wrapper'><img class='artwork'/></div></div></div></div></div>").hide().appendTo("body")
-		const artworkInnerWidth = $artworkWrapper.css("width").replace('px', '')
+
+		var $artworkWrapper = $('<div class=\'likes-scroll--wrapper\'><div class=\'likes--wrapper\'><div class=\'likes-artworks--wrapper\'><div class=\'likes-item--wrapper\'><div class=\'artwork--wrapper\'><img class=\'artwork\'/></div></div></div></div></div>').hide().appendTo('body')
+		const artworkInnerWidth = $artworkWrapper.css('width').replace('px', '')
 		// const artworkMargin = window.getComputedStyle(document.getElementsByClassName('likes-item--wrapper')[0]).margin.replace('px', '')
-		const artworkWidth = parseInt(artworkInnerWidth) 
+		const artworkWidth = parseInt(artworkInnerWidth)
 
 
 		// same for likes wrapper
 		// but now we have to get the getComputedStyle() because width is dynamically defined based on window width
-		var $likesWrapper = $("<div class='likes-scroll--wrapper'><div class='likes--wrapper'></div></div>").hide().appendTo("body")
+		var $likesWrapper = $('<div class=\'likes-scroll--wrapper\'><div class=\'likes--wrapper\'></div></div>').hide().appendTo('body')
 		const likesWrapperWidth = window.getComputedStyle(document.getElementsByClassName('likes--wrapper')[0]).width.replace('px', '')
 
 		// remove dummy elements now that we have their width
@@ -99,7 +141,7 @@ var LikesArtworks = React.createClass({
 		$likesWrapper.remove()
 
 		return { artworkWidth, likesWrapperWidth }
-	},
+	}
 
 	/**
 		** goal **
@@ -108,10 +150,10 @@ var LikesArtworks = React.createClass({
 		** output **
 		jsx elements
 	*/
-	alignArtworksLeft: function() {
+	alignArtworksLeft() {
 		// don't align if user has no likes
 		if(!this.props.userLikes.length)
-			return 
+			return
 
 		const { artworkWidth, likesWrapperWidth } = this.getElementsWidth()
 
@@ -139,9 +181,9 @@ var LikesArtworks = React.createClass({
 		}
 
 		return divArray
-	},
+	}
 
-	shouldFilterLikes: function() {
+	shouldFilterLikes() {
 		const songList = this.props.userLikes
 		const totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine
 
@@ -149,14 +191,14 @@ var LikesArtworks = React.createClass({
 			return true
 		else
 			return false
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="likes-artworks--wrapper">
-				{ this.renderLikes() } 	
+				{ this.renderLikes() }
 				{ this.alignArtworksLeft() }
-				<div 
+				<div
 					className="button-container"
 					style={{ display: (this.shouldFilterLikes() ? 'flex' : 'none') }}>
 					<Button
@@ -167,9 +209,16 @@ var LikesArtworks = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(LikesArtworks)
+LikesArtworksSmart.propTypes = smartPropTypes
+LikesArtworksSmart.defaultProps = smartDefaultProps
+
+const LikesArtworks = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LikesArtworksSmart)
+
+export {
+	LikesArtworks,
+}

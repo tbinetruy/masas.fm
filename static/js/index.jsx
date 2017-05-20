@@ -16,7 +16,7 @@ var InvitationPending = require('./components/Login/InvitationPending.jsx')
 var SignUp = require('./components/Login/SignUp.jsx')
 var UploadSC = require('./components/UploadSC/UploadSC.jsx')
 var Profile = require('./components/Profile/Profile.jsx')
-var Likes = require('./components/Likes/Likes.jsx')
+import { Likes } from './components/Likes/Likes.jsx'
 import { Discover } from './components/Discover/Discover.jsx'
 import { LegalsHome as Legals } from './components/Legals/LegalsHome.jsx'
 var Popular = require('./components/Popular/Popular.jsx')
