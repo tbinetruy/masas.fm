@@ -1,30 +1,40 @@
-import * as React from "react"
-
-import { connect }from "react-redux"
+import * as React from 'react'
+import { connect }from 'react-redux'
 
 
 import {
 	playRandomSong,
 	toggleSongLike,
-} from "../../../reducers/actions/Player.js"
+} from '../../../reducers/actions/Player.js'
 
 import {
-	toogleIsModalOpened,
 	changeModalContent,
+	toogleIsModalOpened,
 	updateSplashScreenLoginMessage,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
-import SplashScreen from "../../App/SplashScreen.jsx"
+import { SplashScreen } from '../../App/SplashScreen.jsx'
 
 /**
  * Redux container
  */
+
+const reduxStatePropTypes = {
+    MASASuser: React.PropTypes.string,
+    songPlaying: React.PropTypes.string,
+}
 
 const mapStateToProps = function(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
 		songPlaying: state.playerReducer.songPlaying,
 	}
+}
+
+const reduxDispatchPropTypes = {
+    toogleModal: React.PropTypes.func,
+    updateModalContent: React.PropTypes.func,
+    updateLoginMessage: React.PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -40,25 +50,37 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
 class DislikeButtonSmart extends React.Component {
     constructor(props) {
         super(props)
+
+		this.showLoginModal = this.showLoginModal.bind(this)
+		this.dislikeSong = this.dislikeSong.bind(this)
     }
 
-	showLoginModal = message => {
+	showLoginModal(message) {
 		this.props.updateLoginMessage(message)
 		this.props.updateModalContent(<SplashScreen startPage={1} />, 3)
 		this.props.toogleModal()
 	}
 
-	dislikeSong = () => {
+	dislikeSong() {
 		if(this.props.MASASuser === '')
 			this.showLoginModal('Please log-in to Downvote songs')
 		else
 			this.props.playRandomSong()
 	}
 
-	render = () => {
+	render() {
 		return (
 			<div
                 className="dislike-button-component--wrapper"
@@ -69,13 +91,8 @@ class DislikeButtonSmart extends React.Component {
 	}
 }
 
-DislikeButtonSmart.propTypes = {
-    MASASuser: React.PropTypes.string,
-    songPlaying: React.PropTypes.string,
-    toogleModal: React.PropTypes.func,
-    updateModalContent: React.PropTypes.func,
-    updateLoginMessage: React.PropTypes.func,
-}
+DislikeButtonSmart.propTypes = smartPropTypes
+DislikeButtonSmart.defaultProps = smartDefaultProps
 
 const DislikeButton = connect(
     mapStateToProps,

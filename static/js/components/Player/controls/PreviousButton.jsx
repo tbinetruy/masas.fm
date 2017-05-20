@@ -1,15 +1,22 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
 import {
 	playNewSongFromPlaylist,
 	playPreviousSongInHistory,
 } from '../../../reducers/actions/Player.js'
 
-import { connect }from 'react-redux'
 
 /**
  * Redux container
  */
+
+const reduxStatePropTypes = {
+    isPlaylistPlaying: React.PropTypes.bool,
+    playingFromPopular: React.PropTypes.bool,
+    playlistPosition: React.PropTypes.number,
+    popularHistory: React.PropTypes.array,
+}
 
 const mapStateToProps = function(state) {
 	return {
@@ -18,6 +25,11 @@ const mapStateToProps = function(state) {
 		playlistPosition: state.playerReducer.playlistPosition,
 		popularHistory: state.popularReducer.history,
 	}
+}
+
+const reduxDispatchPropTypes = {
+    playNewSongFromPlaylist: React.PropTypes.func,
+    playPreviousSong: React.PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -31,6 +43,15 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
 class PreviousButtonSmart extends React.Component {
     constructor(props) {
         super(props)
@@ -74,15 +95,8 @@ class PreviousButtonSmart extends React.Component {
 	}
 }
 
-PreviousButtonSmart.propTypes = {
-    isPlaylistPlaying: React.PropTypes.bool,
-    playNewSongFromPlaylist: React.PropTypes.func,
-    playPreviousSong: React.PropTypes.func,
-    playingFromPopular: React.PropTypes.bool,
-    playlistPosition: React.PropTypes.number,
-    popularHistory: React.PropTypes.array,
-
-}
+PreviousButtonSmart.propTypes = smartPropTypes
+PreviousButtonSmart.defaultProps = smartDefaultProps
 
 const PreviousButton = connect(
     mapStateToProps,

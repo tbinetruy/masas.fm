@@ -1,11 +1,7 @@
 import * as React from 'react'
-
 import { connect }from 'react-redux'
 
-
-import {
-	toggleSongLike,
-} from '../../../reducers/actions/Player.js'
+import { toggleSongLike } from '../../../reducers/actions/Player.js'
 
 import {
 	changeModalContent,
@@ -20,7 +16,12 @@ import { SplashScreen } from '../../App/SplashScreen.jsx'
  */
 
 const reduxStatePropTypes = {
-
+    MASASuser: React.PropTypes.string,
+    isModalOpened: React.PropTypes.bool,
+    isSongPlayingLiked: React.PropTypes.bool,
+    modalType: React.PropTypes.number,
+    songPlaying: React.PropTypes.string,
+    userData: React.PropTypes.object,
 }
 
 const mapStateToProps = function(state) {
@@ -35,7 +36,10 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-
+    toggleSongLike: React.PropTypes.func,
+    toogleModal: React.PropTypes.func,
+    updateLoginMessage: React.PropTypes.func,
+    updateModalContent: React.PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -54,17 +58,6 @@ const mapDispatchToProps = function(dispatch) {
 const smartPropTypes = {
 	...reduxStatePropTypes,
 	...reduxDispatchPropTypes,
-
-    MASASuser: React.PropTypes.string,
-    isModalOpened: React.PropTypes.bool,
-    isSongPlayingLiked: React.PropTypes.bool,
-    modalType: React.PropTypes.number,
-    songPlaying: React.PropTypes.string,
-    toggleSongLike: React.PropTypes.func,
-    toogleModal: React.PropTypes.func,
-    updateLoginMessage: React.PropTypes.func,
-    updateModalContent: React.PropTypes.func,
-    userData: React.PropTypes.object,
 }
 
 class LikeButtonSmart extends React.Component {

@@ -1,27 +1,21 @@
-import {
-	updatePageTitle,
-} from "../../../reducers/actions/App.js"
-
-import react from "react"
-const React = react
-
-import { connect }from "react-redux"
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
 import {
-	playPlayer,
 	pausePlayer,
+	playPlayer,
 	playRandomSong,
-
-	playNewSongFromPlaylist,
-	playNewSong,
-	resumePlayer,
-	setIsPlayerBuffering,
-	toggleSongLike,
-} from "../../../reducers/actions/Player.js"
+} from '../../../reducers/actions/Player.js'
 
 /**
  * Redux container
  */
+
+const reduxStatePropTypes = {
+	isFetchingSong: PropTypes.bool,
+	isPaused: PropTypes.bool,
+	songPlaying: PropTypes.string,
+}
 
 const mapStateToProps = function(state) {
 	return {
@@ -29,6 +23,12 @@ const mapStateToProps = function(state) {
 		isPaused: state.playerReducer.isPaused,
 		songPlaying: state.playerReducer.songPlaying,
 	}
+}
+
+const reduxDispatchPropTypes = {
+	pause: PropTypes.func,
+	play: PropTypes.func,
+	playRandomSong: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -40,28 +40,27 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 
-
 /**
  * Smart component
  */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
 class PlayButtonSmart extends React.Component {
     constructor(props) {
         super(props)
+
+		this.getControlButtons = this.getControlButtons.bind(this)
     }
 
-	componentWillMount = () => {
-	}
-
     // play / pause / fetching button
-	getControlButtons = () => {
-		// show loader if fetching song info
-		/*if(this.props.isFetchingSong)
-			return <img
-                src="/static/img/puff_loader.svg"
-                alt="loading"
-                className="player-button"
-                id="player-play-button"/>*/
-
+	getControlButtons() {
 		// pause on click if song playing is not paused
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			return <img
@@ -69,7 +68,7 @@ class PlayButtonSmart extends React.Component {
                 src="/static/img/MASAS_player_pause.svg"
                 alt="pause button"
                 className="player-button"
-                id="player-play-button"/>
+                id="player-play-button" />
 
 		// if nothing is playing, play random song on play icon
 		if(!this.props.songPlaying)
@@ -78,7 +77,7 @@ class PlayButtonSmart extends React.Component {
                 src="/static/img/MASAS_player_play.svg"
                 alt="play button"
                 className="player-button"
-                id="player-play-button"/>
+                id="player-play-button" />
 
 		// else, click play to unpause
 		return <img
@@ -89,7 +88,7 @@ class PlayButtonSmart extends React.Component {
             id="player-play-button" />
 	}
 
-	render = () => {
+	render() {
 		return (
 			<div className="play-button-component--wrapper">
                 { this.getControlButtons() }
@@ -98,15 +97,8 @@ class PlayButtonSmart extends React.Component {
 	}
 }
 
-PlayButtonSmart.propTypes = {
-        isFetchingSong: React.PropTypes.bool,
-        songPlaying: React.PropTypes.string,
-        isPaused: React.PropTypes.bool,
-
-        play: React.PropTypes.func,
-        playRandomSong: React.PropTypes.func,
-        pause: React.PropTypes.func,
-}
+PlayButtonSmart.propTypes = smartPropTypes
+PlayButtonSmart.defaultProps = smartDefaultProps
 
 const PlayButton = connect(
     mapStateToProps,
