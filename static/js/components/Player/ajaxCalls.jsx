@@ -8,25 +8,25 @@ var ajaxCalls = {}
 // caled when state.playerReducer.songPlaying changes
 ajaxCalls.playNewSong = function(newProps, addToHistory) {
 	var songId = newProps.songPlaying
-	
+
 	// set loading state
 	dispatch({type: 'SET_SONG_IS_FETCHING_TRUE'})
 
 	$.ajax({
-		type: "GET",
+		type: 'GET',
 		url: newProps.songPlaying,
 		headers: {
 			// "Authorization": header,
 		},
 		success: (data) => {
 			SC.get('/tracks/' + data.SC_ID).then((response) => {
-				var streamURL = response.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3" 
+				var streamURL = response.stream_url + '?client_id=e5d965905a85b11e108d064bc04430a3'
 
 				// reinit player with new media url
-				if($("#jquery_jplayer_1").data("jPlayer") === undefined) {
-					$("#jquery_jplayer_1").jPlayer({
+				if($('#jquery_jplayer_1').data('jPlayer') === undefined) {
+					$('#jquery_jplayer_1').jPlayer({
 						ready: function(	) {
-							$(this).jPlayer("setMedia", {
+							$(this).jPlayer('setMedia', {
 								mp3: streamURL,
 								m4a: streamURL,
 								oga: streamURL
@@ -45,9 +45,9 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 								}
 							}
 						},
-						swfPath: "http://jplayer.org/latest/dist/jplayer",
-						supplied: "mp3, oga",
-						wmode: "window",
+						swfPath: 'http://jplayer.org/latest/dist/jplayer',
+						supplied: 'mp3, oga',
+						wmode: 'window',
 						useStateClassSkin: true,
 						autoBlur: false,
 						smoothPlayBar: true,
@@ -56,8 +56,8 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 						toggleDuration: true
 					})
 				} else {
-					$("#jquery_jplayer_1").jPlayer( "clearMedia" )
-					$("#jquery_jplayer_1").jPlayer("setMedia", { 
+					$('#jquery_jplayer_1').jPlayer( 'clearMedia' )
+					$('#jquery_jplayer_1').jPlayer('setMedia', {
 						mp3: streamURL,
 						m4a: streamURL,
 						oga: streamURL
@@ -65,15 +65,15 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 				}
 
 				// play song and update state
-				$("#jquery_jplayer_1").jPlayer('play')
+				$('#jquery_jplayer_1').jPlayer('play')
 
 				var ajaxRequest = $.ajax({
 					type: 'GET',
 					url: data.trackArtist,
 					success: (artistInfo) => {
-						dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data })
-						dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response })
-						dispatch({ type: "UPDATE_ARTIST_INFO", artistInfo })
+						dispatch({ type: 'UPDATE_MASAS_SONG_INFO', songInfo: data })
+						dispatch({ type: 'UPDATE_SC_SONG_INFO', songInfo: response })
+						dispatch({ type: 'UPDATE_ARTIST_INFO', artistInfo })
 
 						if(!newProps.isPlaylistPlaying)
 							dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response, artistInfo })
@@ -107,12 +107,12 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 }
 
 ajaxCalls.updateLikeButton = function(MASAS_songInfo, SC_songInfo, props) {
-	var header = "Bearer " + props.MASASuser
+	var header = 'Bearer ' + props.MASASuser
 	$.ajax({
-		type: "GET",
-		url: '/api/users/'+ props.userPk+'/',	
+		type: 'GET',
+		url: '/api/users/'+ props.userPk+'/',
 		headers: {
-			"Authorization": header,
+			'Authorization': header,
 		},
 		success: (user) => {
 
