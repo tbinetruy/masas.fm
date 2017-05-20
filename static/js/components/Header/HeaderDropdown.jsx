@@ -9,8 +9,8 @@ import {
 	updateSplashScreenLoginMessage
 } from '../../reducers/actions/App.js'
 
-var { Button, Link } = require('../UI/UI.jsx')
-var { browserHistory } = require('react-router')
+import { Button, Link } from '../UI/UI.jsx'
+import { browserHistory } from 'react-router'
 import { SplashScreen } from '../App/SplashScreen.jsx'
 
 /**
@@ -24,10 +24,10 @@ const MenuLink = props => (
 )
 
 MenuLink.propTypes = {
-	URL: React.PropTypes.string,
-	children: React.PropTypes.node,
-	onClick: React.PropTypes.func,
-	src: React.PropTypes.string,
+	URL: PropTypes.string,
+	children: PropTypes.node,
+	onClick: PropTypes.func,
+	src: PropTypes.string,
 }
 
 /**
@@ -68,15 +68,15 @@ const smartPropTypes = {
 	...reduxStatePropTypes,
 	...reduxDispatchPropTypes,
 
-	MASASuser: React.PropTypes.string,
-	closeModal: React.PropTypes.func,
-	dispatch: React.PropTypes.func,
-	isModalOpened: React.PropTypes.bool,
-	logout: React.PropTypes.func,
-	toogleModal: React.PropTypes.func,
-	updateLoginMessage: React.PropTypes.func,
-	updateModalContent: React.PropTypes.func,
-	userData: React.PropTypes.object,
+	MASASuser: PropTypes.string,
+	closeModal: PropTypes.func,
+	dispatch: PropTypes.func,
+	isModalOpened: PropTypes.bool,
+	logout: PropTypes.func,
+	toogleModal: PropTypes.func,
+	updateLoginMessage: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	userData: PropTypes.object,
 }
 
 const smartDefaultProps = {

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 const { updateNotificationBar, updateProfileInfo } = require('../../MASAS_functions.jsx')
-const { Button } = require('../UI/UI.jsx')
+import { Button } from '../UI/UI.jsx'
 
 
 /**

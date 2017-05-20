@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { ChangeMoodModal } from './ChangeMoodModal.jsx'
 import { RemoveSongModal } from './RemoveSongModal.jsx'
-var { Marquee, RankingInfoIcon } = require('../UI/UI.jsx')
+import { Marquee, RankingInfoIcon } from '../UI/UI.jsx'
 var { isObjectEmpty, timeIntervalURLToString } = require('../../MASAS_functions.jsx')
 
 import {

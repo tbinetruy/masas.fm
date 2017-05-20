@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-var Swiper = require('swiper/dist/js/swiper.min.js')
-
-var { goToURL } = require('../../MASAS_functions.jsx')
-var { Button } = require('../UI/UI.jsx')
+import { Button } from '../UI/UI.jsx'
 import { LoginForm } from '../Login/LoginForm.jsx'
 import { LegalsHome as Legals } from '../Legals/LegalsHome.jsx'
-
 import {
 	changeSplashScreenPage,
 	closeAndEmptyMainModal,
 } from '../../reducers/actions/App.js'
+
+var Swiper = require('swiper/dist/js/swiper.min.js')
+var { goToURL } = require('../../MASAS_functions.jsx')
 
 
 /**

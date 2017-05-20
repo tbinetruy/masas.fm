@@ -6,7 +6,7 @@ import { AppDumb } from './AppDumb.jsx'
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
-var CreateProfile = require('../Profile/CreateProfile.jsx')
+import { CreateProfile } from '../Profile/CreateProfile.jsx'
 
 import {
 	changeModalContent,
@@ -14,7 +14,6 @@ import {
 	doneProcessingAuthCookie,
 	setAppFetchingStateFalse,
 	setAppFetchingStateTrue,
-	toogleIsModalOpened,
 } from '../../reducers/actions/App.js'
 
 import { changeUnsplashArtist } from '../../reducers/actions/Home.js'

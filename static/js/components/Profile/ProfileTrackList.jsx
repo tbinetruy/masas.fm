@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 var { goToURL } = require('../../MASAS_functions.jsx')
-var { Button } = require('../UI/UI.jsx')
+import { Button } from '../UI/UI.jsx'
 import { TrackItem } from '../Profile/TrackItem.jsx'
 
 

@@ -5,18 +5,13 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
-var { Marquee } = require('../UI/UI.jsx')
-
-const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'
-
+import { Marquee } from '../UI/UI.jsx'
 import { POPULAR } from '../../reducers/actions/Player.js'
 import { LikeButton } from './controls/LikeButton.jsx'
 import { DislikeButton } from './controls/DislikeButton.jsx'
 import { NextButton } from './controls/NextButton.jsx'
 import { PlayButton } from './controls/PlayButton.jsx'
 import { PreviousButton } from './controls/PreviousButton.jsx'
-
 import {
 	pausePlayer,
 	playNewSong,
@@ -26,9 +21,10 @@ import {
 	resumePlayer,
 	setIsPlayerBuffering,
 } from '../../reducers/actions/Player.js'
-
 import { showPlayerMobile } from '../../reducers/actions/App.js'
+var { getTimeIntervalFromURL } = require('../../MASAS_functions.jsx')
 
+const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'
 
 
 /**

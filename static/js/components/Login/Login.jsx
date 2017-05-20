@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { LoginForm } from './LoginForm.jsx'
-var { Body } = require('../UI/UI.jsx')
+import { Body } from '../UI/UI.jsx'
 
 /**
  * Redux container

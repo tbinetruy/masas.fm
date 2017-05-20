@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-var { Textbox } = require('../UI/UI.jsx')
+import { Textbox } from '../UI/UI.jsx'
 import { ProfileEditLinks } from './ProfileEditLinks.jsx'
 import { CountryAutocomplete } from './CountryAutocomplete.jsx'
 import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'

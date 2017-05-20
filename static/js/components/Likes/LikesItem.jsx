@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-var { timeIntervalURLToString } = require('../../MASAS_functions.jsx')
-var { Marquee } = require('../UI/UI.jsx')
-
 import {
 	loadPlaylist,
 	pausePlayer,
 	playNewSongFromPlaylist,
 } from '../../reducers/actions/Player.js'
+import { Marquee } from '../UI/UI.jsx'
+
+var { timeIntervalURLToString } = require('../../MASAS_functions.jsx')
 
 /**
  * Redux container

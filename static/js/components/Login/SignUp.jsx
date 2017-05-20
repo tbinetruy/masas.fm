@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-var { Body, Textbox, Password, Button, Checkbox } = require('../UI/UI.jsx')
+import { Body, Textbox, Button, Checkbox } from '../UI/UI.jsx'
 
 /**
  * Redux container

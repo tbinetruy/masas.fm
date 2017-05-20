@@ -1,5 +1,4 @@
-import * as React from 'react'
-
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
 import {
@@ -39,8 +38,8 @@ const NotificationDiv = ({ text, translateUp }) => (
 )
 
 NotificationDiv.propTypes = {
-	text: React.PropTypes.string.isRequired,
-	translateUp: React.PropTypes.bool,
+	text: PropTypes.string.isRequired,
+	translateUp: PropTypes.bool,
 }
 
 /**
@@ -61,11 +60,11 @@ const TipDiv = ({ tipText, tipNumber, updateUserStep, className, tipCTA }) => (
 )
 
 TipDiv.propTypes = {
-	className: React.PropTypes.string,
-	tipCTA: React.PropTypes.node,
-	tipNumber: React.PropTypes.number,
-	tipText: React.PropTypes.string.isRequired,
-	updateUserStep: React.PropTypes.func.isRequired,
+	className: PropTypes.string,
+	tipCTA: PropTypes.node,
+	tipNumber: PropTypes.number,
+	tipText: PropTypes.string.isRequired,
+	updateUserStep: PropTypes.func.isRequired,
 }
 
 /**
@@ -95,11 +94,11 @@ const NotificationSystemDumb = ({ notificationText, tipText, tipNumber, updateUs
 )
 
 NotificationSystemDumb.propTypes = {
-	notificationText: React.PropTypes.string,
-	tipCTA: React.PropTypes.node,
-	tipNumber: React.PropTypes.number,
-	tipText: React.PropTypes.string,
-	updateUserStep: React.PropTypes.func,
+	notificationText: PropTypes.string,
+	tipCTA: PropTypes.node,
+	tipNumber: PropTypes.number,
+	tipText: PropTypes.string,
+	updateUserStep: PropTypes.func,
 }
 
 /**
@@ -140,12 +139,12 @@ class NotificationSystemSmart extends React.Component {
 }
 
 NotificationSystemSmart.propTypes = {
-	notificationText: React.PropTypes.string,
-	tipCTA: React.PropTypes.node,
-	tipNumber: React.PropTypes.number,
-	tipText: React.PropTypes.string,
-	updateUserStep: React.PropTypes.func,
-	userData: React.PropTypes.object,
+	notificationText: PropTypes.string,
+	tipCTA: PropTypes.node,
+	tipNumber: PropTypes.number,
+	tipText: PropTypes.string,
+	updateUserStep: PropTypes.func,
+	userData: PropTypes.object,
 }
 
 const Notification = connect(

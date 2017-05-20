@@ -1,9 +1,8 @@
 import React, { createClass } from 'react'
 
 import { BlurBackground } from '../MASAS_mixins.jsx'
-
+import { Button } from '../UI/UI.jsx'
 var { goToURL } = require('../../MASAS_functions.jsx')
-var { Button } = require('../UI/UI.jsx')
 
 /**
  * Dumb component

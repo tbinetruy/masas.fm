@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'
-var { Textbox } = require('../UI/UI.jsx')
+import { Textbox } from '../UI/UI.jsx'
 
 /**
  * Redux container

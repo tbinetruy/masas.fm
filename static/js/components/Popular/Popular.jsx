@@ -5,7 +5,7 @@ import { ArtworkLine } from '../Discover/ArtworkLine.jsx'
 import { SplashScreen } from '../App/SplashScreen.jsx'
 import { Link } from '../UI/UI.jsx'
 import { GenreAutocomplete } from './GenreAutocomplete.jsx'
-const { BlurBackground } = require('../MASAS_mixins.jsx')
+import { BlurBackground } from '../MASAS_mixins.jsx'
 
 import {
 	changeBgState,

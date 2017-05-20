@@ -12,7 +12,7 @@ import {
 	closeAndEmptyMainModal,
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
-var { Button } = require('../UI/UI.jsx')
+import { Button } from '../UI/UI.jsx'
 var { getCookie } = require('../../MASAS_functions.jsx')
 
 /**

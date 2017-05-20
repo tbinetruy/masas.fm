@@ -10,7 +10,7 @@ import { LikesItem } from './LikesItem.jsx'
 import { changeBgState } from '../../reducers/actions/App.js'
 import { updateNumberLikesShown } from '../../reducers/actions/Likes.js'
 import { NoLikesComponent } from './NoLikesComponent.jsx'
-var { Button } = require('../UI/UI.jsx')
+import { Button } from '../UI/UI.jsx'
 const { defaultState } = require('../../reducers/Likes.jsx')
 const defaultNumRowLikesShown = defaultState.numRowLikesShown
 

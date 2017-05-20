@@ -1,20 +1,17 @@
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-var { browserHistory } = require('react-router')
+import { browserHistory } from 'react-router'
 
-var LoginForm = require('../Login/LoginForm.jsx')
-var { Button } = require('../UI/UI.jsx')
-var HomeCountdown = require('./HomeCountdown.jsx')
+import { LoginForm } from '../Login/LoginForm.jsx'
+import { Button } from '../UI/UI.jsx'
 
-import {
-	updatePageTitle,
-} from '../../../reducers/actions/App.js'
+import { updatePageTitle } from '../../reducers/actions/App.js'
 
 import{
 	changeHomePageNumber,
 	changeTimePickerDemo
-} from '../../../reducers/actions/Home.js'
+} from '../../reducers/actions/Home.js'
 
 /**
  * Redux container
@@ -112,7 +109,6 @@ class HomeSmart extends React.Component {
 
 					<div className="page" id="homepage-login">
 						<div className="logo">
-							<HomeCountdown user={this.props.user} />
 						</div>
 
 						<div style={{ visibility: ( this.props.user ? 'hidden' : 'visible') }}>

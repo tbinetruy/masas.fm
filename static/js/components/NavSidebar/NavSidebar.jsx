@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+
 import Sidebar from 'react-sidebar'
 import { SplashScreen } from '../App/SplashScreen.jsx'
-
-var { Link } = require('../UI/UI.jsx')
-var { goToURL } = require('../../MASAS_functions.jsx')
-
+import { Link } from '../UI/UI.jsx'
 import {
 	changeModalContent,
 	closeAndEmptyMainModal,
@@ -14,6 +12,7 @@ import {
 	toogleNavSidebar,
 	updateSplashScreenLoginMessage,
 } from '../../reducers/actions/App.js'
+var { goToURL } = require('../../MASAS_functions.jsx')
 
 /**
  * Redux container

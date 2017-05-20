@@ -7,7 +7,7 @@ import { Header } from '../Header/Header.jsx'
 import { Footer } from '../Footer/Footer.jsx'
 import { Discover } from '../Discover/Discover.jsx'
 import { NavSidebar } from '../NavSidebar/NavSidebar.jsx'
-var { Modal } = require('../UI/UI.jsx')
+import { Modal } from '../UI/UI.jsx'
 import { PlayerAudioTag } from '../Player/PlayerAudioTag.jsx'
 import { PlayerMobile } from '../Player/PlayerMobile.jsx'
 

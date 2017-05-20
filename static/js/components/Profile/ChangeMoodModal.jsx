@@ -12,7 +12,7 @@ import {
 } from '../../reducers/actions/Profile.js'
 
 var { getCookie, updateNotificationBar, updateProfileInfo } = require('../../MASAS_functions.jsx')
-var { TimePicker, Button } = require('../UI/UI.jsx')
+import { TimePicker, Button } from '../UI/UI.jsx'
 
 /**
  * Redux container

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-var { Marquee } = require('../../UI/UI.jsx')
+import { Marquee } from '../../UI/UI.jsx'
 
 const SongInfo = props => {
 	if(props.small)

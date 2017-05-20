@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-var { Body, Button } = require('../UI/UI.jsx')
+import { Body, Button } from '../UI/UI.jsx'
 
 import { updatePageTitle } from '../../reducers/actions/App.js'
 import { toogleLegalsPageNumber } from '../../reducers/actions/Legals.js'

@@ -8,10 +8,8 @@ import { connect } from 'react-redux'
 
 import { LikesArtworks } from './LikesArtworks.jsx'
 import { FiltersModal } from './FiltersModal.jsx'
-var { Textbox } = require('../UI/UI.jsx')
+import { Textbox } from '../UI/UI.jsx'
 import { LikesWrapper } from './LikesWrapper.jsx'
-
-var { isSubsequence, timeIntervalURLToString } = require('../../MASAS_functions.jsx')
 
 import {
 	fetchLikes,
@@ -25,6 +23,8 @@ import {
 	toogleIsModalOpened,
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
+
+var { isSubsequence, timeIntervalURLToString } = require('../../MASAS_functions.jsx')
 
 
 /**
