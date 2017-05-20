@@ -11,11 +11,11 @@ import {
  */
 
 const reduxStatePropTypes = {
-	backgroundURL: React.PropTypes.string,
-	isModalOpened: React.PropTypes.bool,
-	modalType: React.PropTypes.number,
-	unsplashArtistName: React.PropTypes.string,
-	unsplashArtistUsername: React.PropTypes.string,
+	backgroundURL: PropTypes.string,
+	isModalOpened: PropTypes.bool,
+	modalType: PropTypes.number,
+	unsplashArtistName: PropTypes.string,
+	unsplashArtistUsername: PropTypes.string,
 }
 
 const mapStateToProps = function(state) {
@@ -29,8 +29,8 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	updateBackgroundURL: React.PropTypes.func,
-	updateUnsplashArtist: React.PropTypes.func,
+	updateBackgroundURL: PropTypes.func,
+	updateUnsplashArtist: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

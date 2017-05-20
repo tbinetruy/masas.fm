@@ -3,7 +3,7 @@ import { connect }from 'react-redux'
 
 import { closeAndEmptyMainModal } from '../../reducers/actions/App.js'
 
-var Header = require('../Header/Header.jsx')
+import { Header } from '../Header/Header.jsx'
 import { Footer } from '../Footer/Footer.jsx'
 import { Discover } from '../Discover/Discover.jsx'
 var NavSidebar = require('../NavSidebar/NavSidebar.jsx')

@@ -108,6 +108,8 @@ NotificationSystemDumb.propTypes = {
 class NotificationSystemSmart extends React.Component {
 	constructor(props) {
 		super(props)
+
+		this.getTipText = this.getTipText.bind(this)
 	}
 
 	getTipText() {

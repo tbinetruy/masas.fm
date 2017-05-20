@@ -1,15 +1,15 @@
 import {
 	closeAndEmptyMainModal,
 	toogleNavSidebar,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 import {
 	toogleIsFooterOpened,
-} from "../../../reducers/actions/Footer.js"
+} from '../../../reducers/actions/Footer.js'
 
 import {
 	changeHomePageNumber,
-} from "../../../reducers/actions/Home.js"
+} from '../../../reducers/actions/Home.js'
 
 var Header = {}
 

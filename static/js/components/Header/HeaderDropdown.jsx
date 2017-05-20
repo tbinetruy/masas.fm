@@ -1,49 +1,102 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/HeaderDropdown.jsx')
+import {
+	changeModalContent,
+	closeAndEmptyMainModal,
+	logout,
+	toogleIsModalOpened,
+	updateSplashScreenLoginMessage
+} from '../../reducers/actions/App.js'
 
 var { Button, Link } = require('../UI/UI.jsx')
 var { browserHistory } = require('react-router')
-var SplashScreen = require('../App/SplashScreen.jsx')
+import { SplashScreen } from '../App/SplashScreen.jsx'
 
-var MenuLink = (props) => {
-	return (
-		<div className="menu-link">
-			<img src={props.src} alt="profile pic" />
-			<Link to={props.URL} onClick={props.onClick}>{props.children}</Link>
-		</div>
-	)
-}
+/**
+ * Dumb component
+ */
+const MenuLink = props => (
+	<div className="menu-link">
+		<img src={ props.src } alt="profile pic" />
+		<Link to={ props.URL } onClick={ props.onClick }>{ props.children }</Link>
+	</div>
+)
 
-MenuLink.PropTypes = {
-	onClick: React.PropTypes.func,
-	src: React.PropTypes.string,
+MenuLink.propTypes = {
 	URL: React.PropTypes.string,
 	children: React.PropTypes.node,
+	onClick: React.PropTypes.func,
+	src: React.PropTypes.string,
 }
 
-var HeaderDropdown = React.createClass({
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-		closeModal: React.PropTypes.func,
-		dispatch: React.PropTypes.func,
-		isModalOpened: React.PropTypes.bool,
-		logout: React.PropTypes.func,
-		toogleModal: React.PropTypes.func,
-		updateLoginMessage: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		userData: React.PropTypes.object,
-	},
+/**
+ * Redux container
+ */
 
-	componentWillReceiveProps: function() {
-	},
+const reduxStatePropTypes = {
 
-	logout: function() {
+}
+
+const mapStateToProps = function(state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+		isModalOpened: state.appReducer.isModalOpened,
+	}
+}
+
+const reduxDispatchPropTypes = {
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		logout: () => dispatch(logout()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
+	}
+}
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	MASASuser: React.PropTypes.string,
+	closeModal: React.PropTypes.func,
+	dispatch: React.PropTypes.func,
+	isModalOpened: React.PropTypes.bool,
+	logout: React.PropTypes.func,
+	toogleModal: React.PropTypes.func,
+	updateLoginMessage: React.PropTypes.func,
+	updateModalContent: React.PropTypes.func,
+	userData: React.PropTypes.object,
+}
+
+const smartDefaultProps = {
+}
+
+class HeaderDropdownSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.logout = this.logout.bind(this)
+    }
+
+	componentWillReceiveProps() {
+	}
+
+	logout() {
 		this.props.logout()
-	},
+	}
 
-	render: function() {
+	render() {
 		if (this.props.MASASuser !== '') {
 			return (
 				<div className="dropdown--wrapper">
@@ -80,9 +133,16 @@ var HeaderDropdown = React.createClass({
 				</div>
 			)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(HeaderDropdown)
+HeaderDropdownSmart.propTypes = smartPropTypes
+HeaderDropdownSmart.defaultProps = smartDefaultProps
+
+const HeaderDropdown = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HeaderDropdownSmart)
+
+export {
+	HeaderDropdown,
+}

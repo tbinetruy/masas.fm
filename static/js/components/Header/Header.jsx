@@ -1,34 +1,88 @@
+import React, { PropTypes } from 'react'
+import { connect }from 'react-redux'
+
 import { Notification } from './Notification.jsx'
-
-var React = require('react')
-
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/Header.jsx')
+import { HeaderDropdown } from './HeaderDropdown.jsx'
 
 var { getPathList } = require('../../MASAS_functions.jsx')
-var HeaderDropdown = require('./HeaderDropdown.jsx')
 var Link = require('../UI/Link.jsx')
 
+import {
+	closeAndEmptyMainModal,
+	toogleNavSidebar,
+} from '../../reducers/actions/App.js'
 
-var Header = React.createClass({
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-		backArrowFunc: React.PropTypes.func,
-		closeModal: React.PropTypes.func,
-		goToHomepageSlide1: React.PropTypes.func,
-		isAppFetching: React.PropTypes.bool,
-		isModalOpened: React.PropTypes.bool,
-		isPlayerBarOpened: React.PropTypes.bool,
-		modalType: React.PropTypes.number,
-		onSetNavSidebarOpen: React.PropTypes.func,
-		pageTitle: React.PropTypes.string,
-		pageType: React.PropTypes.number,
-		songPlaying: React.PropTypes.string,
-		toogleIsOpened: React.PropTypes.func,
-		user: React.PropTypes.string,
-	},
+import { toogleIsFooterOpened } from '../../reducers/actions/Footer.js'
 
-	render: function() {
+import { changeHomePageNumber } from '../../reducers/actions/Home.js'
+
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+	MASASuser: PropTypes.string,
+	backArrowFunc: PropTypes.func,
+	isAppFetching: PropTypes.bool,
+	isModalOpened: PropTypes.bool,
+	isPlayerBarOpened: PropTypes.bool,
+	modalType: PropTypes.number,
+	pageTitle: PropTypes.string,
+	pageType: PropTypes.number,
+	songPlaying: PropTypes.string,
+	user: PropTypes.string,
+}
+
+const mapStateToProps = function(state) {
+	return {
+		pageType: state.appReducer.pageType,
+		pageTitle: state.appReducer.pageTitle,
+		user: state.appReducer.MASASuser,
+		isPlayerBarOpened: state.footerReducer.isOpened,
+		backArrowFunc: state.appReducer.backArrowFunc,
+		isAppFetching: state.appReducer.isAppFetching,
+		songPlaying: state.playerReducer.songPlaying,
+		MASASuser: state.appReducer.MASASuser,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	closeModal: PropTypes.func,
+	goToHomepageSlide1: PropTypes.func,
+	onSetNavSidebarOpen: PropTypes.func,
+	toogleIsOpened: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		onSetNavSidebarOpen: () => dispatch(toogleNavSidebar()),
+		toogleIsOpened: () => dispatch(toogleIsFooterOpened()),
+		goToHomepageSlide1: () => dispatch(changeHomePageNumber(1,4)),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
+class HeaderSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	render() {
 		let formatForModal = false
 		if(this.props.modalType === 5 && this.props.isModalOpened)
 			formatForModal = true
@@ -91,9 +145,18 @@ var Header = React.createClass({
 			</nav>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Header)
+
+HeaderSmart.propTypes = smartPropTypes
+HeaderSmart.defaultProps = smartDefaultProps
+
+const Header = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HeaderSmart)
+
+export {
+	Header,
+}
+

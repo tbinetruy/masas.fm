@@ -10,8 +10,8 @@ import {
  */
 
 const reduxStatePropTypes = {
-	SC_songInfo: React.PropTypes.object,
-	progressBarWidth: React.PropTypes.number,
+	SC_songInfo: PropTypes.object,
+	progressBarWidth: PropTypes.number,
 }
 
 const mapStateToProps = function(state) {
@@ -22,7 +22,7 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	updateProgressBar: React.PropTypes.func,
+	updateProgressBar: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

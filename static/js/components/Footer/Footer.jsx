@@ -36,9 +36,9 @@ const reduxStatePropTypes = {
 	isModalOpened: PropTypes.bool,
 	isPlayerBarOpened: PropTypes.bool,
 	isPlayerPaused: PropTypes.bool,
-	isPlaylistPlaying: React.PropTypes.bool,
-	playlist: React.PropTypes.array,
-	playlistPosition: React.PropTypes.number,
+	isPlaylistPlaying: PropTypes.bool,
+	playlist: PropTypes.array,
+	playlistPosition: PropTypes.number,
 	progressBarWidth: PropTypes.number,
 	songPlaying: PropTypes.string,
 }
@@ -62,7 +62,7 @@ const mapStateToProps = function(state) {
 const reduxDispatchPropTypes = {
 	playNewSongFromPlaylist: PropTypes.func,
 	playRandomSong: PropTypes.func,
-	showPlayerMobile: React.PropTypes.func,
+	showPlayerMobile: PropTypes.func,
 	toogleIsOpened:  PropTypes.func,
 	toogleModal:  PropTypes.func,
 	updateModalContent: PropTypes.func,
