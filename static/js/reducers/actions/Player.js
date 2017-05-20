@@ -27,7 +27,7 @@ import {
 	getDiscoverNumberFromCurrentTime,
 } from '../../MASAS_functions.jsx'
 
-export const POPULAR = -1
+const POPULAR = -1
 
 ///// TO DELETE
 const getCookie = (name) => {
@@ -46,32 +46,36 @@ const getCookie = (name) => {
 	return cookieValue
 }
 
-export const SET_SONG_IS_FETCHING_TRUE = 'SET_SONG_IS_FETCHING_TRUE'
-export const UPDATE_MASAS_SONG_INFO = 'UPDATE_MASAS_SONG_INFO'
-export const UPDATE_SC_SONG_INFO = 'UPDATE_SC_SONG_INFO'
-export const UPDATE_ARTIST_INFO = 'UPDATE_ARTIST_INFO'
-export const SET_SONG_IS_FETCHING_FALSE = 'SET_SONG_IS_FETCHING_FALSE'
-export const LIKE_SONG = 'LIKE_SONG'
-export const UNLIKE_SONG = 'UNLIKE_SONG'
-export const STOP = 'STOP'
-export const PLAY = 'PLAY'
-export const PAUSE = 'PAUSE'
-export const PLAY_NEW_SONG = 'PLAY_NEW_SONG'
-export const PLAY_NEW_SONG_FROM_PLAYLIST = 'PLAY_NEW_SONG_FROM_PLAYLIST'
-export const SET_IS_BUFFERING_TRUE = 'SET_IS_BUFFERING_TRUE'
-export const SET_IS_BUFFERING_FALSE = 'SET_IS_BUFFERING_FALSE'
-export const TOOGLE_SONG_LIKE = 'TOGGLE_SONG_LIKE'
-export const LOAD_PLAYLIST = 'LOAD_PLAYLIST'
-export const SET_PLAYING_FROM_POPULAR = 'SET_PLAYING_FROM_POPULAR'
+export {
+}
 
-export function loadPlaylist(playlist) {
+const SET_SONG_IS_FETCHING_TRUE = 'SET_SONG_IS_FETCHING_TRUE'
+const UPDATE_MASAS_SONG_INFO = 'UPDATE_MASAS_SONG_INFO'
+const UPDATE_SC_SONG_INFO = 'UPDATE_SC_SONG_INFO'
+const UPDATE_ARTIST_INFO = 'UPDATE_ARTIST_INFO'
+const SET_SONG_IS_FETCHING_FALSE = 'SET_SONG_IS_FETCHING_FALSE'
+const LIKE_SONG = 'LIKE_SONG'
+const UNLIKE_SONG = 'UNLIKE_SONG'
+const STOP = 'STOP'
+const PLAY = 'PLAY'
+const PAUSE = 'PAUSE'
+const PLAY_NEW_SONG = 'PLAY_NEW_SONG'
+const PLAY_NEW_SONG_FROM_PLAYLIST = 'PLAY_NEW_SONG_FROM_PLAYLIST'
+const SET_IS_BUFFERING_TRUE = 'SET_IS_BUFFERING_TRUE'
+const SET_IS_BUFFERING_FALSE = 'SET_IS_BUFFERING_FALSE'
+const TOOGLE_SONG_LIKE = 'TOGGLE_SONG_LIKE'
+const LOAD_PLAYLIST = 'LOAD_PLAYLIST'
+const SET_PLAYING_FROM_POPULAR = 'SET_PLAYING_FROM_POPULAR'
+
+
+function loadPlaylist(playlist) {
 	return {
 		type: LOAD_PLAYLIST,
 		playlist
 	}
 }
 
-export function toggleSongLike(songId) {
+function toggleSongLike(songId) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuserPk } =  state.appReducer
@@ -186,7 +190,7 @@ export function toggleSongLike(songId) {
 }
 
 
-export function setIsPlayerBuffering(value = true) {
+function setIsPlayerBuffering(value = true) {
 	if(value)
 		return {
 			type: SET_SONG_IS_FETCHING_TRUE
@@ -210,7 +214,7 @@ function likeSong(value = true) {
 }
 
 // update player like button based on like status of currently playing song by user
-export function updateLikeButton(MASAS_songInfo) {
+function updateLikeButton(MASAS_songInfo) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const {
@@ -240,7 +244,7 @@ export function updateLikeButton(MASAS_songInfo) {
 }
 
 // Updates state when fetch song to play info starts / ends
-export function setIsSongFetching(value = true) {
+function setIsSongFetching(value = true) {
 	if(value)
 		return {
 			type: SET_SONG_IS_FETCHING_TRUE
@@ -252,14 +256,14 @@ export function setIsSongFetching(value = true) {
 }
 
 // stops jPlayer
-export function stopPlayer() {
+function stopPlayer() {
 	return {
 		type: STOP,
 	}
 }
 
 // plays jPlayer
-export function playPlayer() {
+function playPlayer() {
 	return {
 		type: PLAY,
 	}
@@ -267,7 +271,7 @@ export function playPlayer() {
 
 // resumes song based on given URL
 // playingFromPopular: (bool) are we resuming popular player
-export function resumePlayer(playingFromPopular = false) {
+function resumePlayer(playingFromPopular = false) {
 	// resume jPlayer
 	$('#jquery_jplayer_1').jPlayer('play')
 
@@ -279,7 +283,7 @@ export function resumePlayer(playingFromPopular = false) {
 }
 
 // pause player
-export function pausePlayer() {
+function pausePlayer() {
 	return dispatch => {
 		// pause player
 		$('#jquery_jplayer_1').jPlayer('pause')
@@ -378,7 +382,7 @@ function updateArtistInfo(artistInfo) {
 
 // plays song from start based on given URL
 // playFromPopular: (bool) is song played from popular (info useful for player bar next and back buttons)
-export function playSong(songURL, playingFromPopular = true) {
+function playSong(songURL, playingFromPopular = true) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL,
@@ -391,7 +395,7 @@ export function playSong(songURL, playingFromPopular = true) {
 // grab its stream link from SC
 // initiate jPlayer with new song
 // and do all the necessary UI updates (update like button etc)
-export function playNewSong() {
+function playNewSong() {
 	return (dispatch, getState) => {
 		const state = getState()
 		const {
@@ -443,7 +447,7 @@ export function playNewSong() {
 }
 
 // play previous song in history
-export function playPreviousSongInHistory() {
+function playPreviousSongInHistory() {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { history } = state.popularReducer
@@ -459,7 +463,7 @@ export function playPreviousSongInHistory() {
 
 // returns last song in history for a given discover number
 // history: array ; discoverNum: int \in [0,5]
-export function lastSongInDiscoverHistory(history, discoverNum) {
+function lastSongInDiscoverHistory(history, discoverNum) {
 	// go through history array
 	var i = 0
 
@@ -475,7 +479,7 @@ export function lastSongInDiscoverHistory(history, discoverNum) {
 }
 
 // play previous song in discover
-export function playPreviousSongInDiscover(discoverNum) {
+function playPreviousSongInDiscover(discoverNum) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const history = [].concat(state.discoverReducer.history.all)
@@ -498,7 +502,7 @@ export function playPreviousSongInDiscover(discoverNum) {
 	}
 }
 
-export function playRandomSong(timeInterval = 0) {
+function playRandomSong(timeInterval = 0) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuser } = state.appReducer
@@ -557,9 +561,47 @@ export function playRandomSong(timeInterval = 0) {
 	}
 }
 
-export function playNewSongFromPlaylist(playlistPosition) {
+function playNewSongFromPlaylist(playlistPosition) {
 	return {
 		type: PLAY_NEW_SONG_FROM_PLAYLIST,
 		playlistPosition
 	}
+}
+
+export {
+	LIKE_SONG,
+	LOAD_PLAYLIST,
+	PAUSE,
+	PLAY,
+	POPULAR,
+	PLAY_NEW_SONG,
+	PLAY_NEW_SONG_FROM_PLAYLIST,
+	SET_IS_BUFFERING_TRUE,
+	SET_IS_BUFFERING_FALSE,
+	SET_PLAYING_FROM_POPULAR,
+	SET_SONG_IS_FETCHING_FALSE,
+	SET_SONG_IS_FETCHING_TRUE,
+	STOP,
+	TOOGLE_SONG_LIKE,
+	UPDATE_ARTIST_INFO,
+	UPDATE_MASAS_SONG_INFO,
+	UPDATE_SC_SONG_INFO,
+	UNLIKE_SONG,
+
+	loadPlaylist,
+	lastSongInDiscoverHistory,
+	toggleSongLike,
+	playPlayer,
+	pausePlayer,
+	playNewSong,
+	playNewSongFromPlaylist,
+	playPreviousSongInDiscover,
+	playPreviousSongInHistory,
+	playRandomSong,
+	playSong,
+	resumePlayer,
+	setIsPlayerBuffering,
+	setIsSongFetching,
+	stopPlayer,
+	updateLikeButton,
 }

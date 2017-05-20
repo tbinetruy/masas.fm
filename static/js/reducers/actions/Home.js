@@ -1,20 +1,20 @@
 import 'whatwg-fetch'
 
-export const CHANGE_UNSPLASH_ARTIST = 'CHANGE_UNSPLASH_ARTIST'
-export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
-export const CHANGE_HOME_PAGE_NUMBER = 'CHANGE_HOME_PAGE_NUMBER'
-export const CHANGE_TIME_PICKER_DEMO = 'CHANGE_TIME_PICKER_DEMO'
+const CHANGE_UNSPLASH_ARTIST = 'CHANGE_UNSPLASH_ARTIST'
+const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
+const CHANGE_HOME_PAGE_NUMBER = 'CHANGE_HOME_PAGE_NUMBER'
+const CHANGE_TIME_PICKER_DEMO = 'CHANGE_TIME_PICKER_DEMO'
 
 const unsplashClientID = 'bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa'
 
-export function changeTimePickerDemo(number) {
+function changeTimePickerDemo(number) {
 	return {
 		type: CHANGE_TIME_PICKER_DEMO,
 		timePickerDemo: number
 	}
 }
 
-export function changeHomePageNumber(pageNumber, totalNumberPages) {
+function changeHomePageNumber(pageNumber, totalNumberPages) {
 	return {
 		type: CHANGE_HOME_PAGE_NUMBER,
 		pageNumber,
@@ -33,7 +33,7 @@ function updateUnsplashArtist (username, name, url) {
 }
 
 // get new unsplash artist (get both new unsplash artist and new picture)
-export function changeUnsplashArtist () {
+function changeUnsplashArtist () {
 	return dispatch => {
 		fetch('https://api.unsplash.com/users/masas/likes/?client_id=' + unsplashClientID, {
 			method: 'GET',
@@ -64,7 +64,7 @@ function changeBackground(url) {
 }
 
 // get random unsplash picture from current background artist
-export function getNewBackground() {
+function getNewBackground() {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { unsplashArtistName } = state.homeReducer
@@ -77,4 +77,16 @@ export function getNewBackground() {
 
 		})
 	}
+}
+
+export {
+	CHANGE_BACKGROUND,
+	CHANGE_HOME_PAGE_NUMBER,
+	CHANGE_TIME_PICKER_DEMO,
+	CHANGE_UNSPLASH_ARTIST,
+
+	changeTimePickerDemo,
+	changeHomePageNumber,
+	changeUnsplashArtist,
+	getNewBackground,
 }

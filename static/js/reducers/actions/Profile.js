@@ -5,19 +5,18 @@ import {
 } from './Header.js'
 
 const { getCookie } = require('../../MASAS_functions.jsx')
-
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
-export const UPDATE_USER_SC_SONGS = 'UPDATE_USER_SC_SONGS'
-export const UPDATE_PUBLIC_PROFILE_INFO = 'UPDATE_PUBLIC_PROFILE_INFO'
-export const TOGGLE_EDITING_PROFILE = 'TOOGLE_EDITING_PROFILE'
-export const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES'
-export const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
-export const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
-export const RESET_TEXTBOX_VALUES = 'RESET_TEXTBOX_VALUES'
-export const SET_EDITING_PROFILE_VISIBILITY = 'SET_EDITING_PROFILE_VISIBILITY'
+const UPDATE_USER_SC_SONGS = 'UPDATE_USER_SC_SONGS'
+const UPDATE_PUBLIC_PROFILE_INFO = 'UPDATE_PUBLIC_PROFILE_INFO'
+const TOGGLE_EDITING_PROFILE = 'TOOGLE_EDITING_PROFILE'
+const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES'
+const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
+const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
+const RESET_TEXTBOX_VALUES = 'RESET_TEXTBOX_VALUES'
+const SET_EDITING_PROFILE_VISIBILITY = 'SET_EDITING_PROFILE_VISIBILITY'
 
-export const updateUserStep = step => (disptach, getState) => {
+const updateUserStep = step => (disptach, getState) => {
 	const { MASASuser, userData } = getState().appReducer
 
 	const header = 'Bearer ' + MASASuser
@@ -39,14 +38,14 @@ export const updateUserStep = step => (disptach, getState) => {
 	}
 }
 
-export const resetTextboxValue = () => {
+const resetTextboxValue = () => {
 	return {
 		type: RESET_TEXTBOX_VALUES,
 	}
 }
 
 // returns url of random default avatar
-export const getRandomDefaultAvatar = () => {
+const getRandomDefaultAvatar = () => {
 	const avatarUrlRoot = '/static/img/avatars/'
 	const avatarUrlSuffix = '.svg'
 	const randomAvatar = Math.floor(Math.random() * 6)
@@ -56,7 +55,7 @@ export const getRandomDefaultAvatar = () => {
 
 // isDefaultPicture: (bool) should update profile with url of default profile picture
 // pictureURL: (str) url of profile picture if not default
-export const updateProfilePicture = (isDefaultPicture, pictureURL) => (dispatch, getState) =>{
+const updateProfilePicture = (isDefaultPicture, pictureURL) => (dispatch, getState) => {
 	const state = getState()
 	const {
 		MASASuser,
@@ -87,54 +86,54 @@ export const updateProfilePicture = (isDefaultPicture, pictureURL) => (dispatch,
 	})
 }
 
-export function updateProfileBackArrowFunc(backArrowFunc) {
+function updateProfileBackArrowFunc(backArrowFunc) {
 	return {
 		type: UPDATE_BACK_ARROW_FUNC,
 		backArrowFunc
 	}
 }
-export function updateEditProfileTextboxValues(textboxValues) {
+function updateEditProfileTextboxValues(textboxValues) {
 	return {
 		type: UPDATE_EDIT_PROFILE_TEXTBOX_VALUES,
 		textboxValues,
 	}
 }
 
-export function updateSongMoodModalValue(discoverNumber) {
+function updateSongMoodModalValue(discoverNumber) {
 	return {
 		type: UPDATE_SONG_MOOD_MODAL_VALUE,
 		discoverNumber
 	}
 }
 
-export function toggleEditingProfile() {
+function toggleEditingProfile() {
 	return {
 		type: TOGGLE_EDITING_PROFILE,
 	}
 }
 
-export function setEditingProfile(isEditingProfile) {
+function setEditingProfile(isEditingProfile) {
 	return {
 		type: SET_EDITING_PROFILE_VISIBILITY,
 		isEditingProfile: !!isEditingProfile,
 	}
 }
 
-export function updatePublicProfileInfo(publicProfileInfo) {
+function updatePublicProfileInfo(publicProfileInfo) {
 	return {
 		type: UPDATE_PUBLIC_PROFILE_INFO,
 		publicProfileInfo
 	}
 }
 
-export function updateUserSCSongs(userSCSongs) {
+function updateUserSCSongs(userSCSongs) {
 	return {
 		type:UPDATE_USER_SC_SONGS,
 		userSCSongs,
 	}
 }
 
-export function getSCinfo() {
+function getSCinfo() {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { publicProfileInfo } = state.profileReducer
@@ -159,7 +158,7 @@ export function getSCinfo() {
 
 
 // (int) userPk : user pk
-export function getPublicProfileInfo(userPk) {
+function getPublicProfileInfo(userPk) {
 	return dispatch => fetch('/api/users/' + userPk + '/')
 			.then( resp => resp.json() )
 			.then( resp => {
@@ -168,7 +167,7 @@ export function getPublicProfileInfo(userPk) {
 			} )
 }
 
-export function updateProfileInfo(callback) {
+function updateProfileInfo(callback) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuser, userData } = state.appReducer
@@ -253,7 +252,7 @@ function deleteLinks(userData, textboxValues, header, csrftoken) {
 // getCookie: function to get for csrftoken from cookies
 // callbackSuccess: callback to call on success
 // callbackError: callback to call on error
-export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError = () => {}) {
+function saveProfile(getCookie, callbackSuccess = () => {}, callbackError = () => {}) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuser, MASASuserPk, userData } = state.appReducer
@@ -296,5 +295,29 @@ export function saveProfile(getCookie, callbackSuccess = () => {}, callbackError
 	}
 }
 
+export {
+	RESET_TEXTBOX_VALUES,
+	SET_EDITING_PROFILE_VISIBILITY,
+	TOGGLE_EDITING_PROFILE,
+	UPDATE_BACK_ARROW_FUNC,
+	UPDATE_EDIT_PROFILE_TEXTBOX_VALUES,
+	UPDATE_USER_SC_SONGS,
+	UPDATE_PUBLIC_PROFILE_INFO,
+	UPDATE_SONG_MOOD_MODAL_VALUE,
 
-
+	getPublicProfileInfo,
+	getRandomDefaultAvatar,
+	getSCinfo,
+	resetTextboxValue,
+	saveProfile,
+	setEditingProfile,
+	toggleEditingProfile,
+	updateEditProfileTextboxValues,
+	updateProfilePicture,
+	updateProfileBackArrowFunc,
+	updateProfileInfo,
+	updatePublicProfileInfo,
+	updateSongMoodModalValue,
+	updateUserStep,
+	updateUserSCSongs,
+}

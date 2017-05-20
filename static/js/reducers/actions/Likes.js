@@ -1,28 +1,28 @@
 import 'whatwg-fetch'
 
-export const UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN'
-export const REQUEST_LIKES = 'REQUEST_LIKES'
-export const TOOGLE_HASHTAG_FILTER = 'TOOGLE_HASHTAG_FILTER'
-export const UPDATE_LIKES = 'UPDATE_LIKES'
-export const UPDATE_MINI_PROFILE = 'UPDATE_LIKE_ARTWORK_MINI_PROFILE'
-export const TOGGLE_MINI_PROFILE = 'TOGGLE_LIKE_ARTWORK_MINI_PROFILE'
-export const UPDATE_LIKES_SEARCH_INPUT = 'UPDATE_LIKES_SEARCH_INPUT'
+const UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN'
+const REQUEST_LIKES = 'REQUEST_LIKES'
+const TOOGLE_HASHTAG_FILTER = 'TOOGLE_HASHTAG_FILTER'
+const UPDATE_LIKES = 'UPDATE_LIKES'
+const UPDATE_MINI_PROFILE = 'UPDATE_LIKE_ARTWORK_MINI_PROFILE'
+const TOGGLE_MINI_PROFILE = 'TOGGLE_LIKE_ARTWORK_MINI_PROFILE'
+const UPDATE_LIKES_SEARCH_INPUT = 'UPDATE_LIKES_SEARCH_INPUT'
 
-export function updateLikesSearchInput(input) {
+function updateLikesSearchInput(input) {
 	return {
 		type: UPDATE_LIKES_SEARCH_INPUT,
 		input
 	}
 }
 
-export function updateNumberLikesShown(numRowLikesShown) {
+function updateNumberLikesShown(numRowLikesShown) {
 	return {
 		type: UPDATE_NUMBER_OF_LIKES_SHOWN,
 		numRowLikesShown
 	}
 }
 
-export function updateLikes(SCinfo) {
+function updateLikes(SCinfo) {
 	return {
 		type: 'UPDATE_LIKES',
 		SCinfo,
@@ -31,7 +31,7 @@ export function updateLikes(SCinfo) {
 }
 
 // const apiRoot = 'http://masas.fm//'
-export function toogleHashtagFilter(hashtagNumber) {
+function toogleHashtagFilter(hashtagNumber) {
 	return {
 		type: TOOGLE_HASHTAG_FILTER,
 		hashtagNumber,
@@ -89,21 +89,21 @@ function updateLikes(dispatch, SCinfo, MASASinfo) {
 	}
 }
 
-export function toogleMiniProfile(MASAS_songPk) {
+function toogleMiniProfile(MASAS_songPk) {
 	return {
 		type: TOGGLE_MINI_PROFILE,
 		songPk: MASAS_songPk,
 	}
 }
 
-export function fetchLikes() {
+function fetchLikes() {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { userData } = state.appReducer
 
-		if(typeof(userData.likes) !== "undefined") {
+		if(typeof(userData.likes) !== 'undefined') {
 			var idString = userData.likes.map( like => like.song.SC_ID ).join()
-			SC.get("tracks", {limit: userData.likes.length, ids: idString})
+			SC.get('tracks', {limit: userData.likes.length, ids: idString})
 			.then( response => {
 				// dispatch(updateLikesOld(response))
 				dispatch(updateLikes(dispatch, response, userData.likes))
@@ -112,4 +112,21 @@ export function fetchLikes() {
 			dispatch( updateLikes( dispatch, [], [] ) )
 		}
 	}
+}
+
+export {
+	UPDATE_NUMBER_OF_LIKES_SHOWN,
+	REQUEST_LIKES,
+	TOOGLE_HASHTAG_FILTER,
+	UPDATE_LIKES,
+	UPDATE_MINI_PROFILE,
+	TOGGLE_MINI_PROFILE,
+	UPDATE_LIKES_SEARCH_INPUT,
+
+	updateLikesSearchInput,
+	updateNumberLikesShown,
+	updateLikes,
+	toogleHashtagFilter,
+	toogleMiniProfile,
+	fetchLikes,
 }

@@ -1,22 +1,23 @@
-export const ADD_SONG_TO_HISTORY = 'ADD_SONG_TO_HISTORY'
-export const CHANGE_DISCOVER_NUMBER = 'CHANGE_DISCOVER_NUMBER'
-export const REMOVE_SONG_FROM_HISTORY = 'REMOVE_SONG_FROM_HISTORY'
+const ADD_SONG_TO_HISTORY = 'ADD_SONG_TO_HISTORY'
+const CHANGE_DISCOVER_NUMBER = 'CHANGE_DISCOVER_NUMBER'
+const REMOVE_SONG_FROM_HISTORY = 'REMOVE_SONG_FROM_HISTORY'
 
-export function removeSongFromHistory(indexToRemove) {
+
+function removeSongFromHistory(indexToRemove) {
 	return {
 		type: REMOVE_SONG_FROM_HISTORY,
 		indexToRemove
 	}
 }
 
-export function changeDiscoverNumber(discoverNumber) {
+function changeDiscoverNumber(discoverNumber) {
 	return {
 		type: CHANGE_DISCOVER_NUMBER,
 		discoverNumber
 	}
 }
 
-export function addSongToHistory(MASAS_songInfo, SC_songInfo) {
+function addSongToHistory(MASAS_songInfo, SC_songInfo) {
 	return {
 		type: ADD_SONG_TO_HISTORY,
 		MASAS_songInfo,
@@ -28,7 +29,7 @@ export function addSongToHistory(MASAS_songInfo, SC_songInfo) {
 /**
  *
  */
-export const addRandomSongToHistory = interval => async (dispatch) => {
+const addRandomSongToHistory = interval => async (dispatch) => {
 	const MASAS_songInfoPromise = await fetch('/api/play/?&time_interval_id=' + interval )
 	const MASAS_songInfo = await MASAS_songInfoPromise.json()
 
@@ -39,3 +40,14 @@ export const addRandomSongToHistory = interval => async (dispatch) => {
 }
 
 
+
+export {
+	ADD_SONG_TO_HISTORY,
+	CHANGE_DISCOVER_NUMBER,
+	REMOVE_SONG_FROM_HISTORY,
+
+	addRandomSongToHistory,
+	addSongToHistory,
+	changeDiscoverNumber,
+	removeSongFromHistory,
+}

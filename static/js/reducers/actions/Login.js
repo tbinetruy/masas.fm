@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-var Cookie = require('js-cookie')
+const Cookie = require('js-cookie')
 
 import {
 	updateNotificationBar,
@@ -7,10 +7,10 @@ import {
 
 
 // global vars to this file
-let GOOGLE_USER_ID = undefined
+const GOOGLE_USER_ID = undefined
 const GOOGLE_API_KEY = 'AIzaSyCOTG3VdcDm8hAKe1abZQMjIggV4atedtI'
 
-export const logout = () => {
+const logout = () => {
 	return dispatch => {
 		Cookie.remove('MASAS_authToken')
 
@@ -22,7 +22,7 @@ export const logout = () => {
 	}
 }
 
-export const updateUserEmail = ({ userPk, userToken, userData }) => {
+const updateUserEmail = ({ userPk, userToken, userData }) => {
 	const header = 'Bearer ' + userToken
 
 	if(typeof(FB) !== 'undefined') {
@@ -51,11 +51,11 @@ export const updateUserEmail = ({ userPk, userToken, userData }) => {
 	}
 }
 
-export const updateAuthCookie = userToken => {
+const updateAuthCookie = userToken => {
 	Cookie.set('MASAS_authToken', userToken, { expires: 30 })
 }
 
-export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
+const getUserPk = (userToken, callbackFunc = null) => dispatch => {
 	var header = 'Bearer ' + userToken
 	$.ajax({
 		type: 'GET',
@@ -79,7 +79,7 @@ export const getUserPk = (userToken, callbackFunc = null) => dispatch => {
 
 // isDefaultPicture: (bool) should update profile with url of default profile picture
 // pictureURL: (str) url of profile picture if not default
-export const updateProfilePicture = pictureURL => (dispatch, getState) =>{
+const updateProfilePicture = pictureURL => (dispatch, getState) =>{
 	const state = getState()
 	const {
 		MASASuser,
@@ -109,7 +109,7 @@ export const updateProfilePicture = pictureURL => (dispatch, getState) =>{
 }
 
 // updates profile picture
-export const updateUserInfo = (userPk, userToken) => dispatch => {
+const updateUserInfo = (userPk, userToken) => dispatch => {
 	$.ajax({
 		type: 'GET',
 		url: '/api/users/' + userPk + '/',
@@ -130,7 +130,7 @@ export const updateUserInfo = (userPk, userToken) => dispatch => {
 // checks masas api user token and logs him in UI if token valid
 // userToken: (str) masas api user token
 // backend: (str) backend used to log in (to update profile picture)
-export const loginWithToken = (userToken, backend) => dispatch => {
+const loginWithToken = (userToken, backend) => dispatch => {
 	var header = 'Bearer ' + userToken
 	$.ajax({
 		type: 'GET',
@@ -167,7 +167,7 @@ export const loginWithToken = (userToken, backend) => dispatch => {
 }
 
 // converts backend (FB, google, etc) tokens to MASAS token (masas api)
-export const convertToken = (token, backend) => dispatch =>{
+const convertToken = (token, backend) => dispatch =>{
 	$.ajax({
 		type: 'POST',
 		url: '/auth/convert-token/',
@@ -190,7 +190,7 @@ export const convertToken = (token, backend) => dispatch =>{
 }
 
 // get token from FB and convert it to MASAS token
-export const loginFB = () => dispatch => {
+const loginFB = () => dispatch => {
 	// if FB SDK not loaded
 	if (typeof(FB) === 'undefined')
 		return 0
@@ -222,7 +222,7 @@ const loginGoogle = token => dispatch => {
 // service: service to oauth against
 // 'twiiter', 'facebook'
 // token: undefined for FB (calculated later) ; token value as string if Google
-export const login = (service, token = undefined) => dispatch => {
+const login = (service, token = undefined) => dispatch => {
 	switch(service) {
 		case 'facebook':
 			dispatch(loginFB())
@@ -234,4 +234,18 @@ export const login = (service, token = undefined) => dispatch => {
 			dispatch(convertToken(token, service))
 			break
 	}
+}
+
+export {
+	logout,
+	updateUserEmail,
+	updateAuthCookie,
+	getUserPk,
+	updateProfilePicture,
+	updateUserInfo,
+	loginWithToken,
+	convertToken,
+	loginFB,
+	loginGoogle,
+	login,
 }
