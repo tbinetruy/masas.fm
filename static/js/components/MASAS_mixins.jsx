@@ -1,9 +1,8 @@
 const { dispatch } = require('../reducers/reducers.js')
-import { changeBgState } from "../reducers/actions/App.js"
+import { changeBgState } from '../reducers/actions/App.js'
 
-let MASAS_mixins = {}
 
-MASAS_mixins.MobileBlurBackground = {
+const MobileBlurBackground = {
 	componentDidMount: function() {
 		// add blur class to background
 		dispatch(changeBgState.blurMobile(true))
@@ -15,7 +14,7 @@ MASAS_mixins.MobileBlurBackground = {
 	}
 }
 
-MASAS_mixins.BlurBackground = {
+const BlurBackground = {
 	componentDidMount: function() {
 
 		// add blur class to background
@@ -28,4 +27,7 @@ MASAS_mixins.BlurBackground = {
 	}
 }
 
-module.exports = MASAS_mixins
+export {
+	MobileBlurBackground,
+	BlurBackground,
+}

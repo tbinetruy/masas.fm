@@ -8,26 +8,26 @@
 
 import 'whatwg-fetch'
 
-const { dispatch } = require("./reducers/reducers.js")
+const { dispatch } = require('./reducers/reducers.js')
 
 import {
 	pausePlayer,
-	playPreviousSongInHistory,
 	playNewSong,
+	playPreviousSongInHistory,
 	playRandomSong,
 	toggleSongLike,
-} from "./reducers/actions/Player.js"
+} from './reducers/actions/Player.js'
 
 import {
 	closeAndEmptyMainModal,
-} from "./reducers/actions/App.js"
+} from './reducers/actions/App.js'
 
 import {
 	updateNotificationBar,
-} from "./reducers/actions/Header.js"
+} from './reducers/actions/Header.js'
 
-var { browserHistory } = require("react-router")
-var Cookie = require("js-cookie")
+var { browserHistory } = require('react-router')
+var Cookie = require('js-cookie')
 
 var MASAS_functions = {}
 
@@ -47,16 +47,16 @@ MASAS_functions.consts = {
 }
 MASAS_functions.updateUserStep = (userData, userToken, userStep) => {
 
-	const header = "Bearer " + userToken
-	var csrftoken = MASAS_functions.getCookie("csrftoken")
+	const header = 'Bearer ' + userToken
+	var csrftoken = MASAS_functions.getCookie('csrftoken')
 
 	////////// UPDATE PROFILE
-	fetch("/api/usersteps/", {
-		method: "POST",
+	fetch('/api/usersteps/', {
+		method: 'POST',
 		headers: {
-			"Authorization": header,
-			"X-CSRFToken": csrftoken,
-			"content-type": "application/json"
+			'Authorization': header,
+			'X-CSRFToken': csrftoken,
+			'content-type': 'application/json'
 		},
 		body: JSON.stringify({
 			user: userData.url,
@@ -77,15 +77,15 @@ MASAS_functions.updateUserStep = (userData, userToken, userStep) => {
 
 // returns a dict with urls used for different pages on the website
 MASAS_functions.getPathList = {
-	home: "/",
-	discover: "/discover",
-	popular: "/crowdradio",
-	likes: "/likes",
-	profile: "/profile",
-	user: "/user",
-	legals: "/legals",
-	upload: "/upload",
-	settings: "/settings"
+	home: '/',
+	discover: '/discover',
+	popular: '/crowdradio',
+	likes: '/likes',
+	profile: '/profile',
+	user: '/user',
+	legals: '/legals',
+	upload: '/upload',
+	settings: '/settings'
 }
 
 // return key pair object with key = url get params ; pair = value associated with get key
@@ -95,14 +95,14 @@ MASAS_functions.getUrlParams = () => {
 	// the return value is assigned to QueryString!
 	var query_string = {}
 	var query = window.location.search.substring(1)
-	var vars = query.split("&")
+	var vars = query.split('&')
 	for (var i=0;i<vars.length;i++) {
-		var pair = vars[i].split("=")
+		var pair = vars[i].split('=')
 		// If first entry with this name
-		if (typeof query_string[pair[0]] === "undefined") {
+		if (typeof query_string[pair[0]] === 'undefined') {
 			query_string[pair[0]] = decodeURIComponent(pair[1])
 		// If second entry with this name
-		} else if (typeof query_string[pair[0]] === "string") {
+		} else if (typeof query_string[pair[0]] === 'string') {
 			var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ]
 			query_string[pair[0]] = arr
 		// If third or later entry with this name
@@ -122,7 +122,7 @@ MASAS_functions.getUserSteps = usersteps => {
 
 // source: http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
 MASAS_functions.copyTextToClipboard = function(text) {
-	var textArea = document.createElement("textarea")
+	var textArea = document.createElement('textarea')
 
 	//
 	// *** This styling is an extra step which is likely not required. ***
@@ -199,7 +199,7 @@ MASAS_functions.getDiscoverNumberFromCurrentTime = () => {
 MASAS_functions.getUserPkFromURL = url => {
 	var str = url
 	str = str.slice(0, str.length-1)
-	str = str.substring(str.lastIndexOf("/")+1,str.length)
+	str = str.substring(str.lastIndexOf('/')+1,str.length)
 
 	return str
 }
@@ -222,12 +222,12 @@ MASAS_functions.background = {
 
 MASAS_functions.discoverHashtagNames = () => {
 	return [
-		"#EarlyMorning",
-		"#LateMorning",
-		"#EarlyAfternoon",
-		"#LateAfternoon",
-		"#EarlyEvening",
-		"#LateEvening"
+		'#EarlyMorning',
+		'#LateMorning',
+		'#EarlyAfternoon',
+		'#LateAfternoon',
+		'#EarlyEvening',
+		'#LateEvening'
 	]
 }
 
@@ -236,7 +236,7 @@ MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
 	const hastagNames = MASAS_functions.discoverHashtagNames()
 
 	switch(switchVar) {
-		case "1":
+		case '1:
 			return hastagNames[0]
 		case "2":
 			return hastagNames[1]
@@ -321,46 +321,6 @@ MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 /////
 /////
 
-/*
-	takes dispatch (from mapDispatchToProps(dispatch) in containers) and user token
-	result: returns nothing. but updates appReducer"s auth token and user pk
-*/
-// MASAS_functions.logInWithToken = (removeVariable, userToken) => {
-// 	var header = "Bearer " + userToken
-// 	$.ajax({
-// 		type: "GET",
-// 		url: "/api/check-user/",
-// 		headers: {
-// 			"Authorization": header,
-// 		},
-// 		success: (data) => {
-// 			if(data.userPk !== "None") {
-// 				if(data.auth === "None") {
-// 					// remove cookie
-// 					const delete_cookie = function( name ) {
-// 						document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
-// 					}
-
-// 					delete_cookie("MASAS_authToken")
-// 				} else {
-// 					var pk = data.userPk
-
-// 					MASAS_functions.updateUserInfo(pk, userToken)
-// 				}
-// 			}
-
-// 			// render app
-// 			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
-// 		},
-// 		error: (err) => {
-// 			// render app
-// 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText})
-// 			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
-
-// 		},
-// 	})
-// }
 
 MASAS_functions.logout = () => {
 	Cookie.remove("MASAS_authToken")
@@ -370,98 +330,8 @@ MASAS_functions.logout = () => {
 	FB.logout(function(response) {
 		MASAS_functions.updateNotificationBar("Logged out !")
 	})
-
 }
 
-// MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
-// 	const header = "Bearer " + userToken
-
-// 	if(typeof(FB) !== "undefined") {
-// 		FB.api("/me", { locale: "en_US", fields: "name, email" },
-// 			function({ email }) {
-
-// 				// update email if user email not defined yet
-// 				if(email && !userData.email)
-// 					$.ajax({
-// 						type: "PATCH",
-// 						url: "/api/users/" + userPk + "/",
-// 						headers: {
-// 							"Authorization": header,
-// 							"Content-Type:": "application/json"
-// 						},
-// 						data: JSON.stringify({
-// 							email,
-// 						}),
-// 						success: (resp) => {
-// 						},
-// 						error: (err) => {
-// 						}
-// 					})
-// 			}
-// 		)
-// 	}
-// }
-
-// (obj) userDict => userDict.userToken, userDict.userPk, and userDict.userData
-// MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
-
-// 	if(typeof(FB) !== "undefined") {
-// 		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
-
-// 		// update avatar url if user has none
-// 		if(avatar_url && !userData.avatar_url)
-// 			$.ajax({
-// 				type: "PATCH",
-// 				url: "/api/users/" + userPk + "/",
-// 				headers: {
-// 					"Authorization": "Bearer " + userToken,
-// 					"Content-Type:": "application/json"
-// 				},
-// 				data: JSON.stringify({
-// 					avatar_url,
-// 				}),
-// 				success: (resp) => {
-// 				},
-// 				error: (err) => {
-// 				}
-// 			})
-// 	}
-// }
-
-// MASAS_functions.updateUserInfo = (userPk, userToken) => {
-// 	$.ajax({
-// 		type: "GET",
-// 		url: "/api/users/" + userPk + "/",
-// 		success: (userData) => {
-// 			// check that terms and conditions were accepted (commented for now, might not need it)
-// 			const hasAcceptedTerms = 1 // userData.usersteps.filter( (userStep) => userStep.step === 1).length
-// 			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
-
-// 			if(hasAcceptedTerms) {
-// 					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
-
-// 					// log in user
-// 					dispatch({ type: "UPDATE_USER_PK", pk: userPk })
-// 					dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
-// 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
-// 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
-
-// 					// if(window.location.pathname !== "/")
-// 					// 	browserHistory.push('/')
-// 			} else {
-// 				// show terms and conditions form
-// 				var TermsAndCond = require("./components/Login/TermsAndCond.jsx")
-// 				dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <TermsAndCond userPk={ parseInt(userPk) } userToken={ userToken } userData={ userData } /> })
-// 				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
-// 			}
-// 		},
-// 		error: (e) => {
-// 		}
-// 	})
-// }
-
-// const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
-// MASAS_functions.updateProfileInfo = updateProfileInfo
 
 /////
 /////
