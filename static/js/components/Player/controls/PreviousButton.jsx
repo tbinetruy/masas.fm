@@ -12,10 +12,10 @@ import {
  */
 
 const reduxStatePropTypes = {
-    isPlaylistPlaying: React.PropTypes.bool,
-    playingFromPopular: React.PropTypes.bool,
-    playlistPosition: React.PropTypes.number,
-    popularHistory: React.PropTypes.array,
+    isPlaylistPlaying: PropTypes.bool,
+    playingFromPopular: PropTypes.bool,
+    playlistPosition: PropTypes.number,
+    popularHistory: PropTypes.array,
 }
 
 const mapStateToProps = function(state) {
@@ -28,8 +28,8 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-    playNewSongFromPlaylist: React.PropTypes.func,
-    playPreviousSong: React.PropTypes.func,
+    playNewSongFromPlaylist: PropTypes.func,
+    playPreviousSong: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

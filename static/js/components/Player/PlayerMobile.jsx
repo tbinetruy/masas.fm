@@ -16,8 +16,8 @@ var { getUserPkFromURL } = require('../../MASAS_functions.jsx')
  */
 
 const reduxStatePropTypes = {
-	MASAS_songInfo: React.PropTypes.object,
-	isPlayerMobileShown: React.PropTypes.bool,
+	MASAS_songInfo: PropTypes.object,
+	isPlayerMobileShown: PropTypes.bool,
 }
 
 const mapStateToProps = function(state) {
@@ -28,8 +28,8 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	showPlayerMobile: React.PropTypes.func,
-	updateProfileBackArrowFunc: React.PropTypes.func,
+	showPlayerMobile: PropTypes.func,
+	updateProfileBackArrowFunc: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

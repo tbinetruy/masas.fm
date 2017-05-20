@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
-const Autocomplete = require('react-autocomplete')
+import Autocomplete from 'react-autocomplete'
 
 import {
 	updateApiGenres,
@@ -13,13 +13,24 @@ import {
  * Redux container
  */
 
+const reduxStatePropTypes = {
+	genres: PropTypes.array,
+	value: PropTypes.string,
+}
+
 const mapStateToProps = function(state) {
 	return {
 		genres: state.popularReducer.genre.apiGenres,
-		selectedGenre: state.popularReducer.genre.selectedGenre,
 		value: state.popularReducer.genre.textboxValue,
 	}
 }
+
+const reduxDispatchPropTypes = {
+	updateGenres: PropTypes.func,
+	updateSelectedGenre: PropTypes.func,
+	updateValue: PropTypes.func,
+}
+
 
 const mapDispatchToProps = function(dispatch) {
 	return {
@@ -33,6 +44,15 @@ const mapDispatchToProps = function(dispatch) {
 /**
  * Smart component
  */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+}
+
+const smartDefaultProps = {
+}
+
 class GenreAutocompleteSmart extends React.Component {
     constructor(props) {
         super(props)
@@ -108,14 +128,8 @@ class GenreAutocompleteSmart extends React.Component {
 	}
 }
 
-GenreAutocompleteSmart.propTypes = {
-	genres: React.PropTypes.array,
-	selectedGenre: React.PropTypes.string,
-	updateGenres: React.PropTypes.func,
-	updateSelectedGenre: React.PropTypes.func,
-	updateValue: React.PropTypes.func,
-	value: React.PropTypes.string,
-}
+GenreAutocompleteSmart.propTypes = smartPropTypes
+GenreAutocompleteSmart.defaultProps = smartDefaultProps
 
 const GenreAutocomplete = connect(
     mapStateToProps,

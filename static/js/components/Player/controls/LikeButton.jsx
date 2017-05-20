@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
 import { toggleSongLike } from '../../../reducers/actions/Player.js'
@@ -16,12 +16,12 @@ import { SplashScreen } from '../../App/SplashScreen.jsx'
  */
 
 const reduxStatePropTypes = {
-    MASASuser: React.PropTypes.string,
-    isModalOpened: React.PropTypes.bool,
-    isSongPlayingLiked: React.PropTypes.bool,
-    modalType: React.PropTypes.number,
-    songPlaying: React.PropTypes.string,
-    userData: React.PropTypes.object,
+    MASASuser: PropTypes.string,
+    isModalOpened: PropTypes.bool,
+    isSongPlayingLiked: PropTypes.bool,
+    modalType: PropTypes.number,
+    songPlaying: PropTypes.string,
+    userData: PropTypes.object,
 }
 
 const mapStateToProps = function(state) {
@@ -36,10 +36,10 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-    toggleSongLike: React.PropTypes.func,
-    toogleModal: React.PropTypes.func,
-    updateLoginMessage: React.PropTypes.func,
-    updateModalContent: React.PropTypes.func,
+    toggleSongLike: PropTypes.func,
+    toogleModal: PropTypes.func,
+    updateLoginMessage: PropTypes.func,
+    updateModalContent: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

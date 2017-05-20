@@ -13,12 +13,12 @@ import { POPULAR } from '../../../reducers/actions/Player.js'
  */
 
 const reduxStatePropTypes = {
-    MASAS_songInfo: React.PropTypes.object,
-    isPlaylistPlaying: React.PropTypes.bool,
-    playingFromPopular: React.PropTypes.bool,
-    playlist: React.PropTypes.array,
-    playlistPosition: React.PropTypes.number,
-    songPlaying: React.PropTypes.string,
+    MASAS_songInfo: PropTypes.object,
+    isPlaylistPlaying: PropTypes.bool,
+    playingFromPopular: PropTypes.bool,
+    playlist: PropTypes.array,
+    playlistPosition: PropTypes.number,
+    songPlaying: PropTypes.string,
 }
 
 const mapStateToProps = function(state) {
@@ -33,8 +33,8 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-    playNewSongFromPlaylist: React.PropTypes.func,
-    playRandomSong: React.PropTypes.func,
+    playNewSongFromPlaylist: PropTypes.func,
+    playRandomSong: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

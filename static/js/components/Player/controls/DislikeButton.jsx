@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'
 
 
@@ -20,8 +20,8 @@ import { SplashScreen } from '../../App/SplashScreen.jsx'
  */
 
 const reduxStatePropTypes = {
-    MASASuser: React.PropTypes.string,
-    songPlaying: React.PropTypes.string,
+    MASASuser: PropTypes.string,
+    songPlaying: PropTypes.string,
 }
 
 const mapStateToProps = function(state) {
@@ -32,9 +32,9 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-    toogleModal: React.PropTypes.func,
-    updateModalContent: React.PropTypes.func,
-    updateLoginMessage: React.PropTypes.func,
+    toogleModal: PropTypes.func,
+    updateModalContent: PropTypes.func,
+    updateLoginMessage: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
