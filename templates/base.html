@@ -73,12 +73,13 @@
     <!-- JavaScript scripts -->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
 
+	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
     {% if settings.RAVEN_JS_DSN %}
 		<script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/jquery.jplayer.min.js" %}"></script>
 		<!-- <script type="text/javascript" src="{% static "js/swiper.min.js" %}"></script> -->
 		<script type="text/javascript" src="{% static "js/paper-full.min.js" %}"></script>
-		<script type="text/javascript" src="{% static "js/dist/bundle.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/bundle.js" %}"></script>
         <!-- Hotjar Tracking Code for http://masas.fm -->
         <script>
             (function(h,o,t,j,a,r){
@@ -94,7 +95,8 @@
 		<script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/jquery.jplayer.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/paper-full.min.js" %}"></script>
-		<script type="text/javascript" src="{% static "js/bundle.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/dist/bundle.js" %}"></script>
+		<!--<script type="text/javascript" src="{% static "js/bundle.js" %}"></script>-->
     {% endif %}
 
     {% if settings.RAVEN_JS_DSN %}

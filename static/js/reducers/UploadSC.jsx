@@ -1,5 +1,3 @@
-import SC from 'soundcloud'
-
 import {
 	HANDLE_PICK_TIME_UPLOAD,
 	UPDATE_IS_CONNECTED_SC,

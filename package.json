@@ -23,7 +23,6 @@
     "react-sidebar": "^2.1.1",
     "redux": "^3.0.6",
     "redux-thunk": "^2.0.1",
-    "soundcloud": "^3.1.0",
     "swipe-js-iso": "^2.0.3",
     "swiper": "3.0.0",
     "whatwg-fetch": "^1.0.0"
@@ -66,7 +65,7 @@
   },
   "scripts": {
     "test": "jest",
-	"build": "webpack"
+    "build": "webpack"
   },
   "jest": {
     "unmockedModulePathPatterns": [

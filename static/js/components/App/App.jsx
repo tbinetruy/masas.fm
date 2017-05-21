@@ -1,4 +1,3 @@
-var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
 import React, { PropTypes } from 'react'
