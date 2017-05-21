@@ -1,19 +1,19 @@
 import {
-	toogleIsModalOpened,
 	changeModalContent,
+	toogleIsModalOpened,
 	updateSplashScreenLoginMessage,
 } from '../../../reducers/actions/App.js'
 
 import {
-	updateSCUserTracks,
-	updateSCUsername,
 	updateIsConnectedSC,
 	updateMasasUserTracks,
+	updateSCUserTracks,
+	updateSCUsername,
 } from '../../../reducers/actions/UploadSC.js'
 
 import {
 	updateProfilePicture,
-} from "../../../reducers/actions/Login.js"
+} from '../../../reducers/actions/Login.js'
 
 var UploadSCHome = {}
 

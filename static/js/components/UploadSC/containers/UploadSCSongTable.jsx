@@ -1,6 +1,6 @@
 import {
 	updatePageTitle,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 var UploadSCSongTable = {}
 

@@ -1,22 +1,22 @@
 import {
 	updateProfileInfo,
-} from "../../../reducers/actions/Profile.js"
+} from '../../../reducers/actions/Profile.js'
 
 import {
 	closePickTimeWindow,
 	handlePickTimeUpload,
 	updateIsUploadButtonDisabled,
-} from "../../../reducers/actions/UploadSC.js"
+} from '../../../reducers/actions/UploadSC.js'
 
 import {
 	changeModalContent,
 	toogleIsModalOpened,
 	updatePageTitle,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 import {
 	updateNotificationBar,
-} from "../../../reducers/actions/Header.js"
+} from '../../../reducers/actions/Header.js'
 
 var PickTimeUpload = {}
 

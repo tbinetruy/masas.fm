@@ -1,4 +1,4 @@
-import { 
+import {
 	changeModalContent,
 	toogleIsModalOpened,
 } from '../../../reducers/actions/App.js'
@@ -8,7 +8,7 @@ var UploadSCItem = {}
 // Which part of the Redux global state does our component want to receive as props?
 UploadSCItem.mapStateToProps = function(state) {
 	return {
-		
+
 	}
 }
 

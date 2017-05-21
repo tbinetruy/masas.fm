@@ -1,6 +1,6 @@
 import {
 	toogleIsModalOpened,
-} from "../../../reducers/actions/App.js"
+} from '../../../reducers/actions/App.js'
 
 var ModalContent = {}
 

@@ -1,4 +1,3 @@
-
 const UPDATE_SC_USER_TRACKS = 'UPDATE_SC_USER_TRACKS'
 const UPDATE_MASAS_USER_TRACKS = 'UPDATE_MASAS_USER_TRACKS'
 const UPDATE_SC_USERNAME = 'UPDATE_SC_USERNAME'
@@ -77,6 +76,7 @@ export {
 	handlePickTimeUpload,
 	updateIsConnectedSC,
 	updateIsUploadButtonDisabled,
+	updateMasasUserTracks,
 	updateSCUserTracks,
 	updateSCUsername,
 	updateUploadTipTimePickerValue,

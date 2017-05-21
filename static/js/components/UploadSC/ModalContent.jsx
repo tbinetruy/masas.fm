@@ -1,10 +1,10 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+var React = require('react')
+var ReactDOM = require('react-dom')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/ModalContent.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/ModalContent.jsx')
 
-var { Link, Checkbox, Button } = require("../UI/UI.jsx")
+var { Link, Checkbox, Button } = require('../UI/UI.jsx')
 
 
 var ModalContent = React.createClass({
@@ -19,10 +19,10 @@ var ModalContent = React.createClass({
 		return (
 			<div className="confirm-ownership--wrapper">
 				<div className="lock-icon--wrapper">
-					<img 
-						src="/static/img/MASAS_icon_i_certify.svg" 
+					<img
+						src="/static/img/MASAS_icon_i_certify.svg"
 						className="lock-icon"
-						alt="i certify icon"/>
+						alt="i certify icon" />
 				</div>
 				<div className="checkbox--wrapper">
 					<p className="paragraph">
@@ -34,7 +34,7 @@ var ModalContent = React.createClass({
 						<li>No royalties will be paid to any of the right-holders of this sound for this upload.</li>
 					</ul>
 					<div className="submit--wrapper">
-						<Button 
+						<Button
 							isBigButton={ true }
 							isSecondaryAction={ false }
 							onClick={this.props.onSubmit}

@@ -1,11 +1,11 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/NoSCSongs.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/NoSCSongs.jsx')
 
-var { copyTextToClipboard } = require("../../MASAS_functions.jsx")
+var { copyTextToClipboard } = require('../../MASAS_functions.jsx')
 // import { BlurBackground } from "../MASAS_mixins.jsx"
-var { Button } = require("../UI/UI.jsx")
+var { Button } = require('../UI/UI.jsx')
 // var { browserHistory } = require('react-router')
 
 
@@ -25,8 +25,8 @@ var NoSCSongs = React.createClass({
 	},
 
 	inviteFriend: function() {
-		copyTextToClipboard("http://masas.fm")
-		this.props.updateNotificationBar("http://masas.fm copied to your clipboard!")
+		copyTextToClipboard('http://masas.fm')
+		this.props.updateNotificationBar('http://masas.fm copied to your clipboard!')
 	},
 
 	render: function() {
@@ -34,7 +34,7 @@ var NoSCSongs = React.createClass({
 			<div className="no-sc-songs--wrapper">
 				<h2>Nothing uploaded on your Soundcloud?</h2>
 				<p>We all have Artist friends, give them their chance!</p>
-				
+
 				<div className="buttons">
 					<Button
 						onClick={ this.inviteFriend }>Invite a friend</Button>

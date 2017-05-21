@@ -11996,7 +11996,6 @@ exports.addRandomSongToHistory = addRandomSongToHistory;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-
 var UPDATE_SC_USER_TRACKS = 'UPDATE_SC_USER_TRACKS';
 var UPDATE_MASAS_USER_TRACKS = 'UPDATE_MASAS_USER_TRACKS';
 var UPDATE_SC_USERNAME = 'UPDATE_SC_USERNAME';
@@ -12073,6 +12072,7 @@ exports.closePickTimeWindow = closePickTimeWindow;
 exports.handlePickTimeUpload = handlePickTimeUpload;
 exports.updateIsConnectedSC = updateIsConnectedSC;
 exports.updateIsUploadButtonDisabled = updateIsUploadButtonDisabled;
+exports.updateMasasUserTracks = updateMasasUserTracks;
 exports.updateSCUserTracks = updateSCUserTracks;
 exports.updateSCUsername = updateSCUsername;
 exports.updateUploadTipTimePickerValue = updateUploadTipTimePickerValue;
@@ -34177,7 +34177,7 @@ var _components = {
 };
 
 var _livereactloadBabelTransform2 = (0, _babelTransform2.default)({
-	filename: "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx",
+	filename: '/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx',
 	components: _components,
 	locals: [],
 	imports: [_react3.default]
@@ -34202,8 +34202,8 @@ var SCSyncInstructionModal = __webpack_require__(831);
 var _require2 = __webpack_require__(8),
     Marquee = _require2.Marquee;
 
-var UploadSCItem = _wrapComponent("_component")(React.createClass({
-	displayName: "UploadSCItem",
+var UploadSCItem = _wrapComponent('_component')(React.createClass({
+	displayName: 'UploadSCItem',
 
 	propTypes: {
 		synced: React.PropTypes.bool, // is song synced
@@ -34223,9 +34223,9 @@ var UploadSCItem = _wrapComponent("_component")(React.createClass({
 	},
 
 	showTrackStatus: function showTrackStatus() {
-		if (!this.props.streamable || !this.props.public) return "?";
+		if (!this.props.streamable || !this.props.public) return '?';
 
-		if (this.props.synced) return "synced";else return React.createElement("img", { src: "/static/img/MASAS_sync_off.svg", alt: "sync", onClick: this.showSyncScreen });
+		if (this.props.synced) return 'synced';else return React.createElement('img', { src: '/static/img/MASAS_sync_off.svg', alt: 'sync', onClick: this.showSyncScreen });
 	},
 
 	// show modal with info as to why song is not synchronizable
@@ -34240,27 +34240,27 @@ var UploadSCItem = _wrapComponent("_component")(React.createClass({
 		var millisToMinutesAndSeconds = function millisToMinutesAndSeconds(millis) {
 			var minutes = Math.floor(millis / 60000);
 			var seconds = (millis % 60000 / 1000).toFixed(0);
-			return minutes + ":" + (seconds < 10 ? '0' : '') + seconds; // millisToMinutesAndSeconds(298999) =>  "4:59"
+			return minutes + ':' + (seconds < 10 ? '0' : '') + seconds; // millisToMinutesAndSeconds(298999) =>  "4:59"
 		};
 
 		return React.createElement(
-			"div",
-			{ className: "upload-sc-item--wrapper" + (this.props.synced ? " synced " : "") + (!this.props.streamable || !this.props.public ? " non-synchronizable " : "") },
+			'div',
+			{ className: 'upload-sc-item--wrapper' + (this.props.synced ? ' synced ' : '') + (!this.props.streamable || !this.props.public ? ' non-synchronizable ' : '') },
 			React.createElement(
-				"div",
+				'div',
 				{
-					className: "upload-sc-item-overlay--wrapper" },
+					className: 'upload-sc-item-overlay--wrapper' },
 				React.createElement(
-					"div",
-					{ className: "artwork--wrapper" },
-					this.props.track.artwork_url ? React.createElement("img", { src: this.props.track.artwork_url, alt: "artwork" }) : ""
+					'div',
+					{ className: 'artwork--wrapper' },
+					this.props.track.artwork_url ? React.createElement('img', { src: this.props.track.artwork_url, alt: 'artwork' }) : ''
 				),
 				React.createElement(
-					"div",
-					{ className: "song-info--wrapper" },
+					'div',
+					{ className: 'song-info--wrapper' },
 					React.createElement(
-						"div",
-						{ className: "song-name" },
+						'div',
+						{ className: 'song-name' },
 						React.createElement(
 							Marquee,
 							null,
@@ -34268,34 +34268,34 @@ var UploadSCItem = _wrapComponent("_component")(React.createClass({
 						)
 					),
 					React.createElement(
-						"div",
-						{ className: "song-stats" },
+						'div',
+						{ className: 'song-stats' },
 						React.createElement(
-							"span",
-							{ className: "number-listens" },
-							React.createElement("img", { src: "/static/img/MASAS_logo_tunes.svg", alt: "music-not-icon" }),
+							'span',
+							{ className: 'number-listens' },
+							React.createElement('img', { src: '/static/img/MASAS_logo_tunes.svg', alt: 'music-not-icon' }),
 							this.props.track.playback_count
 						),
 						React.createElement(
-							"span",
+							'span',
 							null,
 							millisToMinutesAndSeconds(this.props.track.duration)
 						)
 					),
 					React.createElement(
-						"a",
+						'a',
 						{
 							href: this.props.track.permalink_url,
-							className: "sc-link",
-							target: "_blank" },
-						React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" })
+							className: 'sc-link',
+							target: '_blank' },
+						React.createElement('img', { src: '/static/img/MASAS_logo_soundcloud.svg', alt: 'soundcloud' })
 					)
 				)
 			),
 			React.createElement(
-				"div",
+				'div',
 				{
-					className: "sync--wrapper",
+					className: 'sync--wrapper',
 					onClick: function onClick() {
 						return !_this.props.public || !_this.props.streamable ? _this.showSyncInfoModal() : 0;
 					} },
@@ -76914,7 +76914,7 @@ var _components = {
 };
 
 var _livereactloadBabelTransform2 = (0, _babelTransform2.default)({
-	filename: "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx",
+	filename: '/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx',
 	components: _components,
 	locals: [],
 	imports: [_react3.default]
@@ -76940,8 +76940,8 @@ var _require2 = __webpack_require__(8),
     Checkbox = _require2.Checkbox,
     Button = _require2.Button;
 
-var ModalContent = _wrapComponent("_component")(React.createClass({
-	displayName: "ModalContent",
+var ModalContent = _wrapComponent('_component')(React.createClass({
+	displayName: 'ModalContent',
 
 	propTypes: {
 		onSubmit: React.PropTypes.func.isRequired },
@@ -76950,54 +76950,54 @@ var ModalContent = _wrapComponent("_component")(React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			"div",
-			{ className: "confirm-ownership--wrapper" },
+			'div',
+			{ className: 'confirm-ownership--wrapper' },
 			React.createElement(
-				"div",
-				{ className: "lock-icon--wrapper" },
-				React.createElement("img", {
-					src: "/static/img/MASAS_icon_i_certify.svg",
-					className: "lock-icon",
-					alt: "i certify icon" })
+				'div',
+				{ className: 'lock-icon--wrapper' },
+				React.createElement('img', {
+					src: '/static/img/MASAS_icon_i_certify.svg',
+					className: 'lock-icon',
+					alt: 'i certify icon' })
 			),
 			React.createElement(
-				"div",
-				{ className: "checkbox--wrapper" },
+				'div',
+				{ className: 'checkbox--wrapper' },
 				React.createElement(
-					"p",
-					{ className: "paragraph" },
-					"Before you get Discovered, please certify that:"
+					'p',
+					{ className: 'paragraph' },
+					'Before you get Discovered, please certify that:'
 				),
 				React.createElement(
-					"ul",
-					{ className: "bullets", type: "disc" },
+					'ul',
+					{ className: 'bullets', type: 'disc' },
 					React.createElement(
-						"li",
+						'li',
 						null,
-						"You have the explicit permission from all right-holders of this sound to agree to the Terms of Use."
+						'You have the explicit permission from all right-holders of this sound to agree to the Terms of Use.'
 					),
 					React.createElement(
-						"li",
+						'li',
 						null,
-						"This track is NOT a \u201CSpam\u201D or \u201CCommercial\u201D."
+						'This track is NOT a \u201CSpam\u201D or \u201CCommercial\u201D.'
 					),
 					React.createElement(
-						"li",
+						'li',
 						null,
-						"No royalties will be paid to any of the right-holders of this sound for this upload."
+						'No royalties will be paid to any of the right-holders of this sound for this upload.'
 					)
 				),
 				React.createElement(
-					"div",
-					{ className: "submit--wrapper" },
+					'div',
+					{ className: 'submit--wrapper' },
 					React.createElement(
 						Button,
 						{
 							isBigButton: true,
 							isSecondaryAction: false,
 							onClick: this.props.onSubmit,
-							className: "submit" },
-						"Upload"
+							className: 'submit' },
+						'Upload'
 					)
 				)
 			)
@@ -77029,7 +77029,7 @@ var _components = {
 };
 
 var _livereactloadBabelTransform2 = (0, _babelTransform2.default)({
-	filename: "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/NoSCSongs.jsx",
+	filename: '/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/NoSCSongs.jsx',
 	components: _components,
 	locals: [],
 	imports: [_react3.default]
@@ -77059,8 +77059,8 @@ var _require3 = __webpack_require__(8),
 // var { browserHistory } = require('react-router')
 
 
-var NoSCSongs = _wrapComponent("_component")(React.createClass({
-	displayName: "NoSCSongs",
+var NoSCSongs = _wrapComponent('_component')(React.createClass({
+	displayName: 'NoSCSongs',
 
 	propTypes: {
 		updateNotificationBar: React.PropTypes.func,
@@ -77075,39 +77075,39 @@ var NoSCSongs = _wrapComponent("_component")(React.createClass({
 	componentWillMount: function componentWillMount() {},
 
 	inviteFriend: function inviteFriend() {
-		copyTextToClipboard("http://masas.fm");
-		this.props.updateNotificationBar("http://masas.fm copied to your clipboard!");
+		copyTextToClipboard('http://masas.fm');
+		this.props.updateNotificationBar('http://masas.fm copied to your clipboard!');
 	},
 
 	render: function render() {
 		return React.createElement(
-			"div",
-			{ className: "no-sc-songs--wrapper" },
+			'div',
+			{ className: 'no-sc-songs--wrapper' },
 			React.createElement(
-				"h2",
+				'h2',
 				null,
-				"Nothing uploaded on your Soundcloud?"
+				'Nothing uploaded on your Soundcloud?'
 			),
 			React.createElement(
-				"p",
+				'p',
 				null,
-				"We all have Artist friends, give them their chance!"
+				'We all have Artist friends, give them their chance!'
 			),
 			React.createElement(
-				"div",
-				{ className: "buttons" },
+				'div',
+				{ className: 'buttons' },
 				React.createElement(
 					Button,
 					{
 						onClick: this.inviteFriend },
-					"Invite a friend"
+					'Invite a friend'
 				),
 				React.createElement(
-					"div",
+					'div',
 					{
-						className: "cancel",
+						className: 'cancel',
 						onClick: this.props.logoutSC },
-					"or sign in with another Soundcloud account"
+					'or sign in with another Soundcloud account'
 				)
 			)
 		);
@@ -77716,6 +77716,8 @@ var _babelTransform = __webpack_require__(3);
 
 var _babelTransform2 = _interopRequireDefault(_babelTransform);
 
+var _SplashScreen = __webpack_require__(77);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _components = {
@@ -77742,8 +77744,6 @@ var ReactRedux = __webpack_require__(4);
 var _require = __webpack_require__(840),
     mapStateToProps = _require.mapStateToProps,
     mapDispatchToProps = _require.mapDispatchToProps;
-
-var SplashScreen = __webpack_require__(77);
 
 var _require2 = __webpack_require__(8),
     Button = _require2.Button,
@@ -77863,7 +77863,7 @@ var UploadSCHome = _wrapComponent('_component')(React.createClass({
 						onClick: function onClick() {
 							_this2.props.toogleModal();
 							_this2.props.updateLoginMessage('Please log-in to upload your music');
-							_this2.props.updateModalContent(React.createElement(SplashScreen, { startPage: 1 }), 3);
+							_this2.props.updateModalContent(React.createElement(_SplashScreen.SplashScreen, { startPage: 1 }), 3);
 						},
 						isBigButton: true },
 					'Log-in to Upload'
@@ -77902,7 +77902,7 @@ var _components = {
 };
 
 var _livereactloadBabelTransform2 = (0, _babelTransform2.default)({
-	filename: "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCSongTable.jsx",
+	filename: '/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCSongTable.jsx',
 	components: _components,
 	locals: [],
 	imports: [_react3.default]
@@ -77927,8 +77927,8 @@ var _require2 = __webpack_require__(8),
 
 var UploadSCItem = __webpack_require__(319);
 
-var UploadSCSongTable = _wrapComponent("_component")(React.createClass({
-	displayName: "UploadSCSongTable",
+var UploadSCSongTable = _wrapComponent('_component')(React.createClass({
+	displayName: 'UploadSCSongTable',
 
 	propTypes: {
 		SCusername: React.PropTypes.string,
@@ -77953,7 +77953,7 @@ var UploadSCSongTable = _wrapComponent("_component")(React.createClass({
 				track: track,
 				synced: synced,
 				streamable: track.streamable,
-				"public": track.sharing === "public" ? true : false });
+				'public': track.sharing === 'public' ? true : false });
 		});
 	},
 
@@ -77963,45 +77963,45 @@ var UploadSCSongTable = _wrapComponent("_component")(React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			"div",
-			{ className: "upload-sc--wrapper" },
+			'div',
+			{ className: 'upload-sc--wrapper' },
 			React.createElement(
-				"div",
-				{ className: "table-head" },
+				'div',
+				{ className: 'table-head' },
 				React.createElement(
-					"div",
-					{ className: "title" },
-					"Title"
+					'div',
+					{ className: 'title' },
+					'Title'
 				),
 				React.createElement(
-					"div",
-					{ className: "duration" },
-					"Duration"
+					'div',
+					{ className: 'duration' },
+					'Duration'
 				),
 				React.createElement(
-					"div",
-					{ className: "sync" },
-					"Sync"
+					'div',
+					{ className: 'sync' },
+					'Sync'
 				)
 			),
 			React.createElement(
-				"div",
-				{ className: "upload-sc-items--wrapper" },
+				'div',
+				{ className: 'upload-sc-items--wrapper' },
 				this.tracksTable()
 			),
 			React.createElement(
-				"div",
-				{ className: "logout--wrapper" },
+				'div',
+				{ className: 'logout--wrapper' },
 				this.props.SCusername ? React.createElement(
-					"span",
-					{ className: "logout-text", onClick: this.logoutSC },
-					"Log out from ",
+					'span',
+					{ className: 'logout-text', onClick: this.logoutSC },
+					'Log out from ',
 					React.createElement(
-						"span",
-						{ className: "logout-text--username" },
+						'span',
+						{ className: 'logout-text--username' },
 						this.props.SCusername
 					)
-				) : ""
+				) : ''
 			)
 		);
 	}

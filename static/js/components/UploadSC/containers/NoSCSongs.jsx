@@ -1,6 +1,6 @@
 import {
 	updateNotificationBar,
-} from "../../../reducers/actions/Header.js"
+} from '../../../reducers/actions/Header.js'
 
 var NoSCSongs = {}
 

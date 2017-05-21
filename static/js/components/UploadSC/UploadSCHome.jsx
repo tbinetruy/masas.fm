@@ -3,7 +3,7 @@ var React = require('react')
 var ReactRedux = require('react-redux')
 var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSCHome.jsx')
 
-var SplashScreen = require('../App/SplashScreen.jsx')
+import { SplashScreen } from '../App/SplashScreen.jsx'
 
 
 var { Button, Body, Link } = require('../UI/UI.jsx')

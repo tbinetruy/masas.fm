@@ -1,10 +1,10 @@
-var React = require("react")
+var React = require('react')
 
-var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSCSongTable.jsx")
+var ReactRedux = require('react-redux')
+var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSCSongTable.jsx')
 
-var { Body } = require("../UI/UI.jsx")
-var UploadSCItem = require("./UploadSCItem.jsx")
+var { Body } = require('../UI/UI.jsx')
+var UploadSCItem = require('./UploadSCItem.jsx')
 
 
 var UploadSCSongTable = React.createClass({
@@ -30,7 +30,7 @@ var UploadSCSongTable = React.createClass({
 						track={ track }
 						synced={ synced }
 						streamable={ track.streamable }
-						public={ track.sharing === "public" ? true : false } />
+						public={ track.sharing === 'public' ? true : false } />
 			})
 	},
 
@@ -62,7 +62,7 @@ var UploadSCSongTable = React.createClass({
 								Log out from <span className="logout-text--username">{this.props.SCusername}</span>
 							</span>
 						:
-							""
+							''
 					}
 				</div>
 			</div>
