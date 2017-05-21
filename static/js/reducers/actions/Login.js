@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-const Cookie = require('js-cookie')
+import Cookie from 'js-cookie'
 
 import {
 	updateNotificationBar,

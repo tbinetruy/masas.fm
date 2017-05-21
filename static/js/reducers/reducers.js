@@ -1,4 +1,4 @@
-var Redux = require('redux')
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import { defaultState as appDefaultState, appReducer } from './App.jsx'
@@ -30,7 +30,7 @@ const initialState = {
 	profileReducer: profileDefaultState,
 	popularReducer: popularDefaultState,
 }
-const rootReducer = Redux.combineReducers({
+const rootReducer = combineReducers({
 	headerReducer,
 	bodyReducer,
 	footerReducer,
@@ -47,11 +47,11 @@ const rootReducer = Redux.combineReducers({
 })
 
 
-const store = Redux.createStore(
+const store = createStore(
 	rootReducer,
 	initialState,
-	Redux.compose(
-		Redux.applyMiddleware(thunkMiddleware),
+	compose(
+		applyMiddleware(thunkMiddleware),
 		window.devToolsExtension ? window.devToolsExtension() : f => f
 	)
 )

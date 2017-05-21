@@ -1,4 +1,4 @@
-var Swiper = require('swiper/dist/js/swiper.min.js')
+import Swiper from 'swiper/dist/js/swiper.min.js'
 
 import React, { PropTypes } from 'react'
 import { connect }from 'react-redux'

@@ -1,14 +1,16 @@
 import {
 	updateProfileInfo
-} from "../../reducers/actions/Profile.js"
+} from '../../reducers/actions/Profile.js'
 
-const { dispatch } = require('../../reducers/reducers.js')
+import { store } from '../../reducers/reducers.js'
+const { dispatch } = store
 
-var ajaxCalls = {}
 
 // still here while refactoring
-ajaxCalls.updateProfileInfo = (callback) => {
+const updateProfileInfo2 = (callback) => {
 	dispatch(updateProfileInfo(callback))
 }
 
-module.exports = ajaxCalls
+export {
+	updateProfileInfo2 as updateProfileInfo,
+}

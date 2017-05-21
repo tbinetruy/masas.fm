@@ -1,4 +1,4 @@
-var Cookie = require('js-cookie')
+import Cookie from 'js-cookie'
 
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'

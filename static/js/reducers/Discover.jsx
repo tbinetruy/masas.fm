@@ -6,7 +6,7 @@ import {
 
 import {
 	POPULAR,
-}	from './actions/Player.js'
+} from './actions/Player.js'
 
 
 const defaultState = {

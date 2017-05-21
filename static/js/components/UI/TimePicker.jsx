@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import { TimePickerInside } from './TimePickerInside.jsx'
-const NoUISlider = require('react-nouislider')
+import NoUISlider from 'react-nouislider'
 
 
 /**

@@ -19,9 +19,9 @@ import {
 	updateProfileInfo,
 } from './Profile.js'
 
-var {
+import {
 	getTimeIntervalNumberFromUrl
-} = require('./MASAS_functions.js')
+} from './MASAS_functions.js'
 
 import {
 	getDiscoverNumberFromCurrentTime,

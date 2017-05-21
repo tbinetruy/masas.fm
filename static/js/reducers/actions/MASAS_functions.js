@@ -1,4 +1,4 @@
-var Cookie = require('js-cookie')
+import Cookie from 'js-cookie'
 
 var MASAS_functions = {}
 
@@ -10,7 +10,7 @@ var MASAS_functions = {}
 /////
 /////
 
-MASAS_functions.getUserPkFromURL = url => {
+const getUserPkFromURL = url => {
 	var str = url
 	str = str.slice(0, str.length-1)
 	str = str.substring(str.lastIndexOf('/')+1,str.length)
@@ -18,14 +18,14 @@ MASAS_functions.getUserPkFromURL = url => {
 	return str
 }
 
-MASAS_functions.getTimeIntervalNumberFromUrl = url => {
+const getTimeIntervalNumberFromUrl = url => {
 	return parseInt(MASAS_functions.getUserPkFromURL(url))
 }
 
-MASAS_functions.isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
-MASAS_functions.isObjectNotEmpty = obj => Object.keys(obj).length !== 0 && obj.constructor === Object
+const isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
+const isObjectNotEmpty = obj => Object.keys(obj).length !== 0 && obj.constructor === Object
 
-MASAS_functions.background = {
+const background = {
 	blur: () => {
 		$('#body--background').addClass('blurred')
 	},
@@ -34,7 +34,7 @@ MASAS_functions.background = {
 	}
 }
 
-MASAS_functions.discoverHashtagNames = () => {
+const discoverHashtagNames = () => {
 	return [
 		'#EarlyMorning',
 		'#LateMorning',
@@ -45,7 +45,7 @@ MASAS_functions.discoverHashtagNames = () => {
 	]
 }
 
-MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
+const timeIntervalURLToString = (timeIntervalURL) => {
 	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
 	const hastagNames = MASAS_functions.discoverHashtagNames()
 
@@ -68,7 +68,7 @@ MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
 }
 
 // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
-MASAS_functions.makePromiseCancelable = (promise) => {
+const makePromiseCancelable = (promise) => {
 	let hasCanceled_ = false;
 
 	const wrappedPromise = new Promise((resolve, reject) => {
@@ -89,13 +89,13 @@ MASAS_functions.makePromiseCancelable = (promise) => {
 	}
 }
 
-MASAS_functions.updateAuthCookie = (userToken) => {
+const updateAuthCookie = (userToken) => {
 	Cookie.set('MASAS_authToken', userToken)
 }
 
 
 // using jQuery
-MASAS_functions.getCookie = (name) => {
+const getCookie = (name) => {
 	var cookieValue = null
 	if (document.cookie && document.cookie != '') {
 		var cookies = document.cookie.split(';')
@@ -112,7 +112,7 @@ MASAS_functions.getCookie = (name) => {
 }
 
 // (BOOL) checks if a sequence is a subsequence of a string
-MASAS_functions.isSubsequence = (sequence, string) => {
+const isSubsequence = (sequence, string) => {
 	if (string.toLowerCase().includes(sequence.toLowerCase()))
 		return true
 	else
@@ -120,8 +120,20 @@ MASAS_functions.isSubsequence = (sequence, string) => {
 }
 
 // returns 1-6 for timeInterval based on songId
-MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
+const getTimeIntervalFromURL = (timeIntervalURL) => {
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }
 
-module.exports = MASAS_functions
+export {
+	getTimeIntervalFromURL,
+	isSubsequence,
+	getCookie,
+	updateAuthCookie,
+	makePromiseCancelable,
+	timeIntervalURLToString,
+	discoverHashtagNames,
+	isObjectEmpty,
+	isObjectNotEmpty,
+	getTimeIntervalNumberFromUrl,
+	getUserPkFromURL,
+}

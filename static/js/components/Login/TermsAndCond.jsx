@@ -1,4 +1,4 @@
-var { acceptTerms } = require('./ajaxCalls.jsx')
+import { acceptTerms } from './ajaxCalls.jsx'
 
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'

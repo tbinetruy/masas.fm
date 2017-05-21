@@ -1,11 +1,15 @@
-var { browserHistory } = require('react-router')
+/**
+ * used by terms and cond
+ */
+import { browserHistory } from 'react-router'
 
-const { dispatch } = require('../../reducers/reducers.js')
-var { updateAuthCookie, logInWithToken } = require('../../MASAS_functions.jsx')
+import { store } from '../../reducers/reducers.js'
+import { updateAuthCookie, logInWithToken } from '../../MASAS_functions.jsx'
 
-var ajaxCalls = {}
+const { dispatch } = store
 
-ajaxCalls.acceptTerms = (userToken, userData, userPk) => {
+
+const acceptTerms = (userToken, userData, userPk) => {
 	var header = 'Bearer ' + userToken
 
 	$.ajax({
@@ -35,7 +39,7 @@ ajaxCalls.acceptTerms = (userToken, userData, userPk) => {
 }
 
 // (obj) userDict => userDict.userToken and userDict.userPk
-ajaxCalls.updateProfilePicture = (userDict) => {
+const updateProfilePicture = (userDict) => {
 	const userToken = userDict.userToken
 	const userPk = userDict.userPk
 
@@ -59,7 +63,7 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 
 
 
-ajaxCalls.convertToken = () => {
+const convertToken = () => {
 	$.ajax({
 		type: 'POST',
 		url: '/auth/convert-token/',
@@ -81,7 +85,8 @@ ajaxCalls.convertToken = () => {
 	})
 }
 
-ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
+
+const getUserPk = (userToken, callbackFunc = null) => {
 	var header = 'Bearer ' + userToken
 	$.ajax({
 		type: 'GET',
@@ -102,4 +107,9 @@ ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
 	})
 }
 
-module.exports = ajaxCalls
+export {
+	getUserPk,
+	convertToken,
+	updateProfilePicture,
+	acceptTerms,
+}

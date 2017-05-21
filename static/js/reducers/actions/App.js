@@ -1,6 +1,6 @@
 
 import { updateNotificationBar } from './Header.js'
-var Cookie = require('js-cookie')
+import Cookie from 'js-cookie'
 
 import { resetTextboxValue } from './Profile.js'
 

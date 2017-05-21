@@ -3,7 +3,7 @@
  * creates invisible artworks to keep the last line aligned left using flexbox
  */
 
-const { defaultState } = require('../../reducers/Likes.jsx')
+import { defaultState } from '../../reducers/Likes.jsx'
 
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'

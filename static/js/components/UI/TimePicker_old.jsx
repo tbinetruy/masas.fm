@@ -1,5 +1,5 @@
 // STATEFULL COMPONENT
-// no performant enough to be fuly coupled with redux, so no 2 way binding between redux state and slider value. 
+// no performant enough to be fuly coupled with redux, so no 2 way binding between redux state and slider value.
 // instead, slider value binded 2 ways with inner state var calling this.props.onChange when slider movement is
 // triggered.
 
@@ -20,7 +20,7 @@ var pixelRatio = () => {
 
 var TimePicker = React.createClass({
 	propTypes: {
-		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
+		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
 		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
 		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
 		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
@@ -83,7 +83,7 @@ var TimePicker = React.createClass({
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width
 		canvasHeight = parseInt(canvasHeight.split("p")[0])
 		canvasWidth = parseInt(canvasWidth.split("p")[0])
-		
+
 			// update canvas size
 		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight)
 
@@ -102,7 +102,7 @@ var TimePicker = React.createClass({
 			// draw arc from circle radius and center
 		var center = new paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y)
 		var path = new paper.Path.Circle(center, this.state.arcRadius)
-		
+
 			// style path
 		path.strokeColor = 'white'
 		path.opacity = 0.5
@@ -133,7 +133,7 @@ var TimePicker = React.createClass({
 	handleSliderChange: function(e) {
 		if(parseFloat(e) !== this.state.rangePercent) {
 			var sunCoords = this.getSunCoords(parseFloat(e))
-			
+
 			// check if need to update redux state
 			const newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover)
 			if(newDiscover !== 0)
@@ -147,11 +147,11 @@ var TimePicker = React.createClass({
 	getSunCoords: function(sliderValue) {
 		var { sqrt, pow } = Math
 
-		if(sliderValue > 100) 
+		if(sliderValue > 100)
 			sliderValue = 100
 		else if(sliderValue < 0)
 			sliderValue = 0
-		
+
 		var R = this.state.arcRadius
 		var C = this.state.arcCenterCoords
 		var x = sliderValue / 100 * this.state.canvasWidth
@@ -231,17 +231,17 @@ var TimePicker = React.createClass({
 						position: "relative",
 						width: "100%",
 						height: "100%" }}>
-						{/*<input 
-							type="range" 
+						{/*<input
+							type="range"
 							ref="slider"
-							value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue } 
-							onChange={ this.handleSliderChange } 
+							value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue }
+							onChange={ this.handleSliderChange }
 							className="MASAS-slider" />*/}
-						<NoUISlider 
+						<NoUISlider
 							range={{ min: 0, max: 100}}
 							start={[this.state.rangePercent]}
-							
-							
+
+
 							/>
 						<hr style={{
 							position: "absolute",
@@ -250,7 +250,7 @@ var TimePicker = React.createClass({
 							bottom: "1rem",
 							zIndex: "-2"
 						}}/>
-						<img 
+						<img
 							src="/static/img/MASAS_slider_thumb_icon.svg"
 							style={{
 								position: "absolute",
@@ -258,13 +258,13 @@ var TimePicker = React.createClass({
 								left: sunIconStyle.left,
 								transform: "translateY(37%)",
 								zIndex: "-1"
-							}} 
+							}}
 							alt="slider thumb icon"/>
 					</div>
 					<div className="timeRange-hashtag">
-						{ 
+						{
 							this.props.showHashtag ?
-								this.getHashtag(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue) 
+								this.getHashtag(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 							:
 								""
 						}

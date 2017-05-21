@@ -3,9 +3,9 @@
 // instead, slider value binded 2 ways with inner state var calling this.props.onChange when slider movement is
 // triggered.
 
-var React = require('react')
+import React from 'react'
 
-var $ = require('jquery')
+import $ from 'jquery'
 import {
 	discoverHashtagNames,
 	makePromiseCancelable,

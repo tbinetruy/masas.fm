@@ -8,7 +8,8 @@
 
 import 'whatwg-fetch'
 
-const { dispatch } = require('./reducers/reducers.js')
+import { store } from './reducers/reducers.js'
+const { dispatch } = store
 
 import {
 	pausePlayer,
@@ -27,9 +28,8 @@ import {
 } from './reducers/actions/Header.js'
 
 import { browserHistory } from 'react-router'
-var Cookie = require('js-cookie')
+import Cookie from 'js-cookie'
 
-var MASAS_functions = {}
 
 /////
 /////
