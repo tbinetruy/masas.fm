@@ -190,7 +190,11 @@ var UploadSC = React.createClass({
 	}
 })
 
-module.exports = ReactRedux.connect(
+UploadSC = ReactRedux.connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(UploadSC)
+
+export {
+	UploadSC,
+}

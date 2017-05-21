@@ -1,5 +1,4 @@
 import SC from 'soundcloud'
-console.log(SC)
 
 import {
 	HANDLE_PICK_TIME_UPLOAD,
