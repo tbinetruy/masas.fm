@@ -3,8 +3,6 @@
  */
 require('babel-polyfill')
 
-import SCC from 'soundcloud'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
