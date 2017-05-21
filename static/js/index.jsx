@@ -1,3 +1,6 @@
+/**
+ * App entry point
+ */
 require('babel-polyfill')
 
 import React from 'react'
