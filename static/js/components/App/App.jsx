@@ -14,13 +14,13 @@ import {
 	setAppFetchingStateTrue,
 } from '../../reducers/actions/App.js'
 import { changeUnsplashArtist } from '../../reducers/actions/Home.js'
-import { loginWithToken } from '../../reducers/actions/login.js'
+import { loginWithToken } from '../../reducers/actions/Login.js'
 import {
 	addRandomSongToHistory as addRandomSongToDiscoverHistory,
-} from '../../reducers/actions/discover.js'
+} from '../../reducers/actions/Discover.js'
 import {
 	addRandomSongToHistory as addRandomSongToPopularHistory,
-} from '../../reducers/actions/popular.js'
+} from '../../reducers/actions/Popular.js'
 
 
 /**
