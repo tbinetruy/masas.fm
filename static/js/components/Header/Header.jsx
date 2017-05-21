@@ -116,7 +116,7 @@ class HeaderSmart extends React.Component {
 									<Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link>
 								</div>
 								<div className={ 'header-link' + (getPathList.likes  === window.location.pathname ? ' active' : '') }>
-									<Link onClick={ this.props.closeModal } to="/likes" disabled={false}>Likes</Link>
+									<Link onClick={ this.props.closeModal } to="/likes" disabled={false}>Likess</Link>
 								</div>
 								<div className={ 'header-link' + (getPathList.upload === window.location.pathname ? ' active' : '') }>
 									<Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link>

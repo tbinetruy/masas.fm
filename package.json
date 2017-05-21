@@ -66,12 +66,16 @@
     "redux-mock-store": "^1.0.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.17.0",
+    "uglify-js": "2.8.0",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "watchify": "^3.7.0",
     "webpack": "^2.5.1"
   },
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+	"build:dev": "webpack --env=dev --progress --profile --colors",
+	"build:prod": "webpack --env=prod --progress --profile --colors"
   },
   "jest": {
     "unmockedModulePathPatterns": [
