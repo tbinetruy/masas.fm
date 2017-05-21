@@ -1,4 +1,5 @@
-var SC = require('soundcloud')
+import SC from 'soundcloud'
+console.log(SC)
 
 import {
 	HANDLE_PICK_TIME_UPLOAD,
@@ -95,8 +96,8 @@ const uploadSCReducer = function(state = defaultState, action) {
 		case 'CLOSE_PICK_TIME_WINDOW':  				// (TO BE TESTED
 			return {
 				...state,
-				pickTimeUpload: exportVar.defaultState.pickTimeUpload,
-				pickTimeSliderValue: exportVar.defaultState.pickTimeSliderValue,
+				pickTimeUpload: defaultState.pickTimeUpload,
+				pickTimeSliderValue: defaultState.pickTimeSliderValue,
 				choosingTime: null
 			}
 		default:

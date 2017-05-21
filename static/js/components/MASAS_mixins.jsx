@@ -1,5 +1,10 @@
-const { dispatch } = require('../reducers/reducers.js')
+/**
+ * need to remove store dependency and move to action creator
+ */
+import { store } from '../reducers/reducers.js'
 import { changeBgState } from '../reducers/actions/App.js'
+
+const { dispatch } = store
 
 
 const MobileBlurBackground = {

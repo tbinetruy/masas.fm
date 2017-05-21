@@ -3,6 +3,8 @@
  */
 require('babel-polyfill')
 
+import SCC from 'soundcloud'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -19,10 +21,10 @@ import { Popular } from './components/Popular/Popular.jsx'
 import { Manifesto } from './components/Manifesto/Manifesto.jsx'
 import { Profile } from './components/Profile/Profile.jsx'
 import { UploadSC } from './components/UploadSC/UploadSC.jsx'
-import store from './reducers/reducers.js'
+import { store } from './reducers/reducers.js'
+
 var SoundcloudCallback = require('./SoundcloudCallback.jsx')
 var TwitterCallback = require('./TwitterCallback.jsx')
-
 
 
 ReactDOM.render((

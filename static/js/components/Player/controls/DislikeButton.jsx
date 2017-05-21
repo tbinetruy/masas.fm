@@ -14,6 +14,8 @@ import {
 
 import { SplashScreen } from '../../App/SplashScreen.jsx'
 
+import { POPULAR } from '../../../reducers/actions/Player.js'
+
 /**
  * Redux container
  */

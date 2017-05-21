@@ -47,7 +47,7 @@ const rootReducer = Redux.combineReducers({
 })
 
 
-export const store = Redux.createStore(
+const store = Redux.createStore(
 	rootReducer,
 	initialState,
 	Redux.compose(
@@ -55,3 +55,7 @@ export const store = Redux.createStore(
 		window.devToolsExtension ? window.devToolsExtension() : f => f
 	)
 )
+
+export {
+	store,
+}

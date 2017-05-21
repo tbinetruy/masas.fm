@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
     BLACK_BG,
 	BLUR_BG,
@@ -25,6 +27,7 @@ import {
 	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
 } from './actions/App.js'
 
+
 const defaultState = {
 	MASASuser: '', 						// user login token
 	MASASuserPk: null,					// (str) user pk from masas api
@@ -36,7 +39,7 @@ const defaultState = {
 	backArrowFunc: () => '',			// (func) what happens when user clicks on back arrow
 	isAppFetching: false,				// (bool)
 	isModalOpened: false,				// (bool) is modal opened
-	modalContent: <div></div>, 			// (obj) modal content
+	modalContent: <div>ddd</div>, 			// (obj) modal content
 	modalType: 1,						// (int) how the modal looks like. 1 for default
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
 	splashScreenLoginMessage: '',		// (str) login message to show on login modal

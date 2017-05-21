@@ -1,3 +1,4 @@
+
 import { updateNotificationBar } from './Header.js'
 var Cookie = require('js-cookie')
 

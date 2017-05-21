@@ -50,7 +50,7 @@ const consts = {
 const updateUserStep = (userData, userToken, userStep) => {
 
 	const header = 'Bearer ' + userToken
-	var csrftoken = MASAS_functions.getCookie('csrftoken')
+	var csrftoken = getCookie('csrftoken')
 
 	////////// UPDATE PROFILE
 	fetch('/api/usersteps/', {
@@ -206,7 +206,7 @@ const getUserPkFromURL = url => {
 }
 
 const getTimeIntervalNumberFromUrl = url => {
-	return MASAS_functions.getUserPkFromURL(url)
+	return getUserPkFromURL(url)
 }
 
 const isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
@@ -234,7 +234,7 @@ const discoverHashtagNames = () => {
 
 const timeIntervalURLToString = (timeIntervalURL) => {
 	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
-	const hastagNames = MASAS_functions.discoverHashtagNames()
+	const hastagNames = discoverHashtagNames()
 
 	switch(switchVar) {
 		case '1':
@@ -330,7 +330,7 @@ const logout = () => {
 	dispatch({type: 'LOGOUT'})
 
 	FB.logout(function(response) {
-		MASAS_functions.updateNotificationBar('Logged out !')
+		dispatchUpdateNotificationBar('Logged out !')
 	})
 }
 

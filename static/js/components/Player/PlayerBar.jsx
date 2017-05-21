@@ -125,7 +125,8 @@ class PlayerSmart extends React.Component {
 			// get state from reducer because "this" object doesn't have access to state mutations
 			// (this object is a copy of component instance at componentDidMount)
 
-			const { getState } = require('../../reducers/reducers.js')
+			const { store } = require('../../reducers/reducers.js')
+			const { getState } = store
 			if(getState().playerReducer.songPlaying !== null) {
 				const currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval
 				const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)

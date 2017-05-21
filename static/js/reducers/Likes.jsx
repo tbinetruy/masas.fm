@@ -24,8 +24,8 @@ const likesReducer = function(state = defaultState, action) {
 		case UPDATE_NUMBER_OF_LIKES_SHOWN:
 			var { numRowLikesShown } = action
 
-			if(numRowLikesShown < exportVar.defaultState)
-				numRowLikesShown = exportVar.defaultState
+			if(numRowLikesShown < defaultState)
+				numRowLikesShown = defaultState
 
 			return {
 				...state,
