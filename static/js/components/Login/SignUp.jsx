@@ -96,5 +96,5 @@ const SignUpForm = connect(
 )(SignUpFormSmart)
 
 export {
-	SignUpForm,
+	SignUpForm as SignUp,
 }

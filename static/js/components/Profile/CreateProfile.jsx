@@ -6,9 +6,11 @@ import {
 	updateUserStep,
 } from '../../MASAS_functions.jsx'
 import { ProfileEdit } from './ProfileEdit.jsx'
-import { saveProfile } from '../../reducers/actions/Profile.js'
 import {
+	saveProfile,
 	setEditingProfile,
+} from '../../reducers/actions/Profile.js'
+import {
 	updateProfilePicture,
 } from '../../reducers/actions/Login.js'
 import {

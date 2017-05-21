@@ -7,17 +7,19 @@
 
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { updateSongMoodModalValue } from '../../reducers/actions/Profile.js'
+import {
+	updateProfileInfo,
+	updateSongMoodModalValue,
+} from '../../reducers/actions/Profile.js'
 
 import {
 	getCookie,
 	updateNotificationBar,
-	updateProfileInfo,
  } from '../../MASAS_functions.jsx'
 
 import {
-	TimePicker,
 	Button,
+	TimePicker,
  } from '../UI/UI.jsx'
 
 /**

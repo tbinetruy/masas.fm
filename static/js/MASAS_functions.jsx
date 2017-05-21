@@ -52,7 +52,7 @@ const updateUserStep = (userData, userToken, userStep) => {
 	const header = 'Bearer ' + userToken
 	var csrftoken = getCookie('csrftoken')
 
-	////////// UPDATE PROFILE
+	////////// UPDAT PROFILE
 	fetch('/api/usersteps/', {
 		method: 'POST',
 		headers: {

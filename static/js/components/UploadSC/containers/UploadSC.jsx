@@ -19,7 +19,7 @@ import {
 var UploadSC = {}
 
 // Which part of the Redux global state does our component want to receive as props?
-UploadSC.mapStateToProps = function(state) {
+const mapStateToProps = function(state) {
 	return {
 		// app state
 		MASASuser: state.appReducer.MASASuser,
@@ -40,7 +40,7 @@ UploadSC.mapStateToProps = function(state) {
 }
 
 // Which action creators does it want to receive by props?
-UploadSC.mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch) {
 	return {
 		// higher level state updates
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
@@ -63,4 +63,7 @@ UploadSC.mapDispatchToProps = function(dispatch) {
 	}
 }
 
-module.exports = UploadSC
+export {
+	mapDispatchToProps,
+	mapStateToProps,
+}

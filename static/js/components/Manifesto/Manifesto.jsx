@@ -45,7 +45,7 @@ const ManifestoDumb = props => (
 			<h1>Our Manifesto</h1>
 			<ol>
 				<li>
-					<h2>1. Culture</h2>
+					<h2>1. Culture o</h2>
 					<p>
 						I want to live in a world where we transcend the boundaries
 						of language and frontiers. A world driven by the spirit of

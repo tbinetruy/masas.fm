@@ -15,9 +15,13 @@
     <!-- styles -->
     <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}" />
-    <link rel="stylesheet" href="{% static 'dist/sass.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" />
+    {% if settings.RAVEN_JS_DSN %}
+		<link rel="stylesheet" href="{% static 'dist/sass.min.css' %}" />
+    {% else %}
+		<link rel="stylesheet" href="{% static 'dist/sass.css' %}" />
+    {% endif %}
 
   </head>
   <body>
@@ -79,7 +83,7 @@
 		<script type="text/javascript" src="{% static "js/jquery.jplayer.min.js" %}"></script>
 		<!-- <script type="text/javascript" src="{% static "js/swiper.min.js" %}"></script> -->
 		<script type="text/javascript" src="{% static "js/paper-full.min.js" %}"></script>
-		<script type="text/javascript" src="{% static "dist/bundle.js" %}"></script>
+		<script type="text/javascript" src="{% static "dist/bundle.min.js" %}"></script>
         <!-- Hotjar Tracking Code for http://masas.fm -->
         <script>
             (function(h,o,t,j,a,r){
@@ -95,8 +99,7 @@
 		<script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/jquery.jplayer.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/paper-full.min.js" %}"></script>
-		<script type="text/javascript" src="{% static "dist/bundle.min.js" %}"></script>
-		<!--<script type="text/javascript" src="{% static "js/bundle.js" %}"></script>-->
+		<script type="text/javascript" src="{% static "http://localhost:8080/static/dist/bundle.a.js" %}"></script>
     {% endif %}
 
     {% if settings.RAVEN_JS_DSN %}

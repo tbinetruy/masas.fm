@@ -60,6 +60,7 @@
     "livereactload": "^3.0.0",
     "node-sass": "^4.5.3",
     "react-addons-test-utils": "15.4.2",
+    "react-hot-loader": "^3.0.0-beta.7",
     "react-proxy": "^1.1.8",
     "react-test-renderer": "^15.4.2",
     "redux-devtools": "^3.0.1",
@@ -69,13 +70,15 @@
     "uglify-js": "2.8.0",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "watchify": "^3.7.0",
-    "webpack": "^2.5.1"
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
     "test": "jest",
     "build": "webpack",
-	"build:dev": "webpack --env=dev --progress --profile --colors",
-	"build:prod": "webpack --env=prod --progress --profile --colors"
+    "start": "webpack-dev-server --env=dev",
+    "build:dev": "webpack --env=dev --progress --profile --colors",
+    "build:prod": "webpack --env=prod --progress --profile --colors"
   },
   "jest": {
     "unmockedModulePathPatterns": [
