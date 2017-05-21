@@ -12,6 +12,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'static/dist'),
 		filename: 'bundle.js'
 	},
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
@@ -23,7 +24,7 @@ module.exports = {
 				use: extractSass.extract({
 					use: [
 						{
-							loader: 'css-loader?url=false'
+							loader: 'css-loader?url=false&sourceMap'
 						},
 						{
 							loader: 'sass-loader'
