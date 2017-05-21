@@ -3,6 +3,8 @@
  */
 require('babel-polyfill')
 
+import 	'../sass/main.sass'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
