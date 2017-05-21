@@ -1,35 +1,63 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/NoSCSongs.jsx')
+import { copyTextToClipboard } from '../../MASAS_functions.jsx'
+import { Button } from '../UI/UI.jsx'
 
-var { copyTextToClipboard } = require('../../MASAS_functions.jsx')
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-var { Button } = require('../UI/UI.jsx')
-// var { browserHistory } = require('react-router')
+import { updateNotificationBar } from '../../reducers/actions/Header.js'
+
+/**
+ * Redux container
+ */
+
+const reduxStatePropTypes = {
+
+}
+
+const mapStateToProps = function(state) {
+	return {
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updateNotificationBar: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateNotificationBar: notificationText => dispatch(updateNotificationBar(notificationText))
+	}
+}
 
 
-var NoSCSongs = React.createClass({
-	propTypes: {
-		updateNotificationBar: React.PropTypes.func,
-		logoutSC: React.PropTypes.func,				// called on logout
-	},
+/**
+ * Smart component
+ */
 
-	getDefaultProps: function() {
-		return {
-			logoutSC: () => {},
-		}
-	},
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
 
-	componentWillMount: function() {
-	},
+	logoutSC: PropTypes.func,				// called on logout
+}
 
-	inviteFriend: function() {
+const smartDefaultProps = {
+	logoutSC: () => {},
+}
+
+class NoSCSongsSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.inviteFriend = this.inviteFriend.bind(this)
+    }
+
+	inviteFriend() {
 		copyTextToClipboard('http://masas.fm')
 		this.props.updateNotificationBar('http://masas.fm copied to your clipboard!')
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="no-sc-songs--wrapper">
 				<h2>Nothing uploaded on your Soundcloud?</h2>
@@ -45,9 +73,16 @@ var NoSCSongs = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(NoSCSongs)
+NoSCSongsSmart.propTypes = smartPropTypes
+NoSCSongsSmart.defaultProps = smartDefaultProps
+
+const NoSCSongs = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NoSCSongsSmart)
+
+export {
+	NoSCSongs,
+}

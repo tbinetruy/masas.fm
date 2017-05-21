@@ -1,19 +1,17 @@
-var React = require('react')
-
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSCItem.jsx')
-var SCSyncInstructionModal = require('./SCSyncInstructionModal.jsx')
-var { Marquee } = require('../UI/UI.jsx')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCItem.jsx'
+import { SCSyncInstructionModal } from './SCSyncInstructionModal.jsx'
+import { Marquee } from '../UI/UI.jsx'
 
 var UploadSCItem = React.createClass({
 	propTypes: {
-		synced: React.PropTypes.bool	,		// is song synced
-		track: React.PropTypes.object,		// song info
-		streamable: React.PropTypes.bool,		// is song streamable
-		public: React.PropTypes.bool, 			// is song public
-
 		chooseTime: React.PropTypes.func,
+		public: React.PropTypes.bool, 			// is song public
+		streamable: React.PropTypes.bool,		// is song streamable
+		synced: React.PropTypes.bool	,		// is song synced
 		toogleModal: React.PropTypes.func,
+		track: React.PropTypes.object,		// song info
 		updateModalContent: React.PropTypes.func,
 	},
 
@@ -88,7 +86,11 @@ var UploadSCItem = React.createClass({
 	}
 })
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
+UploadSCItem = connect(
+    mapStateToProps,
+    mapDispatchToProps
 )(UploadSCItem)
+
+export {
+	UploadSCItem,
+}

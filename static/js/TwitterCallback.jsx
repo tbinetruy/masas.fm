@@ -1,7 +1,7 @@
-var React = require("react")
-import { getUrlParams } from "./MASAS_functions.jsx"
+import React from 'react'
+import { getUrlParams } from './MASAS_functions.jsx'
 
-var TwitterCallback = React.createClass({
+const TwitterCallback = React.createClass({
 
 	redirect: function() {
 		// send auth token
@@ -18,7 +18,7 @@ var TwitterCallback = React.createClass({
 	processToken: function() {
 		const { oauth_token, oauth_token_secret } = getUrlParams()
 
-		const token = "oauth_token_secret="
+		const token = 'oauth_token_secret='
 			+ oauth_token_secret
 			+ '&'
 			+ 'oauth_token='
@@ -33,4 +33,6 @@ var TwitterCallback = React.createClass({
 	}
 })
 
-module.exports = TwitterCallback
+export {
+	TwitterCallback,
+}

@@ -1,4 +1,4 @@
-var { getUserTracks } = require('../ajaxCalls.jsx')
+import { getUserTracks } from '../ajaxCalls.jsx'
 
 import {
 	changeBgState,
@@ -16,7 +16,6 @@ import {
 	updateSCUsername,
 } from '../../../reducers/actions/UploadSC.js'
 
-var UploadSC = {}
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = function(state) {

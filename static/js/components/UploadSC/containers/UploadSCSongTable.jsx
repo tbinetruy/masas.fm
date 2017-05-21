@@ -2,9 +2,8 @@ import {
 	updatePageTitle,
 } from '../../../reducers/actions/App.js'
 
-var UploadSCSongTable = {}
 
-UploadSCSongTable.mapStateToProps = function(state) {
+const mapStateToProps = function(state) {
 	return {
 		SCusername:  state.uploadSCReducer.SCusername,
 		soundcloudUserTracks: state.uploadSCReducer.soundcloudUserTracks,
@@ -12,10 +11,13 @@ UploadSCSongTable.mapStateToProps = function(state) {
 	}
 }
 
-UploadSCSongTable.mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 	}
 }
 
-module.exports = UploadSCSongTable
+export {
+	mapDispatchToProps,
+	mapStateToProps,
+}

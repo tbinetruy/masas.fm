@@ -1,18 +1,16 @@
-import {
-	updateNotificationBar,
-} from '../../../reducers/actions/Header.js'
 
-var NoSCSongs = {}
 
-NoSCSongs.mapStateToProps = function(state) {
+const mapStateToProps = function(state) {
 	return {
 	}
 }
 
-NoSCSongs.mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch) {
 	return {
-		updateNotificationBar: notificationText => dispatch(updateNotificationBar(notificationText))
 	}
 }
 
-module.exports = NoSCSongs
+export {
+	mapStateToProps,
+	mapDispatchToProps,
+}

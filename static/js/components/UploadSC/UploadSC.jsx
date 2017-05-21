@@ -1,42 +1,44 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSC.jsx')
+import { Body } from '../UI/UI.jsx'
+import { UploadSCItem } from './UploadSCItem.jsx'
+import { PickTimeUpload } from './PickTimeUpload.jsx'
+import { UploadSCHome } from './UploadSCHome.jsx'
+import { UploadSCSongTable } from './UploadSCSongTable.jsx'
+import { NoSCSongs } from './NoSCSongs.jsx'
 
-var { Body } = require('../UI/UI.jsx')
-var UploadSCItem = require('./UploadSCItem.jsx')
-var PickTimeUpload = require('./PickTimeUpload.jsx')
-var UploadSCHome = require('./UploadSCHome.jsx')
-var UploadSCSongTable = require('./UploadSCSongTable.jsx')
-var NoSCSongs = require('./NoSCSongs.jsx')
+import {
+	mapDispatchToProps,
+	mapStateToProps,
+} from './containers/UploadSC.jsx'
 
 
-var UploadSC = React.createClass({
+let UploadSC = React.createClass({
 	propTypes: {
-		isConnectedSoundcloud: React.PropTypes.bool,
-		choosingTime: React.PropTypes.object,
-		isModalOpened: React.PropTypes.bool,
-		userData: React.PropTypes.object,
-		userPk: React.PropTypes.string,
-		masasUserTracks: React.PropTypes.array,
-		modalType: React.PropTypes.number,
-		SCusername: React.PropTypes.string,
-		soundcloudUserTracks: React.PropTypes.array,
 		MASASuser: React.PropTypes.string,
-
-		updateTitle: React.PropTypes.func,
-		updateModalType: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		toogleModal: React.PropTypes.func,
-		updateMasasUserTracks: React.PropTypes.func,
-		updateSCusername: React.PropTypes.func,
+		SCusername: React.PropTypes.string,
+		blurBg: React.PropTypes.func,
+		blurMobileBr: React.PropTypes.func,
+		choosingTime: React.PropTypes.object,
 		getUserSCTracks: React.PropTypes.func,
 		getUserTracks: React.PropTypes.func,
-		updateSoundcloudUserTracks: React.PropTypes.func,
-		updateIsConnectedSC: React.PropTypes.func,
-		blurBg: React.PropTypes.func,
+		isConnectedSoundcloud: React.PropTypes.bool,
+		isModalOpened: React.PropTypes.bool,
+		masasUserTracks: React.PropTypes.array,
+		modalType: React.PropTypes.number,
 		saturateBg: React.PropTypes.func,
-		blurMobileBr: React.PropTypes.func,
+		soundcloudUserTracks: React.PropTypes.array,
+		toogleModal: React.PropTypes.func,
+		updateIsConnectedSC: React.PropTypes.func,
+		updateMasasUserTracks: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		updateModalType: React.PropTypes.func,
+		updateSCusername: React.PropTypes.func,
+		updateSoundcloudUserTracks: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		userData: React.PropTypes.object,
+		userPk: React.PropTypes.string,
 	},
 
 	componentWillMount: function() {
@@ -190,7 +192,7 @@ var UploadSC = React.createClass({
 	}
 })
 
-UploadSC = ReactRedux.connect(
+UploadSC = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(UploadSC)

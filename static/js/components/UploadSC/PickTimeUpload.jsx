@@ -1,4 +1,4 @@
-var React = require("react")
+/*var React = require("react")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUpload.jsx")
@@ -144,4 +144,4 @@ var PickTimeUpload = React.createClass({
 module.exports = ReactRedux.connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(PickTimeUpload)
+)(PickTimeUpload)*/

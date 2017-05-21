@@ -1,21 +1,10 @@
-var React = require('react')
-
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSCHome.jsx')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCHome.jsx'
 
 import { SplashScreen } from '../App/SplashScreen.jsx'
-
-
-var { Button, Body, Link } = require('../UI/UI.jsx')
-
-var { getPathList } = require('../../MASAS_functions.jsx')
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-// var { browserHistory } = require('react-router')
-
-// var Template = (props) => {
-
-// }
+import { Button, Body, Link } from '../UI/UI.jsx'
+import { getPathList } from '../../MASAS_functions.jsx'
 
 const BulletPoint = ({ imgSrc, text }) => (
 	<div className='bullet-point--wrapper'>
@@ -113,7 +102,11 @@ var UploadSCHome = React.createClass({
 	}
 })
 
-module.exports = ReactRedux.connect(
+UploadSCHome = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(UploadSCHome)
+
+export {
+	UploadSCHome,
+}

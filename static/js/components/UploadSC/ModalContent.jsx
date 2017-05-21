@@ -1,21 +1,57 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/ModalContent.jsx')
+import {
+	Button,
+} from '../UI/UI.jsx'
 
-var { Link, Checkbox, Button } = require('../UI/UI.jsx')
+import { toogleIsModalOpened } from '../../reducers/actions/App.js'
 
 
-var ModalContent = React.createClass({
-	propTypes: {
-		onSubmit: React.PropTypes.func.isRequired,				// function to execute when submitting form
-	},
+/**
+ * Redux container
+ */
 
-	componentWillMount: function() {
-	},
+const reduxStatePropTypes = {
 
-	render: function() {
+}
+
+const mapStateToProps = function(state) {
+	return {
+	}
+}
+
+const reduxDispatchPropTypes = {
+	toogleIsModalOpened: PropTypes.func,
+
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		toogleIsModalOpened: () => dispatch(toogleIsModalOpened()),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+	onSubmit: PropTypes.func.isRequired,				// function to execute when submitting form
+}
+
+const smartDefaultProps = {
+}
+
+class ModalContentSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	render() {
 		return (
 			<div className="confirm-ownership--wrapper">
 				<div className="lock-icon--wrapper">
@@ -46,9 +82,16 @@ var ModalContent = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-module.exports = ReactRedux.connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ModalContent)
+ModalContentSmart.propTypes = smartPropTypes
+ModalContentSmart.defaultProps = smartDefaultProps
+
+const ModalContent = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ModalContentSmart)
+
+export {
+	ModalContent,
+}

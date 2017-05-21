@@ -1,10 +1,8 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
+import React from 'react'
 
-var SoundcloudCallback = React.createClass({
+const SoundcloudCallback = React.createClass({
 
-	redirect: function() {		
-		console.log('hey');
+	redirect: function() {
 	},
 
 	componentDidMount: function() {
@@ -13,11 +11,13 @@ var SoundcloudCallback = React.createClass({
 
   render() {
     return (
-	      <body onLoad={ this.redirect() }>
-		    <b style={{ textAlign: 'center' }}>This popup should automatically close in a few seconds</b>
-		  </body>
+		<body onLoad={ this.redirect() }>
+			<b style={{ textAlign: 'center' }}>This popup should automatically close in a few seconds</b>
+		</body>
     );
   }
 });
 
-module.exports = SoundcloudCallback
+export {
+	SoundcloudCallback,
+}

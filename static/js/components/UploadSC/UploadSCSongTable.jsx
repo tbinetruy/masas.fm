@@ -1,18 +1,15 @@
-var React = require('react')
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-var ReactRedux = require('react-redux')
-var { mapStateToProps, mapDispatchToProps } = require('./containers/UploadSCSongTable.jsx')
-
-var { Body } = require('../UI/UI.jsx')
-var UploadSCItem = require('./UploadSCItem.jsx')
-
+import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCSongTable.jsx'
+import { Body } from '../UI/UI.jsx'
+import { UploadSCItem } from './UploadSCItem.jsx'
 
 var UploadSCSongTable = React.createClass({
 	propTypes: {
 		SCusername: React.PropTypes.string,
-
-		soundcloudUserTracks: React.PropTypes.array,
 		masasUserTracks: React.PropTypes.array,
+		soundcloudUserTracks: React.PropTypes.array,
 	},
 
 	componentWillMount: function() {
@@ -70,7 +67,11 @@ var UploadSCSongTable = React.createClass({
 	}
 })
 
-module.exports = ReactRedux.connect(
+UploadSCSongTable = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(UploadSCSongTable)
+
+export {
+	UploadSCSongTable,
+}

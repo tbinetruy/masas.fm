@@ -18,10 +18,9 @@ import {
 	updateNotificationBar,
 } from '../../../reducers/actions/Header.js'
 
-var PickTimeUpload = {}
 
 
-PickTimeUpload.mapStateToProps = function(state) {
+const mapStateToProps = function(state) {
 	return {
 		track: state.uploadSCReducer.choosingTime,
 		MASASuser: state.appReducer.MASASuser,
@@ -31,7 +30,7 @@ PickTimeUpload.mapStateToProps = function(state) {
 	}
 }
 
-PickTimeUpload.mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch) {
 
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
@@ -45,4 +44,7 @@ PickTimeUpload.mapDispatchToProps = function(dispatch) {
 	}
 }
 
-module.exports = PickTimeUpload
+export {
+	mapDispatchToProps,
+	mapStateToProps,
+}

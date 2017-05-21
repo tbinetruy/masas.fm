@@ -15,16 +15,15 @@ import {
 	updateProfilePicture,
 } from '../../../reducers/actions/Login.js'
 
-var UploadSCHome = {}
 
-UploadSCHome.mapStateToProps = function(state) {
+const mapStateToProps = function(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
 		userPk: state.appReducer.MASASuserPk,
 	}
 }
 
-UploadSCHome.mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
@@ -37,4 +36,7 @@ UploadSCHome.mapDispatchToProps = function(dispatch) {
 	}
 }
 
-module.exports = UploadSCHome
+export {
+	mapDispatchToProps,
+	mapStateToProps,
+}
