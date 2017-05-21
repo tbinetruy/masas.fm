@@ -6,9 +6,7 @@ import {
 	Link,
 } from '../UI/UI.jsx'
 
-import {
-	updateTipBar,
-} from '../../reducers/actions/Header.js'
+import { updateTipBar } from '../../reducers/actions/Header.js'
 
 
 /**
