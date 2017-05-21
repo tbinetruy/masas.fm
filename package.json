@@ -65,7 +65,8 @@
     "webpack": "^2.5.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+	"build": "webpack"
   },
   "jest": {
     "unmockedModulePathPatterns": [
