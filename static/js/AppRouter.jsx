@@ -19,7 +19,7 @@ import { store } from './reducers/reducers.js'
 import { SoundcloudCallback } from './SoundcloudCallback.jsx'
 import { TwitterCallback } from './TwitterCallback.jsx'
 
-const AppRouter = (
+const AppRouter = () => (
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
@@ -41,17 +41,6 @@ const AppRouter = (
 	</Provider>
 )
 
-
-// Hot Module Replacement API
-if (module.hot) {
-	module.hot.accept('./components/Manifesto/Manifesto.jsx', () => {
-		console.log(AppRouter)
-		reactDOM.render(Manifesto)
-		// AppRouter.props.children.props.children[0].props.children[11] = <Route path="manifesto" component={Manifesto} />
-		// AppRouter = AppRouterMaker()
-		// AppRouter.forceUpdate()
-		// ReactDOM.render((<div>hey</div>), document.getElementById('content'))
-		// ReactDOM.render((AppRouter), document.getElementById('content'))
-	});
+export {
+	AppRouter,
 }
-export default AppRouter
