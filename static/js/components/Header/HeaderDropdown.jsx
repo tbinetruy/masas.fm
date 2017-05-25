@@ -104,11 +104,13 @@ class HeaderDropdownSmart extends React.Component {
 			return (
 				<div className="dropdown--wrapper">
 					<div
-						onClick={ () => { this.props.closeModal(); browserHistory.push('/profile') } }
+						onClick={ () => { this.props.closeModal() } }
 						className="username--wrapper">
 						<Link to="/profile">
-							<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture" />
-							<span className="username" id="username-header"> {this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
+							<div style={{ display: 'flex' }}>
+								<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture" />
+								<span className="username" id="username-header"> {this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
+							</div>
 						</Link>
 					</div>
 					<div className="dropdown-content">
