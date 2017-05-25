@@ -3,11 +3,14 @@
 		"browser": true,
 		"commonjs": true,
 		"es6": true,
-		"node": true
+		"node": true,
+		"jquery": true,
+		"jest": true
 	},
 	"parserOptions": {
 		"ecmaFeatures": {
-			"jsx": true
+			"jsx": true,
+			"experimentalObjectRestSpread": true
 		},
 		"sourceType": "module",
 		"ecmaVersion": 2017
