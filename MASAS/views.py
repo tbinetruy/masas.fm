@@ -1,3 +1,4 @@
+import os
 import datetime
 import soundcloud
 import random
@@ -286,7 +287,8 @@ class SPAView(generic.TemplateView):
             },
             'GOOGLE': {
                 'KEY': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
-            }
+            },
+			'MINED': os.environ.get('MINED', False),
         }
 
         return c

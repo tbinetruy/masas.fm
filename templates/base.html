@@ -100,8 +100,11 @@
 		<script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/jquery.jplayer.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/paper-full.min.js" %}"></script>
-		<!--<script type="text/javascript" src="http://localhost:8080/static/dist/bundle.js"></script>-->
-		<script type="text/javascript" src="{% static "dist/bundle.min.js" %}"></script>
+		{% if settings.MINED %}
+			<script type="text/javascript" src="{% static "dist/bundle.min.js" %}"></script>
+		{% else %}
+			<script type="text/javascript" src="http://localhost:8080/static/dist/bundle.js"></script>
+		{% endif %}
     {% endif %}
 
     {% if settings.RAVEN_JS_DSN %}
