@@ -31,7 +31,7 @@ const devConfig = {
 	],
 	output: {
 		path: path.resolve(__dirname, 'static/dist'),
-		filename: 'bundle.a.js',
+		filename: 'bundle.js',
 		// bundle output
 
 		publicPath: 'http://localhost:8080/static/dist'
@@ -68,10 +68,14 @@ const devConfig = {
 						},
 						{
 							loader: 'sass-loader'
-						}
+						},
 					]
 				})
 			},
+			{
+				test: /\.(|ttf|woff|woff2)$/,
+				loader: 'file?name=/fonts/[name].[ext]'
+			}
 		]
 	},
 	plugins: [
