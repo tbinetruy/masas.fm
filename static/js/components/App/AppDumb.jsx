@@ -12,6 +12,8 @@ import { Modal } from '../UI/UI.jsx'
 import { PlayerAudioTag } from '../Player/PlayerAudioTag.jsx'
 import { PlayerMobile } from '../Player/PlayerMobile.jsx'
 
+import { withRouter } from 'react-router-dom'
+
 /**
  * Redux container
  */
@@ -109,10 +111,7 @@ const AppDumbClass = props => {
 							opacity: !(props.isModalOpened && props.modalType === 4) ? 1 : 0,
 						}}>
 						{
-							props.children ?
-								props.children
-							:
-								<Discover />
+							props.children
 						}
 					</div>
 					<div
@@ -154,10 +153,10 @@ const styles = {
 	}
 }
 
-const AppDumb = connect(
+const AppDumb = withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(AppDumbClass)
+)(AppDumbClass))
 
 export {
 	AppDumb,

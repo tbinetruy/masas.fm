@@ -151,10 +151,6 @@ class AppSmart extends React.Component {
 			$('#jquery_jplayer_1').jPlayer('play')
 			$('body').unbind('mouseup')
 		})
-
-		// only show splashscreen on site root
-		if(this.props.location.pathname === '/')
-			this.showSplashScreen()
 	}
 
 	componentDidUpdate(prevProps) {

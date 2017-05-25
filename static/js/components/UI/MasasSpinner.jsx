@@ -1,11 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 
-var MasasSpinner = React.createClass({
+var MasasSpinner = createClass({
 	propTypes: {
-		progress: React.PropTypes.number,
-		showMASASLogo: React.PropTypes.bool,			// should gif logo after infinity be MASAS (true) or check sign (false)
-		size: React.PropTypes.number,
-		triggerStart: React.PropTypes.number,
+		progress: PropTypes.number,
+		showMASASLogo: PropTypes.bool,			// should gif logo after infinity be MASAS (true) or check sign (false)
+		size: PropTypes.number,
+		triggerStart: PropTypes.number,
 	},
 
 	getDefaultProps: function() {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { browserHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 /**
  * Dumb component
@@ -20,15 +20,15 @@ const dumbDefaultProps = {
 }
 
 const LinkDumb = props => {
-	const goToURL = (path) => browserHistory.push(path)
+	const disableLink = e => e.preventDefault()
 
 	return (
 		<span onClick={ props.onClick }>
-			<span onClick={ !props.disabled ? goToURL.bind(null, props.to) : null }
+			<Link to={ props.to ? props.to : '/' }
 				className={ 'MASAS-link ' + (props.className ? props.className : '') + (props.disabled ? ' disabled' : '') }
 			>
 				{ props.children }
-			</span>
+			</Link>
 		</span>
 	)
 }

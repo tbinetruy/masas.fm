@@ -49,7 +49,7 @@ const devConfig = {
 		// match the output `publicPath`
 
 		headers: {
-			'Access-Control-Allow-Origin': 'http://localhost:8000',
+			'Access-Control-Allow-Origin': '*',
 			'Access-Control-Allow-Credentials': 'true'
 		}
 	},
@@ -71,10 +71,6 @@ const devConfig = {
 						},
 					]
 				})
-			},
-			{
-				test: /\.(|ttf|woff|woff2)$/,
-				loader: 'file?name=/fonts/[name].[ext]'
 			}
 		]
 	},

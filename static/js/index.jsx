@@ -13,7 +13,7 @@ import { AppContainer } from 'react-hot-loader'
 const render = App => {
 	ReactDOM.render(
 		<AppContainer>
-			<App />
+			<AppRouter />
 		</AppContainer>,
 		document.getElementById('content')
 	)

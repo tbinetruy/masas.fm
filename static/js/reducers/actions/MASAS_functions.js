@@ -1,6 +1,5 @@
 import Cookie from 'js-cookie'
 
-var MASAS_functions = {}
 
 /////
 /////
@@ -19,7 +18,7 @@ const getUserPkFromURL = url => {
 }
 
 const getTimeIntervalNumberFromUrl = url => {
-	return parseInt(MASAS_functions.getUserPkFromURL(url))
+	return parseInt(getUserPkFromURL(url))
 }
 
 const isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
@@ -47,7 +46,7 @@ const discoverHashtagNames = () => {
 
 const timeIntervalURLToString = (timeIntervalURL) => {
 	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
-	const hastagNames = MASAS_functions.discoverHashtagNames()
+	const hastagNames = discoverHashtagNames()
 
 	switch(switchVar) {
 		case '1':
