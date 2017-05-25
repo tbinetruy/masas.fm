@@ -23,7 +23,7 @@
 		"no-unused-vars": "warn",
 		"constructor-super": "warn",
 		"valid-typeof": "warn",
-        "sort-imports": "warn",
+        "sort-imports": ["warn", { "memberSyntaxSortOrder": ["none", "multiple", "all", "single"] }],
 		"quotes": ["error", "single"],
 		"react/display-name": "off",
 		"react/no-unused-prop-types": ["error"],

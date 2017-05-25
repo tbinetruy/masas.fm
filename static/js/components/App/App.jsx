@@ -1,11 +1,3 @@
-import Cookie from 'js-cookie'
-
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { AppDumb } from './AppDumb.jsx'
-import { CreateProfile } from '../Profile/CreateProfile.jsx'
 import {
 	changeModalContent,
 	closeAndEmptyMainModal,
@@ -13,14 +5,18 @@ import {
 	setAppFetchingStateFalse,
 	setAppFetchingStateTrue,
 } from '../../reducers/actions/App.js'
+
+import { AppDumb } from './AppDumb.jsx'
+import Cookie from 'js-cookie'
+import { CreateProfile } from '../Profile/CreateProfile.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { addRandomSongToHistory as addRandomSongToDiscoverHistory } from '../../reducers/actions/Discover.js'
+import { addRandomSongToHistory as addRandomSongToPopularHistory } from '../../reducers/actions/Popular.js'
 import { changeUnsplashArtist } from '../../reducers/actions/Home.js'
+import { connect } from 'react-redux'
 import { loginWithToken } from '../../reducers/actions/Login.js'
-import {
-	addRandomSongToHistory as addRandomSongToDiscoverHistory,
-} from '../../reducers/actions/Discover.js'
-import {
-	addRandomSongToHistory as addRandomSongToPopularHistory,
-} from '../../reducers/actions/Popular.js'
+
 
 
 /**
@@ -147,7 +143,6 @@ class AppSmart extends React.Component {
 
 		// so mobile safari play/pause/play bug doesn't happen
 		$('body').mouseup(() => {
-			const currentjPlayerSource = $('#jquery_jplayer_1').data().jPlayer.status.src
 			$('#jquery_jplayer_1').jPlayer('play')
 			$('body').unbind('mouseup')
 		})
