@@ -4,53 +4,107 @@ import {
 	TimePicker
 } from '../UI/UI.jsx'
 
-import {
-	mapDispatchToProps,
-	mapStateToProps
-} from './containers/PickTimeUpload.jsx'
 
-import * as createClass from 'create-react-class'
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+	updatePageTitle,
+} from '../../reducers/actions/App.js'
+
+import {
+	closePickTimeWindow,
+	handlePickTimeUpload,
+	updateIsUploadButtonDisabled,
+} from '../../reducers/actions/UploadSC.js'
+
 import { ModalContent } from './ModalContent.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { getCookie } from '../../MASAS_functions.jsx'
+import { updateNotificationBar } from '../../reducers/actions/Header.js'
+import { updateProfileInfo } from '../../reducers/actions/Profile.js'
 
 
-let PickTimeUpload = createClass({
-	propTypes: {
-		MASASuser: PropTypes.string,
-		checkUserStep: PropTypes.func,		// check user step and show tip modal if necessary
-		closeWindow: PropTypes.func,
-		emitNotification: PropTypes.func,
-		handleTimePickerChange: PropTypes.func,
-		isUploadButtonDisabled: PropTypes.bool,
-		pickTimeUpload: PropTypes.number,
-		toogleModal: PropTypes.func,
-		track: PropTypes.object,			// array containing track information
-		updateIsUploadButtonDisabled: PropTypes.func,
-		updateModalContent: PropTypes.func,
-		updateProfileInfo: PropTypes.func,
-		updateTitle: PropTypes.func,
-		visible: PropTypes.bool,				// is cancel button visible
-	},
+/**
+ * Redux container
+ */
 
-	getDefaultProps: function() {
-		return {
-			checkUserStep: () => {}
-		}
-	},
+const reduxStatePropTypes = {
+	MASASuser: PropTypes.string,
+	isUploadButtonDisabled: PropTypes.bool,
+	pickTimeUpload: PropTypes.number,
+	track: PropTypes.object,			// array containing track information
+}
 
-	componentWillMount: function() {
+const mapStateToProps = function(state) {
+	return {
+		track: state.uploadSCReducer.choosingTime,
+		MASASuser: state.appReducer.MASASuser,
+		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		isUploadButtonDisabled: state.uploadSCReducer.isUploadButtonDisabled,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	closeWindow: PropTypes.func,
+	emitNotification: PropTypes.func,
+	handleTimePickerChange: PropTypes.func,
+	updateIsUploadButtonDisabled: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateProfileInfo: PropTypes.func,
+	updateTitle: PropTypes.func,
+	toogleModal: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		updateTitle: (title, pageType, callback) => dispatch(updatePageTitle(title, pageType, callback)),
+		closeWindow: () => dispatch(closePickTimeWindow()),
+		handleTimePickerChange: newDiscover => dispatch(handlePickTimeUpload(newDiscover)),
+		emitNotification: text =>  dispatch(updateNotificationBar(text)),
+		updateProfileInfo: () => dispatch(updateProfileInfo()),
+		updateIsUploadButtonDisabled: isUploadButtonDisabled => dispatch(updateIsUploadButtonDisabled(isUploadButtonDisabled)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	checkUserStep: PropTypes.func,		// check user step and show tip modal if necessary
+	visible: PropTypes.bool,				// is cancel button visible
+}
+
+const smartDefaultProps = {
+	checkUserStep: () => {}
+}
+
+class PickTimeUploadSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.submitSong = this.submitSong.bind(this)
+		this.openModal = this.openModal.bind(this)
+    }
+
+	componentWillMount() {
 		this.props.updateTitle('Upload', 1, this.props.closeWindow)		// 0 = menu icon; 1 = arrow back
 
 		// disable uplaod button until user has interacted with sun
 		this.props.updateIsUploadButtonDisabled(true)
 
 		this.props.checkUserStep()
-	},
+	}
 
-	submitSong: function() {
+	submitSong() {
 
 		var csrftoken = getCookie('csrftoken')
 		var header = 'Bearer ' + this.props.MASASuser
@@ -88,18 +142,18 @@ let PickTimeUpload = createClass({
 				this.props.emitNotification(err.responseJSON.SC_ID)
 			},
 		})
-	},
+	}
 
-	openModal: function() {
+	openModal() {
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this
 		this.props.updateModalContent(
 			<ModalContent onSubmit={ that.submitSong } />
 			)
 		this.props.toogleModal()
-	},
+	}
 
-	render: function() {
+	render() {
 
 		return (
 			<div className="pick-time-sc-sync">
@@ -143,12 +197,16 @@ let PickTimeUpload = createClass({
 			</div>
 		)
 	}
-})
+}
 
-PickTimeUpload =  connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PickTimeUpload)
+
+PickTimeUploadSmart.propTypes = smartPropTypes
+PickTimeUploadSmart.defaultProps = smartDefaultProps
+
+const PickTimeUpload = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PickTimeUploadSmart)
 
 export {
 	PickTimeUpload,

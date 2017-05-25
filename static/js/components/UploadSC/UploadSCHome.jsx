@@ -1,14 +1,22 @@
 import {
-	mapDispatchToProps,
-	mapStateToProps
-} from './containers/UploadSCHome.jsx'
+	changeModalContent,
+	toogleIsModalOpened,
+	updateSplashScreenLoginMessage,
+} from '../../reducers/actions/App.js'
 
-import * as createClass from 'create-react-class'
+import {
+	updateIsConnectedSC,
+	updateMasasUserTracks,
+	updateSCUserTracks,
+	updateSCUsername,
+} from '../../reducers/actions/UploadSC.js'
+
 import { Button } from '../UI/UI.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { SplashScreen } from '../App/SplashScreen.jsx'
 import { connect } from 'react-redux'
+import { updateProfilePicture } from '../../reducers/actions/Login.js'
 
 
 const BulletPoint = ({ imgSrc, text }) => (
@@ -25,25 +33,69 @@ BulletPoint.propTypes = {
 	text: PropTypes.string.isRequired,	// text to display
 }
 
-var UploadSCHome = createClass({
-	propTypes: {
-		MASASuser: PropTypes.string,
-		getUserTracks: PropTypes.func,
-		toogleModal: PropTypes.func,
-		updateIsConnectedSC: PropTypes.func,
-		updateLoginMessage: PropTypes.func,
-		updateMasasUserTracks: PropTypes.func,
-		updateModalContent: PropTypes.func,
-		updateProfilePicture: PropTypes.func,
-		updateSCusername: PropTypes.func,
-		updateSoundcloudUserTracks: PropTypes.func,
-		userPk: PropTypes.string,
-	},
+/**
+ * Redux container
+ */
 
-	componentWillMount: function() {
-	},
+const reduxStatePropTypes = {
+	MASASuser: PropTypes.string,
+	userPk: PropTypes.string,
+}
 
-	connectToSC: function() {
+const mapStateToProps = function(state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+		userPk: state.appReducer.MASASuserPk,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	toogleModal: PropTypes.func,
+	updateIsConnectedSC: PropTypes.func,
+	updateLoginMessage: PropTypes.func,
+	updateMasasUserTracks: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateProfilePicture: PropTypes.func,
+	updateSCusername: PropTypes.func,
+	updateSoundcloudUserTracks: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateLoginMessage: message => dispatch(updateSplashScreenLoginMessage(message)),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		updateIsConnectedSC: (isConnectedSoundcloud) => dispatch(updateIsConnectedSC(isConnectedSoundcloud)),
+		updateSCusername: (SCusername) => dispatch(updateSCUsername(SCusername)),
+		updateMasasUserTracks: (masasUserTracks) => dispatch(updateMasasUserTracks(masasUserTracks)),
+		updateSoundcloudUserTracks: (soundcloudUserTracks) => dispatch(updateSCUserTracks(soundcloudUserTracks)),
+		updateProfilePicture: isDefaultPicture => dispatch(updateProfilePicture(isDefaultPicture))
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	getUserTracks: PropTypes.func,		// parent getUserTracks
+}
+
+const smartDefaultProps = {
+}
+
+class UploadSCHomeSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.connectToSC = this.connectToSC.bind(this)
+    }
+
+	connectToSC() {
 		SC.connect().then( () => {
 			this.props.updateIsConnectedSC(true)
 			SC.get('/me').then( r => {
@@ -60,11 +112,9 @@ var UploadSCHome = createClass({
 			})
 			this.props.getUserTracks()
 		}).catch( (error) => alert('Error: ' + error.message) )
-	},
+	}
 
-
-
-	render: function() {
+	render() {
 		return (
 					<div className="description">
 
@@ -105,12 +155,16 @@ var UploadSCHome = createClass({
 					</div>
 		)
 	}
-})
+}
 
-UploadSCHome = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(UploadSCHome)
+UploadSCHomeSmart.propTypes = smartPropTypes
+UploadSCHomeSmart.defaultProps = smartDefaultProps
+
+const UploadSCHome = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UploadSCHomeSmart)
+
 
 export {
 	UploadSCHome,

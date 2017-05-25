@@ -1,7 +1,3 @@
-import {
-	changeModalContent,
-	toogleIsModalOpened,
-} from '../../../reducers/actions/App.js'
 
 
 const mapStateToProps = function(state) {
@@ -12,9 +8,6 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
 	return {
-		chooseTime: (song) => dispatch({type:'SYNC_SONG', song: song}),
-		toogleModal: () => dispatch(toogleIsModalOpened()),
-		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 	}
 }
 

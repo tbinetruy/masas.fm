@@ -1,34 +1,73 @@
 import {
-	mapDispatchToProps,
-	mapStateToProps
-} from './containers/UploadSCItem.jsx'
+	changeModalContent,
+	toogleIsModalOpened,
+} from '../../reducers/actions/App.js'
 
-import * as createClass from 'create-react-class'
 import { Marquee } from '../UI/UI.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { SCSyncInstructionModal } from './SCSyncInstructionModal.jsx'
 import { connect } from 'react-redux'
 
-var UploadSCItem = createClass({
-	propTypes: {
-		chooseTime: PropTypes.func,
-		public: PropTypes.bool, 			// is song public
-		streamable: PropTypes.bool,		// is song streamable
-		synced: PropTypes.bool	,		// is song synced
-		toogleModal: PropTypes.func,
-		track: PropTypes.object,		// song info
-		updateModalContent: PropTypes.func,
-	},
+/**
+ * Redux container
+ */
 
-	componentWillMount: function() {
-	},
+const reduxStatePropTypes = {
 
-	showSyncScreen: function() {
+}
+
+const mapStateToProps = function(state) {
+	return {
+	}
+}
+
+const reduxDispatchPropTypes = {
+	chooseTime: PropTypes.func,
+	toogleModal: PropTypes.func,
+	updateModalContent: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		chooseTime: (song) => dispatch({type:'SYNC_SONG', song: song}),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+	public: PropTypes.bool, 			// is song public
+	streamable: PropTypes.bool,		// is song streamable
+	synced: PropTypes.bool	,		// is song synced
+	track: PropTypes.object,		// song info
+}
+
+const smartDefaultProps = {
+}
+
+class UploadSCItemSmart extends React.Component {
+    constructor(props) {
+        super(props)
+
+		this.showSyncScreen = this.showSyncScreen.bind(this)
+		this.showTrackStatus = this.showTrackStatus.bind(this)
+		this.showSyncInfoModal = this.showSyncInfoModal.bind(this)
+    }
+
+	showSyncScreen() {
 		this.props.chooseTime(this.props.track)
-	},
+	}
 
-	showTrackStatus: function() {
+	showTrackStatus() {
 		if(!this.props.streamable || !this.props.public)
 			return '?'
 
@@ -36,15 +75,15 @@ var UploadSCItem = createClass({
 			return 'synced'
 		else
 			return <img src="/static/img/MASAS_sync_off.svg" alt="sync" onClick={this.showSyncScreen} />
-	},
+	}
 
 	// show modal with info as to why song is not synchronizable
-	showSyncInfoModal: function() {
+	showSyncInfoModal() {
 		this.props.updateModalContent(<SCSyncInstructionModal />, 4)
 		this.props.toogleModal()
-	},
+	}
 
-	render: function() {
+	render() {
 		const millisToMinutesAndSeconds = function(millis) {
 			var minutes = Math.floor(millis / 60000)
 			var seconds = ((millis % 60000) / 1000).toFixed(0)
@@ -90,12 +129,15 @@ var UploadSCItem = createClass({
 			</div>
 		)
 	}
-})
+}
 
-UploadSCItem = connect(
+UploadSCItemSmart.propTypes = smartPropTypes
+UploadSCItemSmart.defaultProps = smartDefaultProps
+
+const UploadSCItem= connect(
     mapStateToProps,
     mapDispatchToProps
-)(UploadSCItem)
+)(UploadSCItemSmart)
 
 export {
 	UploadSCItem,

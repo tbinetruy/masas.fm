@@ -1,25 +1,57 @@
-import {
-	mapDispatchToProps,
-	mapStateToProps
-} from './containers/UploadSCSongTable.jsx'
-
-import * as createClass from 'create-react-class'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { UploadSCItem } from './UploadSCItem.jsx'
 import { connect } from 'react-redux'
+import { updatePageTitle } from '../../reducers/actions/App.js'
 
-var UploadSCSongTable = createClass({
-	propTypes: {
-		SCusername: PropTypes.string,
-		masasUserTracks: PropTypes.array,
-		soundcloudUserTracks: PropTypes.array,
-	},
+/**
+ * Redux container
+ */
 
-	componentWillMount: function() {
-	},
+const reduxStatePropTypes = {
+	SCusername: PropTypes.string,
+	masasUserTracks: PropTypes.array,
+	soundcloudUserTracks: PropTypes.array,
+}
 
-	tracksTable: function() {
+const mapStateToProps = function(state) {
+	return {
+		SCusername:  state.uploadSCReducer.SCusername,
+		soundcloudUserTracks: state.uploadSCReducer.soundcloudUserTracks,
+		masasUserTracks: state.uploadSCReducer.masasUserTracks,
+	}
+}
+
+const reduxDispatchPropTypes = {
+	updateTitle: PropTypes.func,
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+	}
+}
+
+
+/**
+ * Smart component
+ */
+
+const smartPropTypes = {
+	...reduxStatePropTypes,
+	...reduxDispatchPropTypes,
+
+}
+
+const smartDefaultProps = {
+}
+
+class UploadSCSongTableSmart extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+	tracksTable() {
 		if (this.props.soundcloudUserTracks)
 			return this.props.soundcloudUserTracks.map((track) => {
 				var synced = false
@@ -33,13 +65,13 @@ var UploadSCSongTable = createClass({
 						streamable={ track.streamable }
 						public={ track.sharing === 'public' ? true : false } />
 			})
-	},
+	}
 
-	logoutSC: function() {
+	logoutSC() {
 		location.reload()
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div className="upload-sc--wrapper">
 				<div className="table-head">
@@ -69,12 +101,16 @@ var UploadSCSongTable = createClass({
 			</div>
 		)
 	}
-})
+}
 
-UploadSCSongTable = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(UploadSCSongTable)
+
+UploadSCSongTableSmart.propTypes = smartPropTypes
+UploadSCSongTableSmart.defaultProps = smartDefaultProps
+
+const UploadSCSongTable= connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UploadSCSongTableSmart)
 
 export {
 	UploadSCSongTable,

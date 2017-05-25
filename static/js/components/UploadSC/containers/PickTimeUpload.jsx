@@ -1,17 +1,4 @@
-import {
-	changeModalContent,
-	toogleIsModalOpened,
-	updatePageTitle,
-} from '../../../reducers/actions/App.js'
 
-import {
-	closePickTimeWindow,
-	handlePickTimeUpload,
-	updateIsUploadButtonDisabled,
-} from '../../../reducers/actions/UploadSC.js'
-
-import { updateNotificationBar } from '../../../reducers/actions/Header.js'
-import { updateProfileInfo } from '../../../reducers/actions/Profile.js'
 
 
 
