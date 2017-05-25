@@ -1,5 +1,4 @@
 
-
 const mapStateToProps = function(state) {
 	return {
 	}
