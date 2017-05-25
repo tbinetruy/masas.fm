@@ -34,8 +34,10 @@ const devConfig = {
 		filename: 'bundle.js',
 		// bundle output
 
-		publicPath: 'http://localhost:8080/static/dist'
+		publicPath: 'http://localhost:8080/static/dist',
 		// necessary for HMR to know where to load the hot update chunks
+
+		chunkFilename : '[name]-[id].js',
 	},
 	devtool: 'source-map',
 	devServer: {

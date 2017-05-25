@@ -11,7 +11,8 @@ const prodConfig = {
 	entry: ['babel-polyfill', './static/js/index.jsx', './static/sass/main.sass'],
 	output: {
 		path: path.resolve(__dirname, 'static/dist'),
-		filename: 'bundle.min.js'
+		filename: 'bundle.min.js',
+		chunkFilename : '[name]-[id].js',
 	},
 	module: {
 		rules: [
