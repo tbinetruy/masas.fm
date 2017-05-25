@@ -20,6 +20,7 @@
     {% if settings.RAVEN_JS_DSN %}
 		<link rel="stylesheet" href="{% static 'dist/sass.min.css' %}" />
     {% else %}
+		<!--<link rel="stylesheet" href="{% static 'dist/sass.min.css' %}" />-->
 		<link rel="stylesheet" href="http://localhost:8080/static/dist/sass.css" />
     {% endif %}
 
@@ -100,6 +101,7 @@
 		<script type="text/javascript" src="{% static "js/jquery.jplayer.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/paper-full.min.js" %}"></script>
 		<script type="text/javascript" src="http://localhost:8080/static/dist/bundle.js"></script>
+		<!--<script type="text/javascript" src="{% static "dist/bundle.min.js" %}"></script>-->
     {% endif %}
 
     {% if settings.RAVEN_JS_DSN %}
