@@ -64,14 +64,18 @@ const devConfig = {
 				use: extractSassDev.extract({
 					use: [
 						{
-							loader: 'css-loader?url=false&sourceMap'
+							loader: 'css-loader?url=true&sourceMap'
 						},
 						{
 							loader: 'sass-loader'
 						},
 					]
 				})
-			}
+			},
+			{
+                test: /\.(svg|ttf|woff|woff2)$/,
+                use: 'file-loader?name=[name].[ext]'
+            }
 		]
 	},
 	plugins: [
