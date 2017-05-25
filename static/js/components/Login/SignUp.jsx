@@ -6,7 +6,8 @@ import {
 	Body,
 	Textbox,
 	Button,
-	Checkbox
+	Checkbox,
+	Password,
 } from '../UI/UI.jsx'
 
 /**
