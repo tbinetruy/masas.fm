@@ -3,15 +3,15 @@
 // instead, slider value binded 2 ways with inner state var calling this.props.onChange when slider movement is
 // triggered.
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import * as createClass from 'create-react-class'
-
-import $ from 'jquery'
 import {
 	discoverHashtagNames,
 	makePromiseCancelable,
 } from '../../MASAS_functions.jsx'
+
+import * as createClass from 'create-react-class'
+import $ from 'jquery'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 var pixelRatio = () => {
 	return 1 // paper.view.pixelRatio

@@ -1,29 +1,27 @@
 import 'babel-polyfill'
 
-import React from 'react'
-
 import {
-	BrowserRouter as Router,
-	Link,
 	Route,
+	BrowserRouter as Router,
 	Switch,
  } from 'react-router-dom'
 
-import { Provider } from 'react-redux'
 import { App } from './components/App/App.jsx'
-import { LoginForm as Login } from './components/Login/LoginForm.jsx'
-import { InvitationPending } from './components/Login/InvitationPending.jsx'
-import { SignUp } from './components/Login/SignUp.jsx'
-import { Likes } from './components/Likes/Likes.jsx'
 import { Discover } from './components/Discover/Discover.jsx'
+import { InvitationPending } from './components/Login/InvitationPending.jsx'
 import { LegalsHome as Legals } from './components/Legals/LegalsHome.jsx'
-import { Popular } from './components/Popular/Popular.jsx'
+import { Likes } from './components/Likes/Likes.jsx'
+import { LoginForm as Login } from './components/Login/LoginForm.jsx'
 import { Manifesto } from './components/Manifesto/Manifesto.jsx'
+import { Popular } from './components/Popular/Popular.jsx'
 import { Profile } from './components/Profile/Profile.jsx'
-import { UploadSC } from './components/UploadSC/UploadSC.jsx'
-import { store } from './reducers/reducers.js'
+import { Provider } from 'react-redux'
+import React from 'react'
+import { SignUp } from './components/Login/SignUp.jsx'
 import { SoundcloudCallback } from './SoundcloudCallback.jsx'
 import { TwitterCallback } from './TwitterCallback.jsx'
+import { UploadSC } from './components/UploadSC/UploadSC.jsx'
+import { store } from './reducers/reducers.js'
 
 const AppRouter = () => (
 	<Provider store={store}>

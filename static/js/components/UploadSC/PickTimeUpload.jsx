@@ -1,13 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import {
+	Button,
+	Link,
+	TimePicker
+} from '../UI/UI.jsx'
+
+import {
+	mapDispatchToProps,
+	mapStateToProps
+} from './containers/PickTimeUpload.jsx'
+
 import * as createClass from 'create-react-class'
-import { connect } from 'react-redux'
-import { mapDispatchToProps, mapStateToProps } from './containers/PickTimeUpload.jsx'
-
-import { Button, Link, TimePicker } from '../UI/UI.jsx'
-import { getCookie } from '../../MASAS_functions.jsx'
-
 import { ModalContent } from './ModalContent.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+import { getCookie } from '../../MASAS_functions.jsx'
 
 
 let PickTimeUpload = createClass({

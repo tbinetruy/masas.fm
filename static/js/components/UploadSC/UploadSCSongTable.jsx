@@ -1,11 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import * as createClass from 'create-react-class'
-import { connect } from 'react-redux'
+import {
+	mapDispatchToProps,
+	mapStateToProps
+} from './containers/UploadSCSongTable.jsx'
 
-import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCSongTable.jsx'
-import { Body } from '../UI/UI.jsx'
+import * as createClass from 'create-react-class'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { UploadSCItem } from './UploadSCItem.jsx'
+import { connect } from 'react-redux'
 
 var UploadSCSongTable = createClass({
 	propTypes: {

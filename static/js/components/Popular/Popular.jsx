@@ -1,32 +1,31 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { ArtworkLine } from '../Discover/ArtworkLine.jsx'
-import { SplashScreen } from '../App/SplashScreen.jsx'
-import { Link } from '../UI/UI.jsx'
-import { GenreAutocomplete } from './GenreAutocomplete.jsx'
-import { BlurBackground } from '../MASAS_mixins.jsx'
-
 import {
 	changeBgState,
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
-
-import { updateTipBar } from '../../reducers/actions/Header.js'
-
-import {
-	playRandomSong,
-	toggleSongLike,
-} from '../../reducers/actions/Player.js'
-
-import { POPULAR } from '../../reducers/actions/Player.js'
 
 import {
 	changeModalContent,
 	toogleIsModalOpened,
 	updateSplashScreenLoginMessage,
 } from '../../reducers/actions/App.js'
+
+import {
+	playRandomSong,
+	toggleSongLike,
+} from '../../reducers/actions/Player.js'
+
+import { ArtworkLine } from '../Discover/ArtworkLine.jsx'
+import { GenreAutocomplete } from './GenreAutocomplete.jsx'
+import { Link } from '../UI/UI.jsx'
+import { POPULAR } from '../../reducers/actions/Player.js'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { SplashScreen } from '../App/SplashScreen.jsx'
+import { connect } from 'react-redux'
+import { updateTipBar } from '../../reducers/actions/Header.js'
+
+
+
 
 /**
  * Supporting component
@@ -43,8 +42,8 @@ const VoteButtons = ({ dislikeSong, toggleSongLike }) => (
 )
 
 VoteButtons.propTypes = {
-	dislikeSong: React.PropTypes.func,
-	toggleSongLike: React.PropTypes.func,
+	dislikeSong: PropTypes.func,
+	toggleSongLike: PropTypes.func,
 }
 
 /**
@@ -52,9 +51,9 @@ VoteButtons.propTypes = {
  */
 
 const reduxStatePropTypes = {
-	MASASuser: React.PropTypes.string,
-	songPlaying: React.PropTypes.string,
-	userPk: React.PropTypes.string,
+	MASASuser: PropTypes.string,
+	songPlaying: PropTypes.string,
+	userPk: PropTypes.string,
 }
 
 const mapStateToProps = function(state) {
@@ -66,15 +65,15 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	blackBgFilter: React.PropTypes.func,
-	playRandomSong: React.PropTypes.func,
-	resetBgFilter: React.PropTypes.func,
-	toggleSongLike: React.PropTypes.func,
-	toogleModal: React.PropTypes.func,
-	updateLoginMessage: React.PropTypes.func,
-	updateModalContent: React.PropTypes.func,
-	updateTipBar: React.PropTypes.func,
-	updateTitle: React.PropTypes.func,
+	blackBgFilter: PropTypes.func,
+	playRandomSong: PropTypes.func,
+	resetBgFilter: PropTypes.func,
+	toggleSongLike: PropTypes.func,
+	toogleModal: PropTypes.func,
+	updateLoginMessage: PropTypes.func,
+	updateModalContent: PropTypes.func,
+	updateTipBar: PropTypes.func,
+	updateTitle: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {

@@ -1,11 +1,7 @@
-import React from 'react'
+import { Button } from '../UI/UI.jsx'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { connect } from 'react-redux'
-
-import {
-	Button,
-} from '../UI/UI.jsx'
-
 import { toogleIsModalOpened } from '../../reducers/actions/App.js'
 
 

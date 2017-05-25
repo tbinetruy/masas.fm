@@ -1,5 +1,5 @@
-import React from 'react'
 import * as createClass from 'create-react-class'
+import React from 'react'
 
 const SoundcloudCallback = createClass({
 

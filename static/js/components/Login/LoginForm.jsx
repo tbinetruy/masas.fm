@@ -1,7 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import {
 	Body,
 	Button,
@@ -11,8 +7,10 @@ import {
 } from '../UI/UI.jsx'
 
 import GoogleLogin from 'react-google-login'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { TwitterLoginButton } from './TwitterLoginButton.jsx'
-
+import { connect } from 'react-redux'
 import { login } from '../../reducers/actions/Login.js'
 import { updatePageTitle } from '../../reducers/actions/App.js'
 

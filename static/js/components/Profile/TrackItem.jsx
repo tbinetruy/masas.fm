@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { ChangeMoodModal } from './ChangeMoodModal.jsx'
-import { RemoveSongModal } from './RemoveSongModal.jsx'
 import {
 	Marquee,
 	RankingInfoIcon,
 } from '../UI/UI.jsx'
+
+import {
+	changeModalContent,
+	toogleIsModalOpened
+} from '../../reducers/actions/App.js'
+
 import {
 	isObjectEmpty,
 	timeIntervalURLToString,
@@ -19,10 +19,13 @@ import {
 	playNewSongFromPlaylist,
 } from '../../reducers/actions/Player.js'
 
-import {
-	changeModalContent,
-	toogleIsModalOpened
-} from '../../reducers/actions/App.js'
+
+import { ChangeMoodModal } from './ChangeMoodModal.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { RemoveSongModal } from './RemoveSongModal.jsx'
+import { connect } from 'react-redux'
+
 
 /**
  * Redux container

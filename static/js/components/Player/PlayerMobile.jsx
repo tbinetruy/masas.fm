@@ -1,14 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import { Player as PlayerBar } from './PlayerBar.jsx'
-import { browserHistory } from 'react-router'
+import { PlayingArtwork } from './PlayingArtwork.jsx'
 import { ProgressBar } from '../Footer/ProgressBar.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { browserHistory } from 'react-router'
+import { connect } from 'react-redux'
+import { getUserPkFromURL } from '../../MASAS_functions.jsx'
 import { showPlayerMobile } from '../../reducers/actions/App.js'
 import { updateProfileBackArrowFunc } from '../../reducers/actions/Profile.js'
-import { PlayingArtwork } from './PlayingArtwork.jsx'
-import { getUserPkFromURL } from '../../MASAS_functions.jsx'
 
 
 /**

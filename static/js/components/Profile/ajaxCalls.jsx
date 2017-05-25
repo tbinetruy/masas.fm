@@ -1,8 +1,5 @@
-import {
-	updateProfileInfo
-} from '../../reducers/actions/Profile.js'
-
 import { store } from '../../reducers/reducers.js'
+import { updateProfileInfo } from '../../reducers/actions/Profile.js'
 const { dispatch } = store
 
 

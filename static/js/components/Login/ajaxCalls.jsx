@@ -1,10 +1,13 @@
 /**
  * used by terms and cond
  */
-import { browserHistory } from 'react-router'
+import {
+	logInWithToken,
+	updateAuthCookie
+} from '../../MASAS_functions.jsx'
 
+import { browserHistory } from 'react-router'
 import { store } from '../../reducers/reducers.js'
-import { updateAuthCookie, logInWithToken } from '../../MASAS_functions.jsx'
 
 const { dispatch } = store
 

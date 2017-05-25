@@ -1,12 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import {
 	changeModalContent,
 	toogleIsModalOpened,
 } from '../../reducers/actions/App.js'
 
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 import { toogleHashtagFilter } from '../../reducers/actions/Likes.js'
 
 

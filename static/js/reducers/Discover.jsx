@@ -4,9 +4,7 @@ import {
 	REMOVE_SONG_FROM_HISTORY,
 } from './actions/Discover.js'
 
-import {
-	POPULAR,
-} from './actions/Player.js'
+import { POPULAR } from './actions/Player.js'
 
 
 const defaultState = {

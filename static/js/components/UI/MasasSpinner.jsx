@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import * as createClass from 'create-react-class'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 var MasasSpinner = createClass({
 	propTypes: {

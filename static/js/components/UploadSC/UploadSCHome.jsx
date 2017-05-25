@@ -1,11 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import * as createClass from 'create-react-class'
-import { connect } from 'react-redux'
-import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCHome.jsx'
+import {
+	mapDispatchToProps,
+	mapStateToProps
+} from './containers/UploadSCHome.jsx'
 
-import { SplashScreen } from '../App/SplashScreen.jsx'
+import * as createClass from 'create-react-class'
 import { Button } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { SplashScreen } from '../App/SplashScreen.jsx'
+import { connect } from 'react-redux'
+
 
 const BulletPoint = ({ imgSrc, text }) => (
 	<div className='bullet-point--wrapper'>

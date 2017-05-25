@@ -1,10 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { copyTextToClipboard } from '../../MASAS_functions.jsx'
 import { Button } from '../UI/UI.jsx'
-
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+import { copyTextToClipboard } from '../../MASAS_functions.jsx'
 import { updateNotificationBar } from '../../reducers/actions/Header.js'
 
 /**

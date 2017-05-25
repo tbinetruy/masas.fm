@@ -1,20 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import {
-	Link,
-} from '../UI/UI.jsx'
-
-import {
-	getDiscoverNumberFromCurrentTime,
-	getTimeIntervalFromURL,
-} from '../../MASAS_functions.jsx'
-
-import { ArtworkLine } from './ArtworkLine.jsx'
-
-import { TimePicker } from '../UI/UI.jsx'
-
 import {
 	changeBgState,
 	changeModalContent,
@@ -25,7 +8,18 @@ import {
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
 
+import {
+	getDiscoverNumberFromCurrentTime,
+	getTimeIntervalFromURL,
+} from '../../MASAS_functions.jsx'
+
+import { ArtworkLine } from './ArtworkLine.jsx'
+import { Link } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { TimePicker } from '../UI/UI.jsx'
 import { changeDiscoverNumber } from '../../reducers/actions/Discover.js'
+import { connect }from 'react-redux'
 import { updateTipBar } from '../../reducers/actions/Header.js'
 
 

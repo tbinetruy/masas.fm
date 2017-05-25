@@ -1,6 +1,5 @@
-import React from 'react'
-
 import { Button } from '../UI/UI.jsx'
+import React from 'react'
 
 const InvitationPending= props => (
 	<div className="invitation-pending--wrapper">

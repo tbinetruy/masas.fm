@@ -1,13 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
 import {
 	playNewSongFromPlaylist,
 	playRandomSong,
 } from '../../../reducers/actions/Player.js'
 
 import { POPULAR } from '../../../reducers/actions/Player.js'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect }from 'react-redux'
+
+
 
 /**
  * Redux container

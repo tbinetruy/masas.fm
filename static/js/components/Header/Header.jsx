@@ -1,21 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { Notification } from './Notification.jsx'
-import { HeaderDropdown } from './HeaderDropdown.jsx'
-
-import { getPathList } from '../../MASAS_functions.jsx'
-import { Link } from '../UI/UI.jsx'
-
 import {
 	closeAndEmptyMainModal,
 	toogleNavSidebar,
 } from '../../reducers/actions/App.js'
 
-import { toogleIsFooterOpened } from '../../reducers/actions/Footer.js'
-
+import { HeaderDropdown } from './HeaderDropdown.jsx'
+import { Link } from '../UI/UI.jsx'
+import { Notification } from './Notification.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { changeHomePageNumber } from '../../reducers/actions/Home.js'
+import { connect }from 'react-redux'
+import { getPathList } from '../../MASAS_functions.jsx'
+import { toogleIsFooterOpened } from '../../reducers/actions/Footer.js'
 
 /**
  * Redux container

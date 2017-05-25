@@ -1,9 +1,8 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'
+import React from 'react'
 import { Textbox } from '../UI/UI.jsx'
+import { connect } from 'react-redux'
+import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'
 
 /**
  * Redux container

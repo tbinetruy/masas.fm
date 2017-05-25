@@ -1,21 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import {
-	playRandomSong,
-	toggleSongLike,
-} from '../../../reducers/actions/Player.js'
-
 import {
 	changeModalContent,
 	toogleIsModalOpened,
 	updateSplashScreenLoginMessage,
 } from '../../../reducers/actions/App.js'
 
-import { SplashScreen } from '../../App/SplashScreen.jsx'
-
 import { POPULAR } from '../../../reducers/actions/Player.js'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { SplashScreen } from '../../App/SplashScreen.jsx'
+import { connect }from 'react-redux'
+import { playRandomSong } from '../../../reducers/actions/Player.js'
+
 
 /**
  * Redux container

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
     BLACK_BG,
 	BLUR_BG,
@@ -27,6 +25,7 @@ import {
 	UPDATE_SPLASH_SCREEN_LOGIN_MESSAGE,
 } from './actions/App.js'
 
+import React from 'react'
 
 const defaultState = {
 	MASASuser: '', 						// user login token

@@ -1,11 +1,9 @@
-import { acceptTerms } from './ajaxCalls.jsx'
-
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import { Button } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Terms } from '../Legals/Terms.jsx'
+import { acceptTerms } from './ajaxCalls.jsx'
+import { connect } from 'react-redux'
 
 /**
  * Redux container

@@ -2,11 +2,11 @@
  * Need to remove jquery dependency
  */
 
-import React from 'react'
+import Autocomplete from 'react-autocomplete'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { connect } from 'react-redux'
 
-import Autocomplete from 'react-autocomplete'
 
 /**
  * Redux container

@@ -1,5 +1,3 @@
-import { getUserTracks } from '../ajaxCalls.jsx'
-
 import {
 	changeBgState,
 	changeModalContent,
@@ -15,6 +13,8 @@ import {
 	updateSCUserTracks,
 	updateSCUsername,
 } from '../../../reducers/actions/UploadSC.js'
+
+import { getUserTracks } from '../ajaxCalls.jsx'
 
 
 // Which part of the Redux global state does our component want to receive as props?

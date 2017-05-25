@@ -1,18 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {
+	Body,
+	Button
+} from '../UI/UI.jsx'
 
-import { Body, Button } from '../UI/UI.jsx'
-import { LegalsContent } from './LegalsContent.jsx'
 import { EnforcementGuidelines } from './EnforcementGuidelines.jsx'
 import { Guidelines } from './Guidelines.jsx'
 import { LearnCopyright } from './LearnCopyright.jsx'
+import { LegalsContent } from './LegalsContent.jsx'
 import { Privacy } from './Privacy.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { ReportCopyright } from './ReportCopyright.jsx'
-import { Terms } from './Terms.jsx'
 import { Rest } from './Rest.jsx'
-import { updatePageTitle } from '../../reducers/actions/App.js'
+import { Terms } from './Terms.jsx'
+import { connect } from 'react-redux'
 import { toogleLegalsPageNumber } from '../../reducers/actions/Legals.js'
+import { updatePageTitle } from '../../reducers/actions/App.js'
 
 
 /**

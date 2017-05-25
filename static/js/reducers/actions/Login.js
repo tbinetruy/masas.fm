@@ -1,9 +1,6 @@
 import 'whatwg-fetch'
 import Cookie from 'js-cookie'
-
-import {
-	updateNotificationBar,
-} from './Header.js'
+import { updateNotificationBar } from './Header.js'
 
 
 // global vars to this file

@@ -1,8 +1,7 @@
 
-import { updateNotificationBar } from './Header.js'
 import Cookie from 'js-cookie'
-
 import { resetTextboxValue } from './Profile.js'
+import { updateNotificationBar } from './Header.js'
 
 // to refactor
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object

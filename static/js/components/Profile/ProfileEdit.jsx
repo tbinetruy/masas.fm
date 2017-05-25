@@ -1,10 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { Textbox } from '../UI/UI.jsx'
-import { ProfileEditLinks } from './ProfileEditLinks.jsx'
 import { CountryAutocomplete } from './CountryAutocomplete.jsx'
+import { ProfileEditLinks } from './ProfileEditLinks.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Textbox } from '../UI/UI.jsx'
+import { connect } from 'react-redux'
 import { updateEditProfileTextboxValues } from '../../reducers/actions/Profile.js'
 
 /**

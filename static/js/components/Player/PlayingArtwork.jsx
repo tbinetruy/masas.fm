@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import {
 	pausePlayer,
 	playPlayer,
 } from '../../reducers/actions/Player.js'
 
 import { Artwork } from '../Discover/dumb/Artwork.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+
 
 /**
  * Redux container

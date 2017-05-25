@@ -1,9 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
-import { goToURL } from '../../MASAS_functions.jsx'
 import { Button } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { TrackItem } from '../Profile/TrackItem.jsx'
+import { goToURL } from '../../MASAS_functions.jsx'
 
 
 /**

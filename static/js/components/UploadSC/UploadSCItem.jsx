@@ -1,10 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import {
+	mapDispatchToProps,
+	mapStateToProps
+} from './containers/UploadSCItem.jsx'
+
 import * as createClass from 'create-react-class'
-import { connect } from 'react-redux'
-import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCItem.jsx'
-import { SCSyncInstructionModal } from './SCSyncInstructionModal.jsx'
 import { Marquee } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { SCSyncInstructionModal } from './SCSyncInstructionModal.jsx'
+import { connect } from 'react-redux'
 
 var UploadSCItem = createClass({
 	propTypes: {

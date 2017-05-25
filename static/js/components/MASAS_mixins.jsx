@@ -1,9 +1,8 @@
 /**
  * need to remove store dependency and move to action creator
  */
-import { store } from '../reducers/reducers.js'
 import { changeBgState } from '../reducers/actions/App.js'
-
+import { store } from '../reducers/reducers.js'
 const { dispatch } = store
 
 

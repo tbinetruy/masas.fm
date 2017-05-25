@@ -1,10 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import Sidebar from 'react-sidebar'
-import { SplashScreen } from '../App/SplashScreen.jsx'
-import { Link } from '../UI/UI.jsx'
 import {
 	changeModalContent,
 	closeAndEmptyMainModal,
@@ -13,6 +6,13 @@ import {
 	toogleNavSidebar,
 	updateSplashScreenLoginMessage,
 } from '../../reducers/actions/App.js'
+
+import { Link } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Sidebar from 'react-sidebar'
+import { SplashScreen } from '../App/SplashScreen.jsx'
+import { connect } from 'react-redux'
 import { goToURL } from '../../MASAS_functions.jsx'
 
 /**
@@ -20,10 +20,10 @@ import { goToURL } from '../../MASAS_functions.jsx'
  */
 
 const reduxStatePropTypes = {
-	MASASuser: React.PropTypes.string.isRequired,
-	isModalOpened: React.PropTypes.bool,
-	navSiderbarOpen: React.PropTypes.bool.isRequired,
-	userData: React.PropTypes.object.isRequired,
+	MASASuser: PropTypes.string.isRequired,
+	isModalOpened: PropTypes.bool,
+	navSiderbarOpen: PropTypes.bool.isRequired,
+	userData: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = function(state) {
@@ -36,12 +36,12 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	closeModal: React.PropTypes.func,
-	logout: React.PropTypes.func,
-	toogleModal: React.PropTypes.func,
-	toogleSidebar: React.PropTypes.func,
-	updateLoginMessage: React.PropTypes.func,
-	updateModalContent: React.PropTypes.func,
+	closeModal: PropTypes.func,
+	logout: PropTypes.func,
+	toogleModal: PropTypes.func,
+	toogleSidebar: PropTypes.func,
+	updateLoginMessage: PropTypes.func,
+	updateModalContent: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
@@ -64,7 +64,7 @@ const smartPropTypes = {
 	...reduxStatePropTypes,
 	...reduxDispatchPropTypes,
 
-	children: React.PropTypes.node,
+	children: PropTypes.node,
 }
 
 const smartDefaultProps = {

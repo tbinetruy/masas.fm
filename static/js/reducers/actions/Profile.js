@@ -1,10 +1,7 @@
 import 'whatwg-fetch'
-
-import {
-	updateNotificationBar,
-} from './Header.js'
-
 import { getCookie } from '../../MASAS_functions.jsx'
+import { updateNotificationBar } from './Header.js'
+
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
 const UPDATE_USER_SC_SONGS = 'UPDATE_USER_SC_SONGS'

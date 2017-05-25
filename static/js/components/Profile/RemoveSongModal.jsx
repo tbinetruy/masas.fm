@@ -1,11 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { updateNotificationBar } from '../../MASAS_functions.jsx'
-
-import { updateProfileInfo } from '../../reducers/actions/Profile.js'
 import { Button } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+import { updateNotificationBar } from '../../MASAS_functions.jsx'
+import { updateProfileInfo } from '../../reducers/actions/Profile.js'
 
 
 /**

@@ -11,9 +11,7 @@ import {
 	updateSCUsername,
 } from '../../../reducers/actions/UploadSC.js'
 
-import {
-	updateProfilePicture,
-} from '../../../reducers/actions/Login.js'
+import { updateProfilePicture } from '../../../reducers/actions/Login.js'
 
 
 const mapStateToProps = function(state) {

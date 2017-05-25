@@ -3,14 +3,12 @@
  * TO A SUB-COMPONENT THAT DISPLAYS IT
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
-import { LikesArtworks } from './LikesArtworks.jsx'
-import { FiltersModal } from './FiltersModal.jsx'
-import { Textbox } from '../UI/UI.jsx'
-import { LikesWrapper } from './LikesWrapper.jsx'
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+	updatePageTitle,
+} from '../../reducers/actions/App.js'
 
 import {
 	fetchLikes,
@@ -20,15 +18,18 @@ import {
 } from '../../reducers/actions/Likes.js'
 
 import {
-	changeModalContent,
-	toogleIsModalOpened,
-	updatePageTitle,
-} from '../../reducers/actions/App.js'
-
-import {
 	isSubsequence,
 	timeIntervalURLToString
 } from '../../MASAS_functions.jsx'
+
+import { FiltersModal } from './FiltersModal.jsx'
+import { LikesArtworks } from './LikesArtworks.jsx'
+import { LikesWrapper } from './LikesWrapper.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Textbox } from '../UI/UI.jsx'
+import { connect } from 'react-redux'
+
 
 
 /**

@@ -5,13 +5,10 @@
  * lose jquery dependency
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import {
-	updateProfileInfo,
-	updateSongMoodModalValue,
-} from '../../reducers/actions/Profile.js'
+	Button,
+	TimePicker,
+ } from '../UI/UI.jsx'
 
 import {
 	getCookie,
@@ -19,9 +16,13 @@ import {
  } from '../../MASAS_functions.jsx'
 
 import {
-	Button,
-	TimePicker,
- } from '../UI/UI.jsx'
+	updateProfileInfo,
+	updateSongMoodModalValue,
+} from '../../reducers/actions/Profile.js'
+
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 
 /**
  * Redux container

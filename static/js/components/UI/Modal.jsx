@@ -1,16 +1,14 @@
 /**
  * NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
  */
-import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
+import React from 'react'
 import { changeBgState } from '../../reducers/actions/App.js'
+import { closeModal } from '../../MASAS_functions.jsx'
+import { connect } from 'react-redux'
 
 // exeptionally import store to retrieve 1 value (read only)
 import { store } from '../../reducers/reducers.js'
-import { closeModal } from '../../MASAS_functions.jsx'
-
 const { getState } = store
 
 /**

@@ -8,9 +8,6 @@
 
 import 'whatwg-fetch'
 
-import { store } from './reducers/reducers.js'
-const { dispatch } = store
-
 import {
 	pausePlayer,
 	playNewSong,
@@ -19,16 +16,12 @@ import {
 	toggleSongLike,
 } from './reducers/actions/Player.js'
 
-import {
-	closeAndEmptyMainModal,
-} from './reducers/actions/App.js'
-
-import {
-	updateNotificationBar,
-} from './reducers/actions/Header.js'
-
-import { browserHistory } from 'react-router'
 import Cookie from 'js-cookie'
+import { browserHistory } from 'react-router'
+import { closeAndEmptyMainModal } from './reducers/actions/App.js'
+import { store } from './reducers/reducers.js'
+import { updateNotificationBar } from './reducers/actions/Header.js'
+const { dispatch } = store
 
 
 /////

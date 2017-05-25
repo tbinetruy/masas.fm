@@ -1,15 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { ArtworkLineItem } from './ArtworkLineItem.jsx'
-
-import { POPULAR } from '../../reducers/actions/Player.js'
-
-import { getTimeIntervalNumberFromUrl } from '../../MASAS_functions.jsx'
-
-import { EmptyArtwork } from './EmptyArtwork.jsx'
-
 import {
 	lastSongInDiscoverHistory,
 	pausePlayer,
@@ -19,6 +7,13 @@ import {
 	toggleSongLike
 } from '../../reducers/actions/Player.js'
 
+import { ArtworkLineItem } from './ArtworkLineItem.jsx'
+import { EmptyArtwork } from './EmptyArtwork.jsx'
+import { POPULAR } from '../../reducers/actions/Player.js'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect }from 'react-redux'
+import { getTimeIntervalNumberFromUrl } from '../../MASAS_functions.jsx'
 import { toogleIsFooterOpened } from '../../reducers/actions/Footer.js'
 
 

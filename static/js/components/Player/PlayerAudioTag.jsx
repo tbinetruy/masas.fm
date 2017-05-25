@@ -5,9 +5,9 @@
  */
 
 import React from 'react'
+import { SILENT_SOUND_SRC } from './PlayerBar.jsx'
 import { connect } from 'react-redux'
 
-import { SILENT_SOUND_SRC } from './PlayerBar.jsx'
 
 
 /**

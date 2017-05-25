@@ -1,11 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { ProfileWrapper } from './ProfileWrapper.jsx'
-import { ProfileDumb } from './ProfileDumb.jsx'
-
-import { getCookie, isObjectEmpty } from '../../MASAS_functions.jsx'
+import {
+	getCookie,
+	isObjectEmpty
+} from '../../MASAS_functions.jsx'
 
 import {
 	getPublicProfileInfo,
@@ -17,6 +13,11 @@ import {
 	updateUserSCSongs
 } from '../../reducers/actions/Profile.js'
 
+import { ProfileDumb } from './ProfileDumb.jsx'
+import { ProfileWrapper } from './ProfileWrapper.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 import { updatePageTitle } from '../../reducers/actions/App.js'
 
 

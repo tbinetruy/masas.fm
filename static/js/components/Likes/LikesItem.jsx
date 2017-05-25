@@ -1,14 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import {
 	loadPlaylist,
 	pausePlayer,
 	playNewSongFromPlaylist,
 } from '../../reducers/actions/Player.js'
-import { Marquee } from '../UI/UI.jsx'
 
+import { Marquee } from '../UI/UI.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 import { timeIntervalURLToString } from '../../MASAS_functions.jsx'
 
 /**

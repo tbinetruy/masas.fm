@@ -1,11 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { Artwork } from './dumb/Artwork.jsx'
-import { SongInfo } from './dumb/SongInfo.jsx'
-import { SplashScreen } from '../App/SplashScreen.jsx'
-import { resumePlayer } from '../../reducers/actions/Player.js'
 import {
 	changeModalContent,
 	toogleIsModalOpened,
@@ -13,6 +5,14 @@ import {
 	updatePageTitle,
 	updateSplashScreenLoginMessage,
 } from '../../reducers/actions/App.js'
+
+import { Artwork } from './dumb/Artwork.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { SongInfo } from './dumb/SongInfo.jsx'
+import { SplashScreen } from '../App/SplashScreen.jsx'
+import { connect }from 'react-redux'
+import { resumePlayer } from '../../reducers/actions/Player.js'
 
 
 /**

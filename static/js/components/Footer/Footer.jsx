@@ -1,11 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { UnsplashControls } from './UnsplashControls.jsx'
-import { Player } from '../Player/PlayerBar.jsx'
-import { ProgressBar } from './ProgressBar.jsx'
-
 import {
 	changeModalContent,
 	toogleIsModalOpened,
@@ -21,9 +13,16 @@ import {
 	toogleIsFooterOpened,
 } from '../../reducers/actions/Footer.js'
 
+import { Player } from '../Player/PlayerBar.jsx'
+import { ProgressBar } from './ProgressBar.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { UnsplashControls } from './UnsplashControls.jsx'
+import { connect }from 'react-redux'
+import { getTimeIntervalFromURL } from '../../MASAS_functions.jsx'
 import { showPlayerMobile } from '../../reducers/actions/App.js'
 
-import { getTimeIntervalFromURL } from '../../MASAS_functions.jsx'
+
 
 /**
  * Redux container

@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
-import { ProfileWrapper } from './ProfileWrapper.jsx'
-import { ProfileEditLinks } from './ProfileEditLinks.jsx'
-import { ProfileEdit } from './ProfileEdit.jsx'
-import { ProfileTrackList } from './ProfileTrackList.jsx'
 import { Marquee } from '../UI/UI.jsx'
+import { ProfileEdit } from './ProfileEdit.jsx'
+import { ProfileEditLinks } from './ProfileEditLinks.jsx'
+import { ProfileTrackList } from './ProfileTrackList.jsx'
+import { ProfileWrapper } from './ProfileWrapper.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 
 /**

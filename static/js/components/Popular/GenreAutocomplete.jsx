@@ -1,15 +1,16 @@
-require('babel-polyfill')
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import Autocomplete from 'react-autocomplete'
-
 import {
 	updateApiGenres,
 	updateSelectedGenre,
 	updateTextboxValue,
 } from '../../reducers/actions/Popular.js'
+
+require('babel-polyfill')
+import Autocomplete from 'react-autocomplete'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+
+
 
 /**
  * Redux container

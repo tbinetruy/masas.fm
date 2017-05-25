@@ -1,12 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
 import {
 	Body,
 	Link,
 } from '../UI/UI.jsx'
 
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect }from 'react-redux'
 import { updateTipBar } from '../../reducers/actions/Header.js'
 
 

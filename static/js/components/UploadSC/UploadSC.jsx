@@ -1,19 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import * as createClass from 'create-react-class'
-import { connect } from 'react-redux'
-
-import { Body } from '../UI/UI.jsx'
-import { UploadSCItem } from './UploadSCItem.jsx'
-import { PickTimeUpload } from './PickTimeUpload.jsx'
-import { UploadSCHome } from './UploadSCHome.jsx'
-import { UploadSCSongTable } from './UploadSCSongTable.jsx'
-import { NoSCSongs } from './NoSCSongs.jsx'
-
 import {
 	mapDispatchToProps,
 	mapStateToProps,
 } from './containers/UploadSC.jsx'
+
+import * as createClass from 'create-react-class'
+import { Body } from '../UI/UI.jsx'
+import { NoSCSongs } from './NoSCSongs.jsx'
+import { PickTimeUpload } from './PickTimeUpload.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { UploadSCHome } from './UploadSCHome.jsx'
+import { UploadSCItem } from './UploadSCItem.jsx'
+import { UploadSCSongTable } from './UploadSCSongTable.jsx'
+import { connect } from 'react-redux'
+
 
 
 let UploadSC = createClass({

@@ -1,11 +1,13 @@
-import React from 'react'
+import {
+	Body,
+	Button
+} from '../UI/UI.jsx'
+
 import PropTypes from 'prop-types'
+import React from 'react'
 import { connect }from 'react-redux'
-
-import { Body, Button } from '../UI/UI.jsx'
-
-import { updatePageTitle } from '../../reducers/actions/App.js'
 import { toogleLegalsPageNumber } from '../../reducers/actions/Legals.js'
+import { updatePageTitle } from '../../reducers/actions/App.js'
 
 /**
  * Redux container

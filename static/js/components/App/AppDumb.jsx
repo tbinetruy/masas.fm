@@ -1,17 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { closeAndEmptyMainModal } from '../../reducers/actions/App.js'
-
-import { Header } from '../Header/Header.jsx'
 import { Footer } from '../Footer/Footer.jsx'
-import { Discover } from '../Discover/Discover.jsx'
-import { NavSidebar } from '../NavSidebar/NavSidebar.jsx'
+import { Header } from '../Header/Header.jsx'
 import { Modal } from '../UI/UI.jsx'
+import { NavSidebar } from '../NavSidebar/NavSidebar.jsx'
 import { PlayerAudioTag } from '../Player/PlayerAudioTag.jsx'
 import { PlayerMobile } from '../Player/PlayerMobile.jsx'
-
+import PropTypes from 'prop-types'
+import React from 'react'
+import { closeAndEmptyMainModal } from '../../reducers/actions/App.js'
+import { connect }from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 /**

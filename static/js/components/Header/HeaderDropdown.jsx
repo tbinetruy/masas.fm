@@ -1,6 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
+import {
+	Button,
+	Link,
+} from '../UI/UI.jsx'
 
 import {
 	changeModalContent,
@@ -9,12 +10,11 @@ import {
 	toogleIsModalOpened,
 	updateSplashScreenLoginMessage
 } from '../../reducers/actions/App.js'
-import {
-	Button,
-	Link,
-} from '../UI/UI.jsx'
-import { browserHistory } from 'react-router'
+
+import PropTypes from 'prop-types'
+import React from 'react'
 import { SplashScreen } from '../App/SplashScreen.jsx'
+import { connect }from 'react-redux'
 
 /**
  * Dumb component

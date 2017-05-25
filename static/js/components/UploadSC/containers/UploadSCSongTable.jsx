@@ -1,6 +1,4 @@
-import {
-	updatePageTitle,
-} from '../../../reducers/actions/App.js'
+import { updatePageTitle } from '../../../reducers/actions/App.js'
 
 
 const mapStateToProps = function(state) {

@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
-import { TimePickerInside } from './TimePickerInside.jsx'
 import NoUISlider from 'react-nouislider'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { TimePickerInside } from './TimePickerInside.jsx'
+
 
 
 /**

@@ -15,17 +15,10 @@ import {
 	updateNotificationText,
 } from './Header.js'
 
-import {
-	updateProfileInfo,
-} from './Profile.js'
+import { getTimeIntervalNumberFromUrl } from './MASAS_functions.js'
+import { updateProfileInfo } from './Profile.js'
 
-import {
-	getTimeIntervalNumberFromUrl
-} from './MASAS_functions.js'
 
-import {
-	getDiscoverNumberFromCurrentTime,
-} from '../../MASAS_functions.jsx'
 
 const POPULAR = -1
 

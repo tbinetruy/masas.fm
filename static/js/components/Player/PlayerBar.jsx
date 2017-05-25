@@ -2,17 +2,6 @@
  * remove jquery dpeendency
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { Marquee } from '../UI/UI.jsx'
-import { POPULAR } from '../../reducers/actions/Player.js'
-import { LikeButton } from './controls/LikeButton.jsx'
-import { DislikeButton } from './controls/DislikeButton.jsx'
-import { NextButton } from './controls/NextButton.jsx'
-import { PlayButton } from './controls/PlayButton.jsx'
-import { PreviousButton } from './controls/PreviousButton.jsx'
 import {
 	pausePlayer,
 	playNewSong,
@@ -22,8 +11,19 @@ import {
 	resumePlayer,
 	setIsPlayerBuffering,
 } from '../../reducers/actions/Player.js'
-import { showPlayerMobile } from '../../reducers/actions/App.js'
+
+import { DislikeButton } from './controls/DislikeButton.jsx'
+import { LikeButton } from './controls/LikeButton.jsx'
+import { Marquee } from '../UI/UI.jsx'
+import { NextButton } from './controls/NextButton.jsx'
+import { POPULAR } from '../../reducers/actions/Player.js'
+import { PlayButton } from './controls/PlayButton.jsx'
+import { PreviousButton } from './controls/PreviousButton.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 import { getTimeIntervalFromURL } from '../../MASAS_functions.jsx'
+import { showPlayerMobile } from '../../reducers/actions/App.js'
 
 const SILENT_SOUND_SRC = '/static/mp3/silent.mp3'
 

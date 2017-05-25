@@ -1,9 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { LoginForm } from './LoginForm.jsx'
 import { Body } from '../UI/UI.jsx'
+import { LoginForm } from './LoginForm.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 
 /**
  * Redux container

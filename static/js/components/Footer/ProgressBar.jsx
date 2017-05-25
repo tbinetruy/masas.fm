@@ -1,10 +1,7 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { connect }from 'react-redux'
-
-import {
-	setPlayerProgressBar,
-} from '../../reducers/actions/Footer.js'
+import { setPlayerProgressBar } from '../../reducers/actions/Footer.js'
 
 /**
  * Redux container

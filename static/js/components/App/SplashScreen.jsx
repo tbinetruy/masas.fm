@@ -1,18 +1,15 @@
-import Swiper from 'swiper/dist/js/swiper.min.js'
-
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { Button } from '../UI/UI.jsx'
-import { LoginForm } from '../Login/LoginForm.jsx'
-import {
-	LegalsHome as Legals,
-} from '../Legals/LegalsHome.jsx'
 import {
 	changeSplashScreenPage,
 	closeAndEmptyMainModal,
 } from '../../reducers/actions/App.js'
+
+import { Button } from '../UI/UI.jsx'
+import { LegalsHome as Legals } from '../Legals/LegalsHome.jsx'
+import { LoginForm } from '../Login/LoginForm.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Swiper from 'swiper/dist/js/swiper.min.js'
+import { connect }from 'react-redux'
 import { goToURL } from '../../MASAS_functions.jsx'
 
 

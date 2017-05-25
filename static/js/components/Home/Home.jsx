@@ -1,18 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-
-import { browserHistory } from 'react-router'
-
-import { LoginForm } from '../Login/LoginForm.jsx'
-import { Button } from '../UI/UI.jsx'
-
-import { updatePageTitle } from '../../reducers/actions/App.js'
-
 import{
 	changeHomePageNumber,
 	changeTimePickerDemo
 } from '../../reducers/actions/Home.js'
+
+import { Button } from '../UI/UI.jsx'
+import { LoginForm } from '../Login/LoginForm.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { browserHistory } from 'react-router'
+import { connect }from 'react-redux'
+import { updatePageTitle } from '../../reducers/actions/App.js'
+
 
 /**
  * Redux container
