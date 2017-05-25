@@ -4,6 +4,8 @@
 // triggered.
 
 import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 
 import $ from 'jquery'
 import {
@@ -15,21 +17,21 @@ var pixelRatio = () => {
 	return 1 // paper.view.pixelRatio
 }
 
-const TimePicker = React.createClass({
+const TimePicker = createClass({
 	cancelablePromise: makePromiseCancelable(new Promise( () => {} )),
 
 	propTypes: {
-		canvasId: React.PropTypes.string,					// canvas id used for drawing
-		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
-		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
-		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position
-		onFirstSunMove: React.PropTypes.func,				// callback called on first user interaction with the sun
-		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
-		rangePercent: React.PropTypes.number,				// slider value
-		renderForUITip: React.PropTypes.bool,				// slider controlled by mouse.onMove
-		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
-		sliderValue: React.PropTypes.number,					// slider value affecting sun position
-		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
+		canvasId: PropTypes.string,					// canvas id used for drawing
+		currentDiscover: PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
+		initText: PropTypes.string,					// string instead of hashtag until slider is moved
+		initialDiscover: PropTypes.number.isRequired, 			// 1-6 starting slider position
+		onFirstSunMove: PropTypes.func,				// callback called on first user interaction with the sun
+		onSliderChange: PropTypes.func,	 			// callback called when slider changes
+		rangePercent: PropTypes.number,				// slider value
+		renderForUITip: PropTypes.bool,				// slider controlled by mouse.onMove
+		showHashtag: PropTypes.bool,					// should hashtag be shown for current slider position
+		sliderValue: PropTypes.number,					// slider value affecting sun position
+		wrapperClassName: PropTypes.string,				// class used to size TimePicker
 
 	},
 

@@ -2,7 +2,9 @@
  * uses create class because of use of mixin
  */
 
-import React, { PropTypes, createClass } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 import { connect } from 'react-redux'
 
 import { MobileBlurBackground } from '../MASAS_mixins.jsx'

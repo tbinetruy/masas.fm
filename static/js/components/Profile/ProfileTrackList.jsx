@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import { goToURL } from '../../MASAS_functions.jsx'
 import { Button } from '../UI/UI.jsx'

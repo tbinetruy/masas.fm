@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 import { connect } from 'react-redux'
 
 import { Body } from '../UI/UI.jsx'
@@ -14,31 +16,31 @@ import {
 } from './containers/UploadSC.jsx'
 
 
-let UploadSC = React.createClass({
+let UploadSC = createClass({
 	propTypes: {
-		MASASuser: React.PropTypes.string,
-		SCusername: React.PropTypes.string,
-		blurBg: React.PropTypes.func,
-		blurMobileBr: React.PropTypes.func,
-		choosingTime: React.PropTypes.object,
-		getUserSCTracks: React.PropTypes.func,
-		getUserTracks: React.PropTypes.func,
-		isConnectedSoundcloud: React.PropTypes.bool,
-		isModalOpened: React.PropTypes.bool,
-		masasUserTracks: React.PropTypes.array,
-		modalType: React.PropTypes.number,
-		saturateBg: React.PropTypes.func,
-		soundcloudUserTracks: React.PropTypes.array,
-		toogleModal: React.PropTypes.func,
-		updateIsConnectedSC: React.PropTypes.func,
-		updateMasasUserTracks: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		updateModalType: React.PropTypes.func,
-		updateSCusername: React.PropTypes.func,
-		updateSoundcloudUserTracks: React.PropTypes.func,
-		updateTitle: React.PropTypes.func,
-		userData: React.PropTypes.object,
-		userPk: React.PropTypes.string,
+		MASASuser: PropTypes.string,
+		SCusername: PropTypes.string,
+		blurBg: PropTypes.func,
+		blurMobileBr: PropTypes.func,
+		choosingTime: PropTypes.object,
+		getUserSCTracks: PropTypes.func,
+		getUserTracks: PropTypes.func,
+		isConnectedSoundcloud: PropTypes.bool,
+		isModalOpened: PropTypes.bool,
+		masasUserTracks: PropTypes.array,
+		modalType: PropTypes.number,
+		saturateBg: PropTypes.func,
+		soundcloudUserTracks: PropTypes.array,
+		toogleModal: PropTypes.func,
+		updateIsConnectedSC: PropTypes.func,
+		updateMasasUserTracks: PropTypes.func,
+		updateModalContent: PropTypes.func,
+		updateModalType: PropTypes.func,
+		updateSCusername: PropTypes.func,
+		updateSoundcloudUserTracks: PropTypes.func,
+		updateTitle: PropTypes.func,
+		userData: PropTypes.object,
+		userPk: PropTypes.string,
 	},
 
 	componentWillMount: function() {

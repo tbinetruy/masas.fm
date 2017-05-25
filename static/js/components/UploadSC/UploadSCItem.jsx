@@ -1,18 +1,20 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCItem.jsx'
 import { SCSyncInstructionModal } from './SCSyncInstructionModal.jsx'
 import { Marquee } from '../UI/UI.jsx'
 
-var UploadSCItem = React.createClass({
+var UploadSCItem = createClass({
 	propTypes: {
-		chooseTime: React.PropTypes.func,
-		public: React.PropTypes.bool, 			// is song public
-		streamable: React.PropTypes.bool,		// is song streamable
-		synced: React.PropTypes.bool	,		// is song synced
-		toogleModal: React.PropTypes.func,
-		track: React.PropTypes.object,		// song info
-		updateModalContent: React.PropTypes.func,
+		chooseTime: PropTypes.func,
+		public: PropTypes.bool, 			// is song public
+		streamable: PropTypes.bool,		// is song streamable
+		synced: PropTypes.bool	,		// is song synced
+		toogleModal: PropTypes.func,
+		track: PropTypes.object,		// song info
+		updateModalContent: PropTypes.func,
 	},
 
 	componentWillMount: function() {

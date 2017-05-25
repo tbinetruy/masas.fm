@@ -1,6 +1,7 @@
 import React from 'react'
+import * as createClass from 'create-react-class'
 
-const SoundcloudCallback = React.createClass({
+const SoundcloudCallback = createClass({
 
 	redirect: function() {
 	},

@@ -1,4 +1,5 @@
-import React, { createClass } from 'react'
+import React from 'react'
+import * as createClass from 'create-react-class'
 
 import { BlurBackground } from '../MASAS_mixins.jsx'
 import { Button } from '../UI/UI.jsx'

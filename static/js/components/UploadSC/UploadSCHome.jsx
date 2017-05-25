@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCHome.jsx'
 
 import { SplashScreen } from '../App/SplashScreen.jsx'
-import { Button, Body, Link } from '../UI/UI.jsx'
-import { getPathList } from '../../MASAS_functions.jsx'
+import { Button } from '../UI/UI.jsx'
 
 const BulletPoint = ({ imgSrc, text }) => (
 	<div className='bullet-point--wrapper'>
@@ -16,23 +17,23 @@ const BulletPoint = ({ imgSrc, text }) => (
 )
 
 BulletPoint.propTypes = {
-	imgSrc: React.PropTypes.string.isRequired,	// img source
-	text: React.PropTypes.string.isRequired,	// text to display
+	imgSrc: PropTypes.string.isRequired,	// img source
+	text: PropTypes.string.isRequired,	// text to display
 }
 
-var UploadSCHome = React.createClass({
+var UploadSCHome = createClass({
 	propTypes: {
-		MASASuser: React.PropTypes.string,
-		getUserTracks: React.PropTypes.func,
-		toogleModal: React.PropTypes.func,
-		updateIsConnectedSC: React.PropTypes.func,
-		updateLoginMessage: React.PropTypes.func,
-		updateMasasUserTracks: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func,
-		updateProfilePicture: React.PropTypes.func,
-		updateSCusername: React.PropTypes.func,
-		updateSoundcloudUserTracks: React.PropTypes.func,
-		userPk: React.PropTypes.string,
+		MASASuser: PropTypes.string,
+		getUserTracks: PropTypes.func,
+		toogleModal: PropTypes.func,
+		updateIsConnectedSC: PropTypes.func,
+		updateLoginMessage: PropTypes.func,
+		updateMasasUserTracks: PropTypes.func,
+		updateModalContent: PropTypes.func,
+		updateProfilePicture: PropTypes.func,
+		updateSCusername: PropTypes.func,
+		updateSoundcloudUserTracks: PropTypes.func,
+		userPk: PropTypes.string,
 	},
 
 	componentWillMount: function() {

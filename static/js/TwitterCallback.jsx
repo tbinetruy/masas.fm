@@ -1,7 +1,8 @@
+import * as createClass from 'create-react-class'
 import React from 'react'
 import { getUrlParams } from './MASAS_functions.jsx'
 
-const TwitterCallback = React.createClass({
+const TwitterCallback = createClass({
 
 	redirect: function() {
 		// send auth token

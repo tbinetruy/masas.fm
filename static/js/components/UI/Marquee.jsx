@@ -2,7 +2,8 @@
  * NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
  */
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 
 /**

@@ -1,15 +1,17 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as createClass from 'create-react-class'
 import { connect } from 'react-redux'
 
 import { mapDispatchToProps, mapStateToProps } from './containers/UploadSCSongTable.jsx'
 import { Body } from '../UI/UI.jsx'
 import { UploadSCItem } from './UploadSCItem.jsx'
 
-var UploadSCSongTable = React.createClass({
+var UploadSCSongTable = createClass({
 	propTypes: {
-		SCusername: React.PropTypes.string,
-		masasUserTracks: React.PropTypes.array,
-		soundcloudUserTracks: React.PropTypes.array,
+		SCusername: PropTypes.string,
+		masasUserTracks: PropTypes.array,
+		soundcloudUserTracks: PropTypes.array,
 	},
 
 	componentWillMount: function() {

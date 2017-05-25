@@ -1,4 +1,5 @@
-import * as React from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect }from 'react-redux'
 
 import {
@@ -23,7 +24,7 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-	updateTipBar: React.PropTypes.func,
+	updateTipBar: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
