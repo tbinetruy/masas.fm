@@ -1,25 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
 import {
 	consts as MASAS_consts,
 	updateUserStep,
 } from '../../MASAS_functions.jsx'
-import { ProfileEdit } from './ProfileEdit.jsx'
-import {
-	saveProfile,
-	setEditingProfile,
-} from '../../reducers/actions/Profile.js'
-import {
-	updateProfilePicture,
-} from '../../reducers/actions/Login.js'
+
 import {
 	closeAndEmptyMainModal,
 	updatePageTitle,
 } from '../../reducers/actions/App.js'
+
+import {
+	saveProfile,
+	setEditingProfile,
+} from '../../reducers/actions/Profile.js'
+
 import { Button } from '../UI/UI.jsx'
+import { ProfileEdit } from './ProfileEdit.jsx'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
 import { getCookie } from '../../MASAS_functions.jsx'
+import { updateProfilePicture } from '../../reducers/actions/Login.js'
 
 /**
  * Redux container
