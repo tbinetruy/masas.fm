@@ -106,8 +106,10 @@ class HeaderDropdownSmart extends React.Component {
 					<div
 						onClick={ () => { this.props.closeModal(); browserHistory.push('/profile') } }
 						className="username--wrapper">
-						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture" />
-						<span className="username" id="username-header"> {this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
+						<Link to="/profile">
+							<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture" />
+							<span className="username" id="username-header"> {this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
+						</Link>
 					</div>
 					<div className="dropdown-content">
 						<MenuLink onClick={ this.props.closeModal } src='/static/img/MASAS_play_number.svg' URL="/profile">My Profile</MenuLink>

@@ -29,6 +29,8 @@ const AppRouter = () => (
 	<Provider store={store}>
 		<Router>
 			<Switch>
+				<Route path="/sc-callback" component={SoundcloudCallback} />
+				<Route path="/twitter-callback" component={TwitterCallback} />
 				<App>
 					<Switch>
 						<Route exact path="/" component={Discover} />
@@ -45,8 +47,6 @@ const AppRouter = () => (
 						<Route path="/manifesto" component={Manifesto} />
 					</Switch>
 				</App>
-				<Route path="/sc-callback" component={SoundcloudCallback} />
-				<Route path="/twitter-callback" component={TwitterCallback} />
 			</Switch>
 		</Router>
 	</Provider>

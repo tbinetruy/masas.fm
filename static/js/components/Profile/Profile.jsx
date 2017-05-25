@@ -79,8 +79,7 @@ const smartPropTypes = {
 	...reduxStatePropTypes,
 	...reduxDispatchPropTypes,
 
-	route: PropTypes.object,
-	routeParams: PropTypes.object,
+	match: PropTypes.object,	// react router url
 }
 
 const smartDefaultProps = {
@@ -98,6 +97,7 @@ class ProfileSmart extends React.Component {
     }
 
 	componentWillMount() {
+		console.log(this.props, this.props.match)
 		this.updateTitle('My Profile')		// 0 = menu icon; 1 = arrow back
 
 		this.getSCinfo()
@@ -115,8 +115,8 @@ class ProfileSmart extends React.Component {
 
 	// componentWillReceiveProps: function(nextProps, nextState) {
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.route.publicProfile !== this.props.route.publicProfile) {
-			if(nextProps.route.publicProfile)
+		if(nextProps.match.url !== this.props.match.url) {
+			if(nextProps.match.path !== '/profile')
 				this.getPublicProfileInfo(nextProps)
 			else
 				this.props.updatePublicProfileInfo({})
@@ -142,8 +142,8 @@ class ProfileSmart extends React.Component {
 		if(props === null)
 			props = this.props
 
-		if(typeof(props.routeParams.username) !== 'undefined')
-			this.props.getPublicProfileInfo(props.routeParams.username)
+		if(typeof(props.match.params.username) !== 'undefined')
+			this.props.getPublicProfileInfo(props.match.params.username)
 	}
 
 	updatePageTitle() {
@@ -168,7 +168,7 @@ class ProfileSmart extends React.Component {
 	render() {
 		var showProfile = false
 		var userData = {}
-		this.isPublicProfile = typeof(this.props.routeParams.username) !== 'undefined'
+		this.isPublicProfile = typeof(this.props.match.params.username) !== 'undefined'
 		var { isPublicProfile } = this
 
 		if(isPublicProfile) {
