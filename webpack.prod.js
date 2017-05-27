@@ -13,7 +13,7 @@ const prodConfig = {
 		path: path.resolve(__dirname, 'static/dist'),
 		filename: 'bundle.min.js',
 		chunkFilename : '[name]-[id].js',
-		publicPath: 'http://192.168.0.13:8000/static/dist/'
+		publicPath: 'http://masas.fm/static/dist/'
 	},
 	module: {
 		rules: [
