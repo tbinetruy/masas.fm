@@ -77,7 +77,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    // "test": "jest",
+    "test": "ls",
     "build": "webpack",
     "start": "webpack-dev-server --env=dev",
     "build:dev": "webpack --env=dev --progress --profile --colors",
