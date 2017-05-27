@@ -12,7 +12,7 @@ const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
 const UPDATE_BACK_ARROW_FUNC = 'UPDATE_BACK_ARROW_FUNC'
 const RESET_TEXTBOX_VALUES = 'RESET_TEXTBOX_VALUES'
 const SET_EDITING_PROFILE_VISIBILITY = 'SET_EDITING_PROFILE_VISIBILITY'
-
+//
 const updateUserStep = step => (disptach, getState) => {
 	const { MASASuser, userData } = getState().appReducer
 
