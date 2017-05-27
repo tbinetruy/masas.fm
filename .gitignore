@@ -18,3 +18,4 @@ activate
 data
 wsgi
 static/dist
+bundle.*
