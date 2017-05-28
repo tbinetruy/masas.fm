@@ -17,5 +17,4 @@ db.sqlite3
 activate
 data
 wsgi
-static/dist
 bundle.*
