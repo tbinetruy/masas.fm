@@ -120,7 +120,7 @@ class DiscoverSmart extends React.Component {
 
 	componentDidMount() {
 		// show crowdradio tip
-		this.props.updateTipBar('Welcome to the Crowdradio!', 9, <Link to="/manifesto">Learn more</Link>)
+		this.props.updateTipBar('Welcome to the Crowdradio!!', 9, <Link to="/manifesto">Learn more</Link>)
 	}
 
 	componentWillReceiveProps() {
