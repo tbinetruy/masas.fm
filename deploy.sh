@@ -2,9 +2,6 @@
 
 git status
 
-git add static/dist
-git status
-
 git stash
 git status
 
