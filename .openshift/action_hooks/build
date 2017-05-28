@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ${OPENSHIFT_HOMEDIR}app-root/repo
+npm install
+npm run build:prod
