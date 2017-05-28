@@ -17,3 +17,4 @@ deploy:
   app: prod
   domain: masas
   deployment_branch: production
+  skip_cleanup: true
