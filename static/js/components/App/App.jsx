@@ -128,6 +128,8 @@ class AppSmart extends React.Component {
 
 		// INIT DISCOVER AND POPULAR HISTORIES
 		initHistories(this.props.addRandomSongToDiscoverHistory, this.props.addRandomSongToPopularHistory)
+
+		console.log('test travis')
 	}
 
 	componentDidMount() {
