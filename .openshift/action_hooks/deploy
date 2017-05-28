@@ -23,4 +23,4 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/p
      -H "X-Auth-Email: $CLOUDFLARE_API_EMAIL" \
      -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
      -H "Content-Type: application/json" \
-     --data '{"files":["http://www.masas.fm/static/js/bundle.js"]}'
+	 --data '{"purge_everything":true}'
