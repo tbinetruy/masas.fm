@@ -19,17 +19,6 @@ mkdir -p $OPENSHIFT_REPO_DIR/wsgi/static/collected
 python ${OPENSHIFT_REPO_DIR}manage.py collectstatic --noinput
 
 
-# moving npm config and cache to folder we have write access to
-export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
-npm config set cache $OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npm
-
-# install and build react frontend
-cd ${OPENSHIFT_HOMEDIR}app-root/repo
-npm install
-npm run build:prod
-
-
-# reset cloudflare cache
 curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
      -H "X-Auth-Email: $CLOUDFLARE_API_EMAIL" \
      -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
