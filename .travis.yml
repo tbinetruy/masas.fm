@@ -4,6 +4,7 @@ node_js:
 script:
 - npm run build:prod
 before_deploy:
+- chmod +x deploy.sh
 - ./deploy.sh
 deploy:
   provider: openshift
