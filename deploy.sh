@@ -4,7 +4,7 @@ git status
 
 
 git checkout -b production
-git add static/dist
+git add -f static/dist
 git status
 
 git commit -m "build"
