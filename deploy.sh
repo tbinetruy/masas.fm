@@ -8,7 +8,7 @@ git status
 git stash
 git status
 
-git checkout production
+git checkout -b production
 git status
 
 git stash pop
